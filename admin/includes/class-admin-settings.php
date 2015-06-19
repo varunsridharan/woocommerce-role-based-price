@@ -123,8 +123,8 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
 
             WC_DB_KEY.'allowed_price' => array(
                 'name' => 'Allowed Product Pricing',
-                'desc' => 'User Roles To List In Product Edit Page',
-                'id' => WC_DB_KEY.'list_roles',
+                'desc' => 'Price Fields To List In Product Edit Page',
+                'id' => WC_DB_KEY.'allowed_price',
                 'type' => 'multiselect', 
                 'class' =>'chosen_select',
                 'css'     => $width,
@@ -132,7 +132,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
             ),             
             'section_end' => array(
                 'type' => 'sectionend',
-                'id' => 'wc_quick_donation_general_end'
+                'id' => rbp_key.'general_end'
             )
         );
         return $settings;

@@ -46,7 +46,7 @@ if ( ! class_exists( 'WooCommerce_Role_Based_Price_Admin_Notice' ) ) {
 		 */
 		public function init() {
 			$default_notices             = array( 'update' => array(), 'error' => array() );
-			$this->notices               = array_merge( $default_notices, get_option( self::$db_key, array() ) );
+			$this->notices               = array_merge( $default_notices, WC_RBP()->get_option( self::$db_key, array() ) );
 			$this->notices_were_updated  = false;
 		}
 

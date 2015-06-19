@@ -32,9 +32,13 @@ class WooCommerce_Role_Based_Price_Admin {
 	public function __construct() {
         $this->load_required_files();
         $this->initiate_class();
+
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'woocommerce_get_settings_pages',  array($this,'settings_page') );
 	}
-
+     
+    
     /**
      * Provides access to a single instances of the class using the singleton pattern
      * @return object
@@ -88,18 +92,18 @@ class WooCommerce_Role_Based_Price_Admin {
     }
     
     
-    
     /**
 	 * Register the stylesheets for the admin area.
 	 */
-	public function enqueue_styles() {
-		#wp_enqueue_style( $this->plugin_name, 'css/plugin-name-admin.css', array(), $this->version, 'all' );
+	public function enqueue_styles() {  
+		wp_enqueue_style(WC_RBP_NAME,plugins_url('css/style.css',__FILE__) , array(), WC_RBP_VERSION, 'all' );
 	}
 	
     /**
 	 * Register the JavaScript for the admin area.
 	 */
 	public function enqueue_scripts() {
-		#wp_enqueue_script( $this->plugin_name, 'js/plugin-name-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script(WC_RBP_NAME, plugins_url('js/script.js',__FILE__), array( 'jquery' ), WC_RBP_VERSION, false );
+        
 	}
 }
