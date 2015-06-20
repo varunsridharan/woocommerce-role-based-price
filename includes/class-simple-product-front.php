@@ -6,8 +6,8 @@ class simple_product_role_based_price{
     private $post_ID = '';
     
 	public function init(){ 
-        
         add_action( 'wp', array($this,'get_ID'),1);
+        
 	}
     
     public function wc_init(){
@@ -23,14 +23,15 @@ class simple_product_role_based_price{
     }
  
     public function get_ID(){
-        global $post;
-        
-        $id = $post->ID; 
-        WC_RBP()->sp_function()->get_db_price($id);
+        global $post; 
+        $id = $post->ID;  
         $this->post_ID = $id;
         
-        if(WC_RBP()->sp_function()->get_status($id)){
-            add_action('woocommerce_init',array($this,'wc_init'));
+        $product = get_product($id); 
+        WC_RBP()->sp_function()->get_db_price($id);
+
+        if($product->product_type == 'simple'  &&  WC_RBP()->sp_function()->get_status($id)){
+            $this->wc_init(); 
         } 
     }
 	
@@ -46,7 +47,7 @@ class simple_product_role_based_price{
 		$role = $this->get_current_role();  
 		$price_new = WC_RBP()->sp_function()->get_selprice($role,'selling_price');
         if(!empty($price_new)){return floatval($price_new);}
-        return $price;
+        return $price_new;
 		
 	}
 	public function role_based_regular_price($price,$product){
@@ -54,23 +55,17 @@ class simple_product_role_based_price{
 		$role = $this->get_current_role();  
 		$price_new = WC_RBP()->sp_function()->get_selprice($role,'regular_price');
         if(!empty($price_new)){return floatval($price_new);}
-        return $price;
+        return $price_new;
 	}
     
     public function role_based_price_all($price,$product){
         $sale_price = $this->role_based_sale_price('',$product);
         $regular_price = $this->role_based_regular_price('',$product);
         
-        if(!empty($sale_price) &&  !empty($regular_price)){
-            if($sale_price > $regular_price){
-                return $sale_price;
-            } else {
-                return $regular_price;
-            }
+        if(! empty($sale_price) ){
+            return $sale_price;
         } else if(! empty($regular_price)){
             return $regular_price;
-        } else if(! empty($sale_price)){
-            return $sale_price;
         } else {
             return $price;
         }
@@ -78,8 +73,6 @@ class simple_product_role_based_price{
     }
 }
 
-if(!is_admin()){
-    $simple_role_based_price = new simple_product_role_based_price;
+$simple_role_based_price = new simple_product_role_based_price;
     $simple_role_based_price->init();
-}
 ?>
