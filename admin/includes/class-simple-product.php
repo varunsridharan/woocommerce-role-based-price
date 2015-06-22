@@ -78,8 +78,9 @@ class WooCommerce_Role_Based_Price_Simple_Product_Admin {
             <div id="simple_role_based_price_field_container" class="'.$display.'">';
            
             foreach(WC_RBP()->get_allowed_roles() as $key => $val){
+                $name = WC_RBP()->get_mod_name($key);
                 echo '<div class="options_group '.$key.'_role_price" id="'.$key.'_role_price">';
-                    echo '<h3>'.$val['name'].'</h3>';
+                    echo '<h3>'.$name.'</h3>';
                 
                     if($regular_price){
                         woocommerce_wp_text_input( array( 

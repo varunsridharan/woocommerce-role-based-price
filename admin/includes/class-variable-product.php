@@ -82,8 +82,9 @@ class WooCommerce_Role_Based_Price_Variable_Product_Admin {
             
 				          
             foreach(WC_RBP()->get_allowed_roles() as $key => $val){
+                $name = WC_RBP()->get_mod_name($key);
                 echo '<div class="variable_pricing '.$key.'_role_price" id="'.$key.'_role_price">';
-                    echo '<h3>'.$val['name'].'</h3>';
+                    echo '<h3>'.$name.'</h3>';
                 
                     if($regular_price){
                         woocommerce_wp_text_input( array( 

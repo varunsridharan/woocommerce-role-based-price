@@ -104,14 +104,14 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
        
         echo '</pre>';
         $settings = array(
-            'section_title' => array(
+            array(
                 'name' => 'WooCommerce Role Based Price Settings',
                 'type' => 'title',
                 'desc' => '',
                 'id' => rbp_key.'general_start'
             ), 			
 
-            WC_DB_KEY.'allowed_role' => array(
+           array(
                 'name' => 'Allowed User Roles',
                 'desc' => 'User Roles To List In Product Edit Page',
                 'id' => WC_DB_KEY.'list_roles',
@@ -121,7 +121,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
                 'options' =>  $this->get_selectbox_user_role()
             ), 	
 
-            WC_DB_KEY.'allowed_price' => array(
+            array(
                 'name' => 'Allowed Product Pricing',
                 'desc' => 'Price Fields To List In Product Edit Page',
                 'id' => WC_DB_KEY.'allowed_price',
@@ -129,12 +129,35 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
                 'class' =>'chosen_select',
                 'css'     => $width,
                 'options' =>  array('regular' => 'Regular Price','sale' => 'Sale Price')
-            ),             
-            'section_end' => array(
-                'type' => 'sectionend',
-                'id' => rbp_key.'general_end'
-            )
+            ),    
+            array(
+					'type' 	=> 'sectionend',
+					'id' 	=> 'general_start'
+				),
+            
         );
+         
+        $settings[] = array(
+                'name' => 'User Role Custom Name',
+                'type' => 'title',
+                'desc' => '',
+                'id' => rbp_key.'general_start_1'
+            );
+        foreach(WC_RBP()->get_allowed_roles() as $role => $name){
+            $settings[] = array(
+                'name' => $name['name'],
+                'desc' => '',
+                'id' => WC_DB_KEY.'role_name['.$role.']',
+                'type' => 'text', 
+                'class' =>'',
+                'css'     => 'width:25% !important;'
+            ) ;
+        }
+        
+        $settings[] =  array(
+                'type' => 'sectionend',
+                'id' => rbp_key.'general_start_1'
+            );
         return $settings;
     }
   

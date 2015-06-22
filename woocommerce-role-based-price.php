@@ -1,15 +1,14 @@
 <?php
 /**
- * Plugin Name:       WooCommerce Role Based Price New
- * Plugin URI:        @TODO
+ * Plugin Name:       WooCommerce Role Based Price
+ * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
  * Version:           1.0
  * Author:            varunms
  * Author URI:        http://varunsridharan.in
  * Text Domain:       wc_role_based_price
  * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Domain Path:       /languages
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt 
  * GitHub Plugin URI: @TODO
  */
 
@@ -146,6 +145,8 @@ final class  WooCommerce_Role_Based_Price{
      */
     public function get_allowed_price($price = 'all'){
         $allowed_price = $this->get_option(WC_DB_KEY.'allowed_price');
+        
+        if(empty($allowed_price)) { $allowed_price = $this->avaiable_price; }
 
         if($price !== 'all'){
             if(in_array($price, $allowed_price)){
@@ -164,15 +165,50 @@ final class  WooCommerce_Role_Based_Price{
            
     }
     
+    public function get_mod_name($role_name = ''){
+        $name = $this->get_option(WC_DB_KEY.'role_name');
+        $registered_roles = $this->get_registered_roles();
+        
+        if(!empty($name)){
+            if(isset($name[$role_name]) && ! empty($name[$role_name])){
+                return $name[$role_name];
+            } else {
+                if(isset($registered_roles[$role_name]['name'])){
+                    return $registered_roles[$role_name]['name'];
+                }
+            }
+        }  else {
+            if(isset($registered_roles[$role_name]['name'])){
+                return $registered_roles[$role_name]['name'];
+            }
+        }
+        
+    }
+     
+    
     
 }
 
-if(! function_exists( 'WC_RBP' )){
-    function WC_RBP(){ 
-        return WooCommerce_Role_Based_Price::get_instance();
-    }
-}
-// Global for backwards compatibility.
-$GLOBALS['woocommerce'] = WC_RBP();
 
-do_action( 'wc_rbp_loaded' );
+
+/**
+ * Check if WooCommerce is active 
+ * if yes then call the class
+ */
+if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+    if(! function_exists( 'WC_RBP' )){
+        function WC_RBP(){ 
+            return WooCommerce_Role_Based_Price::get_instance();
+        }
+    }
+    
+    $GLOBALS['woocommerce'] = WC_RBP();
+    do_action( 'wc_rbp_loaded' );
+    
+} else {
+	add_action( 'admin_notices', 'wc_rbp_activate_failed_notice' );
+}
+function wc_rbp_activate_failed_notice() {
+	echo '<div class="error"><p><strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires <a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong> <u>Woocommerce</u></strong>  </a> To Be Installed And Activated </p></div>';
+} 
+

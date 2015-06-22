@@ -36,6 +36,7 @@ class WooCommerce_Role_Based_Price_Admin {
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_filter( 'woocommerce_get_settings_pages',  array($this,'settings_page') );
+        add_filter( 'plugin_row_meta', array( $this, 'plugin_row_links' ), 10, 2 );
 	}
      
     
@@ -106,4 +107,52 @@ class WooCommerce_Role_Based_Price_Admin {
 		wp_enqueue_script(WC_RBP_NAME, plugins_url('js/script.js',__FILE__), array( 'jquery' ), WC_RBP_VERSION, false );
         
 	}
+    
+    /**
+	 * Adds Some Plugin Options
+	 * @param  array  $plugin_meta
+	 * @param  string $plugin_file
+	 * @since 0.11
+	 * @return array
+	 */
+	public function plugin_row_links( $plugin_meta, $plugin_file ) {
+         
+		if (  'woocommerce-role-based-price/woocommerce-role-based-price.php' == $plugin_file ) {
+            $plugin_meta[ ] = sprintf(
+                ' <a href="%s">%s</a>',
+                admin_url('admin.php?page=wc-settings&tab=products&section=wc_rbp'),
+                'Settings'
+            );
+            
+            $plugin_meta[ ] = sprintf(
+				'<a href="%s">%s</a>',
+				'https://wordpress.org/plugins/woocommerce-role-based-price/faq/',
+				'F.A.Q'
+			);
+            $plugin_meta[ ] = sprintf(
+				'<a href="%s">%s</a>',
+				'https://github.com/technofreaky/WooCommerce-Role-Based-Price',
+				'View On Github'
+			);
+            
+            $plugin_meta[ ] = sprintf(
+				'<a href="%s">%s</a>',
+				'https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/new',
+				'Report Issue'
+			);
+            
+            $plugin_meta[ ] = sprintf(
+				'&hearts; <a href="%s">%s</a>',
+				'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU',
+				'Donate'
+			);
+            $plugin_meta[ ] = sprintf(
+				'<a href="%s">%s</a>',
+				'http://varunsridharan.in/plugin-support/',
+				'Contact Author'
+			);
+            
+		}
+		return $plugin_meta;
+	}	
 }
