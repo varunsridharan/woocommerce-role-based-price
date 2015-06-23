@@ -3,7 +3,7 @@
  * Simple Product Role Based Price Settings
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @since      0.1
+ * @since      1.0
  * @package    WooCommerce_Role_Based_Price
  * @subpackage WooCommerce_Role_Based_Price/admin
  * @author     Varun Sridharan <varunsridharan23@gmail.com>

@@ -2,7 +2,7 @@
 /*
  * Name:        WordPress Admin Notice Handler
  * URI:         https://github.com/technofreaky/WordPress-Admin-Notice
- * Version:     0.1
+ * Version:     1.0
  * Author:      Varun Sridharan
  * Author URI:  http://varunsridharan.in
  * License:     GPLv2

@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.2.2
 WC requires at least: 1.0
 WC tested up to: 2.3.11
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -19,8 +19,12 @@ This plugin extends the popular ecommerce Plugin <a href="http://www.woothemes.c
 
 For example, Subscribers or Contributers get different prices than new customers. Differentiate your registered users to get your shop more attraktiv. New roles can be created and managed.
 
-<h3> Where i can set the product price </h3>
-When you edit / create a product you can see a link "Role Based Price" under product data meta box.
+<h3>How I Can Get Support For This Plugin</h3>
+* http://varunsridharan.in/plugin-support/
+* https://wordpress.org/support/plugin/woocommerce-role-based-price
+* https://github.com/technofreaky/WooCommerce-Role-Based-Price
+* Email : varunsridharan23@gmail.com
+* Email : plugin@varunsridharan.in
 
 = Plugin Contributers =
 * <a href="https://wordpress.org/support/profile/nick6352683" >nick6352683 </a>
@@ -59,11 +63,18 @@ The manual installation method involves downloading our plugin and uploading it 
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
+**How I Can Get Support For This Plugin**
+* http://varunsridharan.in/plugin-support/
+* https://wordpress.org/support/plugin/woocommerce-role-based-price
+* https://github.com/technofreaky/WooCommerce-Role-Based-Price
+* Email : varunsridharan23@gmail.com
+* Email : plugin@varunsridharan.in
+
 **I have an idea for your plugin!**  
-That's great. We are always open to your input, and we would like to add anything we think will be useful to a lot of people. Please send your comment/idea to varunsridharan23@gmail.com
+That's great. We are always open to your input, and we would like to add anything we think will be useful to a lot of people. please contact us using above methods.
 
 **I found a bug!**  
-Oops. Please User github / WordPress to post bugs.  <a href="https://github.com/technofreaky/WooCommerce-Role-Based-Price"> Open an Issue </a>
+Oops. Please Use github / WordPress to post bugs.  <a href="https://github.com/technofreaky/WooCommerce-Role-Based-Price"> Open an Issue </a>
 
 
 **Where can I request new features**
@@ -71,6 +82,12 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 1.1 = 
+* Fixed Simple & Variation Product Price At Checkout & Cart Page
+* Code CleanUP
+* Fixed Minor Issue
+* Fixed Variation Role Based Box in Product Edit Page
+* Added Plugin Translation Files [wc-rbp]
 = 1.0 =
 * Added Role Based Pricing For Variable / Variation Product  [<a href="https://wordpress.org/support/topic/for-variation-products-1?replies=13"> For variation products </a> ]
 * Fix Major Bugs

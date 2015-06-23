@@ -32,7 +32,7 @@ class WooCommerce_Role_Based_Price_Simple_Product_Admin {
 	 * @filter_use woocommerce_product_data_tabs
 	 */
 	public function add_menu_link($array){
-		$array['role_based_simple_product_container'] = array('label' => 'Role Based Price' , 
+		$array['role_based_simple_product_container'] = array('label' => __('Role Based Price',lang_dom) , 
                                      'target' => 'role_based_simple_product_container',
                                      'class'=>array('show_if_simple'));
 		return $array;
@@ -65,12 +65,12 @@ class WooCommerce_Role_Based_Price_Simple_Product_Admin {
         echo '<div class="panel woocommerce_options_panel" id="role_based_simple_product_container" style="display: none;">';
         echo '<div class="options_group">
                 <p class="form-field ">
-                    <label class="enable_text">Enable Role Based Pricing</label>
+                    <label class="enable_text">'.__('Enable Role Based Pricing',lang_dom).'</label>
                     <label class="wc_rbp_switch wc_rbp_switch-green">
                         <input type="checkbox" class="switch-input" id="enable_simple_role_based_price" 
                             data-target="simple_role_based_price_field_container" 
                             name="enable_simple_role_based_price" data-type="simple" '.$status.'>
-                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                        <span class="switch-label" data-on="'.__('on',lang_dom).'" data-off="'.__('off',lang_dom).'"></span>
                         <span class="switch-handle"></span>
                     </label>
                 </p>
@@ -80,13 +80,13 @@ class WooCommerce_Role_Based_Price_Simple_Product_Admin {
             foreach(WC_RBP()->get_allowed_roles() as $key => $val){
                 $name = WC_RBP()->get_mod_name($key);
                 echo '<div class="options_group '.$key.'_role_price" id="'.$key.'_role_price">';
-                    echo '<h3>'.$name.'</h3>';
+                    echo '<h3>'.__($name,lang_dom).'</h3>';
                 
                     if($regular_price){
                         woocommerce_wp_text_input( array( 
                             'id' => 'simple_regular_price_'.$key,
                             'name'=>'simple_role_based_price['.$key.'][regular_price]',
-                            'label' => __( 'Regular Price', 'woocommerce' ), 	
+                            'label' => __( 'Regular Price', lang_dom), 	
                             'desc_tip' => 'false',
                             'value' => WC_RBP()->sp_function()->get_selprice($key,'regular_price')
                         )); 
@@ -96,7 +96,7 @@ class WooCommerce_Role_Based_Price_Simple_Product_Admin {
                         woocommerce_wp_text_input( array( 
                             'id' => 'simple_selling_price_'.$key,
                             'name'=>'simple_role_based_price['.$key.'][selling_price]',
-                            'label' => __( 'Selling Price', 'woocommerce' ), 	
+                            'label' => __( 'Selling Price', lang_dom), 	
                             'desc_tip' => 'false',
                              'value' => WC_RBP()->sp_function()->get_selprice($key,'selling_price')
                         ));                    

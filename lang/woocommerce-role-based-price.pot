@@ -1,0 +1,141 @@
+# Copyright (C) 2015 WooCommerce Role Based Price
+# This file is distributed under the same license as the WooCommerce Role Based Price package.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Role Based Price 1.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
+"POT-Creation-Date: 2015-06-23 11:54+0530\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.8.1\n"
+
+#: admin/class-admin-init.php:124
+msgid "Settings"
+msgstr ""
+
+#: admin/class-admin-init.php:130
+msgid "F.A.Q"
+msgstr ""
+
+#: admin/class-admin-init.php:141
+msgid "Report Issue"
+msgstr ""
+
+#: admin/class-admin-init.php:147
+msgid "Donate"
+msgstr ""
+
+#: admin/class-admin-init.php:152
+msgid "Contact Author"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:62
+msgid "General Settings"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:108
+msgid "WooCommerce Role Based Price Settings"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:115
+msgid "Allowed User Roles"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:116
+msgid "User Roles To List In Product Edit Page"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:125
+msgid "Allowed Product Pricing"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:126
+msgid "Price Fields To List In Product Edit Page"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:131 admin/includes/class-simple-product.php:89
+#: admin/includes/class-variable-product.php:66
+msgid "Regular Price"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:131
+msgid "Sale Price"
+msgstr ""
+
+#: admin/includes/class-admin-settings.php:141
+msgid "User Role Custom Name"
+msgstr ""
+
+#: admin/includes/class-simple-product.php:35
+msgid "Role Based Price"
+msgstr ""
+
+#: admin/includes/class-simple-product.php:68 admin/includes/class-variable-product.php:45
+msgid "Enable Role Based Pricing"
+msgstr ""
+
+#: admin/includes/class-simple-product.php:73
+msgid "on"
+msgstr ""
+
+#: admin/includes/class-simple-product.php:73 admin/includes/class-variable-product.php:50
+msgid "off"
+msgstr ""
+
+#: admin/includes/class-simple-product.php:99 admin/includes/class-variable-product.php:77
+msgid "Selling Price"
+msgstr ""
+
+#: admin/includes/class-variable-product.php:50
+msgid "On"
+msgstr ""
+
+#: includes/class-product-pricing-frontend.php:150
+#: includes/class-product-pricing-frontend.php:153
+#: includes/class-variable-product-front.php:121
+#: includes/class-variable-product-front.php:126
+msgctxt "Price range: from-to"
+msgid "%1$s&ndash;%2$s"
+msgstr ""
+
+#: includes/class-product-pricing-frontend.php:155
+#: includes/class-variable-product-front.php:134
+msgid "Free!"
+msgstr ""
+
+#: woocommerce-role-based-price.php:239
+msgid "<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires"
+msgstr ""
+
+#: woocommerce-role-based-price.php:239
+msgid " <u>Woocommerce</u>"
+msgstr ""
+
+#: woocommerce-role-based-price.php:239
+msgid " To Be Installed And Activated"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Role Based Price"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/woocommerce-role-based-price/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Set WooCommerce Product Price Based On User Role"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Varun Sridharan"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://varunsridharan.in"
+msgstr ""

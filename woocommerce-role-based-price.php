@@ -3,10 +3,10 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           1.0
- * Author:            varunms
+ * Version:           1.1
+ * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
- * Text Domain:       wc_role_based_price
+ * Text Domain:       woocommerce-role-based-price
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt 
  * GitHub Plugin URI: @TODO
@@ -15,14 +15,14 @@
 if ( ! defined( 'WPINC' ) ) { die; }
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','0.3',true); # Plugin Version
+define('WC_RBP_VERSION','1.1',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ )); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
 define('WC_RBP_ADMIN_JS',WC_RBP_PATH.'admini/js/'); # Plugin DIR
 define('rbp_key','wc_rbp_'); # PLugin DB Prefix
 define('WC_DB_KEY',rbp_key); # Plugin Prefix
+define('lang_dom','woocommerce-role-based-price',true); #plugin lang Domain
 
- 
 /**
  * Class to initiate the plugin
  */
@@ -53,9 +53,30 @@ final class  WooCommerce_Role_Based_Price{
             require_once( $files );
         }
 
-        if(is_admin()){
-            
+        if($this->is_request( 'admin' )){
             require_once(WC_RBP_PATH . 'admin/class-admin-init.php' );
+        }
+        
+         if($this->is_request( 'frontend' )){
+             new front_end_product_pricing;
+         }
+    }
+    
+    private function is_request( $type ) {
+
+        $is_ajax = defined('DOING_AJAX') && DOING_AJAX;
+
+        switch ( $type ) {
+            case 'admin' :							
+                $ajax_allow_actions = array( 'woocommerce_add_variation' );
+                return ( is_admin() && !$is_ajax ) || ( is_admin() && $is_ajax && isset( $_POST['action'] ) && in_array( $_POST['action'], $ajax_allow_actions ) );
+
+            case 'frontend' :
+                return ! $this->is_request('bot') && ( ! is_admin() || ( is_admin() && $is_ajax ) ) && ! defined( 'DOING_CRON' );
+
+            case 'bot':
+                $user_agent = strtolower ( $_SERVER['HTTP_USER_AGENT'] );
+                return preg_match ( "/googlebot|adsbot|yahooseeker|yahoobot|msnbot|watchmouse|pingdom\.com|feedfetcher-google/", $user_agent );
         }
     }
     
@@ -63,10 +84,24 @@ final class  WooCommerce_Role_Based_Price{
      * Runs After WP Loaded
      */
     public function init(){
-        if(is_admin()){
+        add_action('plugins_loaded', array( $this, 'langs' ));
+        add_filter('load_textdomain_mofile',  array( $this, 'replace_my_plugin_default_language_files' ), 10, 2);
+        
+        if($this->is_request( 'admin' )){
             $this->admin_init();
         } 
         new WooCommerce_Role_Based_Price_Simple_Product_Functions;
+    }
+    
+    public function langs(){
+        load_plugin_textdomain(lang_dom, false, dirname(plugin_basename(__FILE__)).'/lang/' );
+    }
+    
+    function replace_my_plugin_default_language_files($mofile, $domain) {
+        if (lang_dom === $domain)
+            return WC_RBP_PATH.'lang/'.get_locale().'.mo';
+
+        return $mofile;
     }
     
     /**
@@ -208,6 +243,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	add_action( 'admin_notices', 'wc_rbp_activate_failed_notice' );
 }
 function wc_rbp_activate_failed_notice() {
-	echo '<div class="error"><p><strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires <a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong> <u>Woocommerce</u></strong>  </a> To Be Installed And Activated </p></div>';
+    
+	echo '<div class="error"><p> '.__('<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires',lang_dom).'<a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong>'.__(' <u>Woocommerce</u>',lang_dom).'</strong>  </a> '.__(' To Be Installed And Activated',lang_dom).' </p></div>';
 } 
 

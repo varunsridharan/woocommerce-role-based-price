@@ -48,7 +48,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
      * @return array
      */
     public function add_settings_tab( $settings_tabs ) {
-        $settings_tabs[$this->id] = $this->menu_name;
+        $settings_tabs[$this->id] = __($this->menu_name,lang_dom);
         return $settings_tabs;
     }
 
@@ -59,7 +59,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
      */
     public function get_sections() {
         $sections = array(
-            'general' => __( 'General Settings', $this->id ),
+            'general' => __( 'General Settings', lang_dom ),
         );
         return apply_filters( 'woocommerce_get_sections_' . $this->id, $sections );
     }   
@@ -105,15 +105,15 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
         echo '</pre>';
         $settings = array(
             array(
-                'name' => 'WooCommerce Role Based Price Settings',
+                'name' => __('WooCommerce Role Based Price Settings',lang_dom),
                 'type' => 'title',
                 'desc' => '',
                 'id' => rbp_key.'general_start'
             ), 			
 
            array(
-                'name' => 'Allowed User Roles',
-                'desc' => 'User Roles To List In Product Edit Page',
+                'name' => __('Allowed User Roles',lang_dom),
+                'desc' => __('User Roles To List In Product Edit Page',lang_dom),
                 'id' => WC_DB_KEY.'list_roles',
                 'type' => 'multiselect', 
                 'class' =>'chosen_select',
@@ -122,13 +122,13 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
             ), 	
 
             array(
-                'name' => 'Allowed Product Pricing',
-                'desc' => 'Price Fields To List In Product Edit Page',
+                'name' => __('Allowed Product Pricing',lang_dom),
+                'desc' => __('Price Fields To List In Product Edit Page',lang_dom),
                 'id' => WC_DB_KEY.'allowed_price',
                 'type' => 'multiselect', 
                 'class' =>'chosen_select',
                 'css'     => $width,
-                'options' =>  array('regular' => 'Regular Price','sale' => 'Sale Price')
+                'options' =>  array('regular' => __('Regular Price',lang_dom),'sale' => __('Sale Price',lang_dom))
             ),    
             array(
 					'type' 	=> 'sectionend',
@@ -138,14 +138,14 @@ class WooCommerce_Role_Based_Price_Admin_Settings{
         );
          
         $settings[] = array(
-                'name' => 'User Role Custom Name',
+                'name' => __('User Role Custom Name',lang_dom),
                 'type' => 'title',
                 'desc' => '',
                 'id' => rbp_key.'general_start_1'
             );
         foreach(WC_RBP()->get_allowed_roles() as $role => $name){
             $settings[] = array(
-                'name' => $name['name'],
+                'name' => __($name['name'],lang_dom),
                 'desc' => '',
                 'id' => WC_DB_KEY.'role_name['.$role.']',
                 'type' => 'text', 

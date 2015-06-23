@@ -3,7 +3,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @since      0.1
+ * @since      1.0
  *
  * @package    WooCommerce_Role_Based_Price
  * @subpackage WooCommerce_Role_Based_Price/admin
@@ -121,13 +121,13 @@ class WooCommerce_Role_Based_Price_Admin {
             $plugin_meta[ ] = sprintf(
                 ' <a href="%s">%s</a>',
                 admin_url('admin.php?page=wc-settings&tab=products&section=wc_rbp'),
-                'Settings'
+                __('Settings',lang_dom)
             );
             
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'https://wordpress.org/plugins/woocommerce-role-based-price/faq/',
-				'F.A.Q'
+				__('F.A.Q',lang_dom)
 			);
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
@@ -138,18 +138,18 @@ class WooCommerce_Role_Based_Price_Admin {
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/new',
-				'Report Issue'
+				__('Report Issue',lang_dom)
 			);
             
             $plugin_meta[ ] = sprintf(
 				'&hearts; <a href="%s">%s</a>',
 				'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU',
-				'Donate'
+				__('Donate',lang_dom)
 			);
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'http://varunsridharan.in/plugin-support/',
-				'Contact Author'
+				__('Contact Author',lang_dom)
 			);
             
 		}
