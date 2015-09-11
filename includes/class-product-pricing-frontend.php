@@ -20,26 +20,44 @@ class front_end_product_pricing {
 	}		 
     
     public function wc_init(){
-		add_filter( 'woocommerce_get_regular_price', array( &$this, 'get_regular_price') , 10, 2 );
+		add_filter( 'woocommerce_get_regular_price', array( &$this, 'get_regular_price') , 99, 2 );
 
-		add_filter( 'woocommerce_get_sale_price', array( &$this, 'get_selling_price') , 10, 2 );
+		add_filter( 'woocommerce_get_sale_price', array( &$this, 'get_selling_price') , 99, 2 );
 		
-		add_filter('woocommerce_get_price', array( &$this, 'get_price' ), 10, 2 );
+		add_filter( 'woocommerce_get_price', array( &$this, 'get_price' ), 99, 2 );
 		
-		add_filter( 'woocommerce_get_variation_regular_price', array( &$this, 'get_variation_regular_price' ), 10, 4 );
+		add_filter( 'woocommerce_get_variation_regular_price', array( &$this, 'get_variation_regular_price' ), 99, 4 );
 					
-		add_filter( 'woocommerce_get_variation_price', array( &$this, 'get_variation_price' ), 10, 4 );	 
+		add_filter( 'woocommerce_get_variation_price', array( &$this, 'get_variation_price' ), 99, 4 );	 
                 
-        add_filter('woocommerce_get_price_html',array( &$this,'get_price_html' ),1,2);     
+        add_filter( 'woocommerce_get_price_html',array( &$this,'get_price_html' ),1,2);   
+        
+        add_filter( 'init',array(&$this,'check_remove_add_to_cart'),99);
     }
     
     public function get_current_role(){
 		global $current_user;
 		$user_roles = $current_user->roles;
 		$user_role = array_shift($user_roles);
+        if($user_role == null){
+            return 'logedout';
+        }
 		return $user_role;
 	}
     
+    public function check_remove_add_to_cart(){
+        $current_role = $this->get_current_role();
+        $resticted_role = WC_RBP()->get_option(rbp_key.'hide_cart_button_role');
+        if(in_array($current_role,$resticted_role)){
+            remove_all_actions('woocommerce_simple_add_to_cart');
+            add_filter( 'woocommerce_loop_add_to_cart_link',array(&$this,'remove_add_to_cart_link'),99);
+        }       
+    
+    }
+    
+    public function remove_add_to_cart_link($link){
+        return '';
+    }
     
      public function get_status($id){
        $status = get_post_meta($id,'_enable_role_based_price',true );
@@ -56,7 +74,7 @@ class front_end_product_pricing {
 	 */
 	public function get_regular_price ( $price, $product, $price_meta_key = 'regular_price' ) {	
 		$wcrbp_price = $price;
-		
+		$cRole = $this->get_current_role();
         if ( get_class( $product ) == 'WC_Product_Variation' ) {
             $post_id = $product->variation_id;	
             $meta_key = '_role_based_price';
@@ -67,10 +85,12 @@ class front_end_product_pricing {
         
         if($this->get_status($post_id)){
             $wcrbp_price_new = get_post_meta( $post_id, $meta_key, true );
-            $cRole = $this->get_current_role();
-            if(isset($wcrbp_price_new[$cRole])){ $wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key]; }
-        }
             
+            if(isset($wcrbp_price_new[$cRole])){ $wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key]; }
+            
+        }
+        
+        $wcrbp_price = apply_filters('woocommerce_role_based_product_price_value',$wcrbp_price,$post_id,$price_meta_key,$cRole); 
 		return $wcrbp_price;
 	}
 
@@ -79,7 +99,7 @@ class front_end_product_pricing {
 	 * Returns the product's sale price
 	 * @return string price
 	 */
-	public function get_selling_price ( $price, $product ) {	
+	public function get_selling_price ( $price, $product ) { 
 		return $this->get_regular_price( $price, $product, 'selling_price');
 	}
 	
@@ -91,6 +111,7 @@ class front_end_product_pricing {
 	public function get_price ($price, $product) {			
 		$sale_price = $product->get_sale_price();
 		$wcrbp_price = ( $sale_price !== '' && $sale_price > 0 )? $sale_price : $this->get_regular_price( $price, $product );
+        
 		return $wcrbp_price; 
 	}
 	
@@ -144,7 +165,20 @@ class front_end_product_pricing {
 	 *                      @return string
 	 */
 	public function get_price_html( $price = '',$product ) {
-        if('WC_Product_Variable' == get_class( $product )){
+        $current_role = $this->get_current_role();
+        $resticted_role = WC_RBP()->get_option(rbp_key.'hide_price_role');    
+        if(in_array($current_role,$resticted_role)){
+            $price_notice = WC_RBP()->get_option(rbp_key.'replace_currency_symbol');
+            if(!empty($price_notice)){
+                $symbol = get_woocommerce_currency_symbol() ; 
+                $price_notice = str_replace('[curr]',$symbol,$price_notice);
+                return $price_notice;
+            }
+            
+            return '';
+        } else {
+        
+       /* if('WC_Product_Variable' == get_class( $product )){
 
             $prices = array($product->get_variation_price('min',true), $product->get_variation_price('max',true));
             $price = $prices[0] !== $prices[1] ? sprintf(_x('%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price($prices[0]), wc_price($prices[1])) : wc_price($prices[0]);
@@ -153,8 +187,50 @@ class front_end_product_pricing {
             $saleprice = $prices[0] !== $prices[1] ? sprintf(_x('%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price($prices[0]), wc_price($prices[1])) : wc_price($prices[0]);  
 
             if ( $prices[0] == 0 && $prices[1] == 0 ) { $price = __( 'Free!', 'woocommerce' ); $price = $price; } else { $price = $price . $product->get_price_suffix(); } 
-        }
+        }  
 		return $price;
+	}*/
+        
+        
+        
+         if('WC_Product_Variable' == get_class( $product )){
+        
+        	// Ensure variation prices are synced with variations
+		if ( $product->get_variation_regular_price( 'min' ) === false || $product->get_variation_price( 'min' ) === false || $product->get_variation_price( 'min' ) === '' || $product->get_price() === '' ) {
+			$product->variable_product_sync( $product->id );
+		}
+
+		// Get the price
+		if ( $product->get_price() === '' ) {
+
+			$price = apply_filters( 'woocommerce_variable_empty_price_html', '', $product );
+
+		} else {
+
+			// Main price
+			$prices = array( $product->get_variation_price( 'min', true ), $product->get_variation_price( 'max', true ) );
+			$price  = $prices[0] !== $prices[1] ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce' ), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );
+
+			// Sale
+			$prices = array( $product->get_variation_regular_price( 'min', true ), $product->get_variation_regular_price( 'max', true ) );
+			sort( $prices );
+			$saleprice = $prices[0] !== $prices[1] ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce' ), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );  
+			 if ( $price !== $saleprice ) {
+			 	$price = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $saleprice, $price ) . $product->get_price_suffix(), $product );
+			 } else {
+			 	
+			  }
+            
+            if ( $prices[0] == 0 && $prices[1] == 0 ) {
+					$price = __( 'Free!', 'woocommerce' );
+					$price = apply_filters( 'woocommerce_variable_free_price_html', $price, $product );
+				} else {
+					$price = apply_filters( 'woocommerce_variable_price_html', $price . $product->get_price_suffix(), $product );
+				}
+		}
+         }
+		return $price;
+        }
 	}
  }
 endif;

@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           1.3
+ * Version:           2.0
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -13,15 +13,19 @@
  */
 
 if ( ! defined( 'WPINC' ) ) { die; }
+
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','1.3',true); # Plugin Version
-define('WC_RBP_PATH',plugin_dir_path( __FILE__ )); # Plugin DIR
+define('WC_RBP_VERSION','2.0',true); # Plugin Version
+define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
+define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
 define('WC_RBP_ADMIN_JS',WC_RBP_PATH.'admini/js/'); # Plugin DIR
 define('rbp_key','wc_rbp_'); # PLugin DB Prefix
+define('pp_key','wc_rbp'); # PLugin DB Prefix
 define('WC_DB_KEY',rbp_key); # Plugin Prefix
 define('lang_dom','woocommerce-role-based-price',true); #plugin lang Domain
+define('plugin_url',plugins_url('', __FILE__ ));
 
 
 /**
@@ -48,12 +52,12 @@ final class  WooCommerce_Role_Based_Price{
      */
     private function __construct() {
         add_action( 'init', array( $this, 'init' ), 0 );
-        
+        $this->load_plugins();
         // Autoload Required Files
-        foreach( glob(WC_RBP_PATH . 'includes/*.php' ) as $files ){
+        foreach( glob(WC_RBP_PATH . 'includes/*.php' ) as $files ){ 
             require_once( $files );
         }
-
+        
         if($this->is_request( 'admin' )){
             require_once(WC_RBP_PATH . 'admin/class-admin-init.php' );
         }
@@ -61,20 +65,26 @@ final class  WooCommerce_Role_Based_Price{
          if($this->is_request( 'frontend' )){
              new front_end_product_pricing;
          }
+        
+        
     }
     
-    private function is_request( $type ) {
-
+    public function load_plugins(){
+        $plugins = $this->get_activated_plugin();
+        if(! empty($plugins)){
+            foreach($plugins as $plugin){
+                include(WC_RBP_PATH.'plugins/'.$plugin);
+            }
+        } 
+    }
+    
+    public function is_request( $type ) {
         $is_ajax = defined('DOING_AJAX') && DOING_AJAX;
-
         switch ( $type ) {
-            case 'admin' :							
-                $ajax_allow_actions = array( 'woocommerce_add_variation' );
-                return ( is_admin() && !$is_ajax ) || ( is_admin() && $is_ajax && isset( $_POST['action'] ) && in_array( $_POST['action'], $ajax_allow_actions ) );
-
+            case 'admin' : 
+                return ( is_admin() && !$is_ajax ) || ( is_admin() && $is_ajax && isset( $_REQUEST['action'] ));
             case 'frontend' :
-                return ! $this->is_request('bot') && ( ! is_admin() || ( is_admin() && $is_ajax ) ) && ! defined( 'DOING_CRON' );
-
+                return ! $this->is_request('bot') && ( ! is_admin() || ( ! is_admin() && ! $is_ajax ) ) && ! defined( 'DOING_CRON' );
             case 'bot':
                 $user_agent = strtolower ( $_SERVER['HTTP_USER_AGENT'] );
                 return preg_match ( "/googlebot|adsbot|yahooseeker|yahoobot|msnbot|watchmouse|pingdom\.com|feedfetcher-google/", $user_agent );
@@ -127,6 +137,7 @@ final class  WooCommerce_Role_Based_Price{
      */
     public function get_registered_roles(){
         $user_roles = get_editable_roles();
+        $user_roles['logedout'] = array('name' => 'Visitor / LogedOut User');  
         return $user_roles;
     }
     
@@ -138,6 +149,9 @@ final class  WooCommerce_Role_Based_Price{
 		global $current_user;
 		$user_roles = $current_user->roles;
 		$user_role = array_shift($user_roles);
+        if($user_role == null){
+            return 'logedout';
+        }
 		return $user_role;
 	}
     
@@ -148,7 +162,7 @@ final class  WooCommerce_Role_Based_Price{
         return self::$admin_instance;
     }
     
-    private function get_option($key){
+    public function get_option($key){
         return get_option($key);
     }
     
@@ -157,7 +171,7 @@ final class  WooCommerce_Role_Based_Price{
      * @return [[Type]] [[Description]]
      */
     public function get_allowed_roles(){
-        $db_roles = $this->get_option(WC_DB_KEY.'list_roles');
+        $db_roles = $this->get_option(rbp_key.'list_roles');
         $registered_roles = $this->get_registered_roles();
         $return_roles = array();
         if(!empty($db_roles)){
@@ -179,7 +193,7 @@ final class  WooCommerce_Role_Based_Price{
      * @return [[Type]] [[Description]]
      */
     public function get_allowed_price($price = 'all'){
-        $allowed_price = $this->get_option(WC_DB_KEY.'allowed_price');
+        $allowed_price = $this->get_option(rbp_key.'allowed_price');
         
         if(empty($allowed_price)) { $allowed_price = $this->avaiable_price; }
 
@@ -201,7 +215,7 @@ final class  WooCommerce_Role_Based_Price{
     }
     
     public function get_mod_name($role_name = ''){
-        $name = $this->get_option(WC_DB_KEY.'role_name');
+        $name = $this->get_option(rbp_key.'role_name');
         $registered_roles = $this->get_registered_roles();
         
         if(!empty($name)){
@@ -221,6 +235,11 @@ final class  WooCommerce_Role_Based_Price{
     }
      
     
+    public function get_activated_plugin(){
+        $plugins = $this->get_option(rbp_key.'activated_plugin');
+        return $plugins;
+    }
+
     
 }
 
@@ -235,6 +254,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
         function WC_RBP(){ 
             return WooCommerce_Role_Based_Price::get_instance();
         }
+       
     }
     
     $GLOBALS['woocommerce'] = WC_RBP();
@@ -243,6 +263,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 } else {
 	add_action( 'admin_notices', 'wc_rbp_activate_failed_notice' );
 }
+
+register_activation_hook( __FILE__, 'welcome_screen_activate' );
+function welcome_screen_activate() {
+  set_transient( 'wc_rbp_welcome_screen_activation_redirect', true, 30 );
+}
+
 function wc_rbp_activate_failed_notice() {
     
 	echo '<div class="error"><p> '.__('<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires',lang_dom).'<a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong>'.__(' <u>Woocommerce</u>',lang_dom).'</strong>  </a> '.__(' To Be Installed And Activated',lang_dom).' </p></div>';

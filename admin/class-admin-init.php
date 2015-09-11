@@ -33,12 +33,26 @@ class WooCommerce_Role_Based_Price_Admin {
         $this->load_required_files();
         $this->initiate_class();
 
-        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) ,99);
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-        add_filter( 'woocommerce_get_settings_pages',  array($this,'settings_page') );
+
+        
+        add_filter( 'woocommerce_get_settings_pages',  array($this,'settings_page') ); 
         add_filter( 'plugin_row_meta', array( $this, 'plugin_row_links' ), 10, 2 );
 	}
      
+    public function get_selectbox_user_role(){
+        $user_roles = WC_RBP()->get_registered_roles();
+        $list_roles = '';
+        $roles = array_keys($user_roles);
+        foreach($roles as $role){
+            $list_roles[$role] = $user_roles[$role]['name'];
+        }
+        return $list_roles;
+    }
+    
+
+    
     
     /**
      * Provides access to a single instances of the class using the singleton pattern
@@ -58,7 +72,10 @@ class WooCommerce_Role_Based_Price_Admin {
      */
     public function load_required_files(){
         foreach( glob( plugin_dir_path( __FILE__ ) . 'includes/*.php' ) as $files ){
-            require_once( $files );
+            $filename = substr(basename($files), 0, 5 );
+            if($filename == 'class'){
+                require_once( $files );
+            } 
         }        
     }
     
@@ -67,16 +84,15 @@ class WooCommerce_Role_Based_Price_Admin {
      */
     public function initiate_class(){
         // Get Instance For Settings Panel
-        self::$admin_settings = WooCommerce_Role_Based_Price_Admin_Settings::get_instance();
-    }
-
-        
+        //self::$admin_settings = WooCommerce_Role_Based_Price_Admin_Settings::get_instance();
+       
+    } 
     
 	/**
 	 * Adds Settings Page
 	 */
  	public function settings_page( $settings ) {
-		$settings[] = $this->admin_settings();  
+		$settings[] = include('class-admin-settings.php');  
 		return $settings;
 	}
     
@@ -96,17 +112,46 @@ class WooCommerce_Role_Based_Price_Admin {
     /**
 	 * Register the stylesheets for the admin area.
 	 */
-	public function enqueue_styles() {  
-		wp_enqueue_style(WC_RBP_NAME,plugins_url('css/style.css',__FILE__) , array(), WC_RBP_VERSION, 'all' );
+	public function enqueue_styles() { 
+        if(in_array($this->current_screen() , $this->get_screen_ids())) {
+            wp_enqueue_style(WC_RBP_SLUG.'core_style',plugins_url('css/style.css',__FILE__) , array(), WC_RBP_VERSION, 'all' );  
+            wp_enqueue_style(WC_RBP_SLUG.'modifed_jquery_ui',plugins_url('css/jqueryUI/jquery-ui.theme.css',__FILE__) , array(), WC_RBP_VERSION, 'all' ); 
+        }
 	}
 	
+    
     /**
 	 * Register the JavaScript for the admin area.
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script(WC_RBP_NAME, plugins_url('js/script.js',__FILE__), array( 'jquery' ), WC_RBP_VERSION, false );
-        
+        if(in_array($this->current_screen() , $this->get_screen_ids())) {
+            wp_enqueue_script(WC_RBP_NAME, plugins_url('js/script.js',__FILE__), array( 'jquery' ), WC_RBP_VERSION, false ); 
+            wp_enqueue_script('jquery-ui-dialog');
+            wp_enqueue_script('jquery-ui-tabs');
+        }
+ 
 	}
+    
+    /**
+     * Gets Current Screen ID from wordpress
+     * @return string [Current Screen ID]
+     */
+    public function current_screen(){
+       $screen =  get_current_screen();
+       return $screen->id;
+    }
+    
+    /**
+     * Returns Predefined Screen IDS
+     * @return [Array] 
+     */
+    public function get_screen_ids(){
+        $screen_ids = array();
+        $screen_ids[] = 'edit-product';
+        $screen_ids[] = 'product';
+        return $screen_ids;
+    }
+    
     
     /**
 	 * Adds Some Plugin Options

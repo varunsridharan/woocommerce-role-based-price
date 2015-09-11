@@ -5,37 +5,47 @@ Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
 Tags: WooCommerce,Quick Dontion,quick donation,online donation,wordpress donation,simple donation,donation form,WC donation,Online Payment,Payment,Online,Donate,Monthly Goal,affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, roles, wholesale, woocommerce,advertising, bogo, deals, discount, dynamic pricing, group pricing, marketing, Membership, price, promotion, role
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
-Tested up to: 4.2.2
+Tested up to: 4.3
 WC requires at least: 1.0
-WC tested up to: 2.3.11
-Stable tag: 1.3
+WC tested up to: 2.4.6
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
 Sell product in different price for different user role based on your settings.
 
 == Description ==
-This plugin extends the popular ecommerce Plugin <a href="http://www.woothemes.com/woocommerce/">Woocommerce</a> so that products can be offered at different prices for different customer groups.
+This plugin extends the popular ecommerce Plugin Woocommerce so that products can be offered at different prices for different customer groups.
 
-For example, Subscribers or Contributers get different prices than new customers. Differentiate your registered users to get your shop more attraktiv. New roles can be created and managed.
+For example, Subscribers or Contributers get different prices than new customers. Differentiate your registered users to get your shop more attractive. New roles can be created and managed. 
+
+[youtube https://www.youtube.com/watch?v=Lm9ZxmK_6F4]
 
 <h3>How I Can Get Support For This Plugin</h3>
+
 * http://varunsridharan.in/plugin-support/
 * https://wordpress.org/support/plugin/woocommerce-role-based-price
 * https://github.com/technofreaky/WooCommerce-Role-Based-Price
 * Email : varunsridharan23@gmail.com
 * Email : plugin@varunsridharan.in
 
-= Plugin Contributers / Testers [Lovers] =
+= Plugin Contributers  =
 * <a href="https://wordpress.org/support/profile/nick6352683" >nick6352683 </a>
 * <a href="https://profiles.wordpress.org/arnisarbidans">arnis.arbidans</a>
 * <a href="https://profiles.wordpress.org/cuppy90">Cuppy</a>
 * <a href="#">Joachim Keuppens</a>
 
 == Screenshots ==
-1. WC Role Based Price Settings
-2. Simple Product Role Price
-3. Variable / Variation Product Price
+1. Plugin Settings
+2. Plugin Settings
+3. Plugin Settings
+4. Available Support Integration / Sub Plugins
+5. Aelia Currency Switcher Settings In Role Based Pricing
+6. WP All Importer Pro Integration For [Role Based Price Import]
+7. WP All Importer Pro Integration For [Aelia Currency Import]
+8. Role Based Price In Simple Product
+9. Role Based Price In Variable Product
+10. Role Based Price Fields
 
 == Installation ==
 
@@ -66,7 +76,14 @@ The manual installation method involves downloading our plugin and uploading it 
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
+** Dose This Plugin Supports WP All Importer PRO ? **
+Yes This Plugin Support WP ALL Importer PRO. by activation of WP All Importer Intergation In Settings Menu
+
+** Dose This Plugin Supports Aelia Currency Switcher ? **
+Yes This Plugin Support Aelia Currency Switcher. by activation of Aelia Currency Switcher In Settings Menu
+
 **How I Can Get Support For This Plugin**
+
 * http://varunsridharan.in/plugin-support/
 * https://wordpress.org/support/plugin/woocommerce-role-based-price
 * https://github.com/technofreaky/WooCommerce-Role-Based-Price
@@ -85,6 +102,14 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.0 =
+* Total Plugin ReDeveloped
+* Added Intergations To WP All Import Plugin
+* Added Integration To Aelia Currency Switcher Plugin
+* Updated Code Standards
+* Update Plugin For Latest WP & WooCommerce (WP : 4.3 | WC : 2.4.6)
+* Minor Bug Fix
+
 
 = 1.3 =
 * Major Update [Had Some File Conflict.. please update your plugin too]
@@ -103,6 +128,6 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 * Update Plugin For Latest WP & WooCommerce (WP : 4.2.2 | WC : 2.3.11)
 * Option To Rename User Role (Affected Only For This Plugin) [<a href="https://wordpress.org/support/topic/rename-titles?replies=2"> Rename titles </a> ]
 = 0.2 =
-* Fixed Selling Price Display for role based Issue At [<a href="https://wordpress.org/support/topic/excellent-plugin-but-has-a-small-bug?replies=4#post-6620252">#6620252</a>
+* Fixed Selling Price Display for role based Issue At [<a href="https://wordpress.org/support/topic/excellent-plugin-but-has-a-small-bug?replies=4#post-6620252">#6620252</a>]
 = 0.1 =
 * Base Version
