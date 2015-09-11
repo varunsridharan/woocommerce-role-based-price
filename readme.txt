@@ -8,11 +8,11 @@ Requires at least: 3.0
 Tested up to: 4.2.2
 WC requires at least: 1.0
 WC tested up to: 2.3.11
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
-Set product price based on user role.
+Sell product in different price for different user role based on your settings.
 
 == Description ==
 This plugin extends the popular ecommerce Plugin <a href="http://www.woothemes.com/woocommerce/">Woocommerce</a> so that products can be offered at different prices for different customer groups.
@@ -26,8 +26,11 @@ For example, Subscribers or Contributers get different prices than new customers
 * Email : varunsridharan23@gmail.com
 * Email : plugin@varunsridharan.in
 
-= Plugin Contributers =
+= Plugin Contributers / Testers [Lovers] =
 * <a href="https://wordpress.org/support/profile/nick6352683" >nick6352683 </a>
+* <a href="https://profiles.wordpress.org/arnisarbidans">arnis.arbidans</a>
+* <a href="https://profiles.wordpress.org/cuppy90">Cuppy</a>
+* <a href="#">Joachim Keuppens</a>
 
 == Screenshots ==
 1. WC Role Based Price Settings
@@ -82,6 +85,9 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 1.2 =
+* Fixed Error Message at product price when viewing as visitor 
+
 = 1.1 = 
 * Fixed Simple & Variation Product Price At Checkout & Cart Page
 * Code CleanUP

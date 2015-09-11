@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           1.1
+ * Version:           1.2
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -22,6 +22,7 @@ define('WC_RBP_ADMIN_JS',WC_RBP_PATH.'admini/js/'); # Plugin DIR
 define('rbp_key','wc_rbp_'); # PLugin DB Prefix
 define('WC_DB_KEY',rbp_key); # Plugin Prefix
 define('lang_dom','woocommerce-role-based-price',true); #plugin lang Domain
+
 
 /**
  * Class to initiate the plugin

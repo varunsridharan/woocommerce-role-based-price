@@ -66,9 +66,9 @@ class front_end_product_pricing {
         }		
         
         if($this->get_status($post_id)){
-            $wcrbp_price = get_post_meta( $post_id, $meta_key, true );
+            $wcrbp_price_new = get_post_meta( $post_id, $meta_key, true );
             $cRole = $this->get_current_role();
-            if(isset($wcrbp_price[$cRole])){ $wcrbp_price = $wcrbp_price[$cRole][$price_meta_key]; }
+            if(isset($wcrbp_price_new[$cRole])){ $wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key]; }
         }
             
 		return $wcrbp_price;
