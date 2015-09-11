@@ -30,27 +30,30 @@ class WC_RBP_PLUGINS extends WP_List_Table {
                 'actions' => 'wpai-woocommerce-add-on/wpai-woocommerce-add-on.php',
                 'update' => '',
                 'file' => 'class-wp-all-import-pro-intergation.php',
-                'slug' => 'wpallimport'
+                'slug' => 'wpallimport',
+                'testedupto' => 'V 4.1.6'
             ),
             array(
-                'title'     => 'Aelia Currency Switcher Intergation',
+                'title'     => 'ACSia Currency Switcher Intergation',
                 'description'    => 'Adds Option Set Product Price Based On Currency Choosen <br/> <a href="https://aelia.co/shop/currency-switcher-woocommerce/" >Go To Plugin Website -> </a>',
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
                 'required' => 'Aelia Currency Switcher for WooCommerce',
                 'actions' => 'woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php',
                 'update' => '',
                 'file' => 'class-aelia-currencyswitcher-intergation.php',
-                'slug' => 'aeliacurrency'
+                'slug' => 'aeliacurrency',
+                'testedupto' => 'V 3.8.4'
             ),
             array(
-                'title'     => 'Aelia Currency Switcher Intergation [WP ALL Import]',
+                'title'     => 'ACS Intergation With [WP ALL Import]',
                 'description'    => 'Intergates Aelia Currency Switcher With WP All Import Plugin',
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
-                'required' => array('Aelia Currency Switcher for WooCommerce','WP All Import - WooCommerce Add-On Pro'),
+                'required' => array('Aelia Currency Switcher','WP All Import - WooCommerce Add-On Pro'),
                 'actions' => array('woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php','wpai-woocommerce-add-on/wpai-woocommerce-add-on.php'),
                 'update' => '',
                 'file' => 'class-wc-rbp-wp-all-import-aelia-intergation.php',
-                'slug' => 'aeliacurrency_wpallimport'
+                'slug' => 'aeliacurrency_wpallimport',
+                'testedupto' => 'ACS : V 3.8.4 <br/> WPALLIMPORT : V 4.1.6'
             )
         );
 
@@ -61,8 +64,8 @@ class WC_RBP_PLUGINS extends WP_List_Table {
                 
         //Set parent defaults
         parent::__construct( array(
-            'singular'  => 'movie',     //singular name of the listed records
-            'plural'    => 'movies',    //plural name of the listed records
+            'singular'  => 'wcrpbplugin',     //singular name of the listed records
+            'plural'    => 'wcrpbplugins',    //plural name of the listed records
             'ajax'      => false        //does this table support ajax?
         ) );
         
@@ -70,15 +73,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
 
 
     function column_default($item, $column_name){ 
-        switch($column_name){
-                
-            case 'rating':
-            case 'director':
-                return $item[$column_name];
-            default:
-                //return print_r($item,true); //Show the whole array for troubleshooting purposes
-                return $item[$column_name];
-        }
+        return $item[$column_name];
     }
 
     function column_title($item){
@@ -147,6 +142,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
             'description'    => 'Description',
             'author'  => 'Author',
             'required' => 'Required Plugins',
+            'testedupto' => 'Tested Upto',
             'update' => 'Last Update',
             'actions' => 'Actions'
         );

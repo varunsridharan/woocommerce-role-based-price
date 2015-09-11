@@ -51,6 +51,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings  extends WC_Settings_Page{
             ''            => __( 'General', lang_dom),
             'user-role-edit'     => __( 'User Role Rename',lang_dom),
             'price-views' => __('Price Visibility',lang_dom),
+            'newsletter' => __('Newsletter',lang_dom),
         );
 
         $sections = apply_filters(pp_key.'_sections', $sections );
@@ -65,10 +66,11 @@ class WooCommerce_Role_Based_Price_Admin_Settings  extends WC_Settings_Page{
     public function output_settings(){
         global $current_section; 
         $settings = $this->get_settings( $current_section );
-        if($current_section != 'plugin'){
-            WC_Admin_Settings::output_fields( $settings );
-        } else {
+        $hide_sec = array('plugin','newsletter');
+        if(in_array($current_section,$hide_sec)){ 
             $GLOBALS['hide_save_button'] = true;
+        } else {
+            WC_Admin_Settings::output_fields( $settings );
         }
                 
     }

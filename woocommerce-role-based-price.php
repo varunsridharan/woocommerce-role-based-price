@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.0
+ * Version:           2.1
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.0',true); # Plugin Version
+define('WC_RBP_VERSION','2.1',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
@@ -162,7 +162,7 @@ final class  WooCommerce_Role_Based_Price{
         return self::$admin_instance;
     }
     
-    public function get_option($key){
+    public function get_option($key){ 
         return get_option($key);
     }
     
@@ -249,28 +249,42 @@ final class  WooCommerce_Role_Based_Price{
  * Check if WooCommerce is active 
  * if yes then call the class
  */
-if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-    if(! function_exists( 'WC_RBP' )){
-        function WC_RBP(){ 
-            return WooCommerce_Role_Based_Price::get_instance();
+
+#add_action( 'init', 'wc_rbp_run' );
+
+#function wc_rbp_run(){
+    if(! function_exists('is_plugin_active')){ require_once( ABSPATH . '/wp-admin/includes/plugin.php' ); }
+    
+    if (is_plugin_active( 'woocommerce/woocommerce.php' )) {
+        if(! function_exists( 'WC_RBP' )){
+            function WC_RBP(){ return WooCommerce_Role_Based_Price::get_instance(); }
         }
-       
+
+        $GLOBALS['woocommerce'] = WC_RBP();
+        do_action( 'wc_rbp_loaded' );
+
+    } else {
+        add_action( 'admin_notices', 'wc_rbp_activate_failed_notice' );
     }
-    
-    $GLOBALS['woocommerce'] = WC_RBP();
-    do_action( 'wc_rbp_loaded' );
-    
-} else {
-	add_action( 'admin_notices', 'wc_rbp_activate_failed_notice' );
-}
+#}
 
 register_activation_hook( __FILE__, 'welcome_screen_activate' );
 function welcome_screen_activate() {
-  set_transient( 'wc_rbp_welcome_screen_activation_redirect', true, 30 );
+    global $wpdb;
+    set_transient( 'wc_rbp_welcome_screen_activation_redirect', true, 30 );
+}
+
+
+add_action( 'admin_init', 'welcome_screen_do_activation_redirect' );
+function welcome_screen_do_activation_redirect() {
+    if ( ! get_transient( 'wc_rbp_welcome_screen_activation_redirect' ) ) { return; }
+    delete_transient( 'wc_rbp_welcome_screen_activation_redirect' );
+    if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) { return; }
+    wp_safe_redirect( add_query_arg( array( 'page' => 'wc-settings','tab' => 'wc_rbp','section'=>'newsletter' ), admin_url( 'admin.php' ) ) );
+
 }
 
 function wc_rbp_activate_failed_notice() {
-    
 	echo '<div class="error"><p> '.__('<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires',lang_dom).'<a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong>'.__(' <u>Woocommerce</u>',lang_dom).'</strong>  </a> '.__(' To Be Installed And Activated',lang_dom).' </p></div>';
 } 
 

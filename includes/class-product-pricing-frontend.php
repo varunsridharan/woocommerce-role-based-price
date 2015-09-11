@@ -48,16 +48,15 @@ class front_end_product_pricing {
     public function check_remove_add_to_cart(){
         $current_role = $this->get_current_role();
         $resticted_role = WC_RBP()->get_option(rbp_key.'hide_cart_button_role');
-        if(in_array($current_role,$resticted_role)){
-            remove_all_actions('woocommerce_simple_add_to_cart');
-            add_filter( 'woocommerce_loop_add_to_cart_link',array(&$this,'remove_add_to_cart_link'),99);
-        }       
-    
+        if(!empty($resticted_role)){
+            if(in_array($current_role,$resticted_role)){
+                remove_all_actions('woocommerce_simple_add_to_cart');
+                add_filter( 'woocommerce_loop_add_to_cart_link',array(&$this,'remove_add_to_cart_link'),99);
+            }       
+        }
     }
     
-    public function remove_add_to_cart_link($link){
-        return '';
-    }
+    public function remove_add_to_cart_link($link){ return ''; }
     
      public function get_status($id){
        $status = get_post_meta($id,'_enable_role_based_price',true );
@@ -167,30 +166,20 @@ class front_end_product_pricing {
 	public function get_price_html( $price = '',$product ) {
         $current_role = $this->get_current_role();
         $resticted_role = WC_RBP()->get_option(rbp_key.'hide_price_role');    
-        if(in_array($current_role,$resticted_role)){
-            $price_notice = WC_RBP()->get_option(rbp_key.'replace_currency_symbol');
-            if(!empty($price_notice)){
-                $symbol = get_woocommerce_currency_symbol() ; 
-                $price_notice = str_replace('[curr]',$symbol,$price_notice);
-                return $price_notice;
-            }
-            
-            return '';
-        } else {
         
-       /* if('WC_Product_Variable' == get_class( $product )){
+        if(!empty($resticted_role)){
 
-            $prices = array($product->get_variation_price('min',true), $product->get_variation_price('max',true));
-            $price = $prices[0] !== $prices[1] ? sprintf(_x('%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price($prices[0]), wc_price($prices[1])) : wc_price($prices[0]);
-            $prices = array($product->get_variation_regular_price('min',true),$product->get_variation_regular_price('max',true));
-            sort( $prices );
-            $saleprice = $prices[0] !== $prices[1] ? sprintf(_x('%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price($prices[0]), wc_price($prices[1])) : wc_price($prices[0]);  
+            if(in_array($current_role,$resticted_role)){
+                $price_notice = WC_RBP()->get_option(rbp_key.'replace_currency_symbol');
+                if(!empty($price_notice)){
+                    $symbol = get_woocommerce_currency_symbol() ; 
+                    $price_notice = str_replace('[curr]',$symbol,$price_notice);
+                    return $price_notice;
+                }
 
-            if ( $prices[0] == 0 && $prices[1] == 0 ) { $price = __( 'Free!', 'woocommerce' ); $price = $price; } else { $price = $price . $product->get_price_suffix(); } 
-        }  
-		return $price;
-	}*/
-        
+                return '';
+            } 
+        } 
         
         
          if('WC_Product_Variable' == get_class( $product )){
@@ -230,8 +219,7 @@ class front_end_product_pricing {
 		}
          }
 		return $price;
-        }
-	}
+        } 
  }
 endif;
 

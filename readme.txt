@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.3
 WC requires at least: 1.0
 WC tested up to: 2.4.6
-Stable tag: 2.0
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -17,9 +17,17 @@ Sell product in different price for different user role based on your settings.
 == Description ==
 This plugin extends the popular ecommerce Plugin Woocommerce so that products can be offered at different prices for different customer groups.
 
-For example, Subscribers or Contributers get different prices than new customers. Differentiate your registered users to get your shop more attractive. New roles can be created and managed. 
+For example, Subscribers or Contributors get different prices than new customers. Differentiate your registered users to get your shop more attractive. New roles can be created and managed. 
 
 [youtube https://www.youtube.com/watch?v=Lm9ZxmK_6F4]
+
+<h3> Features </h3>
+* Role Based Pricing For Simple Product
+* Role Based Pricing For Variable Product
+* Intergated To WP All Import Plugin
+* Intergated To Aelia Currency Swticher
+* Hide Price & Add To Cart Button For Selected Roles
+
 
 <h3>How I Can Get Support For This Plugin</h3>
 
@@ -29,7 +37,7 @@ For example, Subscribers or Contributers get different prices than new customers
 * Email : varunsridharan23@gmail.com
 * Email : plugin@varunsridharan.in
 
-= Plugin Contributers  =
+= Plugin Contributors  =
 * <a href="https://wordpress.org/support/profile/nick6352683" >nick6352683 </a>
 * <a href="https://profiles.wordpress.org/arnisarbidans">arnis.arbidans</a>
 * <a href="https://profiles.wordpress.org/cuppy90">Cuppy</a>
@@ -77,9 +85,11 @@ The manual installation method involves downloading our plugin and uploading it 
 
 == Frequently Asked Questions ==
 ** Dose This Plugin Supports WP All Importer PRO ? **
+
 Yes This Plugin Support WP ALL Importer PRO. by activation of WP All Importer Intergation In Settings Menu
 
 ** Dose This Plugin Supports Aelia Currency Switcher ? **
+
 Yes This Plugin Support Aelia Currency Switcher. by activation of Aelia Currency Switcher In Settings Menu
 
 **How I Can Get Support For This Plugin**
@@ -98,10 +108,17 @@ Oops. Please Use github / WordPress to post bugs.  <a href="https://github.com/t
 
 
 **Where can I request new features**
+
 Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Role-Based-Price"> GitHub </a> and we will look into it
 
 
 == Changelog ==
+= 2.1 =
+* Fixed Hide Price Issue When No User LogedIn
+* Fixed Hide Add-to-cart issue when no user logedIn
+* Made Plugin Compatible With WP Multisite 
+* Minor Bug Fix
+
 = 2.0 =
 * Total Plugin ReDeveloped
 * Added Intergations To WP All Import Plugin
