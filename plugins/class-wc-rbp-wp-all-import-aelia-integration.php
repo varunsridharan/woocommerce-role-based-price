@@ -12,7 +12,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once('class-wp-all-import-pro-pluggable.php');
 
-class WooCommerce_role_based_price_aelia_wp_all_import_intergation{
+class WooCommerce_role_based_price_aelia_wp_all_import_integration{
     private $is_importer_page = false;
     private $wpallimport_plug = '';
     
@@ -97,7 +97,7 @@ class WooCommerce_role_based_price_aelia_wp_all_import_intergation{
 
 add_action('wc_rbp_loaded','load_aelia_wp_all_import');
 function load_aelia_wp_all_import(){
-    new WooCommerce_role_based_price_aelia_wp_all_import_intergation;
+    new WooCommerce_role_based_price_aelia_wp_all_import_integration;
 }
 
 
