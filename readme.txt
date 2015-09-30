@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.3
 WC requires at least: 1.0
 WC tested up to: 2.4.6
-Stable tag: 2.2
+Stable tag: 2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -128,6 +128,9 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.3 =
+* Fixed POPUP Loading Issue. 
+
 = 2.2 =
 * Changed POPUP View In Product Edit Page
 * Product Price Not Showing Correctly When Saved As Empty Field Fixed
