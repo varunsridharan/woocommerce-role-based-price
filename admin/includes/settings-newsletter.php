@@ -17,23 +17,24 @@
                                 <input type="email" value="<?php echo get_option('admin_email'); ?>" name="EMAIL" class="required email" id="mce-EMAIL">
                             </div>
                             <div class="mc-field-group">
-                                <label for="mce-FNAME"><?php _e('First Name',lang_dom); ?> First Name <span class="asterisk">*</span>
+                                <label for="mce-FNAME"><?php _e('First Name',lang_dom); ?> <span class="asterisk">*</span>
                                 </label>
                                 <input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
                             </div>
                             <div class="mc-field-group">
-                                <label for="mce-LNAME"><?php _e('Last Name',lang_dom); ?> Last Name </label>
+                                <label for="mce-LNAME"><?php _e('Last Name',lang_dom); ?> </label>
                                 <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
                             </div>
                             <div class="mc-field-group">
-                                <label for="mce-WEBSITE"><?php _e('Website',lang_dom); ?> Website <span class="asterisk">*</span>
+                                <label for="mce-WEBSITE"><?php _e('Website',lang_dom); ?> <span class="asterisk">*</span>
                                 </label>
                                 <input type="url" value="<?php echo get_site_url(); ?>" name="WEBSITE" class="required url" id="mce-WEBSITE">
                             </div>
                             <div class="mc-field-group">
-                                <label for="mce-COUNTRY"><?php _e('Country',lang_dom); ?> Country <span class="asterisk">*</span>
+                                <label for="mce-COUNTRY"><?php _e('Country',lang_dom); ?> <span class="asterisk">*</span>
                                 </label>
                                 <input type="text" value="" name="COUNTRY" class="required" id="mce-COUNTRY">
+                                <input type="hidden" value="WooCommerce Role Based Pricing" name="PLUGINNAME" class="" id="mce-PLUGINNAME">
                             </div>
                             <div id="mce-responses" class="clear">
                                 <div class="response" id="mce-error-response" style="display:none"></div>
@@ -58,7 +59,7 @@
 
 <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
 
-<script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='WEBSITE';ftypes[3]='url';fnames[4]='COUNTRY';ftypes[4]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='WEBSITE';ftypes[3]='url';fnames[4]='COUNTRY';ftypes[4]='text';fnames[5]='PLUGINNAME';ftypes[5]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
 
 <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
 <style type="text/css">

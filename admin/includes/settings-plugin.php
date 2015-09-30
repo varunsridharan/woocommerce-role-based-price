@@ -34,7 +34,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
                 'testedupto' => 'V 4.1.6'
             ),
             array(
-                'title'     => 'ACSia Currency Switcher Intergation',
+                'title'     => 'ACS Currency Switcher Intergation',
                 'description'    => 'Adds Option Set Product Price Based On Currency Choosen <br/> <a href="https://aelia.co/shop/currency-switcher-woocommerce/" >Go To Plugin Website -> </a>',
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
                 'required' => 'Aelia Currency Switcher for WooCommerce',

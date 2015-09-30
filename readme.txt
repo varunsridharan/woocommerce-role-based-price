@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.3
 WC requires at least: 1.0
 WC tested up to: 2.4.6
-Stable tag: 2.1
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -27,6 +27,19 @@ For example, Subscribers or Contributors get different prices than new customers
 * Intergated To WP All Import Plugin
 * Intergated To Aelia Currency Swticher
 * Hide Price & Add To Cart Button For Selected Roles
+* Rename Able User Roles
+* Shortcode to get product price
+
+= Shortcode Variables Explained =
+* `id=99` you need to replace the `99` with your simple/variable product id
+* `role=administrator` you need replace `administrator` with your user role id / use `current` to get loggedin user role
+* `price` use `regular_price` or `selling_price` to get the value of each
+
+= Get Product's Regular Price With Custom User Role =
+`[wc_rbp id='99' role='administrator' price='regular_price']`
+
+= Get Product's Selling Price Based On Logged In User =
+`[wc_rbp id='99' role='current' price='selling_price']`
 
 
 <h3>How I Can Get Support For This Plugin</h3>
@@ -84,16 +97,19 @@ The manual installation method involves downloading our plugin and uploading it 
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
-** Dose This Plugin Supports WP All Importer PRO ? **
+**Get Product's Regular Price With Custom User Role**
+`[wc_rbp id='99' role='administrator' price='regular_price']`
 
+**Get Product's Selling Price Based On Logged In User**
+`[wc_rbp id='99' role='current' price='selling_price']`
+
+**Dose This Plugin Supports WP All Importer PRO ?**
 Yes This Plugin Support WP ALL Importer PRO. by activation of WP All Importer Intergation In Settings Menu
 
-** Dose This Plugin Supports Aelia Currency Switcher ? **
-
+**Dose This Plugin Supports Aelia Currency Switcher ?**
 Yes This Plugin Support Aelia Currency Switcher. by activation of Aelia Currency Switcher In Settings Menu
 
 **How I Can Get Support For This Plugin**
-
 * http://varunsridharan.in/plugin-support/
 * https://wordpress.org/support/plugin/woocommerce-role-based-price
 * https://github.com/technofreaky/WooCommerce-Role-Based-Price
@@ -108,11 +124,16 @@ Oops. Please Use github / WordPress to post bugs.  <a href="https://github.com/t
 
 
 **Where can I request new features**
-
 Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Role-Based-Price"> GitHub </a> and we will look into it
 
 
 == Changelog ==
+= 2.2 =
+* Changed POPUP View In Product Edit Page
+* Product Price Not Showing Correctly When Saved As Empty Field Fixed
+* Added Shortcode to get product price.
+* Minor Bug Fix
+
 = 2.1 =
 * Fixed Hide Price Issue When No User LogedIn
 * Fixed Hide Add-to-cart issue when no user logedIn
@@ -127,9 +148,9 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 * Update Plugin For Latest WP & WooCommerce (WP : 4.3 | WC : 2.4.6)
 * Minor Bug Fix
 
-
 = 1.3 =
 * Major Update [Had Some File Conflict.. please update your plugin too]
+
 = 1.2 =
 * Fixed Error Message at product price when viewing as visitor 
 
@@ -144,7 +165,9 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 * Fix Major Bugs
 * Update Plugin For Latest WP & WooCommerce (WP : 4.2.2 | WC : 2.3.11)
 * Option To Rename User Role (Affected Only For This Plugin) [<a href="https://wordpress.org/support/topic/rename-titles?replies=2"> Rename titles </a> ]
+
 = 0.2 =
 * Fixed Selling Price Display for role based Issue At [<a href="https://wordpress.org/support/topic/excellent-plugin-but-has-a-small-bug?replies=4#post-6620252">#6620252</a>]
+
 = 0.1 =
 * Base Version

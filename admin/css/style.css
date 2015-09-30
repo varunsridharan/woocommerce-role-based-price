@@ -1,3 +1,15 @@
+.enable_field_container{
+    display: inline-block;
+    text-align: center;
+    width: 99%;
+}
+
+.wc_rbp_update_message{
+    display: inline-block;
+    padding: 0;
+    width: 99%;
+}
+
 label.enable_text{
     font-size: 17px;
     color: black;
@@ -153,12 +165,16 @@ div.variable_roles > div.variable_pricing {
 
 #wc_rbp_pop_tabs {
     display: inline-block;
-    width: 100%;
+    width: 99%;
+    padding:0;
+    border: 1px solid #aaa !important;
 }
 
 .wc_rbp_pop_container{
-    float:left;
-    width:100%;
+     display: block;
+    margin: 0 auto;
+    padding: 10px;
+    
 }
 
 .wc_rbp_plugin_field_container {
@@ -310,3 +326,66 @@ div.variable_roles > div.variable_pricing {
   overflow: hidden;
   text-indent: 100%;
 }
+
+
+.wc_rbp_close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+
+.wc_rbp_close:hover {
+    color: #000000;
+    text-decoration: none;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    cursor: pointer;
+}
+
+.wc_rbp_alert {
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 18px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    background-color: #fcf8e3;
+    border: 1px solid #fbeed5;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #c09853;
+}
+
+.wc_rbp_alert-heading { color: inherit; }
+
+.wc_rbp_alert .wc_rbp_close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    line-height: 18px;
+}
+
+.wc_rbp_alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+}
+
+.wc_rbp_alert-danger, .wc_rbp_alert-error {
+    background-color: #f2dede;
+    border-color: #eed3d7;
+    color: #b94a48;
+}
+
+.wc_rbp_alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #3a87ad;
+}
+
+.wc_rbp_alert-block { padding-top: 14px; padding-bottom: 14px; }
+.wc_rbp_alert-block > p, .wc_rbp_alert-block > ul { margin-bottom: 0; }
+.wc_rbp_alert-block p + p { margin-top: 5px; }

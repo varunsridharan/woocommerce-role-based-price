@@ -42,16 +42,21 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
             }
             echo '<p class="form-field role_based_price_ajax show_if_simple ">
                     <label for="role_based_price_ajax">'.__('Role Based Price',lang_dom).'</label>
-                    
-                    <input type="button" 
-                    data-target="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$thepostid).'"  
+                     <a  
+                    href="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$thepostid).'"  
                     class="button button-primary role_based_price_editor_btn" 
-                    value="'.__('Add / Edit Role Pricing',lang_dom).'" '.$disabled.'   /> 
+                  '.$disabled.' > '.__('Add / Edit Role Pricing',lang_dom).' </a>
+                    
+                    
                        
                        '.$notice.'
                     </p>  
         ';  
 	} 
+    /*<input type="button" 
+                    data-target="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$thepostid).'"  
+                    class="button button-primary role_based_price_editor_btn" 
+                    value="'.__('Add / Edit Role Pricing',lang_dom).'" '.$disabled.'   /> */
 
    /**
 	 * Adds Edit Button After Pricing In General Only For Simple Product 
@@ -66,16 +71,23 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
                 $notice = __('<span class="wc_rbp_error"> <strong> Please Save Or Publish This Product To Add Role Based Price </strong> </span>',lang_dom);
             }
             echo '<p class="form-row   form-row-full  role_based_price_ajax show_if_variable  "> 
-                    
-                    <input type="button" 
-                    data-target="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$var3->ID).'"  
+            
+            <a  
+                    href="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$thepostid).'"  
                     class="button button-primary role_based_price_editor_btn" 
-                    value="'.__('Add / Edit Role Pricing',lang_dom).'" '.$disabled.'   /> 
+                  '.$disabled.' > '.__('Add / Edit Role Pricing',lang_dom).' </a>
+                    
+                    
                        
                        '.$notice.'
                     </p>  
         ';  
 	}  
+    /*<input type="button" 
+                    data-target="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$var3->ID).'"  
+                    class="button button-primary role_based_price_editor_btn" 
+                    value="'.__('Add / Edit Role Pricing',lang_dom).'" '.$disabled.'   /> **/
+    
     public function wc_rbp_popup_div(){
         if(in_array(WC_RBP()->admin()->current_screen() ,  WC_RBP()->admin()->get_screen_ids())) {
             echo '<div id="wc_rpb_dialog" > </div>';
@@ -85,7 +97,8 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
     
     public function save_price(){
 
-        $msg = __('Unable To Save Product Role Price. Please Try Again.',lang_dom);
+        $msg = '<div class="wc_rbp_alert wc_rbp_alert-error">
+  <a class="wc_rbp_close wc_rbp_pop_up_close" data-dismiss="alert">×</a>  <strong>Oh Snap!</strong> '.__('Unable To Save Product Role Price. Please Try Again.',lang_dom).' </div>';
         if(check_ajax_referer(WC_RBP_SLUG.'-product-edit-nounce' , 'security' )){
             $msg = '';
             if(isset($_POST['wc_rbp_post_id']) && !empty($_POST['wc_rbp_post_id'])){
@@ -107,7 +120,8 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
                 do_action('woocommerce_role_based_price_data_save',$post_id);
             }
              
-            $msg = '<div class="updated fade" id="message"><p><strong>'.__('Product\'s Role Based Pricing Updated',lang_dom).'</strong></p></div>';
+           
+            $msg = ' <div class="wc_rbp_alert wc_rbp_alert-success"> <a class="wc_rbp_close wc_rbp_pop_up_close" data-dismiss="alert">×</a> <strong>Well done!</strong> '.__('Product\'s Role Based Pricing Updated',lang_dom).' </div>';
         }
         wp_die($msg);
     }

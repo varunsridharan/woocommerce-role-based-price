@@ -11,4 +11,5 @@
             </label>
         </p>
     </div>  
+    <div class="wc_rbp_update_message"> </div>
     <div id="wc_rbp_pop_tabs">

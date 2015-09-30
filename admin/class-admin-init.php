@@ -115,6 +115,7 @@ class WooCommerce_Role_Based_Price_Admin {
 	public function enqueue_styles() { 
         if(in_array($this->current_screen() , $this->get_screen_ids())) {
             wp_enqueue_style(WC_RBP_SLUG.'core_style',plugins_url('css/style.css',__FILE__) , array(), WC_RBP_VERSION, 'all' );  
+            wp_enqueue_style(WC_RBP_SLUG.'colorbox',plugins_url('css/colorbox.css',__FILE__) , array(), WC_RBP_VERSION, 'all' );  
             wp_enqueue_style(WC_RBP_SLUG.'modifed_jquery_ui',plugins_url('css/jqueryUI/jquery-ui.theme.css',__FILE__) , array(), WC_RBP_VERSION, 'all' ); 
         }
 	}
@@ -125,8 +126,10 @@ class WooCommerce_Role_Based_Price_Admin {
 	 */
 	public function enqueue_scripts() {
         if(in_array($this->current_screen() , $this->get_screen_ids())) {
-            wp_enqueue_script(WC_RBP_NAME, plugins_url('js/script.js',__FILE__), array( 'jquery' ), WC_RBP_VERSION, false ); 
-            wp_enqueue_script('jquery-ui-dialog');
+            
+            wp_enqueue_script(WC_RBP_NAME.'COLORBOX', plugins_url('js/jquery.colorbox.js',__FILE__), array( 'jquery' ), WC_RBP_VERSION, false ); 
+            wp_enqueue_script(WC_RBP_NAME, plugins_url('js/script.js',__FILE__), array( 'jquery',WC_RBP_NAME.'COLORBOX'), WC_RBP_VERSION, false ); 
+            //wp_enqueue_script('jquery-ui-dialog');
             wp_enqueue_script('jquery-ui-tabs');
         }
  
