@@ -39,7 +39,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
                 'required' => 'Aelia Currency Switcher for WooCommerce',
                 'actions' => 'woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php',
-                'update' => '',
+                'update' => '16th SEP 2015',
                 'file' => 'class-aelia-currencyswitcher-intergation.php',
                 'slug' => 'aeliacurrency',
                 'testedupto' => 'V 3.8.4'

@@ -16,23 +16,24 @@ if ( ! class_exists( 'front_end_product_pricing' ) ) :
 class front_end_product_pricing {
 
 	function __construct(){
-        add_action( 'woocommerce_init', array( $this, 'wc_init'));	
+            add_action( 'woocommerce_init', array( $this, 'wc_init'));	
 	}		 
     
     public function wc_init(){
-		add_filter( 'woocommerce_get_regular_price', array( &$this, 'get_regular_price') , 99, 2 );
+            add_filter( 'woocommerce_get_regular_price', array( &$this, 'get_regular_price') , 99, 2 );
 
-		add_filter( 'woocommerce_get_sale_price', array( &$this, 'get_selling_price') , 99, 2 );
-		
-		add_filter( 'woocommerce_get_price', array( &$this, 'get_price' ), 99, 2 );
-		
-		add_filter( 'woocommerce_get_variation_regular_price', array( &$this, 'get_variation_regular_price' ), 99, 4 );
-					
-		add_filter( 'woocommerce_get_variation_price', array( &$this, 'get_variation_price' ), 99, 4 );	 
-                
-        add_filter( 'woocommerce_get_price_html',array( &$this,'get_price_html' ),1,2);   
+            add_filter( 'woocommerce_get_sale_price', array( &$this, 'get_selling_price') , 99, 2 );
+
+            add_filter( 'woocommerce_get_price', array( &$this, 'get_price' ), 99, 2 );
+
+            add_filter( 'woocommerce_get_variation_regular_price', array( &$this, 'get_variation_regular_price' ), 99, 4 );
+
+            add_filter( 'woocommerce_get_variation_price', array( &$this, 'get_variation_price' ), 99, 4 );	 
+
+            add_filter( 'woocommerce_get_price_html',array( &$this,'get_price_html' ),1,2);   
+
+            add_filter( 'init',array(&$this,'check_remove_add_to_cart'),99);
         
-        add_filter( 'init',array(&$this,'check_remove_add_to_cart'),99);
     }
     
     public function get_current_role(){
@@ -73,6 +74,9 @@ class front_end_product_pricing {
 	 * @return string price
 	 */
 	public function get_regular_price ( $price, $product, $price_meta_key = 'regular_price' ) {	
+        if(defined('WC_RBP_SHORTCODE_PRODUCT_BASE_PRICING')){
+            return $price;
+        }
         
 		$wcrbp_price = $price;
 		$cRole = $this->get_current_role();

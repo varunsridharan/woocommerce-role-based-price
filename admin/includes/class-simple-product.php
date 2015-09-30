@@ -73,7 +73,7 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
             echo '<p class="form-row   form-row-full  role_based_price_ajax show_if_variable  "> 
             
             <a  
-                    href="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$thepostid).'"  
+                    href="'.admin_url('admin-ajax.php?action=role_based_price_edit&type=simple&post_id='.$var3->ID).'"  
                     class="button button-primary role_based_price_editor_btn" 
                   '.$disabled.' > '.__('Add / Edit Role Pricing',lang_dom).' </a>
                     

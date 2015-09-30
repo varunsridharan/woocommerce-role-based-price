@@ -13,8 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
     private $db_price;
+    private $base_currency;
     
     public function __construct (){
+        $this->base_currency = get_option('woocommerce_currency');
         add_action( 'init', array($this,'admin_init'),1); 
     }
     
@@ -87,12 +89,19 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
     
     public function add_fields($regular_price,$selling_price,$thepostid,$user_role_key,$name){
         $allowed_currency = get_option(rbp_key.'acs_allowed_currencies');
+        if(empty($allowed_currency)){
+            $allowed_currency = $this->get_enabled_currencies ();
+        } 
+
+        
         $this->acs_get_db_price($thepostid);
         echo '<div class="wc_rbp_plugin_field_container">'; 
         echo '<hr/> <h3>'.__( 'Role Based Price for Aelia Currency Switcher' , lang_dom).'</h3>';
         
        
             foreach($allowed_currency as $currency) {
+                
+                
                 $symbol = get_woocommerce_currency_symbol($currency) ; 
                 $symbol = ! empty($symbol) ? ' ('.$symbol.') ' : ' ('.$currency.') '; 
                 
@@ -144,15 +153,21 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         $this->acs_get_db_price($post_id);
         $price = '';
         $allowed_currency = get_option(rbp_key.'acs_allowed_currencies');
+        
+        if(empty($allowed_currency)){
+            $allowed_currency = $this->get_enabled_currencies ();
+        } 
+        
         $send_currency = array(); 
         foreach($allowed_currency as $currency) {
             $price = $this->acs_crp($currency,$user_role,$price_meta_key);
-           
+            
             
             if(!empty($price)){
                 $send_currency[$currency] = $price;
             } 
         }   
+        
         $rprice = $this->get_price_in_currency($wcrbp_price, $send_currency) ;
         
         return $rprice;
@@ -194,8 +209,15 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
             $this->acs_get_db_price($product_id);
             $price = '';
             $allowed_currency = get_option(rbp_key.'acs_allowed_currencies');
+        
+            if(empty($allowed_currency)){
+                $allowed_currency = $this->get_enabled_currencies ();
+            }
+        
             $send_currency = array(); 
             foreach($allowed_currency as $currency) {
+                
+
                 $price = $this->acs_crp($currency,WC_RBP()->current_role(),$type);
 
 

@@ -30,7 +30,7 @@ class WooCommerce_Role_Based_Price_Simple_Product_Functions {
      * @since 0.1
 	 */
 	public function __construct(){
-          add_shortcode( 'wc_rbp', array(__CLASS__,'shortcodehandler' ));
+          add_shortcode( 'wc_rbp', array($this,'shortcodehandler' ));
  	}
      
     
@@ -43,7 +43,15 @@ class WooCommerce_Role_Based_Price_Simple_Product_Functions {
         
         if($vars['id'] == null){return __('Invalid Product ID Given',lang_dom);}
         if($vars['role'] == null){return __('Invalid User Role Given',lang_dom);}
-        if($vars['price'] != 'regular_price' && $vars['price'] != 'selling_price'){return __('Invalid Price Type Given',lang_dom);}
+        
+        if($vars['price'] == 'product_regular_price' || $vars['price'] == 'product_selling_price'){
+            return self::get_base_product_price($vars['id'],$vars['price']);
+        
+        }
+        
+        if($vars['price'] != 'regular_price' && $vars['price'] != 'selling_price'){
+            return __('Invalid Price Type Given',lang_dom);
+        } 
         
         $product_status = self::get_status($vars['id']);
         if($product_status){
@@ -54,6 +62,21 @@ class WooCommerce_Role_Based_Price_Simple_Product_Functions {
         return '';
     }
  
+        
+    public function get_base_product_price($id,$price){
+        if(!defined('WC_RBP_SHORTCODE_PRODUCT_BASE_PRICING')){
+            define('WC_RBP_SHORTCODE_PRODUCT_BASE_PRICING',true);
+        }
+        
+        $product = new WC_Product($id);
+        
+        if($price == 'product_regular_price'){
+            return $product->get_regular_price();
+        }
+         if($price == 'product_selling_price'){
+            return $product->get_sale_price();
+        }
+    }
     
     public function get_status($id){
        $status = get_post_meta($id,'_enable_role_based_price',true );

@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.3
+ * Version:           2.4
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.3',true); # Plugin Version
+define('WC_RBP_VERSION','2.4',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
@@ -54,6 +54,8 @@ final class  WooCommerce_Role_Based_Price{
         add_action( 'init', array( $this, 'init' ), 0 );
         $this->load_plugins();
         // Autoload Required Files
+        require_once( 'includes/class-product-functions.php' ); 
+        
         foreach( glob(WC_RBP_PATH . 'includes/*.php' ) as $files ){ 
             require_once( $files );
         }
@@ -237,7 +239,10 @@ final class  WooCommerce_Role_Based_Price{
     
     public function get_activated_plugin(){
         $plugins = $this->get_option(rbp_key.'activated_plugin');
-        return $plugins;
+        if($plugins)
+            return $plugins;
+        
+        return array();
     }
 
     
