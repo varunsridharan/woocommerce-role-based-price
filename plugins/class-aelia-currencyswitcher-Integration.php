@@ -1,6 +1,6 @@
 <?php
 /**
- * Intergation For Aelia Currency Switcher
+ * Integration For Aelia Currency Switcher
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
  * @since      1.4
@@ -21,13 +21,22 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
     }
     
     public function admin_init(){
+        
+        
         add_filter('wc_rbpsection_aelia-currencyswitcher-intergation',array($this,'add_settings'));
         add_action('woocommerce_role_based_price_fields',array($this,'add_fields'),5,5);
         add_action('woocommerce_role_based_price_data_save',array($this,'save_data'));
         add_filter('woocommerce_role_based_product_price_value',array($this,'change_price'),1,5);
-        add_filter('wc_aelia_currencyswitcher_product_currency_prices', array($this,'my_custom_prices'), 15, 3);
+        
+        if(WC_RBP()->is_request( 'frontend' )){
+            //remove_filter('woocommerce_get_price', array('WC_Aelia_CurrencySwitcher', 'woocommerce_get_price'), 5);
+            add_filter('wc_aelia_currencyswitcher_product_currency_prices', array($this,'my_custom_prices'), 15, 3);
+        }
+        
+        
         add_filter('wc_rbp_sections',array($this,'add_section'));
     }
+    
     
     public function save_data($post_id){ 
         if(isset($_POST['acs']) && is_array($_POST['acs'])){ 
@@ -100,7 +109,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         
        
             foreach($allowed_currency as $currency) {
-                
+                if($this->base_currency == $currency){continue;} 
                 
                 $symbol = get_woocommerce_currency_symbol($currency) ; 
                 $symbol = ! empty($symbol) ? ' ('.$symbol.') ' : ' ('.$currency.') '; 
@@ -138,7 +147,12 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         return false;
     }
 
-    public function acs_crp($currency,$role,$price = 'all'){ 
+    public function acs_crp($currency,$role,$price = 'all',$post_id = null){ 
+        if($this->base_currency == $currency){
+            WC_RBP()->sp_function()->get_db_price($post_id);
+            $price = WC_RBP()->sp_function()->get_selprice($role,$price);    
+            return $price; 
+        }
         
         if(isset($this->db_prices[$role][$currency][$price])){
             return $this->db_prices[$role][$currency][$price];
@@ -150,6 +164,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
            
            
     public function change_price($wcrbp_price,$post_id,$price_meta_key,$user_role){ 
+        
         $this->acs_get_db_price($post_id);
         $price = '';
         $allowed_currency = get_option(rbp_key.'acs_allowed_currencies');
@@ -160,7 +175,8 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         
         $send_currency = array(); 
         foreach($allowed_currency as $currency) {
-            $price = $this->acs_crp($currency,$user_role,$price_meta_key);
+            
+            $price = $this->acs_crp($currency,$user_role,$price_meta_key,$post_id);
             
             
             if(!empty($price)){
@@ -216,11 +232,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         
             $send_currency = array(); 
             foreach($allowed_currency as $currency) {
-                
-
-                $price = $this->acs_crp($currency,WC_RBP()->current_role(),$type);
-
-
+                $price = $this->acs_crp($currency,WC_RBP()->current_role(),$type,$product_id);
                 if(!empty($price)){
                     $send_currency[$currency] = $price;
                 } 
@@ -228,8 +240,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         
         
             //You can now merge the original prices with the ones you loaded.
-            $product_prices = array_merge($product_prices, $send_currency);
-        
+            $product_prices = array_merge($product_prices, $send_currency); 
             //Finally, return the overridden prices
             return $send_currency;
     }    

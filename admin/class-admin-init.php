@@ -117,6 +117,7 @@ class WooCommerce_Role_Based_Price_Admin {
             wp_enqueue_style(WC_RBP_SLUG.'core_style',plugins_url('css/style.css',__FILE__) , array(), WC_RBP_VERSION, 'all' );  
             wp_enqueue_style(WC_RBP_SLUG.'colorbox',plugins_url('css/colorbox.css',__FILE__) , array(), WC_RBP_VERSION, 'all' );  
             wp_enqueue_style(WC_RBP_SLUG.'modifed_jquery_ui',plugins_url('css/jqueryUI/jquery-ui.theme.css',__FILE__) , array(), WC_RBP_VERSION, 'all' ); 
+            
         }
 	}
 	

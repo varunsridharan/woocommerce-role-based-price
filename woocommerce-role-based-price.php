@@ -3,20 +3,20 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.4
+ * Version:           2.5
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt 
- * GitHub Plugin URI: @TODO
+ * GitHub Plugin URI: https://github.com/technofreaky/WooCommerce-Role-Based-Price
  */
 
 if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.4',true); # Plugin Version
+define('WC_RBP_VERSION','2.5',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
@@ -51,31 +51,43 @@ final class  WooCommerce_Role_Based_Price{
      * Class Constructor
      */
     private function __construct() {
+        register_activation_hook( __FILE__, array(__CLASS__,'plugin_activate' ));
         add_action( 'init', array( $this, 'init' ), 0 );
-        $this->load_plugins();
-        // Autoload Required Files
-        require_once( 'includes/class-product-functions.php' ); 
+        add_action( 'admin_init', array($this,'plugin_activate_redirect' ));
+    }
+    
+    
+    public static function plugin_activate() {
+        set_transient( 'wc_rbp_welcome_screen_activation_redirect', true, 30 );
+        self::plugin_upgrade_check();
+    }    
+    
+    public static function plugin_upgrade_check(){
+        require_once('updates/wc_rbp_update_v2.5.php');
+        //$old_version = get_option(WC_DB_KEY.'wc_rbp_version');
+        //if(! $old_version) {
+        //    
+        //}
         
-        foreach( glob(WC_RBP_PATH . 'includes/*.php' ) as $files ){ 
-            require_once( $files );
-        }
-        
-        if($this->is_request( 'admin' )){
-            require_once(WC_RBP_PATH . 'admin/class-admin-init.php' );
-        }
-        
-         if($this->is_request( 'frontend' )){
-             new front_end_product_pricing;
-         }
-        
-        
+    }
+
+
+    public function plugin_activate_redirect() {
+        if ( ! get_transient( 'wc_rbp_welcome_screen_activation_redirect' ) ) { return; }
+        delete_transient( 'wc_rbp_welcome_screen_activation_redirect' );
+        if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) { return; }
+        $args = array( 'page' => 'wc-settings','tab' => 'wc_rbp','section'=>'newsletter' );
+        wp_safe_redirect( add_query_arg( $args , admin_url( 'admin.php' ) ) );
+
     }
     
     public function load_plugins(){
-        $plugins = $this->get_activated_plugin();
+        $plugins = $this->get_activated_plugin(); 
+        $plugin_list = $this->get_plugins_list();
+        
         if(! empty($plugins)){
-            foreach($plugins as $plugin){
-                include(WC_RBP_PATH.'plugins/'.$plugin);
+            foreach($plugins as $plugin){ 
+                include(WC_RBP_PATH.'plugins/'.$plugin_list[$plugin]['file']);
             }
         } 
     }
@@ -97,6 +109,21 @@ final class  WooCommerce_Role_Based_Price{
      * Runs After WP Loaded
      */
     public function init(){
+        $this->load_plugins();
+        
+       // Autoload Required Files
+        require_once( 'includes/class-product-functions.php' ); 
+        
+        foreach( glob(WC_RBP_PATH . 'includes/*.php' ) as $files ){  require_once( $files ); }
+        
+        if($this->is_request( 'admin' )){
+            require_once(WC_RBP_PATH . 'admin/class-admin-init.php' );
+        }
+        
+        if($this->is_request( 'frontend' )){
+            new front_end_product_pricing;
+        }        
+        
         add_action('plugins_loaded', array( $this, 'langs' ));
         add_filter('load_textdomain_mofile',  array( $this, 'replace_my_plugin_default_language_files' ), 10, 2);
         
@@ -244,6 +271,46 @@ final class  WooCommerce_Role_Based_Price{
         
         return array();
     }
+    
+    public function get_plugins_list(){
+    return array(
+            'wpallimport' => array(
+                'title'     => 'WP All Importer Integration',
+                'description'    => 'Adds Option To Import Products With Role Based Pricing In WP All Importer <br/>
+<a href="http://www.wpallimport.com/" >Go To Plugin Website -> </a> ',
+                'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
+                'required' => 'WP All Import - WooCommerce Add-On Pro',
+                'actions' => 'wpai-woocommerce-add-on/wpai-woocommerce-add-on.php',
+                'update' => '',
+                'file' => 'class-wp-all-import-pro-Integration.php',
+                'slug' => 'wpallimport',
+                'testedupto' => 'V 4.1.6'
+            ),
+            'aeliacurrency' => array(
+                'title'     => 'ACS Currency Switcher Integration',
+                'description'    => 'Adds Option Set Product Price Based On Currency Choosen <br/> <a href="https://aelia.co/shop/currency-switcher-woocommerce/" >Go To Plugin Website -> </a>',
+                'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
+                'required' => 'Aelia Currency Switcher for WooCommerce',
+                'actions' => 'woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php',
+                'update' => '16th SEP 2015',
+                'file' => 'class-aelia-currencyswitcher-Integration.php',
+                'slug' => 'aeliacurrency',
+                'testedupto' => 'V 3.8.4'
+            ),
+           'aeliacurrency_wpallimport' => array(
+                'title'     => 'ACS Integration With [WP ALL Import]',
+                'description'    => 'Intergates Aelia Currency Switcher With WP All Import Plugin',
+                'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
+                'required' => array('Aelia Currency Switcher','WP All Import - WooCommerce Add-On Pro'),
+                'actions' => array('woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php','wpai-woocommerce-add-on/wpai-woocommerce-add-on.php'),
+                'update' => '',
+                'file' => 'class-wc-rbp-wp-all-import-aelia-Integration.php',
+                'slug' => 'aeliacurrency_wpallimport',
+                'testedupto' => 'ACS : V 3.8.4 <br/> WPALLIMPORT : V 4.1.6'
+            )
+        );
+    
+    }
 
     
 }
@@ -273,21 +340,8 @@ final class  WooCommerce_Role_Based_Price{
     }
 #}
 
-register_activation_hook( __FILE__, 'welcome_screen_activate' );
-function welcome_screen_activate() {
-    global $wpdb;
-    set_transient( 'wc_rbp_welcome_screen_activation_redirect', true, 30 );
-}
 
 
-add_action( 'admin_init', 'welcome_screen_do_activation_redirect' );
-function welcome_screen_do_activation_redirect() {
-    if ( ! get_transient( 'wc_rbp_welcome_screen_activation_redirect' ) ) { return; }
-    delete_transient( 'wc_rbp_welcome_screen_activation_redirect' );
-    if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) { return; }
-    wp_safe_redirect( add_query_arg( array( 'page' => 'wc-settings','tab' => 'wc_rbp','section'=>'newsletter' ), admin_url( 'admin.php' ) ) );
-
-}
 
 function wc_rbp_activate_failed_notice() {
 	echo '<div class="error"><p> '.__('<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires',lang_dom).'<a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong>'.__(' <u>Woocommerce</u>',lang_dom).'</strong>  </a> '.__(' To Be Installed And Activated',lang_dom).' </p></div>';

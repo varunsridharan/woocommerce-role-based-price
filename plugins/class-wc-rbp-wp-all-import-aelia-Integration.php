@@ -1,6 +1,6 @@
 <?php
 /**
- * Intergation For Aelia Currency Switcher + WPALL Import
+ * Integration For Aelia Currency Switcher + WPALL Import
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
  * @since      1.4
@@ -12,7 +12,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 require_once('class-wp-all-import-pro-pluggable.php');
 
-class WooCommerce_role_based_price_aelia_wp_all_import_intergation{
+class WooCommerce_role_based_price_aelia_wp_all_import_integration{
     private $is_importer_page = false;
     private $wpallimport_plug = '';
     
@@ -21,7 +21,7 @@ class WooCommerce_role_based_price_aelia_wp_all_import_intergation{
     }
     
     public function wc_rbp_aelia_wp_all_import_init(){  
-        $this->wpallimport_plug = new RapidAddon( __('Aelia Currency Switcher Intergation',lang_dom), 'wc_rbp_aelia_wp_all_import_init');
+        $this->wpallimport_plug = new RapidAddon( __('Aelia Currency Switcher Integration',lang_dom), 'wc_rbp_aelia_wp_all_import_init');
         $this->add_fields();
         $this->plug()->run(array( "post_types" => array( "product" ) ));  
         $this->plug()->set_import_function(array($this,'wc_rbp_importer_function'));
@@ -97,7 +97,7 @@ class WooCommerce_role_based_price_aelia_wp_all_import_intergation{
 
 add_action('wc_rbp_loaded','load_aelia_wp_all_import');
 function load_aelia_wp_all_import(){
-    new WooCommerce_role_based_price_aelia_wp_all_import_intergation;
+    new WooCommerce_role_based_price_aelia_wp_all_import_integration;
 }
 
 

@@ -100,7 +100,8 @@ class front_end_product_pricing {
             
         }
         
-        $wcrbp_price = apply_filters('woocommerce_role_based_product_price_value',$wcrbp_price,$post_id,$price_meta_key,$cRole); 
+        $wcrbp_price = apply_filters('woocommerce_role_based_product_price_value',$wcrbp_price,$post_id,$price_meta_key,$cRole);
+        $wcrbp_price = wc_trim_zeros($wcrbp_price);
 		return $wcrbp_price;
 	}
 

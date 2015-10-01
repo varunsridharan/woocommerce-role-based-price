@@ -1,6 +1,6 @@
 <?php 
 /**
- * Intergation For WP-ALL-IMPORTER-PRO
+ * Integration For WP-ALL-IMPORTER-PRO
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
  * @since      1.4

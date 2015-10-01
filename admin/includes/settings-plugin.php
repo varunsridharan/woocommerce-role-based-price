@@ -22,36 +22,36 @@ class WC_RBP_PLUGINS extends WP_List_Table {
     
     var $example_data = array(
             array(
-                'title'     => 'WP All Importer Intergation',
+                'title'     => 'WP All Importer Integration',
                 'description'    => 'Adds Option To Import Products With Role Based Pricing In WP All Importer <br/>
 <a href="http://www.wpallimport.com/" >Go To Plugin Website -> </a> ',
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
                 'required' => 'WP All Import - WooCommerce Add-On Pro',
                 'actions' => 'wpai-woocommerce-add-on/wpai-woocommerce-add-on.php',
                 'update' => '',
-                'file' => 'class-wp-all-import-pro-intergation.php',
+                'file' => 'class-wp-all-import-pro-Integration.php',
                 'slug' => 'wpallimport',
                 'testedupto' => 'V 4.1.6'
             ),
             array(
-                'title'     => 'ACS Currency Switcher Intergation',
+                'title'     => 'ACS Currency Switcher Integration',
                 'description'    => 'Adds Option Set Product Price Based On Currency Choosen <br/> <a href="https://aelia.co/shop/currency-switcher-woocommerce/" >Go To Plugin Website -> </a>',
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
                 'required' => 'Aelia Currency Switcher for WooCommerce',
                 'actions' => 'woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php',
                 'update' => '16th SEP 2015',
-                'file' => 'class-aelia-currencyswitcher-intergation.php',
+                'file' => 'class-aelia-currencyswitcher-Integration.php',
                 'slug' => 'aeliacurrency',
                 'testedupto' => 'V 3.8.4'
             ),
             array(
-                'title'     => 'ACS Intergation With [WP ALL Import]',
+                'title'     => 'ACS Integration With [WP ALL Import]',
                 'description'    => 'Intergates Aelia Currency Switcher With WP All Import Plugin',
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
                 'required' => array('Aelia Currency Switcher','WP All Import - WooCommerce Add-On Pro'),
                 'actions' => array('woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php','wpai-woocommerce-add-on/wpai-woocommerce-add-on.php'),
                 'update' => '',
-                'file' => 'class-wc-rbp-wp-all-import-aelia-intergation.php',
+                'file' => 'class-wc-rbp-wp-all-import-aelia-Integration.php',
                 'slug' => 'aeliacurrency_wpallimport',
                 'testedupto' => 'ACS : V 3.8.4 <br/> WPALLIMPORT : V 4.1.6'
             )
@@ -98,6 +98,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
         $action = '<span style="color:red"> <strong> Install The Required Plugin First</strong> </span>';
         if(is_array($item['actions'])){
             $active_file = 0;
+            
             foreach($item['actions'] as $plugin_file){
                 if(is_plugin_active($plugin_file)){ 
                    $active_file++;  
@@ -107,12 +108,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
             }
             
             if($active_file == count($item['actions'])){
-                
-                if(in_array($item['file'],WC_RBP()->get_activated_plugin())){
-                    $action = '<a href="'.admin_url('admin.php?page=wc-settings&tab='.pp_key.'&section=plugin&action=deactivate_plugin&plugin-key='.$item['file'].'&ps='.$item['slug']).'" class="button"> De-Activate </a>';
-                } else {
-                    $action = '<a href="'.admin_url('admin.php?page=wc-settings&tab='.pp_key.'&section=plugin&action=activate_plugin&plugin-key='.$item['file'].'&ps='.$item['slug']).'" class="button button-primary">Activate </a>';
-                }       
+                $action =  $this->check_plugin_action($item);
             }
             
         } else {
@@ -126,7 +122,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
     
     function check_plugin_action($item){
         $action = '';
-        if(in_array($item['file'],WC_RBP()->get_activated_plugin())){
+        if(in_array($item['slug'],WC_RBP()->get_activated_plugin())){
             
             $action = '<a href="'.admin_url('admin.php?page=wc-settings&tab='.pp_key.'&section=plugin&action=deactivate_plugin&plugin-key='.$item['file'].'&ps='.$item['slug']).'" class="button"> De-Activate </a>';
         } else {
@@ -169,21 +165,29 @@ class WC_RBP_PLUGINS extends WP_List_Table {
     function process_bulk_action() {
         if('activate_plugin' === $this->current_action()){
             $activate_plugin = WC_RBP()->get_activated_plugin();
-            
-            if(! isset($activate_plugin[$_REQUEST['ps']])){
-                $activate_plugin[$_REQUEST['ps']] = $_REQUEST['plugin-key'];
-            } 
+
+            if(empty($activate_plugin)){
+                $activate_plugin[] = $_REQUEST['ps'];
+            } else {
+                $array_key = array_search($_REQUEST['ps'],$activate_plugin);
+                if(! $array_key){
+                    $activate_plugin[] = $_REQUEST['ps'];
+                }
+            }
            
             update_option(rbp_key.'activated_plugin',$activate_plugin);
         }
         
         if('deactivate_plugin' ===  $this->current_action()){
+            
             $activate_plugin = WC_RBP()->get_activated_plugin();
             $i = 0;
-            $count = count($activate_plugin); 
             
-            if(isset($activate_plugin[$_REQUEST['ps']])){
-                unset($activate_plugin[$_REQUEST['ps']]);
+            $count = count($activate_plugin); 
+            $array_key = array_search($_REQUEST['ps'],$activate_plugin);
+            if(isset($activate_plugin[$array_key]) && $activate_plugin[$array_key] == $_REQUEST['ps']){
+                
+                unset($activate_plugin[$array_key]);
             } 
             
             update_option(rbp_key.'activated_plugin',$activate_plugin);
@@ -204,7 +208,7 @@ class WC_RBP_PLUGINS extends WP_List_Table {
         $sortable = $this->get_sortable_columns();
         $this->_column_headers = array($columns, $hidden, $sortable);
         $this->process_bulk_action();
-        $data = $this->example_data;
+        $data = WC_RBP()->get_plugins_list();
         function usort_reorder($a,$b){
             $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'title'; //If no sort, default to title
             $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc

@@ -5,10 +5,10 @@ Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
 Tags: WooCommerce,Quick Dontion,quick donation,online donation,wordpress donation,simple donation,donation form,WC donation,Online Payment,Payment,Online,Donate,Monthly Goal,affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, roles, wholesale, woocommerce,advertising, bogo, deals, discount, dynamic pricing, group pricing, marketing, Membership, price, promotion, role
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
-Tested up to: 4.3
-WC requires at least: 1.0
-WC tested up to: 2.4.6
-Stable tag: 2.4
+Tested up to: 4.4
+WC requires at least: 2.0
+WC tested up to: 2.4.8
+Stable tag: 2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -112,7 +112,7 @@ The manual installation method involves downloading our plugin and uploading it 
 
 **Dose This Plugin Supports WP All Importer PRO ?**
 
-Yes This Plugin Support WP ALL Importer PRO. by activation of WP All Importer Intergation In Settings Menu
+Yes This Plugin Support WP ALL Importer PRO. by activation of WP All Importer Integration In Settings Menu
 
 **Dose This Plugin Supports Aelia Currency Switcher ?**
 
@@ -120,11 +120,11 @@ Yes This Plugin Support Aelia Currency Switcher. by activation of Aelia Currency
 
 **How I Can Get Support For This Plugin**
 
-http://varunsridharan.in/plugin-support/
-https://wordpress.org/support/plugin/woocommerce-role-based-price
-https://github.com/technofreaky/WooCommerce-Role-Based-Price
-Email : varunsridharan23@gmail.com
-Email : plugin@varunsridharan.in
+* http://varunsridharan.in/plugin-support/ 
+* https://wordpress.org/support/plugin/woocommerce-role-based-price
+* https://github.com/technofreaky/WooCommerce-Role-Based-Price
+* Email : varunsridharan23@gmail.com
+* Email : plugin@varunsridharan.in
 
 **I have an idea for your plugin!**  
 That's great. We are always open to your input, and we would like to add anything we think will be useful to a lot of people. please contact us using above methods.
@@ -139,55 +139,65 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
-= 2.4 =
+= 2.5 [30-09-2015] =
+* Code Clean Up
+* Changed Addons Activation & Deactivation Stucture 
+* Fixed Price Seperator Issue [https://wordpress.org/support/plugin/woocommerce-role-based-price]
+* Redeveloped Aelia CurrencySwitcher Integration
+* Minor House Keeping
+* Updated To Latest Version WordPress
+* Updated To Latest Version WooCommerce
+
+= 2.4 [16-09-2015] =
 * Fixed POPUP Loading Issue With Variable Products.
-* Minor Bug Fix With Aelia Currency Switcher Intergation
+* Minor Bug Fix With Aelia Currency Switcher Integration
 * Code Cleanup
 * Added Option Get Product's Base Regular & Selling Price Using Shortcode
 
-= 2.3 =
+= 2.3 [14-09-2015] =
 * Fixed POPUP Loading Issue. 
 
-= 2.2 =
+= 2.2 [13-09-2015] =
 * Changed POPUP View In Product Edit Page
 * Product Price Not Showing Correctly When Saved As Empty Field Fixed
 * Added Shortcode to get product price.
 * Minor Bug Fix
 
-= 2.1 =
+= 2.1 [05-09-2015] =
 * Fixed Hide Price Issue When No User LogedIn
 * Fixed Hide Add-to-cart issue when no user logedIn
 * Made Plugin Compatible With WP Multisite 
 * Minor Bug Fix
 
-= 2.0 =
+= 2.0 [03-09-2015] =
 * Total Plugin ReDeveloped
-* Added Intergations To WP All Import Plugin
+* Added Integrations To WP All Import Plugin
 * Added Integration To Aelia Currency Switcher Plugin
 * Updated Code Standards
 * Update Plugin For Latest WP & WooCommerce (WP : 4.3 | WC : 2.4.6)
 * Minor Bug Fix
 
-= 1.3 =
+= 1.3 [25-06-2015] =
 * Major Update [Had Some File Conflict.. please update your plugin too]
 
-= 1.2 =
+= 1.2 [23-06-2015] =
 * Fixed Error Message at product price when viewing as visitor 
 
-= 1.1 = 
+= 1.1 [23-06-2015] = 
 * Fixed Simple & Variation Product Price At Checkout & Cart Page
 * Code CleanUP
 * Fixed Minor Issue
 * Fixed Variation Role Based Box in Product Edit Page
 * Added Plugin Translation Files [wc-rbp]
-= 1.0 =
+
+= 1.0 [22-06-2015] =
 * Added Role Based Pricing For Variable / Variation Product  [<a href="https://wordpress.org/support/topic/for-variation-products-1?replies=13"> For variation products </a> ]
 * Fix Major Bugs
 * Update Plugin For Latest WP & WooCommerce (WP : 4.2.2 | WC : 2.3.11)
 * Option To Rename User Role (Affected Only For This Plugin) [<a href="https://wordpress.org/support/topic/rename-titles?replies=2"> Rename titles </a> ]
 
-= 0.2 =
+= 0.2 [26-02-2015] =
 * Fixed Selling Price Display for role based Issue At [<a href="https://wordpress.org/support/topic/excellent-plugin-but-has-a-small-bug?replies=4#post-6620252">#6620252</a>]
 
-= 0.1 =
+= 0.1 [25-02-2015] =
 * Base Version
