@@ -32,6 +32,25 @@ $settings = array(
             ),   
     
             array(
+                'name' => __('Products To Hide',lang_dom),
+                'desc' => __('For Which Products To Apply The Above Settings',lang_dom),
+                'id' => rbp_key.'products_hide_settings',
+                'type' => 'multiselect', 
+                'class' =>'chosen_select',
+                'css'     => $width,
+                'options' => array('simple' => __('Simple Product',lang_dom),'variable' => __('Variable Product',lang_dom))
+            ),    
+    
+            array(
+                'name' => __('Variable Product Settings',lang_dom),
+                'desc' => __(' ',lang_dom),
+                'id' => rbp_key.'products_variable_settings',
+                'type' => 'select', 
+                'class' =>'chosen_select',
+                'css'     => $width,
+                'options' => array('show' => __('Show Variations',lang_dom),'hide' => __('Hide Variations',lang_dom))
+            ),    
+            array(
                 'name' => __('Message For Price',lang_dom),
                 'desc' => __('use <code>[curr]</code> to replace the currency symbol',lang_dom),
                 'id' => rbp_key.'replace_currency_symbol',

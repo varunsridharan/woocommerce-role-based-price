@@ -49,14 +49,27 @@ class front_end_product_pricing {
     public function check_remove_add_to_cart(){
         $current_role = $this->get_current_role();
         $resticted_role = WC_RBP()->get_option(rbp_key.'hide_cart_button_role');
-        
+        $products_to = WC_RBP()->get_option(rbp_key.'products_hide_settings');
+        $variable_status = WC_RBP()->get_option(rbp_key.'products_variable_settings'); 
+
         if(!empty($resticted_role)){
             if(in_array($current_role,$resticted_role)){
-                remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
-                remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
                 add_filter( 'woocommerce_loop_add_to_cart_link',array(&$this,'remove_add_to_cart_link'),99);
+                foreach($products_to as $pto){
+                    if($pto == 'simple'){
+                        remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
+                    }
+                    if($pto == 'variable'){
+                        if($variable_status == 'hide'){
+                            remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );      
+                        } else if ($variable_status == 'show') {
+                            remove_action('woocommerce_single_variation', 'woocommerce_single_variation_add_to_cart_button',20);
+                        }
+                    }
+                }
             }       
         }
+
     }
     
     public function remove_add_to_cart_link($link){ return ''; }
