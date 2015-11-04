@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.6
+ * Version:           2.7
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.6',true); # Plugin Version
+define('WC_RBP_VERSION','2.7',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
@@ -63,12 +63,8 @@ final class  WooCommerce_Role_Based_Price{
     }    
     
     public static function plugin_upgrade_check(){
-        require_once('updates/wc_rbp_update_v2.5.php');
-        //$old_version = get_option(WC_DB_KEY.'wc_rbp_version');
-        //if(! $old_version) {
-        //    
-        //}
-        
+        update_option(WC_DB_KEY.'version',WC_RBP_VERSION);
+        require_once('updates/wc_rbp_update_v2.5.php'); 
     }
 
 
@@ -309,6 +305,17 @@ final class  WooCommerce_Role_Based_Price{
                 'file' => 'class-wc-rbp-wp-all-import-aelia-Integration.php',
                 'slug' => 'aeliacurrency_wpallimport',
                 'testedupto' => 'ACS : V 3.8.4 <br/> WPALLIMPORT : V 4.1.6'
+            ),
+            'woocommerce_product_addon_intergation' =>  array(
+                'title'     => 'WooCommerce Product Addon',
+                'description'    => 'Intergates With WooCommerce Product Addon',
+                'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
+                'required' => array('WooCommerce Product Addons'),
+                'actions' => array('woocommerce-product-addons/product-addons.php'),
+                'update' => '',
+                'file' => 'class-woocommerce-product-addons.php',
+                'slug' => 'woocommerce_product_addon_intergation',
+                'testedupto' => 'WooCommerce Product Addons V 2.6.6 or greater'
             )
         );
     
