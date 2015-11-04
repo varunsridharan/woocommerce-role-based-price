@@ -101,7 +101,7 @@ class front_end_product_pricing {
         }
         
         $wcrbp_price = apply_filters('woocommerce_role_based_product_price_value',$wcrbp_price,$post_id,$price_meta_key,$cRole);
-        $wcrbp_price = wc_trim_zeros($wcrbp_price);
+        $wcrbp_price = wc_format_decimal($wcrbp_price);
 		return $wcrbp_price;
 	}
 
@@ -122,7 +122,7 @@ class front_end_product_pricing {
 	public function get_price ($price, $product) {			
 		$sale_price = $product->get_sale_price();
 		$wcrbp_price = ( $sale_price !== '' && $sale_price > 0 )? $sale_price : $this->get_regular_price( $price, $product );
-        
+        $wcrbp_price = wc_format_decimal($wcrbp_price); 
 		return $wcrbp_price; 
 	}
 	
@@ -178,7 +178,7 @@ class front_end_product_pricing {
 	public function get_price_html( $price = '',$product ) {
         $current_role = $this->get_current_role();
         $resticted_role = WC_RBP()->get_option(rbp_key.'hide_price_role');  
-        
+
         if(!empty($resticted_role)){
 
             if(in_array($current_role,$resticted_role)){
