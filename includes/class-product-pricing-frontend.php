@@ -52,7 +52,8 @@ class front_end_product_pricing {
         
         if(!empty($resticted_role)){
             if(in_array($current_role,$resticted_role)){
-                remove_all_actions('woocommerce_simple_add_to_cart');
+                remove_action( 'woocommerce_simple_add_to_cart', 'woocommerce_simple_add_to_cart', 30 );
+                remove_action( 'woocommerce_variable_add_to_cart', 'woocommerce_variable_add_to_cart', 30 );
                 add_filter( 'woocommerce_loop_add_to_cart_link',array(&$this,'remove_add_to_cart_link'),99);
             }       
         }
