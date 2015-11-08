@@ -51,7 +51,9 @@ class front_end_product_pricing {
         $resticted_role = WC_RBP()->get_option(rbp_key.'hide_cart_button_role');
         $products_to = WC_RBP()->get_option(rbp_key.'products_hide_settings');
         $variable_status = WC_RBP()->get_option(rbp_key.'products_variable_settings'); 
-
+        if(empty($resticted_role)){return;}
+        if(empty($products_to)){return;}
+        if(empty($variable_status)){return;}
         if(!empty($resticted_role)){
             if(in_array($current_role,$resticted_role)){
                 add_filter( 'woocommerce_loop_add_to_cart_link',array(&$this,'remove_add_to_cart_link'),99);
