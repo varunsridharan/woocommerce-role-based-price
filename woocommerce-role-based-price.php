@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.7.2
+ * Version:           2.7.3
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.7.2',true); # Plugin Version
+define('WC_RBP_VERSION','2.7.3',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
@@ -311,7 +311,7 @@ final class  WooCommerce_Role_Based_Price{
                 'description'    => 'Intergates With WooCommerce Product Addon',
                 'author'  => '<a href="http://varunsridharan.in">  Varun Sridharan</a>',
                 'required' => array('WooCommerce Product Addons'),
-                'actions' => array('woocommerce-product-addons/product-addons.php'),
+                'actions' => 'woocommerce-product-addons/woocommerce-product-addons.php',
                 'update' => '',
                 'file' => 'class-woocommerce-product-addons.php',
                 'slug' => 'woocommerce_product_addon_intergation',

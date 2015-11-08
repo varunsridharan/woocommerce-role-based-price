@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.4
 WC requires at least: 2.0
 WC tested up to: 2.4.8
-Stable tag: 2.7.2
+Stable tag: 2.7.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -136,6 +136,10 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.7.3 [04-11-2015] =
+* Fixed WooCommerce Product Addons Integration Activation
+* Minor Bug Fix
+
 = 2.7.2 [04-11-2015] =
 * Added User Configurable Option For Price & Product Hide
 * User Configurable Option to hide variations or with add-to-cart button for variable
