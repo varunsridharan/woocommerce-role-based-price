@@ -39,8 +39,18 @@ class WooCommerce_Role_Based_Price_Admin {
         
         add_filter( 'woocommerce_get_settings_pages',  array($this,'settings_page') ); 
         add_filter( 'plugin_row_meta', array( $this, 'plugin_row_links' ), 10, 2 );
+		add_action( 'woocommerce_variable_product_bulk_edit_actions', array($this,'add_bulk_edit'));
+		add_action( 'woocommerce_bulk_edit_variations', array($this,'edit_bulk'),10,10);
 	}
-     
+	
+	public function edit_bulk(){
+		var_dump(func_get_args()); 
+	}
+	
+	
+	public function add_bulk_edit(){
+		echo '<option id="BulkEditVariables" value="variable_role_based_price_bulk_edit" >Custom Bulk Edit</option>';
+	}
     public function get_selectbox_user_role(){
         $user_roles = WC_RBP()->get_registered_roles();
         $list_roles = '';
@@ -170,13 +180,13 @@ class WooCommerce_Role_Based_Price_Admin {
             $plugin_meta[ ] = sprintf(
                 ' <a href="%s">%s</a>',
                 admin_url('admin.php?page=wc-settings&tab=products&section=wc_rbp'),
-                __('Settings',lang_dom)
+                __('Settings',WC_RBP_TXT)
             );
             
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'https://wordpress.org/plugins/woocommerce-role-based-price/faq/',
-				__('F.A.Q',lang_dom)
+				__('F.A.Q',WC_RBP_TXT)
 			);
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
@@ -187,18 +197,18 @@ class WooCommerce_Role_Based_Price_Admin {
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/new',
-				__('Report Issue',lang_dom)
+				__('Report Issue',WC_RBP_TXT)
 			);
             
             $plugin_meta[ ] = sprintf(
 				'&hearts; <a href="%s">%s</a>',
 				'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU',
-				__('Donate',lang_dom)
+				__('Donate',WC_RBP_TXT)
 			);
             $plugin_meta[ ] = sprintf(
 				'<a href="%s">%s</a>',
 				'http://varunsridharan.in/plugin-support/',
-				__('Contact Author',lang_dom)
+				__('Contact Author',WC_RBP_TXT)
 			);
             
 		}

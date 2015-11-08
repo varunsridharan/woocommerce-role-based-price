@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.7.4
+ * Version:           2.8
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -16,15 +16,15 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.7.4',true); # Plugin Version
+define('WC_RBP_VERSION','2.8',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
 define('WC_RBP_ADMIN_JS',WC_RBP_PATH.'admini/js/'); # Plugin DIR
 define('rbp_key','wc_rbp_'); # PLugin DB Prefix
 define('pp_key','wc_rbp'); # PLugin DB Prefix
-define('WC_DB_KEY',rbp_key); # Plugin Prefix
-define('lang_dom','woocommerce-role-based-price',true); #plugin lang Domain
+define('WC_RBP_DB_KEY',rbp_key); # Plugin Prefix
+define('WC_RBP_TXT','woocommerce-role-based-price',true); #plugin lang Domain
 define('plugin_url',plugins_url('', __FILE__ ));
 
 
@@ -51,9 +51,27 @@ final class  WooCommerce_Role_Based_Price{
      * Class Constructor
      */
     private function __construct() {
-        register_activation_hook( __FILE__, array(__CLASS__,'plugin_activate' ));
+		require_once( 'includes/class-activation.php' ); 
+		$default_args = array(
+			'dbslug' => WC_RBP_DB_KEY,
+			'welcome_slug' => WC_RBP_SLUG.'-welcome-page',
+			'wp_plugin_slug' => 'woocommerce-role-based-price',
+			'wp_plugin_url' => 'http://wordpress.org/plugins/woocommerce-role-based-price/',
+			'tweet_text' => 'Sell product in different price for different user role based on your settings. ',
+			'twitter_user' => 'varunsridharan2',
+			'twitter_hash' => 'WCRBP',
+			'gitub_user' => 'technofreaky',
+			'github_repo' => 'WooCommerce-Role-Based-Price',
+			'plugin_name' => WC_RBP_NAME,
+			'version' => WC_RBP_VERSION,
+			'template' => WC_RBP_PATH.'includes/page-html.php',
+			'menu_name' => 'Welcome WP Plugin Welcome Page',
+			'plugin_file' => __FILE__,
+		);
+		new WC_RBP_Activation($default_args);				
+        //register_activation_hook( __FILE__, array(__CLASS__,'plugin_activate' ));
         add_action( 'init', array( $this, 'init' ), 0 );
-        add_action( 'admin_init', array($this,'plugin_activate_redirect' ));
+        //add_action( 'admin_init', array($this,'plugin_activate_redirect' ));
     }
     
     
@@ -63,7 +81,7 @@ final class  WooCommerce_Role_Based_Price{
     }    
     
     public static function plugin_upgrade_check(){
-        update_option(WC_DB_KEY.'version',WC_RBP_VERSION);
+        update_option(WC_RBP_DB_KEY.'version',WC_RBP_VERSION);
         require_once('updates/wc_rbp_update_v2.5.php'); 
         require_once('updates/wc_rbp_update_v2.7.4.php'); 
     }
@@ -112,8 +130,9 @@ final class  WooCommerce_Role_Based_Price{
         
        // Autoload Required Files
         require_once( 'includes/class-product-functions.php' ); 
+		
         
-        foreach( glob(WC_RBP_PATH . 'includes/*.php' ) as $files ){  require_once( $files ); }
+        foreach( glob(WC_RBP_PATH . 'includes/class-*.php' ) as $files ){  require_once( $files ); }
         
         if($this->is_request( 'admin' )){
             require_once(WC_RBP_PATH . 'admin/class-admin-init.php' );
@@ -129,15 +148,19 @@ final class  WooCommerce_Role_Based_Price{
         if($this->is_request( 'admin' )){
             $this->admin_init();
         } 
+		
+
+
+
         new WooCommerce_Role_Based_Price_Simple_Product_Functions;
     }
     
     public function langs(){
-        load_plugin_textdomain(lang_dom, false, dirname(plugin_basename(__FILE__)).'/lang/' );
+        load_plugin_textdomain(WC_RBP_TXT, false, dirname(plugin_basename(__FILE__)).'/lang/' );
     }
     
     function replace_my_plugin_default_language_files($mofile, $domain) {
-        if (lang_dom === $domain)
+        if (WC_RBP_TXT === $domain)
             return WC_RBP_PATH.'lang/'.get_locale().'.mo';
 
         return $mofile;
@@ -354,6 +377,6 @@ final class  WooCommerce_Role_Based_Price{
 
 
 function wc_rbp_activate_failed_notice() {
-	echo '<div class="error"><p> '.__('<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires',lang_dom).'<a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong>'.__(' <u>Woocommerce</u>',lang_dom).'</strong>  </a> '.__(' To Be Installed And Activated',lang_dom).' </p></div>';
+	echo '<div class="error"><p> '.__('<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires',WC_RBP_TXT).'<a href="'.admin_url( 'plugin-install.php?tab=plugin-information&plugin=woocommerce').'"> <strong>'.__(' <u>Woocommerce</u>',WC_RBP_TXT).'</strong>  </a> '.__(' To Be Installed And Activated',WC_RBP_TXT).' </p></div>';
 } 
 

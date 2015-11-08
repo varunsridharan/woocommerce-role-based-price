@@ -20,48 +20,16 @@ jQuery(document).ready(function () {
             width:"100%",
             innerWidth:"95%",
             maxWidth:"1024px",
-
             height:"auto",
             innerHeight:"95%",
             maxHeight:"500px",
-
             //right:"10%",
             //fixed:true,
-
            //top : "25px",
             onComplete:function(){jQuery(tab_id).tabs(); }
         });
      });
-    /*jQuery(dialog_id).html(wc_rbp_spinner).dialog({
-            bgiframe: true,
-            autoOpen: false, 
-            height : 250, 
-            width:500,  
-            modal: true, 
-            close: function( event, ui ) {
-                    jQuery(dialog_id).dialog({ 
-                        height : 250, 
-                        width:500 
-                    }).html(wc_rbp_spinner);
-            }
-    });
-    
-    
-   /* jQuery("body").on("click", ".role_based_price_editor_btn", function () {
-        
-        jQuery(dialog_id).dialog('open').load(jQuery(this).attr('data-target'),function(){
-            
-            jQuery(dialog_id + ' ' + tab_id).tabs();
-               jQuery(dialog_id).dialog({
-                    position:{ my: "center", at: "center", of: window },
-                    width:'auto',
-                    height : "auto",
-                });
-            
-                
-        }).dialog('open') ;
-    });*/
-    
+ 
     
     jQuery("body").on("change", enable_rbp_id, function () { 
         jQuery(tab_id + ' input[type=text]').attr('disabled',!this.checked) 
@@ -89,10 +57,24 @@ jQuery(document).ready(function () {
                 });*/
 		});
     });
+	
+	
+	jQuery('option#BulkEditVariables').click(function(){
+		var clicked = jQuery(this);
+		var post_id = woocommerce_admin_meta_boxes_variations.post_id;
+		jQuery.colorbox({
+			href:ajaxurl + '?action=role_based_price_edit&type=bulkEdit&post_id=' + post_id ,
+			opacity:"0.65",
+			overlayClose:false,
+			width:"100%",
+			innerWidth:"95%",
+			maxWidth:"1024px",
+			height:"auto",
+			innerHeight:"95%",
+			maxHeight:"500px", 
+			onClosed:function(){clicked.parent().next().click();},
+			onComplete:function(){jQuery(tab_id).tabs(); }
+		});		
+	});
     
 });
-
-
-
-
- 

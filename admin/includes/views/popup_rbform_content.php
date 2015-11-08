@@ -15,7 +15,7 @@ $thepostid = $wc_rbp_thepostid;
     if($regular_price){
         
         echo '<p class="form-field regular_price_'.$user_role_key.'_field form-row-first">
-                <label for="regular_price_'.$user_role_key.'">'.__( 'Regular Price', lang_dom).'</label>
+                <label for="regular_price_'.$user_role_key.'">'.__( 'Regular Price', WC_RBP_TXT).'</label>
                 <input type="text" value="'.WC_RBP()->sp_function()->get_selprice($user_role_key,'regular_price').'" id="regular_price_'.$user_role_key.'" name="role_based_price['.$user_role_key.'][regular_price]" class="short wc_input_price">
                 </p>';
     }
@@ -23,7 +23,7 @@ $thepostid = $wc_rbp_thepostid;
     if($selling_price){
 
         echo '<p class="form-field selling_price_'.$user_role_key.'_field form-row-last">
-                <label for="selling_price_'.$user_role_key.'">'.__( 'Selling Price', lang_dom).'</label>
+                <label for="selling_price_'.$user_role_key.'">'.__( 'Selling Price', WC_RBP_TXT).'</label>
                 <input type="text" value="'.WC_RBP()->sp_function()->get_selprice($user_role_key,'selling_price').'" id="selling_price_'.$user_role_key.'" name="role_based_price['.$user_role_key.'][selling_price]" class="short wc_input_price">
                 </p>';
     }

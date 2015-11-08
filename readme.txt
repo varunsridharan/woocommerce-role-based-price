@@ -5,10 +5,10 @@ Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
 Tags: WooCommerce,Quick Dontion,quick donation,online donation,wordpress donation,simple donation,donation form,WC donation,Online Payment,Payment,Online,Donate,Monthly Goal,affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, roles, wholesale, woocommerce,advertising, bogo, deals, discount, dynamic pricing, group pricing, marketing, Membership, price, promotion, role
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
-Tested up to: 4.4
+Tested up to: 4.5
 WC requires at least: 2.0
-WC tested up to: 2.4.8
-Stable tag: 2.7.4
+WC tested up to: 2.5
+Stable tag: 2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -27,6 +27,7 @@ For example, Subscribers or Contributors get different prices than new customers
 * Hide Price & Add To Cart Button For Selected Roles
 * Rename Able User Roles
 * Shortcode to get product price
+* Bulk Edit Variable Role Basede Price
 
 
 = Plugin Addons =
@@ -52,13 +53,17 @@ For example, Subscribers or Contributors get different prices than new customers
 * `role=administrator` you need replace `administrator` with your user role id / use `current` to get loggedin user role
 * `price` use `regular_price` or `selling_price` to get the value of each
 
- 
+= Plugin Translators =
+* <a href="https://profiles.wordpress.org/miladjef/">miladjef</a> {Persian translation}
 
-= Plugin Contributors  =
+= Plugin Contributors / Testers =
 * <a href="https://wordpress.org/support/profile/nick6352683" >nick6352683 </a>
 * <a href="https://profiles.wordpress.org/arnisarbidans">arnis.arbidans</a>
 * <a href="https://profiles.wordpress.org/cuppy90">Cuppy</a>
 * <a href="#">Joachim Keuppens</a>
+* <a href="https://github.com/diventimage">Divent Image</a>
+* <a href="https://github.com/gbreen">gbreen</a>
+* <a href="https://github.com/vizulatedev">vizulatedev</a>
 
 == Screenshots ==
 1. Plugin Settings
@@ -136,6 +141,15 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.8 [08-11-2015] =
+* Fixed [https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/14]
+* Fixed [https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/12]
+* Bulk Variable Price Edit In Product Edit View
+  [https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/11]
+* Added Persian translation [https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/15]
+* Updated POT File
+* Minor Bug Fix
+  
 = 2.7.4 [04-11-2015] =
 * Fixed https://wordpress.org/support/topic/error-676?replies=2#post-7625400
 * Minor Bug Fix

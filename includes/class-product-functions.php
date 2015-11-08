@@ -41,16 +41,21 @@ class WooCommerce_Role_Based_Price_Simple_Product_Functions {
             'role' => 'current',
         ), $attrs, 'wc_rbp' );
         
-        if($vars['id'] == null){return __('Invalid Product ID Given',lang_dom);}
-        if($vars['role'] == null){return __('Invalid User Role Given',lang_dom);}
+        if($vars['id'] == null){
+			global $product;
+			if(!isset($product->id)){
+				return __('Invalid Product ID Given',WC_RBP_TXT);
+			} 
+			$vars['id'] = $product->id;
+		}
+        if($vars['role'] == null){return __('Invalid User Role Given',WC_RBP_TXT);}
         
         if($vars['price'] == 'product_regular_price' || $vars['price'] == 'product_selling_price'){
             return self::get_base_product_price($vars['id'],$vars['price']);
-        
         }
         
         if($vars['price'] != 'regular_price' && $vars['price'] != 'selling_price'){
-            return __('Invalid Price Type Given',lang_dom);
+            return __('Invalid Price Type Given',WC_RBP_TXT);
         } 
         
         $product_status = self::get_status($vars['id']);
@@ -69,7 +74,7 @@ class WooCommerce_Role_Based_Price_Simple_Product_Functions {
         }
         
         $product = new WC_Product($id);
-        
+
         if($price == 'product_regular_price'){
             return $product->get_regular_price();
         }

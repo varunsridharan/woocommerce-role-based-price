@@ -20,7 +20,7 @@ class WooCommerce_Role_Based_Price_WPALLIMPORTER_PLUG {
     }
     
     public function wc_rbp_import_init(){  
-        $this->wpallimport_plug = new RapidAddon( __('WooCommerce Role Based Pricing',lang_dom), 'wc_rbp_wp_all_import');
+        $this->wpallimport_plug = new RapidAddon( __('WooCommerce Role Based Pricing',WC_RBP_TXT), 'wc_rbp_wp_all_import');
         $this->add_fields();
         $this->plug()->run(array( "post_types" => array( "product" ) ));  
         $this->plug()->set_import_function(array($this,'wc_rbp_importer_function'));
@@ -37,9 +37,9 @@ class WooCommerce_Role_Based_Price_WPALLIMPORTER_PLUG {
         foreach($allowed_Roles as $key => $val){ 
             $name = WC_RBP()->get_mod_name($key);
             $fields = array();
-            if($regular_price){ $fields[] = $this->plug()->add_field( $key.'_regular_price', __( 'Regular Price', lang_dom), 'text', null, '' ); }
-            if($regular_price){ $fields[] = $this->plug()->add_field( $key.'_selling_price', __( 'Selling Price', lang_dom), 'text', null, '' ); } 
-            $this->plug()->add_options('',__($name.' { '.$key.' } ',lang_dom),$fields); 
+            if($regular_price){ $fields[] = $this->plug()->add_field( $key.'_regular_price', __( 'Regular Price', WC_RBP_TXT), 'text', null, '' ); }
+            if($regular_price){ $fields[] = $this->plug()->add_field( $key.'_selling_price', __( 'Selling Price', WC_RBP_TXT), 'text', null, '' ); } 
+            $this->plug()->add_options('',__($name.' { '.$key.' } ',WC_RBP_TXT),$fields); 
             unset($fields);
         }      
     } 

@@ -106,11 +106,13 @@ class front_end_product_pricing {
         
         if($this->get_status($post_id)){
             $wcrbp_price_new = get_post_meta( $post_id, $meta_key, true );
-            
+
             if(isset($wcrbp_price_new[$cRole])) { 
                 if(!empty($wcrbp_price_new[$cRole][$price_meta_key])){
                     $wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key]; 
-                }
+                } else {
+					$wcrbp_price = '';
+				}
                 
             }
             
@@ -118,6 +120,7 @@ class front_end_product_pricing {
         
         $wcrbp_price = apply_filters('woocommerce_role_based_product_price_value',$wcrbp_price,$post_id,$price_meta_key,$cRole);
         $wcrbp_price = wc_format_decimal($wcrbp_price);
+		
 		return $wcrbp_price;
 	}
 

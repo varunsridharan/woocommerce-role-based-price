@@ -46,7 +46,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
     } 
         
     public function add_section($section){ 
-        $section['aelia-currencyswitcher-intergation'] = __('Aelia Currency Switcher',lang_dom);
+        $section['aelia-currencyswitcher-intergation'] = __('Aelia Currency Switcher',WC_RBP_TXT);
         return $section;
     
     }
@@ -60,8 +60,8 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
             'id' => rbp_key.'aeliacurrencyswitcher_settings_start'
         );
         $settings[] = array(
-            'name' => __('Allowed Currency',lang_dom),
-            'desc' => __('Allowed Currency To Show In Role Based Price Listing',lang_dom),
+            'name' => __('Allowed Currency',WC_RBP_TXT),
+            'desc' => __('Allowed Currency To Show In Role Based Price Listing',WC_RBP_TXT),
             'id' => rbp_key.'acs_allowed_currencies',
             'type' => 'multiselect', 
             'class' =>'chosen_select', 
@@ -105,7 +105,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         
         $this->acs_get_db_price($thepostid);
         echo '<div class="wc_rbp_plugin_field_container">'; 
-        echo '<hr/> <h3>'.__( 'Role Based Price for Aelia Currency Switcher' , lang_dom).'</h3>';
+        echo '<hr/> <h3>'.__( 'Role Based Price for Aelia Currency Switcher' , WC_RBP_TXT).'</h3>';
         
        
             foreach($allowed_currency as $currency) {
@@ -117,7 +117,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
                 if($regular_price){
 
                     echo '<p class="form-field '.$currency.'_regular_price_'.$user_role_key.'_field form-row-first">
-                            <label for="'.$currency.'_regular_price_'.$user_role_key.'_field">'.__( 'Regular Price'.$symbol , lang_dom).'</label>
+                            <label for="'.$currency.'_regular_price_'.$user_role_key.'_field">'.__( 'Regular Price'.$symbol , WC_RBP_TXT).'</label>
                             <input type="text" id="'.$currency.'_regular_price_'.$user_role_key.'_field" 
                                    name="acs['.$user_role_key.']['.$currency.'][regular_price]" class="short wc_input_price"
                                    value="'.$this->acs_crp($currency,$user_role_key,'regular_price').'">
@@ -126,7 +126,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
 
                 if($selling_price){
                     echo '<p class="form-field '.$currency.'_selling_price_'.$user_role_key.'_field form-row-last">
-                    <label for="'.$currency.'_selling_price_'.$user_role_key.'_field">'.__( 'Selling Price'.$symbol , lang_dom).'</label>
+                    <label for="'.$currency.'_selling_price_'.$user_role_key.'_field">'.__( 'Selling Price'.$symbol , WC_RBP_TXT).'</label>
                     <input type="text"  id="'.$currency.'_selling_price_'.$user_role_key.'_field" 
                            name="acs['.$user_role_key.']['.$currency.'][selling_price]" class="short wc_input_price"
                            value="'.$this->acs_crp($currency,$user_role_key,'selling_price').'" >

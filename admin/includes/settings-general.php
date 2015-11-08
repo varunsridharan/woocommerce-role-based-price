@@ -11,8 +11,8 @@ $settings = array(
             ), 			
 
            array(
-                'name' => __('Allowed User Roles',lang_dom),
-                'desc' => __('User Roles To List In Product Edit Page',lang_dom),
+                'name' => __('Allowed User Roles',WC_RBP_TXT),
+                'desc' => __('User Roles To List In Product Edit Page',WC_RBP_TXT),
                 'id' => rbp_key.'list_roles',
                 'type' => 'multiselect', 
                 'class' =>'chosen_select',
@@ -21,13 +21,13 @@ $settings = array(
             ), 	
 
             array(
-                'name' => __('Allowed Product Pricing',lang_dom),
-                'desc' => __('Price Fields To List In Product Edit Page',lang_dom),
+                'name' => __('Allowed Product Pricing',WC_RBP_TXT),
+                'desc' => __('Price Fields To List In Product Edit Page',WC_RBP_TXT),
                 'id' => rbp_key.'allowed_price',
                 'type' => 'multiselect', 
                 'class' =>'chosen_select',
                 'css'     => $width,
-                'options' =>  array('regular' => __('Regular Price',lang_dom),'sale' => __('Sale Price',lang_dom))
+                'options' =>  array('regular' => __('Regular Price',WC_RBP_TXT),'sale' => __('Sale Price',WC_RBP_TXT))
             ),    
             array(
 					'type' 	=> 'sectionend',

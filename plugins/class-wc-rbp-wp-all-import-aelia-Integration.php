@@ -21,7 +21,7 @@ class WooCommerce_role_based_price_aelia_wp_all_import_integration{
     }
     
     public function wc_rbp_aelia_wp_all_import_init(){  
-        $this->wpallimport_plug = new RapidAddon( __('Aelia Currency Switcher Integration',lang_dom), 'wc_rbp_aelia_wp_all_import_init');
+        $this->wpallimport_plug = new RapidAddon( __('Aelia Currency Switcher Integration',WC_RBP_TXT), 'wc_rbp_aelia_wp_all_import_init');
         $this->add_fields();
         $this->plug()->run(array( "post_types" => array( "product" ) ));  
         $this->plug()->set_import_function(array($this,'wc_rbp_importer_function'));
@@ -48,17 +48,17 @@ class WooCommerce_role_based_price_aelia_wp_all_import_integration{
 
                 if($regular_price){ 
                     $fields[] = $this->plug()->add_field( 'aelia_wcrbp_'.$currency.'_regular_price_'.$key.'_field',
-                                                         __( 'Regular Price'.$symbol , lang_dom), 'text',null, '' ); 
+                                                         __( 'Regular Price'.$symbol , WC_RBP_TXT), 'text',null, '' ); 
                 }
 
                 if($selling_price){ 
                     $fields[] = $this->plug()->add_field( 'aelia_wcrbp_'.$currency.'_selling_price_'.$key.'_field',
-                                                         __( 'Selling Price'.$symbol , lang_dom), 'text', null, '' ); 
+                                                         __( 'Selling Price'.$symbol , WC_RBP_TXT), 'text', null, '' ); 
                 } 
                 
             }
             
-            $this->plug()->add_options('',__($name.' { '.$key.' } ',lang_dom),$fields); 
+            $this->plug()->add_options('',__($name.' { '.$key.' } ',WC_RBP_TXT),$fields); 
             unset($fields);
         }      
     } 

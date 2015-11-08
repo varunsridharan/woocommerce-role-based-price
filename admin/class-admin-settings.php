@@ -27,16 +27,18 @@ class WooCommerce_Role_Based_Price_Admin_Settings  extends WC_Settings_Page{
         add_filter( 'woocommerce_settings_tabs_array',   array( $this,'add_settings_tab' ),50 );
         add_filter( 'woocommerce_sections_'.pp_key,      array( $this, 'output_sections' ));
         add_filter( 'woocommerce_settings_'.pp_key,      array( $this, 'output_settings' )); 
-        add_action( 'woocommerce_settings_save_'.pp_key, array( $this, 'save'            ));     
+        add_action( 'woocommerce_settings_save_'.pp_key, array( $this, 'save'            ));
+		
     }
     
+	
     
     
     /**
      * Adds Section in Admin
      */
     public function add_settings_tab( $settings_tabs ) {
-        $settings_tabs[pp_key] = __('WooCommerce Role Based Pricing',lang_dom);
+        $settings_tabs[pp_key] = __('WooCommerce Role Based Pricing',WC_RBP_TXT);
         return $settings_tabs;
     }   
     
@@ -48,15 +50,15 @@ class WooCommerce_Role_Based_Price_Admin_Settings  extends WC_Settings_Page{
     public function get_sections() {
 
         $sections = array(
-            ''            => __( 'General', lang_dom),
-            'user-role-edit'     => __( 'User Role Rename',lang_dom),
-            'price-views' => __('Price Visibility',lang_dom),
-            'newsletter' => __('Newsletter',lang_dom),
+            ''            => __( 'General', WC_RBP_TXT),
+            'user-role-edit'     => __( 'User Role Rename',WC_RBP_TXT),
+            'price-views' => __('Price Visibility',WC_RBP_TXT),
+            'newsletter' => __('Newsletter',WC_RBP_TXT),
         );
 
         $sections = apply_filters(pp_key.'_sections', $sections );
         
-        $sections['plugin'] = __( 'Plugins', lang_dom);
+        $sections['plugin'] = __( 'Plugins', WC_RBP_TXT);
 
         return apply_filters( 'woocommerce_get_sections_' . pp_key, $sections );
     }
