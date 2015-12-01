@@ -115,7 +115,7 @@ class front_end_product_pricing {
 				} else if(! empty($wcrbp_price_new[$cRole][$price_meta_key]) || empty($wcrbp_price_new[$cRole][$opposit_key])){
 					$wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key];
 				} else if(empty($wcrbp_price_new[$cRole][$price_meta_key]) || ! empty($wcrbp_price_new[$cRole][$opposit_key])){
-					$wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key];
+					$wcrbp_price = $wcrbp_price_new[$cRole][$opposit_key];
 				} else {
 					$wcrbp_price = $price;
 				}
@@ -231,7 +231,7 @@ class front_end_product_pricing {
                 $price = apply_filters( 'woocommerce_variable_empty_price_html', '', $product );
 
             } else {
-
+				
                 // Main price
                 $prices = array($product->get_variation_price('min', true), $product->get_variation_price('max', true));
                 $price  = $prices[0] !== $prices[1] ? sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );

@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.5
 WC requires at least: 2.0
 WC tested up to: 2.5
-Stable tag: 2.8.2
+Stable tag: 2.8.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -67,6 +67,8 @@ For example, Subscribers or Contributors get different prices than new customers
 * <a href="https://github.com/diventimage">Divent Image</a>
 * <a href="https://github.com/gbreen">gbreen</a>
 * <a href="https://github.com/vizulatedev">vizulatedev</a>
+* <a href="https://profiles.wordpress.org/cloudcuckoo/">Joeyvan Dongen</a>
+* <a href="https://profiles.wordpress.org/timmyhutton" >timmy hutton</a>
 
 == Screenshots ==
 1. Plugin Settings
@@ -144,6 +146,10 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.8.3 [12-11-2015] =
+* Fixed : Variation pricing not showing properly {https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/17}
+* Minor Bug Fixes
+
 = 2.8.2 [09-11-2015] =
 * Fixed : Selling Price Not Showing As Per Role Based Price Settings {https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/16}
 * Minor Bug Fix
