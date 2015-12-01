@@ -95,7 +95,7 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
         }
     } 
     
-	private function save_db_price($post_id,$status,$prices){
+	private function save_db_price($post_id,$status,$prices){ 
 		update_post_meta($post_id,'_enable_role_based_price', $status);
 		update_post_meta($post_id,'_role_based_price', $prices);
 		do_action('woocommerce_role_based_price_data_save',$post_id);
@@ -110,7 +110,7 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
                 $post_id = $_POST['wc_rbp_post_id'];
                 $status = false;
 				$prices = '';
-                if(isset($_POST['enable_role_based_price'])){ $status = true; }
+                if(isset($_POST['enable_role_based_price'])){ $status = 'true'; }
                 if(isset($_POST['role_based_price']) && is_array($_POST['role_based_price'])){ 
                     $prices = $_POST['role_based_price'];
                 } 
@@ -124,16 +124,20 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
     
 	
 	public function save_bulk_price(){
+
+		
 		$msg = '<div class="wc_rbp_alert wc_rbp_alert-error">
   <a class="wc_rbp_close wc_rbp_pop_up_close" data-dismiss="alert">×</a>  <strong>Oh Snap!</strong> '.__('Unable To Save Product Role Price. Please Try Again.',WC_RBP_TXT).' </div>';
 		if(check_ajax_referer(WC_RBP_SLUG.'-product-bulk-edit-nounce' , 'security' )){
 			if(isset($_POST['wc_rbp_bulk_variation_id'])){
-				$status = '';
+				$status = 'false';
 				$prices = '';
-				if(isset($_POST['enable_role_based_price'])){ $status = true; }
+				
+				if(isset($_POST['enable_role_based_price'])){ $status = 'true'; }
 				if(isset($_POST['role_based_price']) && is_array($_POST['role_based_price'])){ 
                     $prices = $_POST['role_based_price'];
                 } 
+
 				$ids = $_POST['wc_rbp_bulk_variation_id'];
 				foreach($ids as $id){
 					$this->save_db_price($id,$status,$prices);
@@ -175,7 +179,7 @@ class WooCommerce_Role_Based_Price_Admin_Product_Page {
         $selling_price = WC_RBP()->get_allowed_price('sale');
         WC_RBP()->sp_function()->get_db_price($post_id);
         $this->status = WC_RBP()->sp_function()->get_status($post_id);
-        
+
         $wc_rbp_enable_status = '';
         $display = 'hidden';
         

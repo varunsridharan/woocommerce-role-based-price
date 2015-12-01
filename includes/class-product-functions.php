@@ -85,6 +85,7 @@ class WooCommerce_Role_Based_Price_Simple_Product_Functions {
     
     public function get_status($id){
        $status = get_post_meta($id,'_enable_role_based_price',true );
+
        if($status == true && $status == 'true'){
            return true;
        }

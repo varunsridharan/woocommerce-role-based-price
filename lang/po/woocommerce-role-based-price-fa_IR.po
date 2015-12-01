@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Role Based Price\n"
-"POT-Creation-Date: 2015-11-04 18:53+0330\n"
-"PO-Revision-Date: 2015-11-04 18:59+0330\n"
+"POT-Creation-Date: 2015-11-08 17:12+0330\n"
+"PO-Revision-Date: 2015-11-08 17:13+0330\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fa\n"
@@ -19,53 +19,53 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: admin/class-admin-init.php:173
+#: admin/class-admin-init.php:183
 msgid "Settings"
 msgstr "تنظیمات"
 
-#: admin/class-admin-init.php:179
+#: admin/class-admin-init.php:189
 msgid "F.A.Q"
 msgstr "سؤالات متداول"
 
-#: admin/class-admin-init.php:190
+#: admin/class-admin-init.php:200
 msgid "Report Issue"
 msgstr "نمایش جزئیات"
 
-#: admin/class-admin-init.php:196
+#: admin/class-admin-init.php:206
 msgid "Donate"
 msgstr "کمک کردن"
 
-#: admin/class-admin-init.php:201
+#: admin/class-admin-init.php:211
 msgid "Contact Author"
 msgstr "تماس با نویسنده"
 
-#: admin/class-admin-settings.php:39
+#: admin/class-admin-settings.php:41
 #: plugins/class-wp-all-import-pro-Integration.php:23
 msgid "WooCommerce Role Based Pricing"
 msgstr "قیمت گذاری در ووکامرس بر اساس نقش"
 
-#: admin/class-admin-settings.php:51
+#: admin/class-admin-settings.php:53
 msgid "General"
 msgstr "اصلی"
 
-#: admin/class-admin-settings.php:52
+#: admin/class-admin-settings.php:54
 msgid "User Role Rename"
 msgstr "تغییر نام نقش کاربر"
 
-#: admin/class-admin-settings.php:53
+#: admin/class-admin-settings.php:55
 msgid "Price Visibility"
 msgstr "قیمت دید"
 
-#: admin/class-admin-settings.php:54
+#: admin/class-admin-settings.php:56
 msgid "Newsletter"
 msgstr "خبرنامه"
 
-#: admin/class-admin-settings.php:59
+#: admin/class-admin-settings.php:61
 msgid "Plugins"
 msgstr "پلاگین ها"
 
-#: admin/includes/class-simple-product.php:41
-#: admin/includes/class-simple-product.php:71
+#: admin/includes/class-simple-product.php:42
+#: admin/includes/class-simple-product.php:72
 msgid ""
 "<span class=\"wc_rbp_error\"> <strong> Please Save Or Publish This Product "
 "To Add Role Based Price </strong> </span>"
@@ -73,20 +73,22 @@ msgstr ""
 "<span class=\"wc_rbp_error\"><strong>لطفا ذخیره یا انتشار این محصول برای "
 "افزودن نقش بر اساس قیمت</strong></span>"
 
-#: admin/includes/class-simple-product.php:44
+#: admin/includes/class-simple-product.php:45
 msgid "Role Based Price"
 msgstr " قیمت بر اساس نقش"
 
-#: admin/includes/class-simple-product.php:48
-#: admin/includes/class-simple-product.php:78
+#: admin/includes/class-simple-product.php:49
+#: admin/includes/class-simple-product.php:79
 msgid "Add / Edit Role Pricing"
 msgstr "افزودن / ویرایش قیمت گذاری نقش"
 
-#: admin/includes/class-simple-product.php:101
+#: admin/includes/class-simple-product.php:106
+#: admin/includes/class-simple-product.php:128
 msgid "Unable To Save Product Role Price. Please Try Again."
 msgstr "قادر به ذخیره محصول نقش قیمت. لطفا دوباره سعی کنید."
 
-#: admin/includes/class-simple-product.php:124
+#: admin/includes/class-simple-product.php:119
+#: admin/includes/class-simple-product.php:143
 msgid "Product's Role Based Pricing Updated"
 msgstr "محصول قیمت گذاری مبتنی بر نقش بروز"
 
@@ -118,27 +120,27 @@ msgstr "قیمت اصلی"
 msgid "Sale Price"
 msgstr "قیمت فروش ویژه"
 
-#: admin/includes/settings-newsletter.php:8
+#: admin/includes/settings-newsletter.php:8 includes/page-html.php:73
 msgid "Subscribe to our mailing list"
 msgstr "مشترک شدن در لیست پستی ما"
 
-#: admin/includes/settings-newsletter.php:15
+#: admin/includes/settings-newsletter.php:15 includes/page-html.php:86
 msgid "Email Address"
 msgstr "آدرس ایمیل"
 
-#: admin/includes/settings-newsletter.php:20
+#: admin/includes/settings-newsletter.php:20 includes/page-html.php:94
 msgid "First Name"
 msgstr "نام"
 
-#: admin/includes/settings-newsletter.php:25
+#: admin/includes/settings-newsletter.php:25 includes/page-html.php:100
 msgid "Last Name"
 msgstr "نام خانوادگی"
 
-#: admin/includes/settings-newsletter.php:29
+#: admin/includes/settings-newsletter.php:29 includes/page-html.php:106
 msgid "Website"
 msgstr "وب سایت"
 
-#: admin/includes/settings-newsletter.php:34
+#: admin/includes/settings-newsletter.php:34 includes/page-html.php:115
 msgid "Country"
 msgstr "کشور"
 
@@ -214,6 +216,7 @@ msgid "Selling Price"
 msgstr "قیمت فروش"
 
 #: admin/includes/views/popup_rbform_footer.php:11
+#: admin/includes/views/popup_rbpform_bulkedit_footer.php:14
 msgid "Save Price"
 msgstr "صرفه جویی در قیمت"
 
@@ -229,26 +232,36 @@ msgstr "فعال"
 msgid "off"
 msgstr "غیرفعال"
 
-#: includes/class-product-functions.php:44
+#: includes/class-activation.php:117
+msgid "Change Log"
+msgstr "مشاهده ی تغییرات"
+
+#: includes/class-activation.php:128
+msgid " Download's so far. help use reach more audience by sharing"
+msgstr ""
+"تا به حال دانلود شده.برای کمک به ما با مخاطبان بیشتری این افزونه را به "
+"اشتراک بگذارید"
+
+#: includes/class-product-functions.php:47
 msgid "Invalid Product ID Given"
 msgstr "شناسه محصول داده نامعتبر"
 
-#: includes/class-product-functions.php:45
+#: includes/class-product-functions.php:51
 msgid "Invalid User Role Given"
 msgstr "نقش کاربر نامعتبر داده"
 
-#: includes/class-product-functions.php:53
+#: includes/class-product-functions.php:58
 msgid "Invalid Price Type Given"
 msgstr "نوع نامعتبر قيمت داده"
 
-#: includes/class-product-pricing-frontend.php:230
-#: includes/class-product-pricing-frontend.php:235
+#: includes/class-product-pricing-frontend.php:233
+#: includes/class-product-pricing-frontend.php:238
 #, php-format
 msgctxt "Price range: from-to"
 msgid "%1$s&ndash;%2$s"
 msgstr "%1$sنوع %2$s"
 
-#: includes/class-product-pricing-frontend.php:242
+#: includes/class-product-pricing-frontend.php:245
 msgid "Free!"
 msgstr "رایگان!"
 
@@ -277,14 +290,14 @@ msgstr "ادغام سیستمهای ارز Aelia"
 msgid " { "
 msgstr "{"
 
-#: woocommerce-role-based-price.php:357
+#: woocommerce-role-based-price.php:380
 msgid "<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires"
 msgstr "<i><strong>قیمت گذاری بر اساس نقش WooCommerce</strong></i> نیاز"
 
-#: woocommerce-role-based-price.php:357
+#: woocommerce-role-based-price.php:380
 msgid " <u>Woocommerce</u>"
 msgstr "ووکامرس"
 
-#: woocommerce-role-based-price.php:357
+#: woocommerce-role-based-price.php:380
 msgid " To Be Installed And Activated"
 msgstr "برای نصب و فعال"
