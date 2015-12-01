@@ -110,17 +110,16 @@ class front_end_product_pricing {
             $wcrbp_price_new = get_post_meta( $post_id, $meta_key, true );
 
 			if(isset($wcrbp_price_new[$cRole])) {  
-                if(empty($wcrbp_price_new[$cRole][$opposit_key]) && empty($wcrbp_price_new[$cRole][$price_meta_key])){
+				if(empty($wcrbp_price_new[$cRole][$opposit_key]) && empty($wcrbp_price_new[$cRole][$price_meta_key])){
 					$wcrbp_price = $price;
-				} else if(! empty($wcrbp_price_new[$cRole][$price_meta_key]) && empty($wcrbp_price_new[$cRole][$opposit_key])){
+				} else if(! empty($wcrbp_price_new[$cRole][$price_meta_key]) || empty($wcrbp_price_new[$cRole][$opposit_key])){
 					$wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key];
-				} else if(empty($wcrbp_price_new[$cRole][$price_meta_key]) && ! empty($wcrbp_price_new[$cRole][$opposit_key])){
+				} else if(empty($wcrbp_price_new[$cRole][$price_meta_key]) || ! empty($wcrbp_price_new[$cRole][$opposit_key])){
 					$wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key];
 				} else {
 					$wcrbp_price = $price;
 				}
-            }
-            
+			}
         }
         
         $wcrbp_price = apply_filters('woocommerce_role_based_product_price_value',$wcrbp_price,$post_id,$price_meta_key,$cRole);

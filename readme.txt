@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.5
 WC requires at least: 2.0
 WC tested up to: 2.5
-Stable tag: 2.8.1
+Stable tag: 2.8.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -144,6 +144,10 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.8.2 [09-11-2015] =
+* Fixed : Selling Price Not Showing As Per Role Based Price Settings {https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/16}
+* Minor Bug Fix
+
 = 2.8.1 [08-11-2015] =
 * Fixed : Selling / Regular shown from base product price if any one is empty [https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/14]
 * Updated : Persian Language

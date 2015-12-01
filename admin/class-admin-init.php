@@ -49,7 +49,7 @@ class WooCommerce_Role_Based_Price_Admin {
 	
 	
 	public function add_bulk_edit(){
-		echo '<option id="BulkEditVariables" value="variable_role_based_price_bulk_edit" >'.__('Role Based Price Bulk Edit').'</option>';
+		echo '<option id="BulkEditVariables" onclick="role_Based_bulk_edit(this);"  value="variable_role_based_price_bulk_edit" >'.__('Role Based Price Bulk Edit').'</option>';
 	}
     public function get_selectbox_user_role(){
         $user_roles = WC_RBP()->get_registered_roles();

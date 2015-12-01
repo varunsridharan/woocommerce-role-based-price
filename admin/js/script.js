@@ -56,25 +56,25 @@ jQuery(document).ready(function () {
                     height : "auto",
                 });*/
 		});
-    });
-	
-	
-	jQuery('option#BulkEditVariables').click(function(){
-		var clicked = jQuery(this);
-		var post_id = woocommerce_admin_meta_boxes_variations.post_id;
-		jQuery.colorbox({
-			href:ajaxurl + '?action=role_based_price_edit&type=bulkEdit&post_id=' + post_id ,
-			opacity:"0.65",
-			overlayClose:false,
-			width:"100%",
-			innerWidth:"95%",
-			maxWidth:"1024px",
-			height:"auto",
-			innerHeight:"95%",
-			maxHeight:"500px", 
-			onClosed:function(){clicked.parent().next().click();},
-			onComplete:function(){jQuery(tab_id).tabs(); }
-		});		
-	});
+    }); 
     
 });
+
+function role_Based_bulk_edit(ref){
+	var clicked = jQuery(ref);
+	var post_id = woocommerce_admin_meta_boxes_variations.post_id; 
+	jQuery.colorbox({
+		href:ajaxurl + '?action=role_based_price_edit&type=bulkEdit&post_id=' + post_id ,
+		opacity:"0.65",
+		overlayClose:false,
+		width:"100%",
+		innerWidth:"95%",
+		maxWidth:"1024px",
+		height:"auto",
+		innerHeight:"95%",
+		maxHeight:"500px", 
+		onClosed:function(){clicked.parent().next().click();},
+		onComplete:function(){jQuery(tab_id).tabs(); }
+	});	
+	
+}
