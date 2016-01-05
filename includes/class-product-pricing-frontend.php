@@ -109,8 +109,10 @@ class front_end_product_pricing {
         if($this->get_status($post_id)){
             $wcrbp_price_new = get_post_meta( $post_id, $meta_key, true );
 
-			if(isset($wcrbp_price_new[$cRole])) {  
-				if(empty($wcrbp_price_new[$cRole][$opposit_key]) && empty($wcrbp_price_new[$cRole][$price_meta_key])){
+			if(isset($wcrbp_price_new[$cRole])) { 
+				if(isset($wcrbp_price_new[$cRole][$opposit_key]) && $wcrbp_price_new[$cRole][$opposit_key] == 0){
+					$wcrbp_price = 0;
+				} else if(empty($wcrbp_price_new[$cRole][$opposit_key]) && empty($wcrbp_price_new[$cRole][$price_meta_key])){
 					$wcrbp_price = $price;
 				} else if(! empty($wcrbp_price_new[$cRole][$price_meta_key]) || empty($wcrbp_price_new[$cRole][$opposit_key])){
 					$wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key];
@@ -125,6 +127,10 @@ class front_end_product_pricing {
         
         $wcrbp_price = apply_filters('woocommerce_role_based_product_price_value',$wcrbp_price,$post_id,$price_meta_key,$cRole);
         $wcrbp_price = wc_format_decimal($wcrbp_price);
+		
+		//if(!empty($wcrbp_price)){
+		//	$wcrbp_price = $product->get_price_including_tax(1,$wcrbp_price);
+		//}
 		
 		return $wcrbp_price;
 	}

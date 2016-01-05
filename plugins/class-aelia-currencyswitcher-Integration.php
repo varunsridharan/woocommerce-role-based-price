@@ -164,7 +164,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
            
            
     public function change_price($wcrbp_price,$post_id,$price_meta_key,$user_role){ 
-        
+        if(!WC_RBP()->sp_function()->get_status($post_id)){return $wcrbp_price;}
         $this->acs_get_db_price($post_id);
         $price = '';
         $allowed_currency = get_option(rbp_key.'acs_allowed_currencies');

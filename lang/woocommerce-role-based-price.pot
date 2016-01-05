@@ -1,16 +1,20 @@
-# Copyright (C) 2015 WooCommerce Role Based Price
+# Copyright (C) 2016 WooCommerce Role Based Price
 # This file is distributed under the same license as the WooCommerce Role Based Price package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Role Based Price 2.8\n"
+"Project-Id-Version: WooCommerce Role Based Price 2.8.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
-"POT-Creation-Date: 2015-11-08 08:43:19+00:00\n"
+"POT-Creation-Date: 2016-01-04 02:23:31+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/class-admin-init.php:52
+msgid "Role Based Price Bulk Edit"
+msgstr ""
 
 #: admin/class-admin-init.php:183
 msgid "Settings"
@@ -72,12 +76,12 @@ msgid "Add / Edit Role Pricing"
 msgstr ""
 
 #: admin/includes/class-simple-product.php:106
-#: admin/includes/class-simple-product.php:128
+#: admin/includes/class-simple-product.php:130
 msgid "Unable To Save Product Role Price. Please Try Again."
 msgstr ""
 
 #: admin/includes/class-simple-product.php:119
-#: admin/includes/class-simple-product.php:143
+#: admin/includes/class-simple-product.php:147
 msgid "Product's Role Based Pricing Updated"
 msgstr ""
 
@@ -235,13 +239,13 @@ msgstr ""
 msgid "Invalid Price Type Given"
 msgstr ""
 
-#: includes/class-product-pricing-frontend.php:233
-#: includes/class-product-pricing-frontend.php:238
+#: includes/class-product-pricing-frontend.php:244
+#: includes/class-product-pricing-frontend.php:249
 msgctxt "Price range: from-to"
 msgid "%1$s&ndash;%2$s"
 msgstr ""
 
-#: includes/class-product-pricing-frontend.php:245
+#: includes/class-product-pricing-frontend.php:256
 msgid "Free!"
 msgstr ""
 
@@ -265,15 +269,15 @@ msgstr ""
 msgid "Aelia Currency Switcher Integration"
 msgstr ""
 
-#: woocommerce-role-based-price.php:380
+#: woocommerce-role-based-price.php:377
 msgid "<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires"
 msgstr ""
 
-#: woocommerce-role-based-price.php:380
+#: woocommerce-role-based-price.php:377
 msgid " <u>Woocommerce</u>"
 msgstr ""
 
-#: woocommerce-role-based-price.php:380
+#: woocommerce-role-based-price.php:377
 msgid " To Be Installed And Activated"
 msgstr ""
 #. Plugin Name of the plugin/theme
