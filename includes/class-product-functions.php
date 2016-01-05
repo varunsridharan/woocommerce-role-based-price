@@ -33,6 +33,9 @@ class WooCommerce_Role_Based_Price_Simple_Product_Functions {
           add_shortcode( 'wc_rbp', array($this,'shortcodehandler' ));
  	}
      
+	function is_aeliacs_active() {
+	  return isset($GLOBALS['woocommerce-aelia-currencyswitcher']) && is_object($GLOBALS['woocommerce-aelia-currencyswitcher']);
+	}	
     
     public function shortcodehandler($attrs){
         $vars = shortcode_atts( array( 

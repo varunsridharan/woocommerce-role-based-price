@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.5
 WC requires at least: 2.0
 WC tested up to: 2.5
-Stable tag: 2.8.5
+Stable tag: 2.8.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -146,6 +146,9 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.8.6 [04-01-2016] =
+* Fixed : Price not showing after the update 
+
 = 2.8.5 [04-01-2016] =
 * Fixed : Set 0 Price for a product [https://wordpress.org/support/topic/zero-price-3?replies=12]
 
