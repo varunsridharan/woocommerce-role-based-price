@@ -94,14 +94,10 @@ class WooCommerce_role_based_price_aelia_wp_all_import_integration{
     }
 } 
 
-
-add_action('wc_rbp_loaded','load_aelia_wp_all_import');
-function load_aelia_wp_all_import(){
-    new WooCommerce_role_based_price_aelia_wp_all_import_integration;
+if(is_admin()){
+	add_action('wc_rbp_loaded','load_aelia_wp_all_import');
+	function load_aelia_wp_all_import(){
+		new WooCommerce_role_based_price_aelia_wp_all_import_integration;
+	}
 }
-
-
-
-
-
 ?>

@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.8.3
+ * Version:           2.8.4
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.8.3',true); # Plugin Version
+define('WC_RBP_VERSION','2.8.4',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
@@ -71,7 +71,6 @@ final class  WooCommerce_Role_Based_Price{
 		new WC_RBP_Activation($default_args);				
         //register_activation_hook( __FILE__, array(__CLASS__,'plugin_activate' ));
         add_action( 'init', array( $this, 'init' ), 0 );
-        //add_action( 'admin_init', array($this,'plugin_activate_redirect' ));
     }
     
     
@@ -148,11 +147,9 @@ final class  WooCommerce_Role_Based_Price{
         if($this->is_request( 'admin' )){
             $this->admin_init();
         } 
-		
-
-
 
         new WooCommerce_Role_Based_Price_Simple_Product_Functions;
+		do_action( 'wc_rbp_loaded' );
     }
     
     public function langs(){
@@ -364,9 +361,9 @@ final class  WooCommerce_Role_Based_Price{
         if(! function_exists( 'WC_RBP' )){
             function WC_RBP(){ return WooCommerce_Role_Based_Price::get_instance(); }
         }
-
+		WC_RBP();
         $GLOBALS['woocommerce'] = WC_RBP();
-        do_action( 'wc_rbp_loaded' );
+        
 
     } else {
         add_action( 'admin_notices', 'wc_rbp_activate_failed_notice' );

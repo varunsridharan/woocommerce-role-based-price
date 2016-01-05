@@ -177,7 +177,7 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
         foreach($allowed_currency as $currency) {
             
             $price = $this->acs_crp($currency,$user_role,$price_meta_key,$post_id);
-            
+            $send_currency[$currency] = 0;
             
             if(!empty($price)){
                 $send_currency[$currency] = $price;
@@ -233,16 +233,18 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
             $send_currency = array(); 
             foreach($allowed_currency as $currency) {
                 $price = $this->acs_crp($currency,WC_RBP()->current_role(),$type,$product_id);
+				//$send_currency[$currency] = 0;
                 if(!empty($price)){
                     $send_currency[$currency] = $price;
                 } 
             } 
         
-        
+		
             //You can now merge the original prices with the ones you loaded.
             $product_prices = array_merge($product_prices, $send_currency); 
+		
             //Finally, return the overridden prices
-            return $send_currency;
+            return $product_prices;
     }    
     
     /**
@@ -267,12 +269,11 @@ class WooCommerce_Role_Based_Price_AeliaCurrencySwitcher_Plug {
           $to_currency = get_woocommerce_currency();
         } 
         // If an explicit price was passed for the target currency, just take it
-         
         if(!empty($prices_per_currency[$to_currency])) {
-            
-          return $prices_per_currency[$to_currency];
-        }
+           return $prices_per_currency[$to_currency];
+        } 
         
+		if($price == 0){return $price;}
         return apply_filters('wc_aelia_cs_convert', $price, $from_currency, $to_currency);
     }    
 } 

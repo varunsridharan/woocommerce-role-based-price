@@ -1,5 +1,5 @@
 === Woocommerce Role Based Price ===
-Contributors: varunms
+Contributors: varunms,arnisarbidans
 Author URI: http://varunsridharan.in/
 Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
 Tags: WooCommerce,Quick Dontion,quick donation,online donation,wordpress donation,simple donation,donation form,WC donation,Online Payment,Payment,Online,Donate,Monthly Goal,affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, roles, wholesale, woocommerce,advertising, bogo, deals, discount, dynamic pricing, group pricing, marketing, Membership, price, promotion, role
@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.5
 WC requires at least: 2.0
 WC tested up to: 2.5
-Stable tag: 2.8.3
+Stable tag: 2.8.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -146,6 +146,10 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.8.4 [01-12-2015] =
+* Fixed : Products in currencies come up with wrong prices  [https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/20]
+* Fixed : Aelia Currency Switcher options not available in wp-all-import template [https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/19]
+
 = 2.8.3 [12-11-2015] =
 * Fixed : Variation pricing not showing properly {https://github.com/technofreaky/WooCommerce-Role-Based-Price/issues/17}
 * Minor Bug Fixes

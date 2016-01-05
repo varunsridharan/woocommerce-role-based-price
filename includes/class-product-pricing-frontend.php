@@ -114,9 +114,10 @@ class front_end_product_pricing {
 					$wcrbp_price = $price;
 				} else if(! empty($wcrbp_price_new[$cRole][$price_meta_key]) || empty($wcrbp_price_new[$cRole][$opposit_key])){
 					$wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key];
-				} else if(empty($wcrbp_price_new[$cRole][$price_meta_key]) || ! empty($wcrbp_price_new[$cRole][$opposit_key])){
-					$wcrbp_price = $wcrbp_price_new[$cRole][$opposit_key];
-				} else {
+				} /*else if(empty($wcrbp_price_new[$cRole][$price_meta_key]) || ! empty($wcrbp_price_new[$cRole][$opposit_key])){
+					//$wcrbp_price = $wcrbp_price_new[$cRole][$opposit_key];
+					$wcrbp_price = $price;
+				}*/ else {
 					$wcrbp_price = $price;
 				}
 			}
@@ -253,6 +254,7 @@ class front_end_product_pricing {
                 }
             }
          }
+		
 		return $price;
         } 
     
