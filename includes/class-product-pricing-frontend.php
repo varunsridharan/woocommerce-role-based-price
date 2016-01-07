@@ -92,6 +92,7 @@ class front_end_product_pricing {
         $opposit_key = 'selling_price';
 		$wcrbp_price = $price;
 		$cRole = $this->get_current_role();
+
 		if($price_meta_key == 'selling_price'){$opposit_key = 'regular_price';}
 		
         if ( get_class( $product ) == 'WC_Product_Variation' ) {
@@ -106,30 +107,7 @@ class front_end_product_pricing {
             $wcrbp_price_new = get_post_meta( $post_id, $meta_key, true );
 			
 			if(isset($wcrbp_price_new[$cRole])){
-				
-				if(isset($wcrbp_price_new[$cRole][$price_meta_key]) && 
-				   $wcrbp_price_new[$cRole][$price_meta_key] == 0 ){
-					$wcrbp_price = 0;
-				}
-				
-				else if(isset($wcrbp_price_new[$cRole][$price_meta_key]) && 
-						empty($wcrbp_price_new[$cRole][$price_meta_key]) && 
-					    isset($wcrbp_price_new[$cRole][$opposit_key])    &&
-						! empty($wcrbp_price_new[$cRole][$opposit_key])){
-					$wcrbp_price = $wcrbp_price_new[$cRole][$opposit_key];
-				}
-				
-				else if(isset($wcrbp_price_new[$cRole][$price_meta_key]) && 
-				   ! empty($wcrbp_price_new[$cRole][$price_meta_key])){
-					$wcrbp_price = $wcrbp_price_new[$cRole][$price_meta_key];
-				} 
-				
-				
-				
-				else {
-					$wcrbp_price = 0;
-				}
-				
+				$wcrbp_price = $this->get_role_prices($wcrbp_price_new,$cRole,$price_meta_key,$opposit_key);
 			}
 			
 			
@@ -160,6 +138,37 @@ class front_end_product_pricing {
 		return $wcrbp_price;
 	}
 
+	public function get_role_prices($price,$role,$key,$opKey){
+		$regular_price = WC_RBP()->get_allowed_price('regular');
+		$selling_price = WC_RBP()->get_allowed_price('sale');		
+		$wcrbp_price = 0;
+		
+		if($regular_price && $key == 'regular_price'){
+			$wcrbp_price = $this->get_product_role_price($price,$role,$key,$opKey);
+		}
+		
+		if($selling_price && $key == 'selling_price'){
+			$wcrbp_price = $this->get_product_role_price($price,$role,$key,$opKey);
+		} 
+
+		return $wcrbp_price;
+	}
+	
+	private function get_product_role_price($price,$role,$key,$opKey){
+		$wcrbp_price = null;
+		
+		/* if(isset($price[$role][$key]) && $price[$role][$key] == 0 ){
+			$wcrbp_price = 0;
+		} else */ 
+		if(isset($price[$role][$key]) && ! empty($price[$role][$key])){
+			$wcrbp_price = $price[$role][$key];
+		} elseif(isset($price[$role][$opKey]) && ! empty($price[$role][$opKey])){
+			$wcrbp_price = $price[$role][$opKey];
+		}  
+		
+		return $wcrbp_price;
+	}
+	
 	
 	/**
 	 * Returns the product's sale price
