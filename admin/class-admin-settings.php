@@ -53,7 +53,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings  extends WC_Settings_Page{
             ''            => __( 'General', WC_RBP_TXT),
             'user-role-edit'     => __( 'User Role Rename',WC_RBP_TXT),
             'price-views' => __('Price Visibility',WC_RBP_TXT),
-            'newsletter' => __('Newsletter',WC_RBP_TXT),
+            //'newsletter' => __('Newsletter',WC_RBP_TXT),
         );
 
         $sections = apply_filters(pp_key.'_sections', $sections );

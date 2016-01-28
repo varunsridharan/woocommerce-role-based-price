@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.5
 WC requires at least: 2.0
 WC tested up to: 2.5
-Stable tag: 2.8.7
+Stable tag: 2.8.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -146,6 +146,9 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 2.8.8 [28-01-2016] = 
+* Tweak : Recoded for the frontend price
+* Fixed : Price issue with the version 2.8.7 which aelia currency switcher active. is now fixed and minor fix
 = 2.8.7 [06-01-2016] =
 * Fixed : Price issue with the version 2.8.6 or below. which aelia currency switcher active. is now fixed and minor fix
 

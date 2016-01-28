@@ -3,7 +3,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Set WooCommerce Product Price Based On User Role
- * Version:           2.8.7
+ * Version:           2.8.8
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * Text Domain:       woocommerce-role-based-price
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 define('WC_RBP_NAME','WC Role Based Price',true); # Plugin Name
 define('WC_RBP_SLUG','wc-role-based-price',true); # Plugin Slug
-define('WC_RBP_VERSION','2.8.7',true); # Plugin Version
+define('WC_RBP_VERSION','2.8.8',true); # Plugin Version
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ ),true); # Plugin DIR
 define('WC_RBP_ADMIN_PATH',WC_RBP_PATH.'admin/',true); # Plugin DIR
 define('WC_RBP_ADMIN_CSS',WC_RBP_PATH.'admini/css/'); # Plugin DIR
@@ -71,6 +71,8 @@ final class  WooCommerce_Role_Based_Price{
 		new WC_RBP_Activation($default_args);				
         //register_activation_hook( __FILE__, array(__CLASS__,'plugin_activate' ));
         add_action( 'init', array( $this, 'init' ), 0 );
+        add_action('plugins_loaded', array( $this, 'langs' ));
+        add_filter('load_textdomain_mofile',  array( $this, 'replace_my_plugin_default_language_files' ), 10, 2);
     }
     
     
@@ -85,16 +87,7 @@ final class  WooCommerce_Role_Based_Price{
         require_once('updates/wc_rbp_update_v2.7.4.php'); 
     }
 
-
-    public function plugin_activate_redirect() {
-        if ( ! get_transient( 'wc_rbp_welcome_screen_activation_redirect' ) ) { return; }
-        delete_transient( 'wc_rbp_welcome_screen_activation_redirect' );
-        if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) { return; }
-        $args = array( 'page' => 'wc-settings','tab' => 'wc_rbp','section'=>'newsletter' );
-        wp_safe_redirect( add_query_arg( $args , admin_url( 'admin.php' ) ) );
-
-    }
-    
+ 
     public function load_plugins(){
         $plugins = $this->get_activated_plugin(); 
         $plugin_list = $this->get_plugins_list();
@@ -140,9 +133,6 @@ final class  WooCommerce_Role_Based_Price{
         if($this->is_request( 'frontend' )){
             new front_end_product_pricing;
         }        
-        
-        add_action('plugins_loaded', array( $this, 'langs' ));
-        add_filter('load_textdomain_mofile',  array( $this, 'replace_my_plugin_default_language_files' ), 10, 2);
         
         if($this->is_request( 'admin' )){
             $this->admin_init();
