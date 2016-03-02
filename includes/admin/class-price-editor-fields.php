@@ -16,7 +16,7 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
 	
 	public function add_status_field($product_id,$type){
 		$status = product_rbp_status($product_id) == 'true' ? 'checked' : '';
-
+		
 		echo '<div class="enable_field_container">';
 		echo '<p class="form-field ">';
 		echo '<label class="enable_text" for="enable_role_based_price">'.__('Enable Role Based Pricing',WC_RBP_TXT).'</label>';

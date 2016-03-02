@@ -30,15 +30,9 @@ class WooCommerce_Role_Based_Price_Functions {
     }
 	
 	public function change($classname, $product_type, $post_type, $product_id){
-		require_once('product-class.php');
-		if($classname == 'WC_Product_Simple') {
-			$classname = 'WC_Product_Simple_RBP';
-		}  
-		
-		if($classname == 'WC_Product_Variation'){
-			$classname = 'WC_Product_Variation_RBP';
-		}
-
+		if($classname == 'WC_Product_Simple') { $classname = 'WC_Product_Simple_RBP'; }  
+		if($classname == 'WC_Product_Variation'){ $classname = 'WC_Product_Variation_RBP'; }
+		$classname = apply_filters('wc_rbp_custom_product_class',$classname);
 		return $classname;
 	}
     

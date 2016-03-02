@@ -27,6 +27,7 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
 				$status = isset($_POST['enable_role_based_price']) ? true : false;
 				wc_rbp_update_role_based_price_status($post_id,$status);
 				wc_rbp_update_role_based_price($post_id,$_POST['role_based_price']);
+				clean_post_cache($post_id);
 				$success['html'] = '<h3>'.__("Product Price Updated.",WC_RBP_TXT).'</h3>';
 			} 
 			

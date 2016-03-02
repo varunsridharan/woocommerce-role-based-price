@@ -1,0 +1,262 @@
+# Copyright (C) 2016 WooCommerce Plugin Boiler Plate
+# This file is distributed under the same license as the WooCommerce Plugin Boiler Plate package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Plugin Boiler Plate 0.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/WordPress-WooCommerce-Plugin-Boiler-Plate\n"
+"POT-Creation-Date: 2016-02-28 04:26:31+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: bootstrap.php:52
+msgid "Cloning instances of the class is forbidden."
+msgstr ""
+
+#: bootstrap.php:64
+msgid "Unserializing instances of the class is forbidden."
+msgstr ""
+
+#: includes/admin/class-admin-init.php:76
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-admin-init.php:77
+msgid "Contact Author"
+msgstr ""
+
+#: includes/admin/class-admin-init.php:91
+msgid "F.A.Q"
+msgstr ""
+
+#: includes/admin/class-admin-init.php:92
+msgid "View On Github"
+msgstr ""
+
+#: includes/admin/class-admin-init.php:93
+msgid "Report Issue"
+msgstr ""
+
+#: includes/admin/class-admin-init.php:94
+msgid "Donate"
+msgstr ""
+
+#: includes/admin/settings/fields.php:8
+msgid "Redirect User To"
+msgstr ""
+
+#: includes/admin/settings/fields.php:9
+msgid "After Donation Added To Cart"
+msgstr ""
+
+#: includes/admin/settings/fields.php:11
+msgid "Cart Page"
+msgstr ""
+
+#: includes/admin/settings/fields.php:11
+msgid "Checkout Page"
+msgstr ""
+
+#: includes/admin/settings/fields.php:18
+msgid ""
+"<span> Add <code>%s</code> To Get Ented Amount By User.</span>  <br/>\n"
+"               <span> Add <code>%s</code> To Get Minimum Required Amount From Selected Project </span>   <br/>\n"
+"               <span> Add <code>%s</code> To Get Minimum Required Amount From Selected Project  </span>"
+msgstr ""
+
+#: includes/admin/settings/fields.php:28
+msgid "Donation Conflict"
+msgstr ""
+
+#: includes/admin/settings/fields.php:29
+msgid "Custom Message To Show When User Trying To Add Donation With Other Products"
+msgstr ""
+
+#: includes/admin/settings/fields.php:40
+msgid "Pre Selected Project Name"
+msgstr ""
+
+#: includes/admin/settings/fields.php:41
+msgid "default project render type"
+msgstr ""
+
+#: includes/admin/settings/fields.php:43
+msgid "Select Box"
+msgstr ""
+
+#: includes/admin/settings/fields.php:43
+msgid "Radio Button"
+msgstr ""
+
+#: includes/admin/settings/fields.php:50 includes/admin/settings/fields.php:53
+msgid "Show Errors"
+msgstr ""
+
+#: includes/admin/settings/fields.php:51
+msgid "Set to hide errors when <code> wc_print_notice</code> called before loading dontion form"
+msgstr ""
+
+#: includes/admin/settings/fields.php:53
+msgid "Hide Errors"
+msgstr ""
+
+#: includes/admin/settings/pages.php:3
+msgid "General"
+msgstr ""
+
+#: includes/admin/settings/pages.php:4
+msgid "Message"
+msgstr ""
+
+#: includes/admin/settings/pages.php:5
+msgid "ShortCode"
+msgstr ""
+
+#: includes/admin/settings/validate-general.php:5
+msgid "Error: Please Select Atlest 1 Payment Gateway."
+msgstr ""
+
+#: includes/admin/settings_framework/class-wp-plugin-settings.php:31
+#: includes/admin/settings_framework/class-wp-plugin-settings.php:32
+msgid "Boiler Plate Settings Page"
+msgstr ""
+
+#: includes/admin/wc-settings/class-settings-intergation.php:21
+msgid "Integration Demo"
+msgstr ""
+
+#: includes/admin/wc-settings/class-settings-intergation.php:22
+msgid "An integration demo to show you how easy it is to extend WooCommerce."
+msgstr ""
+
+#: includes/admin/wc-settings/class-settings-intergation.php:43
+msgid "API Key"
+msgstr ""
+
+#: includes/admin/wc-settings/class-settings-intergation.php:45
+msgid "Enter with your API Key. You can find this in \"User Profile\" drop-down (top right corner) > API Keys."
+msgstr ""
+
+#: includes/admin/wc-settings/class-settings-intergation.php:50
+msgid "Debug Log"
+msgstr ""
+
+#: includes/admin/wc-settings/class-settings-intergation.php:52
+msgid "Enable logging"
+msgstr ""
+
+#: includes/admin/wc-settings/class-settings-intergation.php:54
+msgid "Log events such as API requests"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:28
+msgid "WC Advanced Intergation"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:44
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:74
+msgid "Simple Inputs"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:45
+msgid "Advanced Inputs"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:46
+msgid "Predefined Inputs"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:81
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:52
+msgid "Text Box"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:82
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:53
+msgid "This is a simple textbox"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:91
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:62
+msgid "TextArea"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:93
+msgid "Simple TextArea."
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:100
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:72
+msgid "Radio Buttons"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:101
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:73
+msgid "A Simple Radio Button"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:107
+msgid "option 1"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:108
+msgid "option 2"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:115
+msgid "Option 1"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-advanced.php:122
+msgid "Option 2"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:28
+msgid "WC Simple Intergation"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:45
+msgid "Simple Options"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:65
+msgid "SOme Value."
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:79
+msgid "Sell to all countries"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:80
+msgid "Sell to specific countries only"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:87
+msgid "Checbox"
+msgstr ""
+
+#: includes/admin/wc-settings/woocommerce-settings-simple.php:88
+msgid "A Simple Checkbox"
+msgstr ""
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Plugin Boiler Plate"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/woocommerce-plugin-boiler-plate/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Sample Plugin For WooCommerce"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Varun Sridharan"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://varunsridharan.in"
+msgstr ""

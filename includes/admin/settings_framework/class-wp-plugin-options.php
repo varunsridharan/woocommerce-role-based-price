@@ -24,10 +24,10 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 	public function settings_section($section){
 		$section['general'][] = array( 'id'=>'general', 'title'=> __('General',WC_RBP_TXT));
 		$section['general'][] = array( 'id'=>'price_edit_view', 'title'=> __('Popup Editor View',WC_RBP_TXT));
-		
-		$section['addons'][] = array( 'id'=>'general2', 'title'=>'',  );
+		$section['addons'][] = array( 'id'=>'extensions', 'title'=>'',  );
 		return $section;
 	}
+	
 	public function settings_fields($fields){
 		$fields['general']['general'][] = array(
 			'id' => WC_RBP_DB.'allowed_roles',
@@ -71,6 +71,15 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 				),
 			'attr'    => array( 'class' => 'wc-rbp-enhanced-select', 'style' => 'width:auto;max-width:35%;', )
 		);
+		
+		
+		
+		//$fields['addons']['extensions'][] =
+		//	array(
+		//	'id' => WC_RBP_DB.'extensions',
+		//	'type' => 'extra',
+		//	'content' => 'ASFASF',
+		//);
 		 
 	
 		return $fields;

@@ -73,14 +73,13 @@ class WooCommerce_Role_Based_Price {
      * Loads Required Plugins For Plugin
      */
     private function load_required_files(){
-       $this->load_files(WC_RBP_INC.'class-*.php');
+		$this->load_files(WC_RBP_INC.'class-*.php');
 		$this->load_files(WC_RBP_ADMIN.'settings_framework/class-wp-plugin-options.php');
-	   $this->load_files(WC_RBP_ADMIN.'settings_framework/class-wp-*.php');
+		$this->load_files(WC_RBP_ADMIN.'settings_framework/class-wp-*.php');
         
-       if(wc_rbp_is_request('admin')){
-           $this->load_files(WC_RBP_ADMIN.'class-*.php');
-       } 
-
+		if(wc_rbp_is_request('admin')){
+		   $this->load_files(WC_RBP_ADMIN.'class-*.php');
+		} 
     }
     
     /**
@@ -88,10 +87,12 @@ class WooCommerce_Role_Based_Price {
      */
     public function init(){
 		do_action('wc_rbp_before_init');
+		new WooCommerce_Role_Based_Price_Extensions;
         self::$functions = new WooCommerce_Role_Based_Price_Functions;
 		self::$settings = new WooCommerce_Role_Based_Price_Settings_Framework; 
 		new WooCommerce_Role_Based_Price_Product_Pricing;
-        if(wc_rbp_is_request('admin')){
+
+		if(wc_rbp_is_request('admin')){
             self::$admin = new WooCommerce_Role_Based_Price_Admin;
         }
 		
@@ -99,19 +100,13 @@ class WooCommerce_Role_Based_Price {
     }
     
 	# Returns Plugin's Functions Instance
-	public function func(){
-		return self::$functions;
-	}
+	public function func(){ return self::$functions; }
 	
 	# Returns Plugin's Settings Instance
-	public function settings(){
-		return self::$settings;
-	}
+	public function settings(){ return self::$settings; }
 	
 	# Returns Plugin's Admin Instance
-	public function admin(){
-		return self::$admin;
-	}
+	public function admin(){ return self::$admin; }
     
     /**
      * Loads Files Based On Give Path & regex
@@ -134,9 +129,7 @@ class WooCommerce_Role_Based_Price {
      * load translated mo file based on wp settings
      */
     public function load_plugin_mo_files($mofile, $domain) {
-        if (WC_RBP_TXT === $domain)
-            return WC_RBP_LANGUAGE_PATH.'/'.get_locale().'.mo';
-
+        if (WC_RBP_TXT === $domain) { return WC_RBP_LANGUAGE_PATH.'/'.get_locale().'.mo';}
         return $mofile;
     }
     
@@ -153,8 +146,10 @@ class WooCommerce_Role_Based_Price {
 		$this->define('WC_RBP_LANGUAGE_PATH',WC_RBP_PATH.'languages'); # Plugin Language Folder
 		$this->define('WC_RBP_ADMIN',WC_RBP_INC.'admin/'); # Plugin Admin Folder
 		$this->define('WC_RBP_SETTINGS',WC_RBP_ADMIN.'settings/'); # Plugin Settings Folder
+		$this->define('WC_RBP_PLUGIN',WC_RBP_PATH.'plugins/');
 		
 		$this->define('WC_RBP_URL',plugins_url('', __FILE__ ).'/');  # Plugin URL
+		$this->define('WC_RBP_PLUGIN_URL',WC_RBP_URL.'plugins/');  # Plugin URL
 		$this->define('WC_RBP_CSS',WC_RBP_URL.'includes/css/'); # Plugin CSS URL
 		$this->define('WC_RBP_IMG',WC_RBP_URL.'includes/img/'); # Plugin IMG URL
 		$this->define('WC_RBP_JS',WC_RBP_URL.'includes/js/'); # Plugin JS URL

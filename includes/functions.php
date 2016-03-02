@@ -274,7 +274,7 @@ if(!function_exists('wc_rbp_do_settings_sections')){
 			}	
 			echo '</ul> <br/>';
 		}
-
+		
 		foreach ( (array) $wp_settings_sections[$page] as $section ) {
 			if($section_count > 1){ echo '<div id="settings_'.$section['id'].'" class="hidden wc_rbp_settings_content">'; }
 				if ( $section['title'] )
@@ -356,10 +356,12 @@ if(!function_exists('product_rbp_price')){
 		global $product; 
 		if($productOBJ != null){
 			if(isset($productOBJ->wc_rbp)){ return $productOBJ->wc_rbp; }
+			else {return false;}
 		}
 		
 		if($product != null){
 			if(isset($product->wc_rbp)){ return $product->wc_rbp; }
+			else {return false;}
 		} 
 		
 		if($productOBJ == null && $product == null){
@@ -397,14 +399,16 @@ if(!function_exists('product_rbp_status')){
 		
 		if($productOBJ != null){ 
 			if(isset($productOBJ->wc_rbp_status)){ return $productOBJ->wc_rbp_status; }
+			else {return false;}
 		}
 		
-		if($product != null){
+		if($product != null){ 
 			if(isset($product->wc_rbp_status)){ return $product->wc_rbp_status; }
+			else {return false;}
 		} 
 
 		if($productOBJ == null && $product == null){
-			$status = wc_rbp_product_status($post_id);
+			$status = wc_rbp_product_status($post_id); 
 			return $status;
 		}		
 
@@ -420,8 +424,8 @@ if(!function_exists('wc_rbp_product_status')){
 	 * #TODO Integrate With product_rbp_status
 	 */
 	function wc_rbp_product_status($post_id){
-		$status = get_post_meta($post_id,'_enable_role_based_price',true);
-		if($status == '1'){return true;}
+		$status = get_post_meta($post_id,'_enable_role_based_price',true); 
+		if($status == '1' || $status == 'true'){return true;}
 		return false;
 	}
 }
