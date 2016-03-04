@@ -311,13 +311,83 @@ if(!function_exists('wc_rbp_get_editor_fields')){
 	}
 }
 
+if(!function_exists('wc_rbp_get_ajax_overlay')){
+	/**
+	 * Prints WC RBP Ajax Loading Code
+	 */
+	function wc_rbp_get_ajax_overlay($echo = true){
+		$return = '<div class="wc_rbp_ajax_overlay">
+		<div class="sk-folding-cube">
+		<div class="sk-cube1 sk-cube"></div>
+		<div class="sk-cube2 sk-cube"></div>
+		<div class="sk-cube4 sk-cube"></div>
+		<div class="sk-cube3 sk-cube"></div>
+		</div>
+		</div>';
+		if($echo){echo $return;}
+		else{return $return;}
+	}
+}
 
+if(!function_exists('wc_rbp_check_active_addon')){
+	function wc_rbp_check_active_addon($slug){
+		$addons = wc_rbp_get_active_addons();
+		if(in_array($slug,$addons)){ return true; }
+		return false;
+	}
+}
+
+if(!function_exists('wc_rbp_get_active_addons')){
+	/**
+	 * Returns Active Addons List
+	 * @return [[Type]] [[Description]]
+	 */
+	function wc_rbp_get_active_addons(){
+		$addons = get_option(WC_RBP_DB.'active_addons',array()); 
+		return $addons;
+	}
+}
+
+if(!function_exists('wc_rbp_update_active_addons')){
+	/**
+	 * Returns Active Addons List
+	 * @return [[Type]] [[Description]]
+	 */
+	function wc_rbp_update_active_addons($addons){
+		update_option(WC_RBP_DB.'active_addons',$addons); 
+		return true;
+	}
+}
+
+if(!function_exists('wc_rbp_activate_addon')){
+	function wc_rbp_activate_addon($slug){
+		$active_list = wc_rbp_get_active_addons();
+		if(!in_array($slug,$active_list)){
+			$active_list[] = $slug;
+			wc_rbp_update_active_addons($active_list);
+			return true;
+		}
+		return false;
+	}
+}
+
+if(!function_exists('wc_rbp_deactivate_addon')){
+	function wc_rbp_deactivate_addon($slug){
+		$active_list = wc_rbp_get_active_addons();
+		if(in_array($slug,$active_list)){
+			$key = array_search($slug, $active_list);
+			unset($active_list[$key]);
+			wc_rbp_update_active_addons($active_list);
+			return true;
+		}
+		return false;
+	}
+}
 
 
 /**
  * @public Below Function Are Used By The Plugin users 
  */
-
 if(!function_exists('wc_rbp_update_role_based_price')){
 	/**
 	 * Updates Products Role Based Price Array In DB

@@ -231,6 +231,13 @@ div.wc-rbp-modal-content.text div.enable_field_container p label {
 	padding-bottom: 10px;
 }
 
+div.wc_rbp_popup_section > div.wc_rbp_pop_field {
+	display: inline-block;
+	margin-right: 7px;
+	margin-left: 0;
+	width: 99%;
+}
+
 div.wc_rbp_popup_section > div.wc_rbp_pop_field_50 {
 	display: inline-block;
 	margin-right: 7px;
@@ -243,6 +250,116 @@ div.wc_rbp_popup_section > div.wc_rbp_pop_field_50:last-child {
 	margin-right: 0;
 	margin-left: 7px;
 }
+
+
+.wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins {
+    min-height: auto;
+    padding: 5px 20px;
+}
+
+.wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins > div > p {
+    margin: 0;
+}
+
+.wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins ul {
+    list-style: inside none disc;
+	display: inline-block;
+	margin-bottom: 10px; 
+	margin-top: 10px;
+}
+
+.wc_rbp_required_addon_plugin_name {
+    color: #0073aa;
+}
+
+
+.wc_rbp_required_addon_plugin_status.active {
+    color: green;
+    font-weight: bold;
+}
+
+.wc_rbp_required_addon_plugin_status.deactivated {
+    color: red;
+    font-weight: bold;
+}
+
+.wc-rbp-addons-required-plugins li {
+    padding: 0 10px;
+}
+
+.wc-rbp-addons-required-plugins li.notexist {
+    background: red none repeat scroll 0 0;
+    color: white;
+    font-weight: bold;
+}
+
+
+.wc-rbp-addons-required-plugins li.notexist  .wc_rbp_required_addon_plugin_name{
+	color: white;
+}
+
+
+.wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins h3 {
+    color: navy;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.wc_rbp_addon_listing .desc.column-description {
+    margin-right: 0;
+}
+.wc_rbp_addon_listing .name.column-name {
+    margin-right: 0;
+}
+
+
+
+.wc_rbp_addon_listing .plugin-card-bottom .column-updated {
+    width: calc(100% - 300px);
+}
+
+.wc_rbp_addon_listing .wc_rbp_ajax_overlay {
+    border-radius: 3px;  
+    opacity: 0.13;
+    position: absolute; 
+}
+
+.wc_rbp_addon_listing .sk-folding-cube {
+    height: 50px;
+    margin: 10px auto;
+    top: 30%;
+    width: 50px;
+}
+
+.column-downloaded.wc_rbp_ajax_response {
+    float: none;
+    max-width: none;
+	display: block;
+    max-width: 330px;
+}
+
+.column-downloaded.wc_rbp_ajax_response span {
+    margin-top:0;
+}
+
+
+.wc_rbp_ajax_error {
+    color: red;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.wc_rbp_ajax_success {
+    color: green;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
 
 
 /*

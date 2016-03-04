@@ -17,6 +17,7 @@ class WooCommerce_Role_Based_Price {
     protected static $functions = null; # Required Plugin Class Instance
 	protected static $admin = null;     # Required Plugin Class Instance
 	protected static $settings = null;  # Required Plugin Class Instance
+	protected static $frontend = null;  # Required Plugin Class INstance
 
     /**
      * Creates or returns an instance of this class.
@@ -80,17 +81,44 @@ class WooCommerce_Role_Based_Price {
 		if(wc_rbp_is_request('admin')){
 		   $this->load_files(WC_RBP_ADMIN.'class-*.php');
 		} 
+		
+		do_action('wc_rbp_before_addons_load');
+		$this->load_addons();
+
     }
+	
+	public function load_addons(){ 
+		$addons = wc_rbp_get_active_addons();
+		if(!empty($addons)){
+			foreach($addons as $addon){
+				if(apply_filters('wc_rbp_load_addon',true,$addon)){
+					do_action('wc_rbp_before_'.$addon.'_addon_load');
+					$this->load_addon($addon);
+					do_action('wc_rbp_after_'.$addon.'_addon_load');
+				}
+			}
+		}
+	}
+	
+	public function load_addon($file){
+		if(file_exists(WC_RBP_PLUGIN.$file)){
+			$this->load_files(WC_RBP_PLUGIN.$file);
+		} else if(file_exists($file = apply_filters('wc_rbp_addon_file_location',$file))) {
+			$this->load_files($file);
+		} else {
+			do_action('wc_rbp_addon_'.$file.'_load');
+		}
+	}
     
     /**
      * Inits loaded Class
      */
     public function init(){
 		do_action('wc_rbp_before_init');
-		new WooCommerce_Role_Based_Price_Extensions;
+		
         self::$functions = new WooCommerce_Role_Based_Price_Functions;
 		self::$settings = new WooCommerce_Role_Based_Price_Settings_Framework; 
-		new WooCommerce_Role_Based_Price_Product_Pricing;
+		self::$frontend = new WooCommerce_Role_Based_Price_Product_Pricing;
 
 		if(wc_rbp_is_request('admin')){
             self::$admin = new WooCommerce_Role_Based_Price_Admin;

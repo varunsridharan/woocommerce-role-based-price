@@ -18,13 +18,20 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 	
 	public function settings_pages($page){
 		$page[] = array('id'=>'general','slug'=>'general','title'=>__('General',WC_RBP_TXT));
+		$page[] = array('id'=>'addonssettings','slug'=>'addonssettings','title'=>__('Add-ons Options',WC_RBP_TXT));
 		$page[] = array('id'=>'addons','slug'=>'wcrbpaddons','title'=>__('Add-ons',WC_RBP_TXT));
 		return $page;
 	}
 	public function settings_section($section){
 		$section['general'][] = array( 'id'=>'general', 'title'=> __('General',WC_RBP_TXT));
 		$section['general'][] = array( 'id'=>'price_edit_view', 'title'=> __('Popup Editor View',WC_RBP_TXT));
-		$section['addons'][] = array( 'id'=>'extensions', 'title'=>'',  );
+		$section['addons'][] = array( 'id'=>'addons', 'title'=>'');
+		$addonSettings = array('addon_sample' => array( 'id'=>'addonssettings', 'title'=>__('No Addons Activated / Installed.',WC_RBP_TXT)));
+		$addonSettings = apply_filters('wc_rbp_addon_sections',$addonSettings);
+
+		if(count($addonSettings) > 1) 			
+			unset($addonSettings['addon_sample']);
+		$section['addonssettings']  = $addonSettings;
 		return $section;
 	}
 	
@@ -71,16 +78,11 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 				),
 			'attr'    => array( 'class' => 'wc-rbp-enhanced-select', 'style' => 'width:auto;max-width:35%;', )
 		);
-		
-		
-		
-		//$fields['addons']['extensions'][] =
-		//	array(
-		//	'id' => WC_RBP_DB.'extensions',
-		//	'type' => 'extra',
-		//	'content' => 'ASFASF',
-		//);
 		 
+		$addonSettings = array('addon_sample' => array());
+		$addonSettings = apply_filters('wc_rbp_addon_fields',$addonSettings);
+		unset($addonSettings['addon_sample']);
+		$fields['addonssettings'] = $addonSettings;
 	
 		return $fields;
 	}

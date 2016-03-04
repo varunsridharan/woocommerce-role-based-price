@@ -1,11 +1,4 @@
-<div class="wc_rbp_ajax_overlay">
-	<div class="sk-folding-cube">
-		<div class="sk-cube1 sk-cube"></div>
-		<div class="sk-cube2 sk-cube"></div>
-		<div class="sk-cube4 sk-cube"></div>
-		<div class="sk-cube3 sk-cube"></div>
-	</div>
-</div>
+<?php wc_rbp_get_ajax_overlay(); ?>
 
 <div class="wc_rbp_price_editor_fields" style="display:none;">
 	<form method="post" action="<?php echo admin_url('admin-ajax.php');?>" id="wc_rbp_price_editor_form">

@@ -8,38 +8,176 @@
  */
 if ( ! defined( 'WPINC' ) ) { die; }
 
-class WooCommerce_Role_Based_Price_Extensions {
+class WooCommerce_Role_Based_Price_Addons {
     
     public function __construct() {
     	add_action(WC_RBP_DB.'_form_fields',array($this,'list_addons'),10,2);
-    }
+		add_action( 'wp_ajax_wc_rbp_activate_addon',array($this,'activate_plugin'));
+		add_action( 'wp_ajax_wc_rbp_deactivate_addon',array($this,'deactivate_plugin'));
+    }	
+	
+	public function deactivate_plugin(){
+		$status = $this->addon_actions('deactivate');
+		if($status === 'invalidcode'){
+			wp_send_json_error(array('msg' => '<span class="wc_rbp_ajax_error">'.__('Unable to process you request. please try again later',WC_RBP_TXT).'</span>'));
+		} else if($status === 'verifyfailed'){
+			wp_send_json_error(array('msg' => '<span class="wc_rbp_ajax_ajaxerror">'.__('Unable To De-Activate Addon. Please Try Again Later',WC_RBP_TXT).'</span>'));		
+		} else if($status === true){
+			wp_send_json_success(array('msg' => '<span class="wc_rbp_ajax_success">'.__('Addon De-Activated',WC_RBP_TXT).'</span>'));		
+		} else if($status === 'alreadyactive'){
+			wp_send_json_success(array('msg' => '<span class="wc_rbp_ajax_success">'.__('Addon Already De-Activated',WC_RBP_TXT).'</span>'));		
+		} else {
+			wp_send_json_error(array('msg' => '<span class="wc_rbp_ajax_error">'.__('Unable To De-Activate Addon. Please Try Again Later',WC_RBP_TXT).'</span>'));		
+		}
+		wp_die();  
+	}
+	
+	public function activate_plugin(){
+		$status = $this->addon_actions();
+		if($status === 'invalidcode'){
+			wp_send_json_error(array('msg' => '<span class="wc_rbp_ajax_error">'.__('Unable to process you request. please try again later',WC_RBP_TXT).'</span>'));
+		} else if($status === 'verifyfailed'){
+			wp_send_json_error(array('msg' => '<span class="wc_rbp_ajax_ajaxerror">'.__('Unable To Activate Addon. Please Try Again Later',WC_RBP_TXT).'</span>'));		
+		} else if($status === true){
+			wp_send_json_success(array('msg' => '<span class="wc_rbp_ajax_success">'.__('Addon Activated',WC_RBP_TXT).'</span>'));		
+		} else if($status === 'alreadyactive'){
+			wp_send_json_success(array('msg' => '<span class="wc_rbp_ajax_success">'.__('Addon Already Activated',WC_RBP_TXT).'</span>'));		
+		} else {
+			wp_send_json_error(array('msg' => '<span class="wc_rbp_ajax_error">'.__('Unable To Activate Addon. Please Try Again Later',WC_RBP_TXT).'</span>'));		
+		}
+		wp_die();  
+	}
+	
+	public function addon_actions($action = 'activate'){
+		if(! isset($_REQUEST['wc_rbp_security_code'])){ return 'invalidcode'; }
+		$nonce_action = 'wc_rbp_'.$action.'_addon';
+		$verify = wp_verify_nonce( $_REQUEST['wc_rbp_security_code'], $nonce_action );
+		if(!$verify){return 'verifyfailed';}
+		$function_call = 'wc_rbp_'.$action.'_addon';
+		$status = $function_call($_REQUEST['addon_slug']);
+		if($status){return true;}
+		else if(!$status){return 'alreadyactive';}
+		return false;
+	}
 	
 	public function list_addons($none,$form_id){
 		if($form_id != 'addons'){return;}
-		$this->plugins_data = $this->get_plugins();
+		$this->plugins_data = $this->search_and_get_addons();
 		$this->generate_view();
 	}
 	
-	
+	public function search_and_get_addons(){
+		$search_dirs = apply_filters('wc_rbp_addons_dir',array()); 
+		$addons_others = array();
+		$internal_addons = $this->get_plugins(WC_RBP_PLUGIN);
+		
+		if(!empty($search_dirs)){
+			foreach($search_dirs as $dir){
+				$dir_addons = $this->get_plugins($dir); 
+				$addons_others = array_merge($addons_others,$dir_addons);
+				unset($dir_addons);
+			}
+		}
+		
+		$return = array_merge($internal_addons,$addons_others);
+		return $return;
+	}
 	
 	public function generate_view(){
 		include(WC_RBP_ADMIN.'views/addons-header.php');
-		//sanitize_html_class
 		foreach($this->plugins_data as $addon_slug => $data){
-			global $wc_rbp_plugin_data;
 			$wc_rbp_plugin_data = $data; 
+			$wc_rbp_plugin_slug = $addon_slug;
+			$required_plugins = $this->extract_required_plugins($wc_rbp_plugin_data);
 			include(WC_RBP_ADMIN.'views/addons-single.php');
 			unset($wc_rbp_plugin_data);
 		}
-		
-		
 		include(WC_RBP_ADMIN.'views/addons-footer.php');
 	}
+
+	public function extract_required_plugins($wc_rbp_plugin_data){
+		$plugins = $wc_rbp_plugin_data['rplugins'];
+		$plugins_return = array();
+		$plugins = explode(' , ',$plugins); 
+		foreach($plugins as $plugin){
+			$tmp_arr = array();
+			$plugin = str_replace(array('[',']'),'',$plugin);
+			$plug = explode(' | ',$plugin);
+			if(isset($plug[0]) && ! empty($plug[0]) ){ $tmp_arr['name'] = $plug[0];}
+			if(isset($plug[1]) && ! empty($plug[1]) ){ $tmp_arr['slug'] = $plug[1];}
+			if(isset($plug[2])){ $tmp_arr['version'] = $plug[2];}
+
+			if(!empty($tmp_arr))
+				$plugins_return[] = $tmp_arr;
+		}
+		
+		return $plugins_return;
+	}
 	
+	public function check_plugin_status($slug){ 
+		$val_plugin = validate_plugin($slug);
+		if(is_wp_error($val_plugin)){ return 'notexist'; } 
+		else if(is_plugin_active($slug)){ return true; } 
+		else if(is_plugin_inactive($slug)){ return false; }
+	 	return false;
+	}
 	
+	public function check_if_requried_satisfied($requireds){
+		$success = 0;
+		$failed = 0;
+		foreach($requireds as $plugin){
+			$plugin_status = $this->check_plugin_status($plugin['slug']);
+			if($plugin_status === true){$success++;}
+			else {$failed++;}
+		}
+		
+		if($success == count($requireds)){ return true; }
+		return false;
+	}
 	
+	public function get_addon_action_link($plugin_slug,$type="active"){
+		$is_active = wc_rbp_check_active_addon($plugin_slug);
+		$action = 'wc_rbp_activate_addon';
+		if($type == 'deactivate'){ $action = 'wc_rbp_deactivate_addon';} 
+		$url = admin_url('admin-ajax.php?action='.$action.'&addon_slug='.$plugin_slug);
+		$url = wp_nonce_url($url,$action, 'wc_rbp_security_code');
+		return $url;
+	}
 	
+	public function get_addon_action_button($plugin_slug,$required_plugins){
+		
+		$is_active = wc_rbp_check_active_addon($plugin_slug);
+		$extraClass = '';
+		$activate_button_text = __('Activate',WC_RBP_TXT);
+		$inactivate_button_text = __('Deactivate',WC_RBP_TXT);
+		$requried_satisfied = $this->check_if_requried_satisfied($required_plugins);
+		$activate_button_url = $this->get_addon_action_link($plugin_slug);
+		$inactivate_button_url = $this->get_addon_action_link($plugin_slug,'deactivate');
+		$activate_button_html = '<button type="button" data-slug="'.$plugin_slug.'" ';
+		$inactivate_button_html = '<button type="button" data-slug="'.$plugin_slug.'" ';
+		$activate_button_html .= 'class="wc-rbp-activate-now button button-primary ';
+		$inactivate_button_html .= 'class="wc-rbp-deactivate-now button button-secondary ';
+
+		if($is_active){
+			$activate_button_html .= ' hidden hide "';
+			$inactivate_button_html .= '"';
+		} else {
+			$activate_button_html .= '"';
+			$inactivate_button_html .= ' hidden hide "';
+
+		}
+
+		if(! $requried_satisfied){
+			$activate_button_html .= ' disabled="disabled" ';
+		}
+		
+		$activate_button_html .= ' href="'.$activate_button_url.'" >'.$activate_button_text.'</button>';
+		$inactivate_button_html .= ' href="'.$inactivate_button_url.'" >'.$inactivate_button_text.'</button>';
+		$html_btn = $activate_button_html.$inactivate_button_html;
+		return $html_btn;
 	
+	}
+		
 	/**
 	 * Check the plugins directory and retrieve all plugin files with plugin data.
 	 * The file with the plugin data is the file that will be included and therefore
@@ -51,7 +189,7 @@ class WooCommerce_Role_Based_Price_Extensions {
 	 * @param string $plugin_folder Optional. Relative path to single plugin folder.
 	 * @return array Key is the plugin file path and the value is an array of the plugin data.
 	 */
-	function get_plugins($plugin_folder = '') {
+	public function get_plugins($plugin_folder = '') {
 		$wp_plugins = array ();
 		$plugin_root = WC_RBP_PLUGIN;
 		if ( !empty($plugin_folder) ){ $plugin_root = $plugin_folder;}
@@ -78,19 +216,19 @@ class WooCommerce_Role_Based_Price_Extensions {
 		}
 
 		if ( empty($plugin_files) ) {return $wp_plugins;}
-		foreach ( $plugin_files as $plugin_file ) {
+		foreach ( $plugin_files as $plugin_file ) { 
 			if ( !is_readable( "$plugin_root/$plugin_file" ) ) {continue;}
 			$plugin_data = $this->get_plugin_data( "$plugin_root/$plugin_file", false, false ); 
 			if ( empty ( $plugin_data['name'] ) ) { continue;} 
+			$plugin_data["addon_root"] = $plugin_root.dirname($plugin_file).'/';
+			$plugin_data["addon_slug"] = sanitize_title(dirname($plugin_file));
+			$plugin_data["addon_folder"] = dirname($plugin_file).'/';
 			$wp_plugins[plugin_basename( $plugin_file )] = $plugin_data;
 		}
-
 		
 		return $wp_plugins;
 	}
 	
-	
-
 	/**
 	 * Parses the plugin contents to retrieve plugin's metadata.
 	 * The metadata of the plugin's data searches for the following in the plugin's
@@ -98,31 +236,20 @@ class WooCommerce_Role_Based_Price_Extensions {
 	 * must not have any newlines or only parts of the description will be displayed
 	 * and the same goes for the plugin data. The below is formatted for printing.
 	 *
-	 *	* Plugin Name: Name of the plugin
-	 *	* Plugin Icon: (Icon URL / DATA Code)
-	 *	* Description: some Description about plugin
-	 *	* Version: 01
-	 *	* Author: Author Name
-	 *	* Author URL: Author URL
-	 *	* Last Update: YYYY-MM-DD
-	 *	* Required Plugins: plugin-folder/plugin-file.php | Version , plugin-folder/plugin-file.php | 2.0*     /*
-	 *    
-	 * Some users have issues with opening large files and manipulating the contents
-	 * for want is usually the first 1kiB or 2kiB. This function stops pulling in
-	 * the plugin contents when it has all of the required plugin data.
-	 * The first 8kiB of the file will be pulled in and if the plugin data is not
-	 * within that first 8kiB, then the plugin author should correct their plugin
-	 * and move the plugin data headers to the top.
-	 * The plugin file is assumed to have permissions to allow for scripts to read
-	 * the file. This is not checked however and the file is only opened for
-	 * reading.
+	 *	** Plugin Name: Name of the plugin
+	 *	** Plugin Icon: (Icon URL / DATA Code)
+	 *	** Description: some Description about plugin
+	 *	** Version: 01
+	 *	** Author: Author Name
+	 *	** Author URL: Author URL
+	 *	** Last Update: YYYY-MM-DD
+	 *	** Required Plugins: plugin-folder/plugin-file.php | Version , plugin-folder/plugin-file.php | 2.0*
 	 *
-	 * @since 3.0
 	 * @param string $plugin_file Path to the plugin file
 	 * @param bool   $markup      Optional. If the returned data should have HTML markup applied. Default true.
 	 * @param bool   $translate   Optional. If the returned data should be translated. Default true.
 	 */
-	function get_plugin_data( $plugin_file, $markup = true, $translate = true ) {
+	public function get_plugin_data( $plugin_file, $markup = true, $translate = true ) {
 		$default_headers = array(
 			'name' => 'Plugin Name',
 			'icon' => 'Plugin Icon',
@@ -144,6 +271,32 @@ class WooCommerce_Role_Based_Price_Extensions {
 		return $plugin_data;
 	}
 	
+	
+	public function get_addon_icon($data,$echo = true){
+		
+		$icon = WC_RBP_IMG.'addon_icon.jpg';
+
+		if(file_exists($data['addon_root'].'icon.png') ){
+			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].'icon.png'; 
+		} else if(file_exists($data['addon_root'].'icon.jpg')){
+			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].'icon.jpg';
+		} else if(file_exists($data['addon_root'].$data['addon_slug'].'-icon.png')){
+			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].$data['addon_slug'].'-icon.png';
+		} else if(file_exists($data['addon_root'].$data['addon_slug'].'-icon.jpg')){
+			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].$data['addon_slug'].'-icon.jpg';
+		} else if(isset($data['icon'])){
+			if(filter_var($data['icon'], FILTER_VALIDATE_URL) !== FALSE){
+				$icon = $data['icon'];
+			}
+		}
+		
+		$icon = '<img src="'.$icon.'" class="plugin-icon" />';
+		if($echo){
+			echo $icon;
+		} else {
+			return $icon;
+		}
+	}
 	
 }
 ?>

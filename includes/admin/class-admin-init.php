@@ -37,6 +37,7 @@ class WooCommerce_Role_Based_Price_Admin {
     public function admin_init(){
 		new WooCommerce_Role_Based_Price_Admin_Product_Functions;
         new WooCommerce_Role_Based_Price_Admin_Ajax_Handler;
+		new WooCommerce_Role_Based_Price_Addons;
        # new WooCommerce_Role_Based_Price_Admin_Sample_Class;
     } 
     

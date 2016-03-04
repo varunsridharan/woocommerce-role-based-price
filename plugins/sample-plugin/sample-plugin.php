@@ -7,5 +7,21 @@
  * Author: Varun Sridharan
  * Author URL: http://varunsridharan.in
  * Last Update: 02-10-2004 
- * Required Plugins: woocommerce/woocommerce.php | 2.2.5
+ * Required Plugins: [WooCommerce | woocommerce/woocommerce.php | 2.2.5]
  */
+
+ 
+if ( ! defined( 'WPINC' ) ) { die; }
+
+class WooCommerce_Role_Based_Price_Admin_Sample_Classss {
+    
+    public function __construct() {
+    	add_action('wc_rbp_after_sample-plugin/sample-plugin.php_addon_load',array($this,'init_plugin'));
+    }
+	
+	public function init_plugin(){
+	}
+}
+
+return new WooCommerce_Role_Based_Price_Admin_Sample_Classss;
+?>

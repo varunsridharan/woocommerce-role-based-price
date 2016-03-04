@@ -121,7 +121,7 @@ class WooCommerce_Role_Based_Price_Settings_Framework {
 		echo '<div class="wrap wc_qd_settings">';
 		settings_errors();
 		$this->settings->render_header();
-		echo $this->settings->debug;
+		//echo $this->settings->debug;
 		$this->settings->render_form();
 		echo '</div>';
 	}
