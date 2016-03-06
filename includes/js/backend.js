@@ -62,5 +62,6 @@ function render_price_edit_tabs(Elem){
 	  theme:theme,
 	  rtl:rtl,
 	}); 
+	
 	return true;
 }

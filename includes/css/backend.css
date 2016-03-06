@@ -25,6 +25,16 @@ div.jqifade {
 	width: 100%;
 }
 
+
+.subsubsub.addons_category {
+    display: block;
+    font-size: 14px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+
+
 /**
  * Custom Box Modal Style
  
@@ -202,8 +212,8 @@ div.pws_tabs_container.pws_tabs_horizontal_top ul.pws_tabs_controll a.pws_tab_ac
 
 .pws_tab_single {
 	display: block !important;
-	max-width: 94% !important;
-	/*padding-right: 0 !important;*/
+	max-width: 96% !important;
+	padding-right: 0 !important;
 	width: 100%;
 }
 
@@ -238,17 +248,18 @@ div.wc_rbp_popup_section > div.wc_rbp_pop_field {
 	width: 99%;
 }
 
-div.wc_rbp_popup_section > div.wc_rbp_pop_field_50 {
+div.wc_rbp_popup_section  div.wc_rbp_pop_field_50 {
 	display: inline-block;
-	margin-right: 7px;
+	margin-right: calc(50% - 49%);
 	margin-left: 0;
 	width: 49%;
+	
 }
 
-div.wc_rbp_popup_section > div.wc_rbp_pop_field_50:last-child {
+div.wc_rbp_popup_section  div.wc_rbp_pop_field_50:last-child {
 	display: inline-block;
 	margin-right: 0;
-	margin-left: 7px;
+	margin-left: calc(50% - 49%);
 }
 
 

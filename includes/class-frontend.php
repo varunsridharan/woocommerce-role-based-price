@@ -23,21 +23,15 @@ class WooCommerce_Role_Based_Price_Functions {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		add_filter('woocommerce_product_class',array($this,'change'),10,4);
-		//add_filter('woocommerce_product_object',array($this,'setup_product_prices'));
+		add_filter( 'woocommerce_product_object',array($this,'setup_product_prices'));
         add_action( 'wp_enqueue_scripts', array($this,'enqueue_styles') );
         add_action( 'wp_enqueue_scripts', array($this,'enqueue_scripts') );
     }
 	
-	public function change($classname, $product_type, $post_type, $product_id){
-		if($classname == 'WC_Product_Simple') { $classname = 'WC_Product_Simple_RBP'; }  
-		if($classname == 'WC_Product_Variation'){ $classname = 'WC_Product_Variation_RBP'; }
-		$classname = apply_filters('wc_rbp_custom_product_class',$classname);
-		return $classname;
-	}
-    
 	public function setup_product_prices($product){
 		$product->wc_rbp = wc_rbp_get_product_price($product->ID);
+		$product->wc_rbp_status = wc_rbp_product_status($product->ID);
+		do_action_ref_array('wc_rbp_product_class_attribute',array($product));
 		return $product;
 	}
     

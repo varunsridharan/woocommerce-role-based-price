@@ -1,3 +1,5 @@
+var http_reffer = '';
+var addons_html = '';
 jQuery(document).ready(function(){
 	
 	
@@ -18,6 +20,8 @@ jQuery(document).ready(function(){
 			jQuery('.wc_rbp_settings_submenu a:first').addClass('current');
 			id = jQuery('.wc_rbp_settings_submenu a:first').attr('href');
 		}
+		http_reffer = jQuery('input[name=_wp_http_referer').val();
+		
 		settings_showHash(id);
 	}
 	
@@ -26,16 +30,31 @@ jQuery(document).ready(function(){
 		jQuery('.wc_rbp_settings_submenu a').removeClass('current');
 		jQuery(this).addClass('current');
 		settings_showHash(id);
+		jQuery('input[name=_wp_http_referer').val(http_reffer + id)
 	});	
 
 	
-	jQuery('.wc-rbp-activate-now').click(function(){
-		active_deactive_addon(jQuery(this),'.wc-rbp-deactivate-now')
+	jQuery('.wc_rbp_addon_listing').on('click','.wc-rbp-activate-now', function(){
+		active_deactive_addon(jQuery(this),'.wc-rbp-deactivate-now') 
 	});
 	
-	jQuery('.wc-rbp-deactivate-now').click(function(){
-		active_deactive_addon(jQuery(this),'.wc-rbp-activate-now')
+	jQuery('.wc_rbp_addon_listing').on('click','.wc-rbp-deactivate-now', function(){
+		active_deactive_addon(jQuery(this),'.wc-rbp-activate-now') 
 	});
+	
+	addons_html = jQuery('.wc_rbp_addon_listing').clone();
+	
+	jQuery('ul.addons_category li a:first').addClass('current');
+	jQuery('ul.addons_category li a').click(function(){
+		var cat = jQuery(this).attr('data-category');
+		var NewDis = 'div.wc-rbp-addon-' +  cat;
+		jQuery('ul.addons_category li a').removeClass('current');
+		jQuery(this).addClass('current');
+		jQuery('.wc_rbp_addon_listing').html(addons_html.find(NewDis).clone());
+		//jQuery('.wc-rbp-addon-all').hide();
+		//jQuery(NewDis).show();
+	});
+	
 });
 
 function settings_showHash(id){

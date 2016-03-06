@@ -9,6 +9,7 @@ jQuery(document).ready(function () {
 			complete: function () {
 				jQuery('div.wc_rbp_price_editor_fields').show();
 				var render_tabs = render_price_edit_tabs(jQuery("div.wc-rbp-modal div.wc_rbp_tabs"));
+				jQuery('.wc-rbp-modal').trigger('after_tab_setup');
 				//if(render_tabs){}
 				render_checkbox();
 

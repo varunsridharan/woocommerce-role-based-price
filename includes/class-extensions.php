@@ -84,6 +84,8 @@ class WooCommerce_Role_Based_Price_Addons {
 	}
 	
 	public function generate_view(){
+		$category = $this->get_addon_category();
+		$category = $this->get_html_addon_category($category);
 		include(WC_RBP_ADMIN.'views/addons-header.php');
 		foreach($this->plugins_data as $addon_slug => $data){
 			$wc_rbp_plugin_data = $data; 
@@ -94,23 +96,53 @@ class WooCommerce_Role_Based_Price_Addons {
 		}
 		include(WC_RBP_ADMIN.'views/addons-footer.php');
 	}
+	
+	public function get_addon_category(){
+		$category = array();
+		$category['all']  = __('All',WC_RBP_TXT);
+		foreach($this->plugins_data as  $data){
+			if(!in_array($data['Category'],$category)){
+				$category[$data['CategorySlug']]  = $data['CategorySlug'];
+			}
+		}
+		return $category;
+	}
 
-	public function extract_required_plugins($wc_rbp_plugin_data){
+	public function get_html_addon_category($cats){
+		$output = '<ul class="subsubsub addons_category">';
+		
+		foreach($cats as $cat => $catv){
+			$output .= '<li><a href="javascript:void(0);" data-category="'.$cat.'">'.$catv.'</a> |  </li>';
+		}
+		$output .= '</ul>';
+		return $output;
+	}
+	
+	public function extract_required_plugins($wc_rbp_plugin_data){ 
 		$plugins = $wc_rbp_plugin_data['rplugins'];
 		$plugins_return = array();
-		$plugins = explode(' , ',$plugins); 
+		$plugins = explode(',',$plugins); 
+		$default_args = array('Name' => '','URL' => '','Version' => '','Slug' => '');
+		
 		foreach($plugins as $plugin){
+			if(empty($plugin)){continue;}
 			$tmp_arr = array();
 			$plugin = str_replace(array('[',']'),'',$plugin);
-			$plug = explode(' | ',$plugin);
-			if(isset($plug[0]) && ! empty($plug[0]) ){ $tmp_arr['name'] = $plug[0];}
-			if(isset($plug[1]) && ! empty($plug[1]) ){ $tmp_arr['slug'] = $plug[1];}
-			if(isset($plug[2])){ $tmp_arr['version'] = $plug[2];}
+			$plug = explode('|',$plugin);
+			
+			foreach($plug as $p){
 
-			if(!empty($tmp_arr))
+				$s = preg_split("/ : /", $p);
+				$s[0] = trim($s[0]);
+				$s[1] = trim($s[1]);  
+				$tmp_arr[$s[0]] = $s[1];
+			}
+			
+			if(!empty($tmp_arr)) {
+				$tmp_arr = wp_parse_args($tmp_arr,$default_args);
 				$plugins_return[] = $tmp_arr;
+			}
 		}
-		
 		return $plugins_return;
 	}
 	
@@ -126,7 +158,7 @@ class WooCommerce_Role_Based_Price_Addons {
 		$success = 0;
 		$failed = 0;
 		foreach($requireds as $plugin){
-			$plugin_status = $this->check_plugin_status($plugin['slug']);
+			$plugin_status = $this->check_plugin_status($plugin['Slug']);
 			if($plugin_status === true){$success++;}
 			else {$failed++;}
 		}
@@ -218,8 +250,8 @@ class WooCommerce_Role_Based_Price_Addons {
 		if ( empty($plugin_files) ) {return $wp_plugins;}
 		foreach ( $plugin_files as $plugin_file ) { 
 			if ( !is_readable( "$plugin_root/$plugin_file" ) ) {continue;}
-			$plugin_data = $this->get_plugin_data( "$plugin_root/$plugin_file", false, false ); 
-			if ( empty ( $plugin_data['name'] ) ) { continue;} 
+			$plugin_data = $this->get_plugin_data( "$plugin_root/$plugin_file", false, true ); 
+			if ( empty ( $plugin_data['Name'] ) ) { continue;} 
 			$plugin_data["addon_root"] = $plugin_root.dirname($plugin_file).'/';
 			$plugin_data["addon_slug"] = sanitize_title(dirname($plugin_file));
 			$plugin_data["addon_folder"] = dirname($plugin_file).'/';
@@ -251,31 +283,38 @@ class WooCommerce_Role_Based_Price_Addons {
 	 */
 	public function get_plugin_data( $plugin_file, $markup = true, $translate = true ) {
 		$default_headers = array(
-			'name' => 'Plugin Name',
+			'Name' => 'Plugin Name',
+			'PluginURI' => 'Plugin URI',
 			'icon' => 'Plugin Icon',
-			'decs' => 'Description',
-			'version' => 'Version',
-			'author' => 'Author',
-			'author_link' => 'Author URL',
+			'Version' => 'Version',
+			'Description' => 'Description',
+			'Author' => 'Author',
+			'AuthorURI' => 'Author URI',
 			'last_update' => 'Last Update',
 			'rplugins' => 'Required Plugins',
+			'Category' => 'Category',
 		);
 
 		$plugin_data = get_file_data( $plugin_file, $default_headers, 'wc_rbp_plugin' );
+
+		if(empty($plugin_data['TextDomain'])){$plugin_data['TextDomain'] = WC_RBP_TXT;}
+		if(empty($plugin_data['DomainPath'])){$plugin_data['DomainPath'] = false;}
+		if(empty($plugin_data['Category'])){$plugin_data['Category'] = 'general';}
+		$plugin_data['CategorySlug'] = sanitize_key($plugin_data['Category']);
+		
+		
 		if ( $markup || $translate ) {
 			$plugin_data = _get_plugin_data_markup_translate( $plugin_file, $plugin_data, $markup, $translate );
 		} else {
 			$plugin_data['Title']      = $plugin_data['name'];
 			$plugin_data['AuthorName'] = $plugin_data['author'];
 		}
+		
 		return $plugin_data;
 	}
 	
-	
 	public function get_addon_icon($data,$echo = true){
-		
 		$icon = WC_RBP_IMG.'addon_icon.jpg';
-
 		if(file_exists($data['addon_root'].'icon.png') ){
 			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].'icon.png'; 
 		} else if(file_exists($data['addon_root'].'icon.jpg')){
@@ -291,11 +330,8 @@ class WooCommerce_Role_Based_Price_Addons {
 		}
 		
 		$icon = '<img src="'.$icon.'" class="plugin-icon" />';
-		if($echo){
-			echo $icon;
-		} else {
-			return $icon;
-		}
+		if($echo){ echo $icon; }
+		else { return $icon; }
 	}
 	
 }

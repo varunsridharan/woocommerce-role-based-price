@@ -425,12 +425,12 @@ if(!function_exists('product_rbp_price')){
 	function product_rbp_price($post_id,$productOBJ = null){
 		global $product; 
 		if($productOBJ != null){
-			if(isset($productOBJ->wc_rbp)){ return $productOBJ->wc_rbp; }
+			if(isset($productOBJ->post->wc_rbp)){ return $productOBJ->post->wc_rbp; }
 			else {return false;}
 		}
 		
 		if($product != null){
-			if(isset($product->wc_rbp)){ return $product->wc_rbp; }
+			if(isset($product->post->wc_rbp)){ return $product->post->wc_rbp; }
 			else {return false;}
 		} 
 		
@@ -468,12 +468,12 @@ if(!function_exists('product_rbp_status')){
 		global $product; 
 		
 		if($productOBJ != null){ 
-			if(isset($productOBJ->wc_rbp_status)){ return $productOBJ->wc_rbp_status; }
+			if(isset($productOBJ->post->wc_rbp_status)){ return $productOBJ->post->wc_rbp_status; }
 			else {return false;}
 		}
 		
 		if($product != null){ 
-			if(isset($product->wc_rbp_status)){ return $product->wc_rbp_status; }
+			if(isset($product->post->wc_rbp_status)){ return $product->post->wc_rbp_status; }
 			else {return false;}
 		} 
 

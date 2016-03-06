@@ -46,8 +46,9 @@ class WooCommerce_Role_Based_Price_Admin {
 	 */
 	public function enqueue_styles() { 
 		$current_screen = wc_rbp_current_screen();
-        
+        $addon_url = admin_url('admin-ajax.php?action=wc_rbp_addon_custom_css');
         wp_enqueue_style(WC_RBP_SLUG.'_backend_style',WC_RBP_CSS.'backend.css' , array(), WC_RBP_V, 'all' );  
+		wp_enqueue_style(WC_RBP_SLUG.'_addons_style',$addon_url , array(), WC_RBP_V, 'all' );  
         
         if(in_array($current_screen , wc_rbp_get_screen_ids())) { }
 		
@@ -67,8 +68,9 @@ class WooCommerce_Role_Based_Price_Admin {
 	 */
 	public function enqueue_scripts() {
 		$current_screen = wc_rbp_current_screen();
-        
+        $addon_url = admin_url('admin-ajax.php?action=wc_rbp_addon_custom_js');
         wp_enqueue_script(WC_RBP_SLUG.'_backend_script', WC_RBP_JS.'backend.js', array('jquery'), WC_RBP_V, false ); 
+		wp_enqueue_script(WC_RBP_SLUG.'_addons_script', $addon_url, array('jquery'), WC_RBP_V, false ); 
         
         if(in_array($current_screen , wc_rbp_get_screen_ids())) {}
 		

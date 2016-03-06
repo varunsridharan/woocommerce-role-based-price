@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
     
     public function __construct() {
-    	add_action('wc_rbp_price_edit_before_tab',array($this,'add_status_field'),10,2);
+    	add_action('wc_rbp_price_edit_top',array($this,'add_status_field'),10,2);
     }
 	
 	public function add_status_field($product_id,$type){

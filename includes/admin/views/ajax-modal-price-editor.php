@@ -28,7 +28,7 @@ else if($tab_pos == 'vertical_right'){ $tab_pos  = 'vertical'; $verticalPosition
 
 if($type == 'single'){ echo '<input type="hidden" name="product_id" value="'.$product_id.'" /> '; }
 
-do_action('wc_rbp_price_edit_before_tab',$product_id,$type);
+do_action('wc_rbp_price_edit_top',$product_id,$type);
 echo '<div class="tab_container">';
 echo '<div class="wc_rbp_tabs" data-tabsPosition="'.$tab_pos.'" 
 data-horizontalPosition="'.$horizontalPosition.'"
@@ -36,15 +36,17 @@ data-verticalPosition="'.$verticalPosition.'">';
 
 foreach($tabs as $tabID => $name){
 	echo '<div data-pws-tab-name="'.$name.'" data-pws-tab="'.$tabID.'" class="pws_hide pws_tab_single" data-pws-tab-id="'.$tabID.'">';
+		do_action('wc_rbp_price_edit_tab_before',$product_id,$type,$tabID);
 		do_action('wc_rbp_price_edit_tab_'.$tabID.'_before',$product_id,$type,$tabID);
 		do_action('wc_rbp_price_edit_tab_'.$tabID,$product_id,$type,$tabID);
 		do_action('wc_rbp_price_edit_tab_'.$tabID.'_after',$product_id,$type,$tabID);
+		do_action('wc_rbp_price_edit_tab_after',$product_id,$type,$tabID);
 	echo '</div>';
 }
 
 echo  '</div>';
 echo '</div>';
-do_action('wc_rbp_price_edit_after_tab',$product_id,$type);
+do_action('wc_rbp_price_edit_bottom',$product_id,$type);
 ?>
 	</form>
 </div>

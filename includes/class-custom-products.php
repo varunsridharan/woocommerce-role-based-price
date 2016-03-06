@@ -15,7 +15,7 @@ if(class_exists('WC_Product_Simple')){
 			$this->wc_rbp = wc_rbp_get_product_price($product->ID);
 			$status = wc_rbp_product_status($product->ID);
 			$this->wc_rbp_status = $status;
-			do_action_ref_array('wc_rbp_custom_simple_class',array(&$this));
+			do_action_ref_array('wc_rbp_custom_simple_class',array(&$this,$product->ID));
 		}
 	}
 }
@@ -27,8 +27,7 @@ if(class_exists('WC_Product_Variation')){
 			$this->wc_rbp = wc_rbp_get_product_price($variation->ID);
 			$status = wc_rbp_product_status($variation->ID);
 			$this->wc_rbp_status = $status;
-			do_action_ref_array('wc_rbp_custom_variation_class',array(&$this));
-			//if($status){$this->wc_rbp_status = true; }
+			do_action_ref_array('wc_rbp_custom_variation_class',array(&$this,$variation->ID));
 		}
 	}
 }

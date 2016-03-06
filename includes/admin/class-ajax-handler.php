@@ -14,8 +14,26 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
 		$allowed_roles = wc_rbp_option('allowed_roles');
         add_action( 'wp_ajax_wc_rbp_product_editor', array($this,'product_editor_template_handler' ));
 		add_action( 'wp_ajax_wc_rbp_save_product_prices',array($this,'save_product_rbp_price'));
+		add_action('wp_ajax_nopriv_wc_rbp_addon_custom_css',array($this,'render_addon_css'));
+		add_action('wp_ajax_wc_rbp_addon_custom_css',array($this,'render_addon_css'));
+		add_action('wp_ajax_nopriv_wc_rbp_addon_custom_js',array($this,'render_addon_js'));
+		add_action('wp_ajax_wc_rbp_addon_custom_js',array($this,'render_addon_js'));
     }
+	
+	public function render_addon_css(){
+		echo '<style>';
+		do_action('wc_rbp_addon_styles');
+		echo '</style>';
+		wp_die();
+	}
     
+	public function render_addon_js(){
+		echo '<script>';
+		do_action('wc_rbp_addon_scripts');
+		echo '</script>';
+		wp_die();
+	}
+	
 	public function save_product_rbp_price(){
 		$is_verifyed_nounce = wp_verify_nonce($_POST['wc_rbp_nounce'], 'wc_rbp_save_product_prices' );
 		$error = array();
@@ -35,7 +53,7 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
 			} else { 
 				$error['html'] = '<h3>'.__("Price Not Defined. Please Try Again",WC_RBP_TXT).'</h3>'; 
 			}
-			do_action('wc_rbp_product_save_after',$posted_values);
+			do_action_ref_array('wc_rbp_product_save_after',array(&$posted_values));
 			
 		} else { 
 			$error['html'] = '<h3>'.__("Unable To Process Your Request Please Try Again later",WC_RBP_TXT).'</h3>'; 

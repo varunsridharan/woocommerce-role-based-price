@@ -1,20 +1,21 @@
 <?php $slug =  $wc_rbp_plugin_data['addon_slug']; ?>
-<div class="plugin-card plugin-card-<?php echo $slug; ?>">
+<div class="plugin-card plugin-card-<?php echo $slug; ?> wc-rbp-addon-all wc-rbp-addon-<?php echo $wc_rbp_plugin_data['CategorySlug']; ?>">
 	<?php wc_rbp_get_ajax_overlay(); ?>
 	<div class="plugin-card-top">
 		<div class="name column-name">
 			<h3> 
-			   <?php echo $wc_rbp_plugin_data['name']; ?> 
-			   [<small><?php _e('V',WC_RBP_TXT);?> <?php echo $wc_rbp_plugin_data['version']; ?></small>] 
+			   <?php echo $wc_rbp_plugin_data['Name']; ?> 
+			   [<small><?php _e('V',WC_RBP_TXT);?> <?php echo $wc_rbp_plugin_data['Version']; ?></small>] 
 			   <?php $this->get_addon_icon($wc_rbp_plugin_data); ?>
 			</h3>
 		</div>
 		<div class="desc column-description">
-			<p><?php echo $wc_rbp_plugin_data['decs']; ?></p>
+			<p><?php echo $wc_rbp_plugin_data['Description']; ?></p>
 			<p class="authors">
+				
 				<cite>
 					<?php _e('By',WC_RBP_TXT); ?> 
-					<a href="<?php echo $wc_rbp_plugin_data['author_link']; ?>"> <?php echo $wc_rbp_plugin_data['author']; ?></a> 
+					<a href="<?php echo $wc_rbp_plugin_data['AuthorURI']; ?>"> <?php echo $wc_rbp_plugin_data['Author']; ?></a> 
 				</cite> 
 			</p>
 		</div>
@@ -27,14 +28,16 @@
 					<?php
 						$echo = '';
 						foreach($required_plugins as $plugin){
-							$plugin_status = $this->check_plugin_status($plugin['slug']);
+							$plugin_status = $this->check_plugin_status($plugin['Slug']);
 							$status_val = __('InActive',WC_RBP_TXT);
 							$class = 'deactivated';
 							if($plugin_status === 'notexist'){ $status_val = __('Plugin Dose Not Exist',WC_RBP_TXT); $class = 'notexist'; } 
 							else if($plugin_status === true){ $status_val = __('Active',WC_RBP_TXT); $class = 'active'; }
-							if(!isset($plugin['version'])){$plugin['version'] = '';}
+							if(!isset($plugin['Version'])){$plugin['version'] = '';}
 							echo '<li class="'.$class.'">';
-								echo '<span class="wc_rbp_required_addon_plugin_name">'.$plugin['name'].' ['.$plugin['version'].'] : </span>';
+							
+								echo '<span class="wc_rbp_required_addon_plugin_name"> <a href="'.$plugin['URL'].'" > '.
+									$plugin['Name'].' ['.$plugin['Version'].'] </a> </span> : ';
 								echo '<span class="wc_rbp_required_addon_plugin_status '.$class.'">'.$status_val.'</span>';
 							echo '</li>';
 							unset($plugin_status);
