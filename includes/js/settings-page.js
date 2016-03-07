@@ -63,7 +63,8 @@ function settings_showHash(id){
 	jQuery(id).show();
 }
 
-function active_deactive_addon(ref,oppo = '.wc-rbp-deactivate-now'){
+function active_deactive_addon(ref,oppo ){
+	if (typeof(oppo)==='undefined') oppo = '.wc-rbp-deactivate-now';
 	var clicked = ref;
 	var slug = ref.parent().attr('data-pluginslug');
 	console.log(slug);
