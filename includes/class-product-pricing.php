@@ -15,11 +15,11 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
     }
 	
 	public function wc_init(){
-		//add_filter( 'woocommerce_get_regular_price', array( &$this, 'get_regular_price') , 99, 2 );
-		//add_filter( 'woocommerce_get_sale_price', array( &$this, 'get_selling_price') , 99, 2 );
-		//add_filter( 'woocommerce_get_price', array( &$this, 'get_price' ), 99, 2 );
-		//add_filter( 'woocommerce_get_variation_regular_price', array( &$this, 'get_variation_regular_price' ), 99, 4 );
-		//add_filter( 'woocommerce_get_variation_price', array( &$this, 'get_variation_price' ), 99, 4 );
+		add_filter( 'woocommerce_get_regular_price', array( &$this, 'get_regular_price') , 99, 2 );
+		add_filter( 'woocommerce_get_sale_price', array( &$this, 'get_selling_price') , 99, 2 );
+		add_filter( 'woocommerce_get_price', array( &$this, 'get_price' ), 99, 2 );
+		add_filter( 'woocommerce_get_variation_regular_price', array( &$this, 'get_variation_regular_price' ), 99, 4 );
+		add_filter( 'woocommerce_get_variation_price', array( &$this, 'get_variation_price' ), 99, 4 );
 		add_filter( 'woocommerce_get_price_html',array( &$this,'get_price_html' ),1,2); 
 	}
 	
