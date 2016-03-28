@@ -24,7 +24,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 	}
 	
 	public function get_product_price($price,$product,$price_meta_key = 'regular_price'){
-		$return = $price;
+		$return = false;
 		$product_id = '';
 		$opposite_key = 'selling_price';
 		if($price_meta_key == 'selling_price'){$opposite_key = 'regular_price';}
@@ -33,7 +33,9 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		if(!$status){ $return = $price; }
 		$current_user = wc_rbp_get_current_user();
 		$rbp_price = wc_rbp_price($product_id,$current_user,'all',$product);
+
 		if($price_meta_key == 'all'){$return = $rbp_price[$price_meta_key];}
+        
 		if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
 			if($rbp_price[$price_meta_key] == "" && $rbp_price[$opposite_key] == ""){
 				$return = $price;
@@ -43,6 +45,18 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 				$return = $rbp_price[$price_meta_key];
 			} else if($rbp_price[$price_meta_key] != ""){
 				$return = $rbp_price[$price_meta_key];
+			}
+		} else if(isset($rbp_price[$price_meta_key]) && ! isset($rbp_price[$opposite_key])){
+			if($rbp_price[$price_meta_key] == ""){
+				$return = $price;
+			} else if($rbp_price[$price_meta_key] != ""){
+				$return = $rbp_price[$price_meta_key];
+			}
+		} else if(isset($rbp_price[$opposite_key]) && ! isset($rbp_price[$price_meta_key])){
+			if($rbp_price[$opposite_key] == ""){
+				$return = $price;
+			} else if($rbp_price[$opposite_key] != ""){
+				$return = $rbp_price[$opposite_key];
 			}
 		}
 
