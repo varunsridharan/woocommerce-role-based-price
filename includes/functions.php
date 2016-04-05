@@ -199,6 +199,27 @@ if(!function_exists('wc_rbp_get_current_user')){
 	
 }
 
+if(!function_exists('wc_rbp_get_userrole_by_id')){
+    
+    /**
+     * Get user roles by user ID.
+     *
+     * @param  int $id
+     * @return array
+     */
+    function wc_rbp_get_userrole_by_id( $id ){
+        $user = new WP_User( $id );
+
+        if ( empty ( $user->roles ) or ! is_array( $user->roles ) ) {return '';}
+            
+        foreach ( $user->roles as $role ) {
+            return $role;
+        }
+
+        return null;
+    }
+}
+
 if(!function_exists('wc_rbp_avaiable_price_type')){
 	/**
 	 * Returns avaiable_price type with label
