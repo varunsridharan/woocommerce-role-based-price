@@ -507,7 +507,7 @@ if(!function_exists('wc_rbp_price')){
 	 * @price : use selling_price / regular_price or use all to get all values for the given role
 	 */
 	
-	function wc_rbp_price($post_id,$role,$price = 'regular_price',$product = null,$args = array()){
+	function wc_rbp_price($post_id,$role,$price = 'regular_price',$args = array(),$product = null){ 
 		$dbprice = product_rbp_price($post_id,$product); 
 		$return = false; 
 		
@@ -523,5 +523,20 @@ if(!function_exists('wc_rbp_price')){
 		$return = apply_filters('wc_rbp_product_price',$return,$role,$price,$post_id,$args);
 		return $return;
 	}
+}
+
+
+if(!function_exists('wc_rbp_active_price')){
+    
+    function wc_rbp_active_price($post_id,$role,$args = array(),$product = null){
+        $price = wc_rbp_price($post_id,$role,'all',$args,$product);
+        if(isset($price['selling_price'])){
+            if(!empty($price['selling_price'])){
+                return $price['selling_price'];
+            }
+        }
+        
+        return $price['regular_price'];
+    }
 }
 ?>
