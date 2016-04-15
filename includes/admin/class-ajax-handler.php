@@ -21,16 +21,14 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
     }
 	
 	public function render_addon_css(){
-		echo '<style>';
+        header('Content-Type: text/css');
 		do_action('wc_rbp_addon_styles');
-		echo '</style>';
 		wp_die();
 	}
     
 	public function render_addon_js(){
-		echo '<script>';
-		do_action('wc_rbp_addon_scripts');
-		echo '</script>';
+        header('Content-Type: text/javascript'); 
+		do_action('wc_rbp_addon_scripts'); 
 		wp_die();
 	}
 	

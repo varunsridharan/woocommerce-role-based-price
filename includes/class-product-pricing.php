@@ -33,7 +33,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		if(!$status){ $return = $price; }
 		$current_user = wc_rbp_get_current_user();
 		$rbp_price = wc_rbp_price($product_id,$current_user,'all',array(),$product);
-
+        
 		if($price_meta_key == 'all'){$return = $rbp_price[$price_meta_key];}
         
 		if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
@@ -62,6 +62,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
 	 	$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key);
 		$return = wc_format_decimal($return);
+        
 		return $return;
 	}
 	
@@ -143,7 +144,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		$return = $price;
 		$prices = array();
 		$display = array();
-
+        
 		foreach ($product->get_children() as $variation_id) {
 			$variation = $product->get_child( $variation_id );
 			if ( $variation ) {
@@ -191,9 +192,16 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 			$prices = array($product->get_variation_regular_price('min',true), $product->get_variation_regular_price('max',true));
 			sort($prices);
 			$saleprice = $prices[0] !== $prices[1] ? sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );  
-			 if ( $price !== $saleprice ) {
-				$return = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $saleprice, $price ) . $product->get_price_suffix(), $product );
-			 } 
+            
+            if ( $price !== $saleprice ) {
+                $return = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $saleprice, $price ) . $product->get_price_suffix(), $product );
+            } 
+            if ( $prices[0] == 0 && $prices[1] == 0 ) {
+                $price = __( 'Free!', 'woocommerce' );
+                $return = apply_filters( 'woocommerce_variable_free_price_html', $price, $product );
+            } else {
+                $return = apply_filters( 'woocommerce_variable_price_html', $price . $product->get_price_suffix(), $product );
+            }
 						
 
 		}
