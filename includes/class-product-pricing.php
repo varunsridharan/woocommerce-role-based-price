@@ -34,7 +34,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		if(!$status){ $return = $price; }
 		$current_user = wc_rbp_get_current_user();
 		$rbp_price = wc_rbp_price($product_id,$current_user,'all',array(),$product);
-        
+
         if($rbp_price === false){
             $return = $price;
         } else {

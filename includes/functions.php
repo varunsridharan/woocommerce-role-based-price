@@ -200,6 +200,13 @@ if(!function_exists('wc_rbp_get_current_user')){
 	
 }
 
+if(!function_exists('wc_rbp_get_oppo_metakey')){
+    function wc_rbp_get_oppo_metakey($key){
+        if($key == 'selling_price'){return 'regular_price';}
+        return 'selling_price';
+    }
+}
+
 if(!function_exists('wc_rbp_get_userrole_by_id')){
     
     /**
@@ -453,18 +460,18 @@ if(!function_exists('product_rbp_price')){
 	 */
 	function product_rbp_price($post_id,$productOBJ = null){
 		global $product; 
-        
+
         if(is_null($product) && is_null($productOBJ) ){
             $price = wc_rbp_get_product_price($post_id);
 			return $price;
         } else if(!is_null($productOBJ)){
             
-             if($productOBJ->id == $post_id &&  isset($productOBJ->post->wc_rbp)){
+             if($productOBJ->id == $post_id &&  (isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp))) {
                 return $productOBJ->post->wc_rbp;     
              }
             
         } else if(!is_null($product)){
-            if($product->id == $post_id && isset($product->post->wc_rbp)){
+            if($product->id == $post_id &&  (isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp)) ){
                 return $product->post->wc_rbp;    
             }
             
@@ -474,8 +481,23 @@ if(!function_exists('product_rbp_price')){
         }
         
 		$price = wc_rbp_get_product_price($post_id);
+        
         return $price;
 	}
+}
+
+if(!function_exists('wc_rbp_settings_products_json')){
+    function wc_rbp_settings_products_json($ids){
+        $json_ids    = array();
+        if(!empty($ids)){
+            $ids = explode(',',$ids);
+            foreach ( $ids as $product_id ) {
+                $product = wc_get_product( $product_id );
+                $json_ids[ $product_id ] = wp_kses_post( $product->get_formatted_name() );
+            }   
+        }
+        return $json_ids;
+    }
 }
 
 if(!function_exists('wc_rbp_update_role_based_price_status')){
@@ -507,13 +529,13 @@ if(!function_exists('product_rbp_status')){
 			return $price;
         } else if(!is_null($productOBJ)){
             
-            if($productOBJ->id == $post_id &&  isset($productOBJ->post->wc_rbp_status)){
+            if($productOBJ->id == $post_id &&  (isset($productOBJ->post->wc_rbp) && ! empty($productOBJ->post->wc_rbp)) ){
                 return $productOBJ->post->wc_rbp_status;    
             }
             
         } else if(!is_null($product) ){
             
-            if($product->id == $post_id && isset($product->post->wc_rbp_status)){
+            if($product->id == $post_id && (isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp))  ){
                 return $product->post->wc_rbp_status;    
             }
             
