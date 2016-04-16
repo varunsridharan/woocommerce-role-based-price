@@ -31,8 +31,8 @@ class WooCommerce_Role_Based_Price_Functions {
 	public function setup_product_prices($product){
         if($product == null){return $product;}
 		$product->wc_rbp = wc_rbp_get_product_price($product->ID);
-		$product->wc_rbp_status = wc_rbp_product_status($product->ID);
-		do_action_ref_array('wc_rbp_product_class_attribute',array($product));
+		$product->wc_rbp_status = wc_rbp_product_status($product->ID); 
+		do_action_ref_array('wc_rbp_product_class_attribute',array(&$product));
 		return $product;
 	}
     

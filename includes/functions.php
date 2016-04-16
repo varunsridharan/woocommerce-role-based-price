@@ -445,17 +445,19 @@ if(!function_exists('product_rbp_price')){
 	 */
 	function product_rbp_price($post_id,$productOBJ = null){
 		global $product; 
-		if($productOBJ != null && (isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp)) ){
-            return $productOBJ->post->wc_rbp; 
-		} else if($product != null  && $product->ID == $post_id && (isset($product->post->wc_rbp) && !empty($productOBJ->post->wc_rbp) )) {
-            return $product->post->wc_rbp;    
-		} else if($product != null  && $product->ID != $post_id ){
+        
+        if(is_null($product) && is_null($productOBJ) ){
             $price = wc_rbp_get_product_price($post_id);
 			return $price;
-        } else if($productOBJ == null && $product == null){
-			$price = wc_rbp_get_product_price($post_id);
+        } else if(!is_null($productOBJ) &&  isset($productOBJ->post->wc_rbp)){
+            return $productOBJ->post->wc_rbp;
+        } else if(!is_null($product) && ($product->id == $post_id) && isset($product->post->wc_rbp)){
+            return $product->post->wc_rbp;
+        } else {
+            $price = wc_rbp_get_product_price($post_id);
 			return $price;
-		}
+        }
+        
 		return false;
 	}
 }
@@ -485,20 +487,17 @@ if(!function_exists('product_rbp_status')){
 	function product_rbp_status($post_id,$productOBJ = null){
 		global $product; 
 		
-		if($productOBJ != null && (isset($productOBJ->post->wc_rbp_status) && !empty($productOBJ->post->wc_rbp_status))){ 
-			return $productOBJ->post->wc_rbp_status;
-		}
         
-        else if($product != null  && $product->ID == $post_id && (isset($product->post->wc_rbp_status) && !empty($productOBJ->post->wc_rbp_status) )){ 
-			return $product->post->wc_rbp_status; 
-		} 
-
-        else if($product != null  && $product->ID != $post_id ){
-			$status = wc_rbp_product_status($post_id); 
-			return $status;
-		} else if($productOBJ == null && $product == null){
-            $status = wc_rbp_product_status($post_id); 
-			return $status;
+        if(is_null($product) && is_null($productOBJ) ){
+            $price = wc_rbp_product_status($post_id);
+			return $price;
+        } else if(!is_null($productOBJ) &&  isset($productOBJ->post->wc_rbp_status)){
+            return $productOBJ->post->wc_rbp_status;
+        } else if(!is_null($product) && ($product->id == $post_id) && isset($product->post->wc_rbp_status)){
+            return $product->post->wc_rbp_status;
+        } else {
+            $price = wc_rbp_product_status($post_id);
+			return $price;
         }
 
 		return false;
@@ -527,7 +526,7 @@ if(!function_exists('wc_rbp_price')){
 	 */
 	
 	function wc_rbp_price($post_id,$role,$price = 'regular_price',$args = array(),$product = null){ 
-		$dbprice = product_rbp_price($post_id,$product);  
+		$dbprice = product_rbp_price($post_id,$product); 
 		$return = false; 
 		
 		if($price == 'all' && $role == 'all'){

@@ -21,6 +21,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		add_filter( 'woocommerce_get_variation_regular_price', array( &$this, 'get_variation_regular_price' ), 99, 4 );
 		add_filter( 'woocommerce_get_variation_price', array( &$this, 'get_variation_price' ), 99, 4 );
 		add_filter( 'woocommerce_get_price_html',array( &$this,'get_price_html' ),1,2); 
+        //add_filter( 'woocommerce_variation_prices',array(&$this,'change_variation_price'),10,4);
 	}
 	
 	public function get_product_price($price,$product,$price_meta_key = 'regular_price'){
@@ -34,32 +35,36 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		$current_user = wc_rbp_get_current_user();
 		$rbp_price = wc_rbp_price($product_id,$current_user,'all',array(),$product);
         
-		if($price_meta_key == 'all'){$return = $rbp_price[$price_meta_key];}
-        
-		if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
-			if($rbp_price[$price_meta_key] == "" && $rbp_price[$opposite_key] == ""){
-				$return = $price;
-			} else if( $rbp_price[$price_meta_key] == ""  && $rbp_price[$opposite_key] != ""){
-				$return = $rbp_price[$opposite_key];
-			} else if($rbp_price[$price_meta_key] != ""  && $rbp_price[$opposite_key] == ""){
-				$return = $rbp_price[$price_meta_key];
-			} else if($rbp_price[$price_meta_key] != ""){
-				$return = $rbp_price[$price_meta_key];
-			}
-		} else if(isset($rbp_price[$price_meta_key]) && ! isset($rbp_price[$opposite_key])){
-			if($rbp_price[$price_meta_key] == ""){
-				$return = $price;
-			} else if($rbp_price[$price_meta_key] != ""){
-				$return = $rbp_price[$price_meta_key];
-			}
-		} else if(isset($rbp_price[$opposite_key]) && ! isset($rbp_price[$price_meta_key])){
-			if($rbp_price[$opposite_key] == ""){
-				$return = $price;
-			} else if($rbp_price[$opposite_key] != ""){
-				$return = $rbp_price[$opposite_key];
-			}
-		}
+        if($rbp_price === false){
+            $return = $price;
+        } else {
+            if($price_meta_key == 'all'){$return = $rbp_price[$price_meta_key];}
 
+            if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
+                if($rbp_price[$price_meta_key] == "" && $rbp_price[$opposite_key] == ""){
+                    $return = $price;
+                } else if( $rbp_price[$price_meta_key] == ""  && $rbp_price[$opposite_key] != ""){
+                    $return = $rbp_price[$opposite_key];
+                } else if($rbp_price[$price_meta_key] != ""  && $rbp_price[$opposite_key] == ""){
+                    $return = $rbp_price[$price_meta_key];
+                } else if($rbp_price[$price_meta_key] != ""){
+                    $return = $rbp_price[$price_meta_key];
+                }
+            } else if(isset($rbp_price[$price_meta_key]) && ! isset($rbp_price[$opposite_key])){
+                if($rbp_price[$price_meta_key] == ""){
+                    $return = $price;
+                } else if($rbp_price[$price_meta_key] != ""){
+                    $return = $rbp_price[$price_meta_key];
+                }
+            } else if(isset($rbp_price[$opposite_key]) && ! isset($rbp_price[$price_meta_key])){
+                if($rbp_price[$opposite_key] == ""){
+                    $return = $price;
+                } else if($rbp_price[$opposite_key] != ""){
+                    $return = $rbp_price[$opposite_key];
+                }
+            }
+        }
+        
 	 	$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key);
 		$return = wc_format_decimal($return);
         
@@ -160,7 +165,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 			$return = $display[$variation_id];
 		} 
 		else {$return = current($prices);}
-		
+		if(empty($return)){$return = 0;}
 		return $return;
 	}
 	
@@ -181,31 +186,166 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 	 * @param string $price (default: '')
 	 * @return string
 	 */
-	public function get_price_html( $price = '',$product ) {
+	/* public function get_price_html( $price = '',$product ) {
+       // return $price;
 		$return = $price;
 
-		if('WC_Product_Variable' == get_class( $product )){
+         if('WC_Product_Variable' == get_class( $product )){
  
 			$prices = array($product->get_variation_price('min', true), $product->get_variation_price('max', true));
 			$price  = $prices[0] !== $prices[1] ? sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );
 			 
 			$prices = array($product->get_variation_regular_price('min',true), $product->get_variation_regular_price('max',true));
 			sort($prices);
+             var_dump($price);
 			$saleprice = $prices[0] !== $prices[1] ? sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );  
+			 if ( $price !== $saleprice ) {
+				$return = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $saleprice, $price ) . $product->get_price_suffix(), $product );
+			 } 
+						
+		}
+        
+		 /* if('WC_Product_Variable' == get_class( $product )){
+ 
+			$prices = array($product->get_variation_price('min', true), $product->get_variation_price('max', true));
             
-            if ( $price !== $saleprice ) {
-                $return = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $saleprice, $price ) . $product->get_price_suffix(), $product );
-            } 
-            if ( $prices[0] == 0 && $prices[1] == 0 ) {
+            if($prices[0] !== $prices[1]){
+               $saleprice = sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price($prices[0]), wc_price($prices[1]));
+            } else {
+                $saleprice = wc_price( $prices[0] );
+            }
+            
+            $prices = '';
+			$prices = array($product->get_variation_regular_price('min',true), $product->get_variation_regular_price('max',true));
+			sort($prices);
+            
+            if($prices[0] !== $prices[1]){
+                $price = sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price($prices[0]),wc_price($prices[1]));
+            }else {
+                $price =  wc_price( $prices[0] );      
+            }
+			
+            
+            if ( ($prices[0] == 0) && ($prices[1] == 0) ) { 
                 $price = __( 'Free!', 'woocommerce' );
                 $return = apply_filters( 'woocommerce_variable_free_price_html', $price, $product );
-            } else {
+            } else if ( $price !== $saleprice ) {
+                $return = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $saleprice, $price ) . $product->get_price_suffix(), $product ); 
+            }  else {
                 $return = apply_filters( 'woocommerce_variable_price_html', $price . $product->get_price_suffix(), $product );
             }
 						
 
-		}
+		} 
+        
+       if('WC_Product_Variable' == get_class( $product )){
+            $prices = $this->change_variation_price(array(),$product, true ); 
+
+            if ( $product->get_price() === '' || empty( $prices['price'] ) ) {
+                $price = apply_filters( 'woocommerce_variable_empty_price_html', '', $product );
+            } else {
+                $min_price = current( $prices['price'] );
+                $max_price = end( $prices['price'] );
+                $price     = $min_price !== $max_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce' ), wc_price( $min_price ), wc_price( $max_price ) ) : wc_price( $min_price );
+                $is_free   = $min_price == 0 && $max_price == 0;
+
+                if ( $product->is_on_sale() ) {
+                    $min_regular_price = current( $prices['regular_price'] );
+                    $max_regular_price = end( $prices['regular_price'] );
+                    $regular_price     = $min_regular_price !== $max_regular_price ? sprintf( _x( '%1$s&ndash;%2$s', 'Price range: from-to', 'woocommerce' ), wc_price( $min_regular_price ), wc_price( $max_regular_price ) ) : wc_price( $min_regular_price );
+                    $return             = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $regular_price, $price ) . $product->get_price_suffix(), $product );
+                } elseif ( $is_free ) {
+                    $return = apply_filters( 'woocommerce_variable_free_price_html', __( 'Free!', 'woocommerce' ), $product );
+                } else {
+                    $return = apply_filters( 'woocommerce_variable_price_html', $price . $product->get_price_suffix(), $product );
+                }
+            }
+        } 
 	 	return $return;
-	}
+	}*/
+    
+    public function get_price_html($price = '', $product){
+    if('WC_Product_Variable' == get_class( $product )){
+        
+        	// Ensure variation prices are synced with variations
+            if($product->get_variation_regular_price( 'min' ) === false || 
+              $product->get_variation_price( 'min' ) === false || 
+              $product->get_variation_price( 'min' ) === '' || 
+              $product->get_price() === '' ) {
+                $product->variable_product_sync( $product->id );
+            }
+		    // Get the price
+            if ( $product->get_price() === '' ) {
+                $price = apply_filters( 'woocommerce_variable_empty_price_html', '', $product );
+            } else {
+				
+                // Main price
+                $prices = array($product->get_variation_price('min', true), $product->get_variation_price('max', true));
+                $price  = $prices[0] !== $prices[1] ? sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );
+                // Sale
+                $prices = array($product->get_variation_regular_price('min',true), $product->get_variation_regular_price('max',true));
+                sort($prices);
+                $saleprice = $prices[0] !== $prices[1] ? sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );  
+        
+                
+                if ( $prices[0] == 0 && $prices[1] == 0 ) {
+                    $price = __( 'Free!', 'woocommerce' );
+                    $price = apply_filters( 'woocommerce_variable_free_price_html', $price, $product );
+                }else if ( $price !== $saleprice ) {
+                    $price = apply_filters( 'woocommerce_variable_sale_price_html', $product->get_price_html_from_to( $saleprice, $price ) . $product->get_price_suffix(), $product );
+                } else {
+                    $price = apply_filters( 'woocommerce_variable_price_html', $price . $product->get_price_suffix(), $product );
+                }
+            }
+         }
+    
+        return $price;
+    }
+    
+    public function change_variation_price($pricess,$product,$display){
+        
+        $prices         = array();
+        $regular_prices = array();
+        $sale_prices    = array();
+        $variation_ids  = $product->get_children( true );
+
+        foreach ( $variation_ids as $variation_id ) {
+            if ( $variation = $product->get_child( $variation_id ) ) {
+
+                $price         = $this->get_price( $variation->price, $variation);
+                $regular_price = $this->get_regular_price( $variation->regular_price, $variation);
+                $sale_price    = $this->get_selling_price( $variation->sale_price, $variation); 
+
+
+                // If sale price does not equal price, the product is not yet on sale
+                if ( $sale_price === $regular_price || $sale_price !== $price ) {
+                    $sale_price = $regular_price;
+                }
+                
+                // If we are getting prices for display, we need to account for taxes
+                if ( $display ) {
+                    if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) {
+                        $price         = '' === $price ? ''         : $variation->get_price_including_tax( 1, $price );
+                        $regular_price = '' === $regular_price ? '' : $variation->get_price_including_tax( 1, $regular_price );
+                        $sale_price    = '' === $sale_price ? ''    : $variation->get_price_including_tax( 1, $sale_price );
+                    } else {
+                        $price         = '' === $price ? ''         : $variation->get_price_excluding_tax( 1, $price );
+                        $regular_price = '' === $regular_price ? '' : $variation->get_price_excluding_tax( 1, $regular_price );
+                        $sale_price    = '' === $sale_price ? ''    : $variation->get_price_excluding_tax( 1, $sale_price );
+                    }
+                }
+
+                $prices[ $variation_id ]         = $price;
+                $regular_prices[ $variation_id ] = $regular_price;
+                $sale_prices[ $variation_id ]    = $sale_price;
+            }
+        } 
+        asort( $prices );
+        asort( $regular_prices );
+        asort( $sale_prices );
+      //  var_dump(array( 'price' => $prices, 'regular_price' => $regular_prices, 'sale_price' => $sale_prices , 'd' => $display));
+        return array( 'price' => $prices, 'regular_price' => $regular_prices, 'sale_price' => $sale_prices);
+        
+    }
 }
 ?>
