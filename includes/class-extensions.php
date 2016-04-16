@@ -101,9 +101,13 @@ class WooCommerce_Role_Based_Price_Addons {
 		$category = array();
 		$category['all']  = __('All',WC_RBP_TXT);
 		foreach($this->plugins_data as  $data){
-			if(!in_array($data['Category'],$category)){
-				$category[$data['CategorySlug']]  = $data['CategorySlug'];
-			}
+            $cat = explode(',',$data['Category']);
+            foreach($cat as $c){
+                if(!in_array($c,$category)){
+                    $category[$data['CategorySlug']]  = $c;
+                }
+            }
+			
 		}
 		return $category;
 	}

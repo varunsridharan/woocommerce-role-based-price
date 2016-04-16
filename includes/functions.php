@@ -194,7 +194,8 @@ if(!function_exists('wc_rbp_get_current_user')){
 			$user_role = array_shift($user_roles);
 			if($user_role == null){ $user_role = 'logedout'; }
 		}
-		return $user_role;
+        
+		return apply_filters('wc_rbp_active_user',$user_role,$userroleonly);
 	}
 	
 }
@@ -405,6 +406,13 @@ if(!function_exists('wc_rbp_deactivate_addon')){
 	}
 }
 
+if(!function_exists('wc_rbp_admin_notice')){
+    function wc_rbp_admin_notice($msg , $type = 'updated'){
+        $notice = ' <div class="'.$type.' settings-error notice is-dismissible" id="setting-error-settings_updated"> 
+<p>'.$msg.'</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+        return $notice;
+    }
+}
 
 /**
  * @public Below Function Are Used By The Plugin users 
@@ -449,16 +457,24 @@ if(!function_exists('product_rbp_price')){
         if(is_null($product) && is_null($productOBJ) ){
             $price = wc_rbp_get_product_price($post_id);
 			return $price;
-        } else if(!is_null($productOBJ) &&  isset($productOBJ->post->wc_rbp)){
-            return $productOBJ->post->wc_rbp;
-        } else if(!is_null($product) && ($product->id == $post_id) && isset($product->post->wc_rbp)){
-            return $product->post->wc_rbp;
+        } else if(!is_null($productOBJ)){
+            
+             if($productOBJ->id == $post_id &&  isset($productOBJ->post->wc_rbp)){
+                return $productOBJ->post->wc_rbp;     
+             }
+            
+        } else if(!is_null($product)){
+            if($product->id == $post_id && isset($product->post->wc_rbp)){
+                return $product->post->wc_rbp;    
+            }
+            
         } else {
             $price = wc_rbp_get_product_price($post_id);
 			return $price;
         }
         
-		return false;
+		$price = wc_rbp_get_product_price($post_id);
+        return $price;
 	}
 }
 
@@ -485,22 +501,26 @@ if(!function_exists('product_rbp_status')){
 	 * #TODO Integrate WC_RBP_PRODUCT_STATUS Function For Speed Outpu
 	 */
 	function product_rbp_status($post_id,$productOBJ = null){
-		global $product; 
-		
-        
+		global $product;  
         if(is_null($product) && is_null($productOBJ) ){
             $price = wc_rbp_product_status($post_id);
 			return $price;
-        } else if(!is_null($productOBJ) &&  isset($productOBJ->post->wc_rbp_status)){
-            return $productOBJ->post->wc_rbp_status;
-        } else if(!is_null($product) && ($product->id == $post_id) && isset($product->post->wc_rbp_status)){
-            return $product->post->wc_rbp_status;
-        } else {
-            $price = wc_rbp_product_status($post_id);
-			return $price;
-        }
+        } else if(!is_null($productOBJ)){
+            
+            if($productOBJ->id == $post_id &&  isset($productOBJ->post->wc_rbp_status)){
+                return $productOBJ->post->wc_rbp_status;    
+            }
+            
+        } else if(!is_null($product) ){
+            
+            if($product->id == $post_id && isset($product->post->wc_rbp_status)){
+                return $product->post->wc_rbp_status;    
+            }
+            
+        } 
 
-		return false;
+		$price = wc_rbp_product_status($post_id);
+        return $price;
 	}
 }
 
