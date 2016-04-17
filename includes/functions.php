@@ -460,28 +460,64 @@ if(!function_exists('product_rbp_price')){
 	 */
 	function product_rbp_price($post_id,$productOBJ = null){
 		global $product; 
-
+        
+        
         if(is_null($product) && is_null($productOBJ) ){
-            $price = wc_rbp_get_product_price($post_id);
-			return $price;
-        } else if(!is_null($productOBJ)){
-            
-             if($productOBJ->id == $post_id &&  (isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp))) {
-                return $productOBJ->post->wc_rbp;     
-             }
-            
-        } else if(!is_null($product)){
-            if($product->id == $post_id &&  (isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp)) ){
-                return $product->post->wc_rbp;    
-            }
-            
-        } else {
             $price = wc_rbp_get_product_price($post_id);
 			return $price;
         }
         
+       if(!is_null($productOBJ)){
+             if($productOBJ->id == $post_id){
+                 if(isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp)) {
+                    return $productOBJ->post->wc_rbp;   
+                 }
+             }
+        } 
+        
+        if(!is_null($product)){
+            if($product->id == $post_id){
+                if(isset($product->post->wc_rbp) && !empty($product->post->wc_rbp)) {
+                    return $product->post->wc_rbp;    
+                }
+            }
+        }
+        
 		$price = wc_rbp_get_product_price($post_id);
         
+        return $price;
+	}
+}
+
+if(!function_exists('product_rbp_status')){
+	/**
+	 * Returns Products Role Based Price Array In DB
+	 * @param  int $post_id     Post ID To Update
+	 * @param  array $price_array Price List
+	 * @return boolean  [[Description]]
+	 * #TODO Integrate WC_RBP_PRODUCT_STATUS Function For Speed Outpu
+	 */
+	function product_rbp_status($post_id,$productOBJ = null){
+		global $product;  
+        
+        if(is_null($product) && is_null($productOBJ) ){
+            $price = wc_rbp_product_status($post_id);
+			return $price;
+        }
+        
+        if(!is_null($productOBJ)){
+            if($productOBJ->id == $post_id){
+               if(isset($productOBJ->post->wc_rbp) && ! empty($productOBJ->post->wc_rbp) ){ return $productOBJ->post->wc_rbp_status; }
+            }
+        }
+        
+        if(!is_null($product) ){
+            if($product->id == $post_id){
+                if(isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp) ){ return $product->post->wc_rbp_status; }
+            }
+        } 
+
+		$price = wc_rbp_product_status($post_id);
         return $price;
 	}
 }
@@ -511,38 +547,6 @@ if(!function_exists('wc_rbp_update_role_based_price_status')){
 	function wc_rbp_update_role_based_price_status($post_id,$status = true){
 		update_post_meta($post_id,'_enable_role_based_price', $status);
 		return true;
-	}
-}
-
-if(!function_exists('product_rbp_status')){
-	/**
-	 * Returns Products Role Based Price Array In DB
-	 * @param  int $post_id     Post ID To Update
-	 * @param  array $price_array Price List
-	 * @return boolean  [[Description]]
-	 * #TODO Integrate WC_RBP_PRODUCT_STATUS Function For Speed Outpu
-	 */
-	function product_rbp_status($post_id,$productOBJ = null){
-		global $product;  
-        if(is_null($product) && is_null($productOBJ) ){
-            $price = wc_rbp_product_status($post_id);
-			return $price;
-        } else if(!is_null($productOBJ)){
-            
-            if($productOBJ->id == $post_id &&  (isset($productOBJ->post->wc_rbp) && ! empty($productOBJ->post->wc_rbp)) ){
-                return $productOBJ->post->wc_rbp_status;    
-            }
-            
-        } else if(!is_null($product) ){
-            
-            if($product->id == $post_id && (isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp))  ){
-                return $product->post->wc_rbp_status;    
-            }
-            
-        } 
-
-		$price = wc_rbp_product_status($post_id);
-        return $price;
 	}
 }
 
