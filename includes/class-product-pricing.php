@@ -24,7 +24,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         //add_filter( 'woocommerce_variation_prices',array(&$this,'change_variation_price'),10,4);
 	}
 	
-	public function get_product_price($price,$product,$price_meta_key = 'regular_price'){
+	public function get_product_price($price,$product,$price_meta_key = 'regular_price',$current_user = ''){
 		$return = false;
 		$product_id = '';
 		$opposite_key = 'selling_price';
@@ -32,7 +32,8 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
  		$product_id = $this->check_product_get_id($product);
 		$status = product_rbp_status($product_id,$product);
 		if(!$status){ $return = $price; }
-		$current_user = wc_rbp_get_current_user();
+        if(empty($current_user)){$current_user = wc_rbp_get_current_user();}
+		
 		$rbp_price = wc_rbp_price($product_id,$current_user,'all',array(),$product);
         
         if($status){
@@ -68,7 +69,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         }
         
         
-	 	$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key);
+	 	$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key,$current_user);
 		$return = wc_format_decimal($return);
 		return $return;
 	}
