@@ -151,6 +151,42 @@ if(!function_exists('wc_rbp_get_settings_sample')){
 	}
 }
 
+if(!function_exists('wc_rbp_get_edit_button')){
+    function wc_rbp_get_edit_button($post_ID,$type = 'simple',$args = array()){
+        
+        $default_args = array(
+            'attrs' => '',
+            'text' => 'Add / Edit Role Pricing',
+            'button_type' => 'button',
+            'action' => 'wc_rbp_product_editor',
+            'tag' => 'button',
+            'class' => 'button button-primary',
+            'id' => '',
+        );
+        $args = wp_parse_args( $args, $default_args );
+        extract($args);
+        
+        $return = '<'.$tag.' id="'.$id.'" type="'.$button_type.'" class=" '.$class.' wc_rbp_product_editor_btn"  ';
+        $return .= ' data-href="'.admin_url('admin-ajax.php?action='.$action.'&type='.$type.'&post_id='.$post_ID).'" ';
+        $return .= $attrs;
+        $return .= '>'.__($text,WC_RBP_TXT).' </'.$tag.'>';
+        return $return;
+    }   
+}
+
+if(!function_exists('wc_rbp_get_tab_pos')){
+    function wc_rbp_get_tab_pos($tab_pos = ''){
+        $horizontalPosition = '';
+        $verticalPosition = '';
+
+        if($tab_pos == 'horizontal_top'){ $tab_pos  = 'horizontal'; $horizontalPosition  = 'top';  }
+        else if($tab_pos == 'horizontal_bottom'){ $tab_pos  = 'horizontal'; $horizontalPosition  = 'bottom'; }
+        else if($tab_pos == 'vertical_left'){ $tab_pos  = 'vertical'; $verticalPosition = 'left'; }
+        else if($tab_pos == 'vertical_right'){ $tab_pos  = 'vertical'; $verticalPosition = 'right';}
+        return array('horizontalPosition' => $horizontalPosition, 'verticalPosition' => $verticalPosition,'tab_pos' => $tab_pos);
+    }
+}
+
 if(!function_exists('wc_rbp_get_wp_roles')){
 	/**
 	 * Returns Registered WP User Roles
@@ -335,8 +371,10 @@ if(!function_exists('wc_rbp_get_form_hidden_fields')){
 }
 
 if(!function_exists('wc_rbp_get_editor_fields')){
-	function wc_rbp_get_editor_fields(){
-		return wc_rbp_get_form_hidden_fields('wc_rbp_save_product_prices','wc_rbp_nounce');
+	function wc_rbp_get_editor_fields($type){
+        $fields = wc_rbp_get_form_hidden_fields('wc_rbp_save_product_prices','wc_rbp_nounce');
+        $fields .= '<input type="hidden" name="type" value="'.$type.'" />';
+        return $fields;
 	}
 }
 
@@ -418,6 +456,58 @@ if(!function_exists('wc_rbp_admin_notice')){
         $notice = ' <div class="'.$type.' settings-error notice is-dismissible" id="setting-error-settings_updated"> 
 <p>'.$msg.'</p><button class="notice-dismiss" type="button"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
         return $notice;
+    }
+}
+
+if(!function_exists('wc_rbp_generate_tabs')){
+    function wc_rbp_generate_tabs($tabs,$content,$args = array()){
+        $default_args = array(
+            'show_image' => true,
+            'tab_style' => 'left', // 'default', 'box' or 'left'. Optional
+            'tab_wrapper' => true,
+        );
+        
+        
+        $args = wp_parse_args($args,$default_args);
+        $wraper_start = '<div class="wcrbp-tabs  wcrbp-tabs-'.$args['tab_style'].'">';
+        $wraper_end = '</div>';
+        
+        $tabs_code = '<ul class="wcrbp-tab-nav">';
+        $i = 0;
+        foreach ( $tabs as $key => $tab_data ) {
+            if ( is_string( $tab_data ) ) { $tab_data = array( 'title' => $tab_data ); }
+            $tab_data = wp_parse_args( $tab_data, array( 'icon'  => '', 'title' => '',));
+            if ( filter_var( $tab_data['icon'], FILTER_VALIDATE_URL ) ) {
+                $icon = '<img src="' . $tab_data['icon'] . '">';
+            } else {
+                if ( false !== strpos( $tab_data['icon'], 'dashicons' ) ) {
+                    $tab_data['icon'] .= ' dashicons';
+                }
+                $tab_data['icon'] = array_filter( array_map( 'trim', explode( ' ', $tab_data['icon'] ) ) );
+                $tab_data['icon'] = implode( ' ', array_unique( $tab_data['icon'] ) );
+                $icon = $tab_data['icon'] ? '<i class="' . $tab_data['icon'] . '"></i>' : '';
+            }
+
+            $class = "wcrbp-tab-$key";
+            if ( ! $i ){$class .= ' wcrbp-tab-active';}
+            $tabs_code .= sprintf('<li class="%s" data-panel="%s"><a href="#">%s%s</a></li>', $class, $key, $icon, $tab_data['title'] );
+            $i ++;
+        }
+        
+        $tabs_code .= '</ul>';
+        
+        
+        $content_data  = '<div class="wcrbp-tab-panels">';
+		foreach ($content as $id  => $data ) {
+			$content_data .= '<div class="wcrbp-tab-panel wcrbp-tab-panel-' . $id . '">';
+			$content_data .= $data;
+			$content_data .= '</div>';
+		}
+        
+		$content_data .= '</div>';
+        
+        $final = $wraper_start .$tabs_code .$content_data .$wraper_end;
+        return $final;
     }
 }
 

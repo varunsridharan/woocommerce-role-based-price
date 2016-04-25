@@ -1,11 +1,13 @@
-<?php wc_rbp_get_ajax_overlay(); ?>
+<?php  global $type, $product_id; ?>
 
 <div class="wc_rbp_price_editor_fields" style="display:none;">
 	<form method="post" action="<?php echo admin_url('admin-ajax.php');?>" id="wc_rbp_price_editor_form">
-		<div class="wc_rbp_hidden_fields"> <?php echo wc_rbp_get_editor_fields(); ?> </div>
+		<div class="wc_rbp_hidden_fields"> 
+            <?php echo wc_rbp_get_editor_fields($type); ?> 
+        </div>
 		<div class="hide hidden wc_rbp_price_editor_ajax_response"></div>
 <?php  
-global $type, $product_id;
+
 $tabs = array();
 $allowed_roles = wc_rbp_option('allowed_roles');
 $registered_roles = wc_rbp_get_wp_roles();
@@ -17,16 +19,10 @@ foreach($allowed_roles as $role){
 }
 
 $tabs = apply_filters('wc_rbp_price_editor_tabs',$tabs,$product_id,$type);
-$tab_pos = wc_rbp_option('price_editor_tab_pos');
-$horizontalPosition = '';
-$verticalPosition = '';
-
-if($tab_pos == 'horizontal_top'){ $tab_pos  = 'horizontal'; $horizontalPosition  = 'top';  }
-else if($tab_pos == 'horizontal_bottom'){ $tab_pos  = 'horizontal'; $horizontalPosition  = 'bottom'; }
-else if($tab_pos == 'vertical_left'){ $tab_pos  = 'vertical'; $verticalPosition = 'left'; }
-else if($tab_pos == 'vertical_right'){ $tab_pos  = 'vertical'; $verticalPosition = 'right';}
-
-if($type == 'single'){ echo '<input type="hidden" name="product_id" value="'.$product_id.'" /> '; }
+$tab_pos = wc_rbp_option('price_editor_tab_pos'); 
+extract(wc_rbp_get_tab_pos($tab_pos));
+        
+if($type == 'simple'){ echo '<input type="hidden" name="product_id" value="'.$product_id.'" /> '; }
 
 do_action('wc_rbp_price_edit_top',$product_id,$type);
 echo '<div class="tab_container">';
@@ -53,9 +49,3 @@ do_action('wc_rbp_price_edit_bottom',$product_id,$type);
 
 
 
-<div class="wc_rbp_price_editor_footer">
-	<p>
-		<button name="close" onclick="Custombox.close();" id="close_modal" class="button button-secondary"> <?php _e('Close',WC_RBP_TXT); ?> </button>
-		<button name="update_price" id="update_price" class="button button-primary"> <?php _e('Update Price',WC_RBP_TXT); ?> </button>
-	</p>
-</div>

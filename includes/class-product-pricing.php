@@ -71,6 +71,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         
 	 	$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key,$current_user);
 		$return = wc_format_decimal($return);
+        //$return = apply_filters('wcml_raw_price_amount', $return);
 		return $return;
 	}
 	

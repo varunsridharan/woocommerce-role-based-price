@@ -1,5 +1,7 @@
 jQuery(document).ready(function () {
-	jQuery('body').on('click','button.wc_rbp_product_editor_btn',function () {
+    
+    render_price_edit_tabs(jQuery("div.wc_rbp_tabs")); 
+	jQuery('body').on('click','.wc_rbp_product_editor_btn',function () {
 		var width = jQuery(this).attr('data-width');
 		Custombox.open({
 			target: jQuery(this).attr('data-href'),
@@ -8,7 +10,26 @@ jQuery(document).ready(function () {
 			zIndex: 99999999,
 			complete: function () {
 				jQuery('div.wc_rbp_price_editor_fields').show();
-				var render_tabs = render_price_edit_tabs(jQuery("div.wc-rbp-modal div.wc_rbp_tabs"));
+                
+				render_price_edit_tabs(jQuery("div.wc-rbp-modal div.wc_rbp_tabs")); 
+                render_price_edit_tabs(jQuery("div.wc-rbp-modal div.wc_rbp_inner_tabs")); 
+                //jQuery("div.wc-rbp-modal div.wc_rbp_inner_tabs").each(function(){
+                //     
+                //    jQuery(this).pwstabs({
+                //      effect:'scale',
+                //      defaultTab:1,
+                //      containerWidth:'100%',
+                //      tabsPosition:'horizontal',
+                //      horizontalPosition:'top',
+                //      verticalPosition:'left',
+                //      responsive:false,
+                //      theme:'pws_theme_dark_grey',
+                //      rtl:false,
+                //    }); 
+                //});
+                    
+                
+                
 				jQuery('.wc-rbp-modal').trigger('after_tab_setup');
 				//if(render_tabs){}
 				render_checkbox();
@@ -45,9 +66,28 @@ jQuery(document).ready(function () {
 			});
 		})
 	});
-
-
-	//jQuery('input#enable_role_based_price').click(function(){ check_product_rbp_status(); });
+    
+    
+    jQuery('body').on('click', 'div#wc-rbp-product-editor #wc_rbp_update_price', function () {
+		var clickedBtn = jQuery(this);
+		clickedBtn.attr('disabled','disable');
+        wc_rbp_div_block('div#wc-rbp-product-editor div.inside');
+        var data = jQuery('div#wc-rbp-product-editor :input').serialize();
+		
+		jQuery.ajax({
+			url: ajaxurl,
+			method: "POST",
+			data: data,
+		}).done(function (data) {
+			clickedBtn.removeAttr('disabled');
+			wc_rbp_div_unblock('div#wc-rbp-product-editor div.inside');
+			jQuery('div.wc_rbp_hidden_fields').html(data.data.hidden_fields);
+			jQuery('div.wc_rbp_price_editor_ajax_response').html(data.data.html).fadeIn('slow'); 
+			setTimeout(2000,function(){
+				jQuery('div.wc_rbp_price_editor_ajax_response').fadeOut('slow');
+			});
+		})
+	});
 
 });
 
