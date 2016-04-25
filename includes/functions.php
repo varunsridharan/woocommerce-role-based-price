@@ -465,6 +465,7 @@ if(!function_exists('wc_rbp_generate_tabs')){
             'show_image' => true,
             'tab_style' => 'left', // 'default', 'box' or 'left'. Optional
             'tab_wrapper' => true,
+            
         );
         
         
@@ -476,7 +477,7 @@ if(!function_exists('wc_rbp_generate_tabs')){
         $i = 0;
         foreach ( $tabs as $key => $tab_data ) {
             if ( is_string( $tab_data ) ) { $tab_data = array( 'title' => $tab_data ); }
-            $tab_data = wp_parse_args( $tab_data, array( 'icon'  => '', 'title' => '',));
+            $tab_data = wp_parse_args( $tab_data, array( 'icon'  => '', 'title' => '','show_status' =>  true));
             if ( filter_var( $tab_data['icon'], FILTER_VALIDATE_URL ) ) {
                 $icon = '<img src="' . $tab_data['icon'] . '">';
             } else {
@@ -487,10 +488,17 @@ if(!function_exists('wc_rbp_generate_tabs')){
                 $tab_data['icon'] = implode( ' ', array_unique( $tab_data['icon'] ) );
                 $icon = $tab_data['icon'] ? '<i class="' . $tab_data['icon'] . '"></i>' : '';
             }
+            
+            $show_status = 'no';
+            $status_tag = '';
+            if($tab_data['show_status']){
+                $show_status = 'yes';
+                $status_tag = '<i class="wc-rbp-tab-status"></i>';
+            }
 
             $class = "wcrbp-tab-$key";
             if ( ! $i ){$class .= ' wcrbp-tab-active';}
-            $tabs_code .= sprintf('<li class="%s" data-panel="%s"><a href="#">%s%s</a></li>', $class, $key, $icon, $tab_data['title'] );
+            $tabs_code .= sprintf('<li data-status="%s" class="%s" data-panel="%s"><a href="#">%s%s%s</a></li>', $show_status,$class, $key, $icon, $tab_data['title'],$status_tag);
             $i ++;
         }
         

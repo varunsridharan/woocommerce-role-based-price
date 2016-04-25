@@ -88,8 +88,40 @@ jQuery(document).ready(function () {
 			});
 		})
 	});
-
+//data-status
+    check_price_Status();
+    
+    jQuery('#wc-rbp-product-editor :input').blur(function(){check_price_Status();})
 });
+
+function check_price_Status(){
+    jQuery('.wcrbp-tab-nav > li').each(function(){
+        if(jQuery(this).attr('data-status') == 'yes'){
+            var divClass = 'div.wcrbp-tab-panel-' + jQuery(this).attr('data-panel');
+            var filled = 0;
+            var unfilled = 0;
+            var totalf = 0;
+            jQuery(divClass).find('input').each(function(){
+                if(jQuery(this).val() == ''){ unfilled = unfilled + 1; } else { filled  = filled + 1; }
+            });
+
+            totalf = filled + unfilled;
+            
+            jQuery(this).find('.wc-rbp-tab-status').removeClass('bgred');
+            jQuery(this).find('.wc-rbp-tab-status').removeClass('bggreen');
+            jQuery(this).find('.wc-rbp-tab-status').removeClass('bgblue');
+            
+            if(filled == 0 && unfilled > 0){
+                 jQuery(this).find('.wc-rbp-tab-status').addClass('bgred');
+            } else if(filled > 0 && unfilled > 0) {
+                jQuery(this).find('.wc-rbp-tab-status').addClass('bgblue');
+            } else if(filled > 0 && unfilled == 0) {
+                jQuery(this).find('.wc-rbp-tab-status').addClass('bggreen');
+            }
+        }
+
+    });
+}
 
 function check_product_rbp_status() {
 	var status = jQuery('input#enable_role_based_price').is(':checked');

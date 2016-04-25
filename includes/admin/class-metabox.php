@@ -58,7 +58,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         foreach($this->allowed_roles as $role){
             if(isset($registered_roles[$role])){
                 $icon = 'dashicons dashicons-admin-users';
-                $tabs[$role] = array('title' => $registered_roles[$role]['name'],'icon' => $icon);
+                $tabs[$role] = array('title' => $registered_roles[$role]['name'],'icon' => $icon, 'show_status' => true);
             }
         }
         
