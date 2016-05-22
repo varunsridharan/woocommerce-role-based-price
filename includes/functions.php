@@ -364,7 +364,7 @@ if(!function_exists('wc_rbp_get_form_hidden_fields')){
 	 */
 	
 	function wc_rbp_get_form_hidden_fields($action,$wp_nounce_name,$referer = true){
-		$return = '<input type="hidden" name="action" value="'.$action.'" />';
+		$return = '<input type="hidden" name="wcrbp-action" value="'.$action.'" />';
 		$return .= wp_nonce_field( $action, $wp_nounce_name, $referer, false ) ;
 		return $return;
 	}
@@ -518,6 +518,32 @@ if(!function_exists('wc_rbp_generate_tabs')){
         return $final;
     }
 }
+
+if(!function_exists('wc_rbp_allowed_roles')){
+    
+    function wc_rbp_allowed_roles(){
+        $roles = wc_rbp_option('allowed_roles');
+        if(empty($roles)){
+            $roles = array_keys(wc_rbp_get_user_roles_selectbox());
+        }
+        
+        return $roles;
+    }
+}
+
+if(!function_exists('wc_rbp_allowed_price')){
+    
+    function wc_rbp_allowed_price(){
+        $roles = wc_rbp_option('allowed_price');
+        if(empty($roles)){
+            $roles = array_keys(wc_rbp_avaiable_price_type());
+        }
+        
+        return $roles;
+    }
+}
+
+
 
 /**
  * @public Below Function Are Used By The Plugin users 

@@ -18,7 +18,7 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
 	
     public function add_general_tab($tabs){
         $this->register_price_fields();
-        $tabs['general'] = array('title' => __('General',WC_RBP_TXT),'icon' => 'dashicons-admin-tools');
+        $tabs['general'] = array('title' => __('General',WC_RBP_TXT),'icon' => 'dashicons-admin-tools','show_status' => false);
         return $tabs;
     }
     
@@ -36,7 +36,8 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
 	}
 	
 	public function register_price_fields(){
-		$allowed_roles = wc_rbp_option('allowed_roles');
+		$allowed_roles = wc_rbp_allowed_roles();
+        
 		foreach($allowed_roles as $role){
 			add_action('wc_rbp_price_edit_tab_'.$role,array($this,'generate_price_field'),10,4);
 		}		
@@ -44,7 +45,7 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
     
 	public function generate_price_field($product_id,$prodType,$prod,$tab_id){
 		global $product; 
-		$allowed_price = wc_rbp_option('allowed_price');
+		$allowed_price = wc_rbp_allowed_price();
 		$price_exists = wc_rbp_avaiable_price_type();
 		$output_html = '<div class="wc_rbp_price_container wc_rbp_popup_section wc_rbp_popup_section_'.$tab_id.'">';
 		

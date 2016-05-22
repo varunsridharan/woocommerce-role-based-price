@@ -18,8 +18,27 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
 		add_action('wp_ajax_wc_rbp_addon_custom_css',array($this,'render_addon_css'));
 		add_action('wp_ajax_nopriv_wc_rbp_addon_custom_js',array($this,'render_addon_js'));
 		add_action('wp_ajax_wc_rbp_addon_custom_js',array($this,'render_addon_js'));
+        
+        add_action('wp_ajax_wc_rbp_metabox_refersh',array($this,'refresh_metabox'));
     }
 	
+    public function refresh_metabox(){
+        if(!isset($_REQUEST['pid'])){ wp_send_json_error(__('Invalid Product ID',WC_RBP_TXT)); }
+        
+        if(!isset($_REQUEST['parentID'])){ wp_send_json_error(__('Invalid Product ID',WC_RBP_TXT)); }
+        
+        $id = $_REQUEST['pid'];
+        $parentid = $_REQUEST['parentID'];
+        $metabox = new WooCommerce_Role_Based_Price_Product_Metabox;
+        ob_start();
+        $metabox->generate_variation_selectbox($parentid,$id);
+        $metabox->render_price_editor_metabox($id);
+        $content = ob_get_contents();
+        ob_end_clean();
+        wp_send_json_success($content);
+        wp_die();        
+    }
+    
 	public function render_addon_css(){ 
         header('Content-Type: text/css');
 		do_action('wc_rbp_addon_styles');

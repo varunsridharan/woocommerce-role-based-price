@@ -38,7 +38,6 @@ class WooCommerce_Role_Based_Price_Admin {
 		new WooCommerce_Role_Based_Price_Admin_Product_Functions;
         new WooCommerce_Role_Based_Price_Admin_Ajax_Handler;
 		new WooCommerce_Role_Based_Price_Addons;
-       # new WooCommerce_Role_Based_Price_Admin_Sample_Class;
     } 
     
     /**
@@ -66,6 +65,7 @@ class WooCommerce_Role_Based_Price_Admin {
         if('product' == $current_screen) {
 		 	wp_enqueue_style(WC_RBP_SLUG.'_tabs_style');  
             wp_enqueue_style(WC_RBP_SLUG.'_jquery-custombox_style');  
+            wp_enqueue_style(WC_RBP_SLUG.'_settings_selectize_style');  
         }
         
         do_action('wc_rbp_admin_styles',$current_screen);
@@ -109,6 +109,7 @@ class WooCommerce_Role_Based_Price_Admin {
             wp_enqueue_script(WC_RBP_SLUG.'_jquery-custombox-script'); 
             wp_enqueue_script(WC_RBP_SLUG.'_jquery-custombox-legacy-script'); 
             wp_enqueue_script(WC_RBP_SLUG.'_jquery-product-script'); 
+            wp_enqueue_script(WC_RBP_SLUG.'_settings_selectize.js'); 
         }
         
         do_action('wc_rbp_admin_scripts',$current_screen);
@@ -125,8 +126,12 @@ class WooCommerce_Role_Based_Price_Admin {
 	 * @return array
 	 */
     public function plugin_action_links($action,$file,$plugin_meta,$status){
-        $actions[] = sprintf('<a href="%s">%s</a>', '#', __('Settings',WC_RBP_TXT) );
-        $actions[] = sprintf('<a href="%s">%s</a>', 'http://varunsridharan.in/plugin-support/', __('Contact Author',WC_RBP_TXT) );
+        $url = admin_url('admin.php?page=woocommerce-role-based-price-settings');
+        $addonurl = admin_url('admin.php?page=woocommerce-role-based-price-settings&tab=wcrbpaddons');
+        
+        $actions[] = sprintf('<a href="%s">%s</a>', $url, __('Settings',WC_RBP_TXT) );
+        $actions[] = sprintf('<a href="%s">%s</a>', $addonurl, __('Add-ons',WC_RBP_TXT) );
+        
         $action = array_merge($actions,$action);
         return $action;
     }
@@ -140,10 +145,11 @@ class WooCommerce_Role_Based_Price_Admin {
 	 */
 	public function plugin_row_links( $plugin_meta, $plugin_file ) {
 		if ( WC_RBP_FILE == $plugin_file ) {
-            $plugin_meta[] = sprintf('<a href="%s">%s</a>', '#', __('F.A.Q',WC_RBP_TXT) );
+            $plugin_meta[] = sprintf('<a href="%s">%s</a>', '#', __('Docs',WC_RBP_TXT) );
             $plugin_meta[] = sprintf('<a href="%s">%s</a>', '#', __('View On Github',WC_RBP_TXT) );
             $plugin_meta[] = sprintf('<a href="%s">%s</a>', '#', __('Report Issue',WC_RBP_TXT) );
             $plugin_meta[] = sprintf('&hearts; <a href="%s">%s</a>', '#', __('Donate',WC_RBP_TXT) );
+            $plugin_meta[] = sprintf('<a href="%s">%s</a>', 'http://varunsridharan.in/plugin-support/', __('Contact Author',WC_RBP_TXT) );
 		}
 		return $plugin_meta;
 	}	    

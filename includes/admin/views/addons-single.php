@@ -31,7 +31,7 @@
 							$plugin_status = $this->check_plugin_status($plugin['Slug']);
 							$status_val = __('InActive',WC_RBP_TXT);
 							$class = 'deactivated';
-							if($plugin_status === 'notexist'){ $status_val = __('Plugin Dose Not Exist',WC_RBP_TXT); $class = 'notexist'; } 
+							if($plugin_status === 'notexist'){ $status_val = __('Plugin Does Not Exist',WC_RBP_TXT); $class = 'notexist'; } 
 							else if($plugin_status === true){ $status_val = __('Active',WC_RBP_TXT); $class = 'active'; }
 							if(!isset($plugin['Version'])){$plugin['version'] = '';}
 							echo '<li class="'.$class.'">';
@@ -44,10 +44,11 @@
 						}
 					?>
 				</ul>
-				<p> <span><?php _e('Above Mentioned Plugin name with version are Tested Upto',WC_RBP_TXT);?></span> </p>
-				<small><strong><?php _e('Addon Slug : ',WC_RBP_TXT); ?></strong><?php echo $wc_rbp_plugin_slug;?></small>
+				<?php /*<p> <span><?php _e('Above Mentioned Plugin name with version are Tested Up to',WC_RBP_TXT);?></span> </p> */ ?>
+				
 			</div>
 		<?php endif; ?>
+        <small><strong><?php _e('Addon Slug : ',WC_RBP_TXT); ?></strong><?php echo $wc_rbp_plugin_slug;?></small>
 	</div>
 	<div class="plugin-card-bottom">
 		<div class="column-updated" data-pluginslug="<?php echo $slug; ?>">

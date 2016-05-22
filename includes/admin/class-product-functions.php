@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 class WooCommerce_Role_Based_Price_Admin_Product_Functions {
     
     public function __construct() {
-        add_action('woocommerce_product_options_pricing',array($this,'add_rbp_edit_button'),6);
+        //add_action('woocommerce_product_options_pricing',array($this,'add_rbp_edit_button'),6);
 		add_action('woocommerce_variation_options_pricing',array($this,'add_variable_rbp_edit_button'),10,3);
         add_action('admin_footer',array($this,'add_modal_code'));
         add_action('wc_rbp_product_save',array($this,'simple_save_product_price'),1,3);

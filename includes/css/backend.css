@@ -33,8 +33,18 @@ div.jqifade {
     width: 100%;
 }
 
+#wc-rbp-product-editor .selectize-control {
+    display: inline-block !important;
+    margin-left: 10px !important;
+    vertical-align: middle !important;
+}
+
+#wc-rbp-product-editor .selectize-control > .selectize-input {
+    padding: 5px 10px !important;
+}
 
 
+#wc-rbp-product-editor .selectize-dropdown.single{font-weight: normal !important;}
 /**
  * Custom Box Modal Style
  
@@ -299,8 +309,8 @@ div.wc_rbp_popup_section  div.wc_rbp_pop_field_50:last-child {
 }
 
 .wc-rbp-addons-required-plugins li.notexist {
-    background: red none repeat scroll 0 0;
-    color: white;
+    background: #ffe1e1 none repeat scroll 0 0;
+    border: 1px solid red;
     font-weight: bold;
 }
 

@@ -9,7 +9,7 @@
 <?php  
 
 $tabs = array();
-$allowed_roles = wc_rbp_option('allowed_roles');
+$allowed_roles = wc_rbp_allowed_roles();
 $registered_roles = wc_rbp_get_wp_roles();
 
 foreach($allowed_roles as $role){
