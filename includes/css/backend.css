@@ -18,6 +18,13 @@ div.jqifade {
 }
 
 
+.enable_text {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
 .wc_rbp_settings_content {
 	display: inline-block;
 	float: none;
@@ -292,6 +299,7 @@ div.wc_rbp_popup_section  div.wc_rbp_pop_field_50:last-child {
 .wc_rbp_required_addon_plugin_name {
     color: #0073aa;
 }
+
 
 
 .wc_rbp_required_addon_plugin_status.active {

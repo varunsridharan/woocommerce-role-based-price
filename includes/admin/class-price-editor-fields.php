@@ -27,8 +27,8 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
 		$content = '<div class="wc_rbp_price_container wc_rbp_popup_section wc_rbp_popup_section_'.$tab_id.'">';
             $content .= '<div class="enable_field_container">';
                 $content .= '<p class="form-field ">';
-                    $content .= '<label class="enable_text" for="enable_role_based_price">'.__('Enable Role Based Pricing',WC_RBP_TXT).'</label>';
-                    $content .= '<input type="checkbox" data-secondaryColor="#999" data-size="small" class="wc_rbp_checkbox" id="enable_role_based_price" name="enable_role_based_price" '.$status.'/>';
+                    $content .= '<label class="enable_text" for="enable_role_based_price">'.__('Enable Role Based Pricing',WC_RBP_TXT).' </label> ';
+                    $content .= ' <input type="checkbox" data-secondaryColor="#999" data-size="small" class="wc_rbp_checkbox" id="enable_role_based_price" name="enable_role_based_price" '.$status.'/> ';
                 $content .= '</p>';
             $content .= '</div>';
         $content .= '</div>';
