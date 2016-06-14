@@ -18,7 +18,7 @@ class WooCommerce_Role_Based_Price {
 	protected static $admin = null;     # Required Plugin Class Instance
 	protected static $settings = null;  # Required Plugin Class Instance
 	protected static $frontend = null;  # Required Plugin Class INstance
-
+    protected static $shortcode_handler = null;  # Required Plugin Class INstance
     /**
      * Creates or returns an instance of this class.
      */
@@ -119,7 +119,8 @@ class WooCommerce_Role_Based_Price {
         self::$functions = new WooCommerce_Role_Based_Price_Functions;
 		self::$settings = new WooCommerce_Role_Based_Price_Settings_Framework; 
 		self::$frontend = new WooCommerce_Role_Based_Price_Product_Pricing;
-
+        self::$shortcode_handler = new WooCommerce_Role_Based_Price_Shortcode_Handler;
+        
 		if(wc_rbp_is_request('admin')){
             self::$admin = new WooCommerce_Role_Based_Price_Admin;
         }

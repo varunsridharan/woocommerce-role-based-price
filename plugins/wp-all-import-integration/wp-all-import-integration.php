@@ -33,7 +33,7 @@ class WP_All_Import_Integation_WC_RBP {
 		$allowed_roles = wc_rbp_allowed_roles();
 		$allowed_price = wc_rbp_allowed_price();
 		$role_data = wc_rbp_get_wp_roles();
-		$price_values = wc_rbp_avaiable_price_type();
+		$price_values = wc_rbp_price_types();
 		$curr = get_woocommerce_currency_symbol();
 		
 		$fields = array();
@@ -55,7 +55,7 @@ class WP_All_Import_Integation_WC_RBP {
 	public function wc_rbp_importer_function($post_id, $data, $import_options){
 		$allowed_roles = wc_rbp_allowed_roles();
 		$allowed_price = wc_rbp_allowed_price();
-		$price_values = wc_rbp_avaiable_price_type();
+		$price_values = wc_rbp_price_types();
 		$status = false;
 		$final_price = array();
 		

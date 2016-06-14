@@ -46,7 +46,7 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
 	public function generate_price_field($product_id,$prodType,$prod,$tab_id){
 		global $product; 
 		$allowed_price = wc_rbp_allowed_price();
-		$price_exists = wc_rbp_avaiable_price_type();
+		$price_exists = wc_rbp_price_types(); 
 		$output_html = '<div class="wc_rbp_price_container wc_rbp_popup_section wc_rbp_popup_section_'.$tab_id.'">';
 		
 		foreach($allowed_price as $price){

@@ -32,7 +32,7 @@ class WCRBP_WPALLIMPORT_ACS {
 		$allowed_currency = wc_rbp_option('acs_allowed_currencies');
 
 		$role_data = wc_rbp_get_wp_roles();
-		$price_values = wc_rbp_avaiable_price_type();
+		$price_values = wc_rbp_price_types();
 		$curr = get_woocommerce_currency_symbol();
 		
 		$fields = array();
@@ -60,7 +60,7 @@ class WCRBP_WPALLIMPORT_ACS {
 		$allowed_roles = wc_rbp_allowed_roles();
 		$allowed_price = wc_rbp_allowed_price();
 		$allowed_currency = wc_rbp_option('acs_allowed_currencies');
-		$price_values = wc_rbp_avaiable_price_type();
+		$price_values = wc_rbp_price_types();
 		$final_price = array();
 		
 		foreach($allowed_roles as $role){

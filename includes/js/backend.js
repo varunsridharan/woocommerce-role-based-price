@@ -180,6 +180,7 @@ function wc_rbp_div_unblock(id) {
 
 function wc_rbp_add_variation_selectbox() {    
     
+    
     jQuery('.wcrbpvariationbx').appendTo('#wc-rbp-product-editor .hndle span');
 
     jQuery('.wcrbpvariationbx').selectize({
@@ -210,6 +211,10 @@ function wc_rbp_add_variation_selectbox() {
             })
         }
     });
+    
+    if(jQuery('.wcrbpvariationbx').size() > 0){ 
+    }
+    
 }
 
 function wc_rbp_check_price_Status() {

@@ -15,7 +15,7 @@
 			$allowed_roles = wc_rbp_allowed_roles();
 			$allowed_price = wc_rbp_allowed_price();
 			$role_data = wc_rbp_get_wp_roles();
-			$price_values = wc_rbp_avaiable_price_type();
+			$price_values = wc_rbp_price_types();
 			$curr = get_woocommerce_currency_symbol();
 			foreach($allowed_roles as $key => $val){ 
 				$name = isset($role_data[$val]['name']) ? $role_data[$val]['name'] : ''; 

@@ -63,6 +63,22 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 				'multiple' => 'multiple',
 			)
 		);
+        
+        $price_type = wc_rbp_avaiable_price_type();
+    
+        foreach($price_type as $pK => $pV){ 
+            $fields['general']['general'][] =
+                array(
+                'id' => WC_RBP_DB.$pK.'_label',
+                'type' => 'text', 
+                'label' => $pV . __(' Label ',WC_RBP_TXT),  
+                'default' => $pV,
+                'attr'    => array( 
+                    'style' => 'width:auto;max-width:35%;', 
+                )
+            ); 
+        }
+        
 		
 		$fields['general']['price_edit_view'][] =
 			array(

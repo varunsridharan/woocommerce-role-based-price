@@ -15,14 +15,15 @@ add_action('wc_rbp_loaded','wc_rbp_get_settings_from_db');
 
 
 if(!function_exists('wc_rbp_option')){
-	function wc_rbp_option($key = ''){
+	function wc_rbp_option($key = '',$return_failure = ''){
 		global $wc_rbp_db_settins_values;
 		if($key == ''){return $wc_rbp_db_settins_values;}
+        
 		if(isset($wc_rbp_db_settins_values[WC_RBP_DB.$key])){
 			return $wc_rbp_db_settins_values[WC_RBP_DB.$key];
 		} 
 		
-		return false;
+		return $return_failure;
 	}
 
 }
@@ -187,18 +188,39 @@ if(!function_exists('wc_rbp_get_tab_pos')){
     }
 }
 
+
+if(!function_exists('wc_rbp_custom_wp_user_roles')){
+    function wc_rbp_custom_wp_user_roles(){ 
+        $all_roles = array();
+        if(function_exists('wp_roles')){ $all_roles = wp_roles()->roles;  }
+        return $all_roles;
+    }
+}
+
 if(!function_exists('wc_rbp_get_wp_roles')){
 	/**
 	 * Returns Registered WP User Roles
 	 * @return [[Type]] [[Description]]
 	 */
 	function wc_rbp_get_wp_roles(){
-		$user_roles = get_editable_roles();
+		$user_roles = wc_rbp_custom_wp_user_roles();
 		$user_roles['logedout'] = array('name' => __('Visitor / LogedOut User',WC_RBP_TXT));  
 		$user_roles = apply_filters('wc_rbp_wp_user_roles',$user_roles);
 		return $user_roles;
 	}
 
+}
+
+if(!function_exists('wc_rbp_get_template')){
+	function wc_rbp_get_template($name,$args = array(),$main_path = '',$theme_path = 'woocommerce'){ 
+        if(empty($main_path)){$main_path = WC_RBP_PATH.'/templates/';}
+        ob_start();
+		wc_get_template( $name, $args ,$theme_path, $main_path);
+        $return_value = ob_get_clean(); 
+        ob_flush();
+        
+        return $return_value;
+	}
 }
 
 if(!function_exists('wc_rbp_get_user_roles_selectbox')){
@@ -269,14 +291,40 @@ if(!function_exists('wc_rbp_avaiable_price_type')){
 	 * Returns avaiable_price type with label
 	 * @return [[Type]] [[Description]]
 	 */
-	function wc_rbp_avaiable_price_type(){
+	function wc_rbp_avaiable_price_type($key = ''){
 		$avaiable_price = array();
 		$avaiable_price['regular_price'] = __('Regular Price',WC_RBP_TXT);
 		$avaiable_price['selling_price'] = __('Selling Price',WC_RBP_TXT);
 		$avaiable_price = apply_filters('wc_rbp_avaiable_price',$avaiable_price);
+        
+        if(!empty($key)){
+            if(isset($avaiable_price[$key])){
+                return $avaiable_price[$key];
+            }
+        }
+        
 		return $avaiable_price;
 	}
 } 
+
+if(!function_exists('wc_rbp_price_types')){
+    function wc_rbp_price_types($key = ''){
+        $price = wc_rbp_avaiable_price_type(); 
+        foreach($price as $price_id => $priceVal){
+            $lable = wc_rbp_option($price_id.'_label',$priceVal);
+            $price[$price_id] = $lable;
+        }
+        
+        if(!empty($key)){
+            if(isset($price[$key])){
+                return $price[$key];
+            }
+        }
+        
+        return $price;
+    }
+}
+
  
 if(!function_exists('wc_rbp_modal_template')){
     /**

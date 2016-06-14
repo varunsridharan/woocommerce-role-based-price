@@ -32,6 +32,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
  		$product_id = $this->check_product_get_id($product);
 		$status = product_rbp_status($product_id,$product);
 		if(!$status){ $return = $price; }
+        
         if(empty($current_user)){$current_user = wc_rbp_get_current_user();}
 		
 		$rbp_price = wc_rbp_price($product_id,$current_user,'all',array(),$product);
@@ -71,14 +72,16 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         
 	 	$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key,$current_user);
 		$return = wc_format_decimal($return);
-        //$return = apply_filters('wcml_raw_price_amount', $return);
+        $return = apply_filters('wcml_raw_price_amount', $return);
 		return $return;
 	}
 	
 	public function check_product_get_id($product){
 		$product_id = 0;
 
-		if($this->is_simple_product($product)){ 
+        if(is_numeric($product)){
+            return $product;
+        } else if($this->is_simple_product($product)){ 
 			$product_id = $product->id; 
 		} else if($this->is_variable_product($product)){
 			$product_id = $product->id;

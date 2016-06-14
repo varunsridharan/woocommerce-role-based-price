@@ -9,6 +9,20 @@ div.wc-rbp-enhanced-select div.selectize-dropdown {
 	width: 100% !important;
 }
 
+.wc_rbp_base_product_price {
+    display: inline-block;
+    margin-right: 25px;
+    margin-top: 5px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.wc_rbp_base_product_price .headTxt {
+    color: red !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+}
+
 div.jqibox {
 	z-index: 100010 !important;
 }

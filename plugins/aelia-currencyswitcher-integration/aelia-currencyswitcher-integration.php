@@ -60,7 +60,7 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
 		$product_id = $post_id;
 		$allowed_currency = wc_rbp_option('acs_allowed_currencies');
 		$allowed_price = wc_rbp_allowed_price();
-		$ex_price = wc_rbp_avaiable_price_type();
+		$ex_price = wc_rbp_price_types();
 		if(empty($allowed_currency)){ $allowed_currency = $this->get_enabled_currencies (); }
 		include(__DIR__.'/wc_rbp_fields.php');
 	}
