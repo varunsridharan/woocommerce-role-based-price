@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Role Based Price 3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
-"POT-Creation-Date: 2016-05-22 03:22:28+00:00\n"
+"POT-Creation-Date: 2016-06-14 10:01:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -83,7 +83,7 @@ msgid "General"
 msgstr ""
 
 #: includes/admin/class-price-editor-fields.php:30
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:59
+#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:60
 msgid "Enable Role Based Pricing"
 msgstr ""
 
@@ -213,32 +213,32 @@ msgid "Price Editor TAB Position"
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:72
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:35
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:50
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:42
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:57
 msgid "you can change the tab position in price editor view"
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:74
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:37
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:52
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:44
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:59
 msgid "Horizontal Top"
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:75
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:38
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:53
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:45
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:60
 msgid "Horizontal Bottom"
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:76
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:39
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:54
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:46
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:61
 msgid "Vertical Left"
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:77
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:40
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:55
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:47
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:62
 msgid "Vertical right"
 msgstr ""
 
@@ -280,7 +280,7 @@ msgid "Last Updated:"
 msgstr ""
 
 #: includes/admin/views/ajax-modal-footer.php:3
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:96
+#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:97
 msgid "Close"
 msgstr ""
 
@@ -447,23 +447,23 @@ msgstr ""
 msgid "You can set Custom Name For User Roles to make it easy for you to work"
 msgstr ""
 
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:93
+#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:94
 msgid "Save RBP Force Sell"
 msgstr ""
 
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:95
+#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:96
 msgid "Expand"
 msgstr ""
 
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:34
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:41
 msgid "Variation Tab POS"
 msgstr ""
 
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:49
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:56
 msgid "Price Tab POS"
 msgstr ""
 
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:87
+#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:94
 msgid "RBP Bulk Price Edit"
 msgstr ""
 
