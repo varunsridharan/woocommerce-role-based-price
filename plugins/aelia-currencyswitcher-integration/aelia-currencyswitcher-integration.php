@@ -237,4 +237,3 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
     }	
 }
 return new Aelia_Currency_Switcher_Integration_WC_RBP;
-?>

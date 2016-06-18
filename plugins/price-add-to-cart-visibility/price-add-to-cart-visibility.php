@@ -126,4 +126,3 @@ class Price_add_to_cart_visibility_WC_RBP {
 }
 
 return new Price_add_to_cart_visibility_WC_RBP;
-?>

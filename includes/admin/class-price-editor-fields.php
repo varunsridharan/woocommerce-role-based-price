@@ -75,4 +75,3 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
 }
 
 return new WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields;
-?>

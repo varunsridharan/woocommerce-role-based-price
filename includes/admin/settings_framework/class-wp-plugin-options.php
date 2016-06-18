@@ -18,8 +18,8 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 	
 	public function settings_pages($page){
 		$page[] = array('id'=>'general','slug'=>'general','title'=>__('General',WC_RBP_TXT));
-		$page[] = array('id'=>'addonssettings','slug'=>'addonssettings','title'=>__('Add-ons Options',WC_RBP_TXT));
-		$page[] = array('id'=>'addons','slug'=>'wcrbpaddons','title'=>__('Add-ons',WC_RBP_TXT));
+		$page[] = array('id'=>'addonssettings','slug'=>'addonssettings','title'=>__('Extensions Options',WC_RBP_TXT));
+		$page[] = array('id'=>'addons','slug'=>'wcrbpaddons','title'=>__('Extensions',WC_RBP_TXT));
 		return $page;
 	}
 	public function settings_section($section){
@@ -106,4 +106,3 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 }
 
 return new WooCommerce_Role_Based_Price_Admin_Settings_Options;
-?>

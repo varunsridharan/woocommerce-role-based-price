@@ -106,7 +106,11 @@ class WooCommerce_Role_Based_Price {
 		} else if(file_exists($file = apply_filters('wc_rbp_addon_file_location',$file))) {
 			$this->load_files($file);
 		} else {
-			do_action('wc_rbp_addon_'.$file.'_load');
+            if(has_action('wc_rbp_addon_'.$file.'_load')){
+                do_action('wc_rbp_addon_'.$file.'_load');
+            } else {
+                wc_rbp_deactivate_addon($file);
+            }
 		}
 	}
     
@@ -196,4 +200,3 @@ class WooCommerce_Role_Based_Price {
     }
     
 }
-?>

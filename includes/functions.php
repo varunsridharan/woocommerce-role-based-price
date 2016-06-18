@@ -774,4 +774,3 @@ if(!function_exists('wc_rbp_active_price')){
         return $price['regular_price'];
     }
 }
-?>

@@ -189,4 +189,3 @@ class WP_All_Import_WooCommerce_Addon_Extender extends RapidAddon {
 	<?php 
 	}
 }
-?>

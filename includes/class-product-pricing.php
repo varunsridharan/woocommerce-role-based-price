@@ -356,4 +356,3 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         
     }
 }
-?>

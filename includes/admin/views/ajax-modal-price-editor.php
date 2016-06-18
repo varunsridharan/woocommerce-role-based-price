@@ -46,6 +46,3 @@ do_action('wc_rbp_price_edit_bottom',$product_id,$type);
 ?>
 	</form>
 </div>
-
-
-

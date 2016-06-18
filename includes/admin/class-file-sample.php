@@ -14,4 +14,3 @@ class WooCommerce_Role_Based_Price_Admin_Sample_Class {
     
     }
 }
-?>

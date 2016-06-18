@@ -1034,5 +1034,3 @@ if (!class_exists('RapidAddon')) {
 	}	
 
 }
-
-

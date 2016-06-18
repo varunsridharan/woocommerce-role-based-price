@@ -11,11 +11,16 @@ if ( ! defined( 'WPINC' ) ) { die; }
 class WooCommerce_Role_Based_Price_Addons {
     
     public function __construct() {
+        add_action( 'wp_ajax_wc_rbp_get_addons_html',array($this,'list_addons_ajax'));
     	add_action(WC_RBP_DB.'_form_fields',array($this,'list_addons'),10,2);
 		add_action( 'wp_ajax_wc_rbp_activate_addon',array($this,'activate_plugin'));
 		add_action( 'wp_ajax_wc_rbp_deactivate_addon',array($this,'deactivate_plugin'));
     }	
 	
+    public function list_addons_ajax(){
+        $this->list_addons('','addons');
+    }    
+    
 	public function deactivate_plugin(){
 		$status = $this->addon_actions('deactivate');
 		if($status === 'invalidcode'){
@@ -100,11 +105,13 @@ class WooCommerce_Role_Based_Price_Addons {
 	public function get_addon_category(){
 		$category = array();
 		$category['all']  = __('All',WC_RBP_TXT);
+        $category['active']  = __('Active',WC_RBP_TXT);
+        $category['inactive']  = __('InActive',WC_RBP_TXT);
 		foreach($this->plugins_data as  $data){
             $cat = explode(',',$data['Category']);
             foreach($cat as $c){
                 if(!in_array($c,$category)){
-                    $category[$data['CategorySlug']]  = $c;
+                    $category[$data['category-slug']]  = $c;
                 }
             }
 			
@@ -113,12 +120,19 @@ class WooCommerce_Role_Based_Price_Addons {
 	}
 
 	public function get_html_addon_category($cats){
-		$output = '<ul class="subsubsub addons_category">';
+        $label = __("Search Addons",WC_RBP_TXT);
+		$output = '<div class="wp-filter"> <ul class="filter-links wc_rbp_addons_category addons_category">';
 		
 		foreach($cats as $cat => $catv){
-			$output .= '<li><a href="javascript:void(0);" data-category="'.$cat.'">'.$catv.'</a> |  </li>';
+			$output .= '<li  id="'.$cat.'" class="'.$cat.' category"><a href="javascript:void(0);" data-category="'.$cat.'">'.$catv.'</a> |  </li>';
 		}
 		$output .= '</ul>';
+        
+        $output .= '<div class="addons-search-form">';
+        $output .= '<input type="search" placeholder="'.$label.'" class="wp-filter-search" value="" name="s" />';
+        $output .= '</div>';
+        $output .= '</div>';
+        
 		return $output;
 	}
 	
@@ -255,7 +269,13 @@ class WooCommerce_Role_Based_Price_Addons {
 		foreach ( $plugin_files as $plugin_file ) { 
 			if ( !is_readable( "$plugin_root/$plugin_file" ) ) {continue;}
 			$plugin_data = $this->get_plugin_data( "$plugin_root/$plugin_file", false, true ); 
+            
 			if ( empty ( $plugin_data['Name'] ) ) { continue;} 
+            
+            $is_active = wc_rbp_check_active_addon("$plugin_file");
+            $plugin_data["is_active"] = $is_active;
+            $plugin_data["installed"] = true;
+            
 			$plugin_data["addon_root"] = $plugin_root.dirname($plugin_file).'/';
 			$plugin_data["addon_slug"] = sanitize_title(dirname($plugin_file));
 			$plugin_data["addon_folder"] = dirname($plugin_file).'/';
@@ -304,7 +324,7 @@ class WooCommerce_Role_Based_Price_Addons {
 		if(empty($plugin_data['TextDomain'])){$plugin_data['TextDomain'] = WC_RBP_TXT;}
 		if(empty($plugin_data['DomainPath'])){$plugin_data['DomainPath'] = false;}
 		if(empty($plugin_data['Category'])){$plugin_data['Category'] = 'general';}
-		$plugin_data['CategorySlug'] = sanitize_key($plugin_data['Category']);
+		$plugin_data['category-slug'] = sanitize_key($plugin_data['Category']);
 		
 		
 		if ( $markup || $translate ) {
@@ -339,4 +359,3 @@ class WooCommerce_Role_Based_Price_Addons {
 	}
 	
 }
-?>

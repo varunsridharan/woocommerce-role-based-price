@@ -121,6 +121,3 @@ if(!function_exists('wc_rbp_acs_price')){
 		return $return;
 	}
 }
-
-
-?>

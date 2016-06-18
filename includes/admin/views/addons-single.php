@@ -1,5 +1,16 @@
-<?php $slug =  $wc_rbp_plugin_data['addon_slug']; ?>
-<div class="plugin-card plugin-card-<?php echo $slug; ?> wc-rbp-addon-all wc-rbp-addon-<?php echo $wc_rbp_plugin_data['CategorySlug']; ?>">
+<?php 
+$slug =  $wc_rbp_plugin_data['addon_slug']; 
+
+$wrapperClass = 'plugin-card plugin-card-'.$slug.' wc-rbp-addon-all wc-rbp-addon-'.$wc_rbp_plugin_data['category-slug'];
+
+if($wc_rbp_plugin_data['is_active']){
+    $wrapperClass .= ' wc-rbp-addon-active';
+} else {
+    $wrapperClass .= ' wc-rbp-addon-inactive';
+}
+
+?>
+<div class="<?php echo $wrapperClass; ?>" id="<?php echo $slug; ?>">
 	<?php wc_rbp_get_ajax_overlay(); ?>
 	<div class="plugin-card-top">
 		<div class="name column-name">

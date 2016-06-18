@@ -100,4 +100,3 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
 	}
 	
 }
-?>

@@ -118,7 +118,7 @@ class WooCommerce_Role_Based_Price_Settings_Framework {
     
     
     public function admin_page(){
-		echo '<div class="wrap wc_qd_settings">';
+		echo '<div class="wrap wc_rbp_settings">';
 		settings_errors();
 		$this->settings->render_header();
 		//echo $this->settings->debug;
@@ -151,5 +151,3 @@ class WooCommerce_Role_Based_Price_Settings_Framework {
         return $values;
     }
 }
-
-?>

@@ -65,17 +65,12 @@ function wc_rbp_dependency_plugin_deactivate() {
 	woocommerce_role_based_price_Deactivator::dependency_deactivate();
 }
 
-//if(woocommerce_role_based_price_Dependencies()){
-	
-    require_once(WC_RBP_INC.'functions.php');
-    require_once(plugin_dir_path(__FILE__).'bootstrap.php');
-	
-	if(!function_exists('woocommerce_role_based_price')){
-		function woocommerce_role_based_price(){
-			return woocommerce_role_based_price::get_instance();
-		}
-	}
-	woocommerce_role_based_price();
-//}
+require_once(WC_RBP_INC.'functions.php');
+require_once(plugin_dir_path(__FILE__).'bootstrap.php');
 
-?>
+if(!function_exists('woocommerce_role_based_price')){
+    function woocommerce_role_based_price(){
+        return woocommerce_role_based_price::get_instance();
+    }
+}
+woocommerce_role_based_price();

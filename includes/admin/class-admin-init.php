@@ -154,5 +154,3 @@ class WooCommerce_Role_Based_Price_Admin {
 		return $plugin_meta;
 	}	    
 }
-
-?>
