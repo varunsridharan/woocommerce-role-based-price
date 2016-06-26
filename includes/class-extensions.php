@@ -76,7 +76,7 @@ class WooCommerce_Role_Based_Price_Addons {
 		$addons_others = array();
 		$internal_addons = $this->get_plugins(WC_RBP_PLUGIN);
 		
-		if(!empty($search_dirs)){
+		if(!empty($search_dirs)){ 
 			foreach($search_dirs as $dir){
 				$dir_addons = $this->get_plugins($dir); 
 				$addons_others = array_merge($addons_others,$dir_addons);
@@ -108,10 +108,10 @@ class WooCommerce_Role_Based_Price_Addons {
         $category['active']  = __('Active',WC_RBP_TXT);
         $category['inactive']  = __('InActive',WC_RBP_TXT);
 		foreach($this->plugins_data as  $data){
-            $cat = explode(',',$data['Category']);
-            foreach($cat as $c){
+            $cat = $data['Category']; 
+            foreach($cat as $id => $c){
                 if(!in_array($c,$category)){
-                    $category[$data['category-slug']]  = $c;
+                    $category[$id]  = $c;
                 }
             }
 			
@@ -277,6 +277,7 @@ class WooCommerce_Role_Based_Price_Addons {
             $plugin_data["installed"] = true;
             
 			$plugin_data["addon_root"] = $plugin_root.dirname($plugin_file).'/';
+            $plugin_data["addon_url"] = plugin_dir_url("$plugin_root/$plugin_file");
 			$plugin_data["addon_slug"] = sanitize_title(dirname($plugin_file));
 			$plugin_data["addon_folder"] = dirname($plugin_file).'/';
 			$wp_plugins[plugin_basename( $plugin_file )] = $plugin_data;
@@ -324,8 +325,14 @@ class WooCommerce_Role_Based_Price_Addons {
 		if(empty($plugin_data['TextDomain'])){$plugin_data['TextDomain'] = WC_RBP_TXT;}
 		if(empty($plugin_data['DomainPath'])){$plugin_data['DomainPath'] = false;}
 		if(empty($plugin_data['Category'])){$plugin_data['Category'] = 'general';}
-		$plugin_data['category-slug'] = sanitize_key($plugin_data['Category']);
-		
+
+        $cat = explode(',',$plugin_data['Category']);
+        
+        $plugin_data['Category'] = array();
+        foreach($cat as $c){
+            $key = sanitize_key($c);
+            $plugin_data['Category'][$key] = $c;
+        }
 		
 		if ( $markup || $translate ) {
 			$plugin_data = _get_plugin_data_markup_translate( $plugin_file, $plugin_data, $markup, $translate );
@@ -339,14 +346,15 @@ class WooCommerce_Role_Based_Price_Addons {
 	
 	public function get_addon_icon($data,$echo = true){
 		$icon = WC_RBP_IMG.'addon_icon.jpg';
+        
 		if(file_exists($data['addon_root'].'icon.png') ){
-			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].'icon.png'; 
+			$icon = $data['addon_url'].'icon.png'; 
 		} else if(file_exists($data['addon_root'].'icon.jpg')){
-			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].'icon.jpg';
+			$icon = $data['addon_url'].'icon.jpg';
 		} else if(file_exists($data['addon_root'].$data['addon_slug'].'-icon.png')){
-			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].$data['addon_slug'].'-icon.png';
+			$icon = $data['addon_url'].$data['addon_slug'].'-icon.png';
 		} else if(file_exists($data['addon_root'].$data['addon_slug'].'-icon.jpg')){
-			$icon = WC_RBP_PLUGIN_URL.$data['addon_folder'].$data['addon_slug'].'-icon.jpg';
+			$icon = $data['addon_url'].$data['addon_slug'].'-icon.jpg';
 		} else if(isset($data['icon'])){
 			if(filter_var($data['icon'], FILTER_VALIDATE_URL) !== FALSE){
 				$icon = $data['icon'];

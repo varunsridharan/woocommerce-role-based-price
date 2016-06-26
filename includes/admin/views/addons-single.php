@@ -1,7 +1,8 @@
 <?php 
-$slug =  $wc_rbp_plugin_data['addon_slug']; 
+$slug =  $wc_rbp_plugin_data['addon_slug'];  
+$cat_slug = implode(' wc-rbp-addon-',array_keys($wc_rbp_plugin_data['Category'])); 
 
-$wrapperClass = 'plugin-card plugin-card-'.$slug.' wc-rbp-addon-all wc-rbp-addon-'.$wc_rbp_plugin_data['category-slug'];
+$wrapperClass = 'plugin-card plugin-card-'.$slug.' wc-rbp-addon-all  wc-rbp-addon-'.$cat_slug;
 
 if($wc_rbp_plugin_data['is_active']){
     $wrapperClass .= ' wc-rbp-addon-active';

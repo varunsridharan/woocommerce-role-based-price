@@ -131,7 +131,6 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         echo $return;
     }
     
-    
 }
 
 return new WooCommerce_Role_Based_Price_Product_Metabox;

@@ -105,7 +105,8 @@ class Price_add_to_cart_visibility_WC_RBP {
 		
 		$fields['price_visibility'][] = array(
 			'id' => WC_RBP_DB.'pv_custom_message',
-			'type'    => 'textarea',
+			'type'    => 'richtext',
+            'richtext_settings' => array('textarea_rows' => 5),
 			'label' => __('Custom Message',WC_RBP_TXT),
 			'desc' => __('Used when product price is hidden.. use [currency] to get current store currency',WC_RBP_TXT),
 			'attr'    => array( 'class' => 'wc_rbp_checkbox', ),

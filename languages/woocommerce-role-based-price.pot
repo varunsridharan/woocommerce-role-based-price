@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Role Based Price 3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
-"POT-Creation-Date: 2016-06-14 10:01:18+00:00\n"
+"POT-Creation-Date: 2016-06-26 03:47:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +25,6 @@ msgid "Settings"
 msgstr ""
 
 #: includes/admin/class-admin-init.php:133
-#: includes/admin/settings_framework/class-wp-plugin-options.php:22
 msgid "Add-ons"
 msgstr ""
 
@@ -49,20 +48,20 @@ msgstr ""
 msgid "Contact Author"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:26
-#: includes/admin/class-ajax-handler.php:28
+#: includes/admin/class-ajax-handler.php:25
+#: includes/admin/class-ajax-handler.php:27
 msgid "Invalid Product ID"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:64
+#: includes/admin/class-ajax-handler.php:63
 msgid "Unable To Process Your Request Please Try Again later"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:86
+#: includes/admin/class-ajax-handler.php:85
 msgid "Product Price Edit Failed"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:87
+#: includes/admin/class-ajax-handler.php:86
 msgid "<h3> Invalid Product Selected Or Unable To Process Your Request Now.. <small> Please Try Again Later</small> </h3>"
 msgstr ""
 
@@ -70,15 +69,22 @@ msgstr ""
 msgid "WC Role Based Price Editor"
 msgstr ""
 
-#: includes/admin/class-metabox.php:48
+#: includes/admin/class-metabox.php:52
 msgid "Save Price"
 msgstr ""
 
+#: includes/admin/class-metabox.php:69
+msgid "WC Product Price : "
+msgstr ""
+
+#: includes/admin/class-metabox.php:106
+msgid "Select A Variation : "
+msgstr ""
+
 #: includes/admin/class-price-editor-fields.php:21
-#: includes/admin/settings/pages.php:13
 #: includes/admin/settings_framework/class-wp-plugin-options.php:20
 #: includes/admin/settings_framework/class-wp-plugin-options.php:26
-#: includes/functions.php:115
+#: includes/functions.php:116
 msgid "General"
 msgstr ""
 
@@ -109,79 +115,12 @@ msgstr ""
 msgid "Price Not Defined. Please Try Again"
 msgstr ""
 
-#: includes/admin/settings/fields.php:18
-msgid "Redirect User To"
-msgstr ""
-
-#: includes/admin/settings/fields.php:19
-msgid "After Donation Added To Cart"
-msgstr ""
-
-#: includes/admin/settings/fields.php:21
-msgid "Cart Page"
-msgstr ""
-
-#: includes/admin/settings/fields.php:21
-msgid "Checkout Page"
-msgstr ""
-
-#: includes/admin/settings/fields.php:28
-msgid ""
-"<span> Add <code>%s</code> To Get Ented Amount By User.</span>  <br/>\n"
-"               <span> Add <code>%s</code> To Get Minimum Required Amount From Selected Project </span>   <br/>\n"
-"               <span> Add <code>%s</code> To Get Minimum Required Amount From Selected Project  </span>"
-msgstr ""
-
-#: includes/admin/settings/fields.php:38
-msgid "Donation Conflict"
-msgstr ""
-
-#: includes/admin/settings/fields.php:39
-msgid "Custom Message To Show When User Trying To Add Donation With Other Products"
-msgstr ""
-
-#: includes/admin/settings/fields.php:50
-msgid "Pre Selected Project Name"
-msgstr ""
-
-#: includes/admin/settings/fields.php:51
-msgid "default project render type"
-msgstr ""
-
-#: includes/admin/settings/fields.php:53
-msgid "Select Box"
-msgstr ""
-
-#: includes/admin/settings/fields.php:53
-msgid "Radio Button"
-msgstr ""
-
-#: includes/admin/settings/fields.php:60 includes/admin/settings/fields.php:63
-msgid "Show Errors"
-msgstr ""
-
-#: includes/admin/settings/fields.php:61
-msgid "Set to hide errors when <code> wc_print_notice</code> called before loading dontion form"
-msgstr ""
-
-#: includes/admin/settings/fields.php:63
-msgid "Hide Errors"
-msgstr ""
-
-#: includes/admin/settings/pages.php:14
-msgid "Message"
-msgstr ""
-
-#: includes/admin/settings/pages.php:15
-msgid "ShortCode"
-msgstr ""
-
-#: includes/admin/settings/validate-general.php:5
-msgid "Error: Please Select Atlest 1 Payment Gateway."
-msgstr ""
-
 #: includes/admin/settings_framework/class-wp-plugin-options.php:21
-msgid "Add-ons Options"
+msgid "Extensions Options"
+msgstr ""
+
+#: includes/admin/settings_framework/class-wp-plugin-options.php:22
+msgid "Extensions"
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:27
@@ -208,35 +147,39 @@ msgstr ""
 msgid "Price Fields To List In Product Edit Page"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:71
+#: includes/admin/settings_framework/class-wp-plugin-options.php:74
+msgid " Label "
+msgstr ""
+
+#: includes/admin/settings_framework/class-wp-plugin-options.php:87
 msgid "Price Editor TAB Position"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:72
+#: includes/admin/settings_framework/class-wp-plugin-options.php:88
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:42
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:57
 msgid "you can change the tab position in price editor view"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:74
+#: includes/admin/settings_framework/class-wp-plugin-options.php:90
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:44
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:59
 msgid "Horizontal Top"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:75
+#: includes/admin/settings_framework/class-wp-plugin-options.php:91
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:45
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:60
 msgid "Horizontal Bottom"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:76
+#: includes/admin/settings_framework/class-wp-plugin-options.php:92
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:46
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:61
 msgid "Vertical Left"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:77
+#: includes/admin/settings_framework/class-wp-plugin-options.php:93
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:47
 #: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:62
 msgid "Vertical right"
@@ -247,35 +190,35 @@ msgstr ""
 msgid "Role Based Price Settings"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:8
+#: includes/admin/views/addons-single.php:20
 msgid "V"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:17
+#: includes/admin/views/addons-single.php:29
 msgid "By"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:26
+#: includes/admin/views/addons-single.php:38
 msgid "Required Plugins :"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:32
+#: includes/admin/views/addons-single.php:44 includes/class-extensions.php:109
 msgid "InActive"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:34
+#: includes/admin/views/addons-single.php:46
 msgid "Plugin Does Not Exist"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:35
+#: includes/admin/views/addons-single.php:47 includes/class-extensions.php:108
 msgid "Active"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:51
+#: includes/admin/views/addons-single.php:63
 msgid "Addon Slug : "
 msgstr ""
 
-#: includes/admin/views/addons-single.php:57
+#: includes/admin/views/addons-single.php:69
 msgid "Last Updated:"
 msgstr ""
 
@@ -288,69 +231,85 @@ msgstr ""
 msgid "Update Price"
 msgstr ""
 
-#: includes/class-extensions.php:22 includes/class-extensions.php:38
+#: includes/class-extensions.php:27 includes/class-extensions.php:43
 msgid "Unable to process you request. please try again later"
 msgstr ""
 
-#: includes/class-extensions.php:24 includes/class-extensions.php:30
+#: includes/class-extensions.php:29 includes/class-extensions.php:35
 msgid "Unable To De-Activate Addon. Please Try Again Later"
 msgstr ""
 
-#: includes/class-extensions.php:26
+#: includes/class-extensions.php:31
 msgid "Addon De-Activated"
 msgstr ""
 
-#: includes/class-extensions.php:28
+#: includes/class-extensions.php:33
 msgid "Addon Already De-Activated"
 msgstr ""
 
-#: includes/class-extensions.php:40 includes/class-extensions.php:46
+#: includes/class-extensions.php:45 includes/class-extensions.php:51
 msgid "Unable To Activate Addon. Please Try Again Later"
 msgstr ""
 
-#: includes/class-extensions.php:42
+#: includes/class-extensions.php:47
 msgid "Addon Activated"
 msgstr ""
 
-#: includes/class-extensions.php:44
+#: includes/class-extensions.php:49
 msgid "Addon Already Activated"
 msgstr ""
 
-#: includes/class-extensions.php:102
+#: includes/class-extensions.php:107
 msgid "All"
 msgstr ""
 
-#: includes/class-extensions.php:187
+#: includes/class-extensions.php:123
+msgid "Search Addons"
+msgstr ""
+
+#: includes/class-extensions.php:201
 msgid "Activate"
 msgstr ""
 
-#: includes/class-extensions.php:188
+#: includes/class-extensions.php:202
 msgid "Deactivate"
 msgstr ""
 
-#: includes/class-product-pricing.php:288
-#: includes/class-product-pricing.php:292
+#: includes/class-product-pricing.php:300
+#: includes/class-product-pricing.php:304
 msgctxt "Price range: from-to"
 msgid "%1$s&ndash;%2$s"
 msgstr ""
 
-#: includes/class-product-pricing.php:296
+#: includes/class-product-pricing.php:308
 msgid "Free!"
 msgstr ""
 
-#: includes/functions.php:118 includes/functions.php:130
+#: includes/class-shortcode-handler.php:35
+msgid "Invalid Product ID Given"
+msgstr ""
+
+#: includes/class-shortcode-handler.php:39
+msgid "Invalid User Role Given"
+msgstr ""
+
+#: includes/class-shortcode-handler.php:46
+msgid "Invalid Price Type Given"
+msgstr ""
+
+#: includes/functions.php:119 includes/functions.php:131
 msgid "Save Changes"
 msgstr ""
 
-#: includes/functions.php:197
+#: includes/functions.php:207
 msgid "Visitor / LogedOut User"
 msgstr ""
 
-#: includes/functions.php:274
+#: includes/functions.php:296
 msgid "Regular Price"
 msgstr ""
 
-#: includes/functions.php:275
+#: includes/functions.php:297
 msgid "Selling Price"
 msgstr ""
 
@@ -371,39 +330,47 @@ msgstr ""
 msgid "Enter Product's %s For %s Currency"
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:104
+#: plugins/fast-price-updater/fast-price-updater.php:96
 msgid "Fast Price Updater"
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:108
+#: plugins/fast-price-updater/fast-price-updater.php:100
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:109
 msgid "Price Update Type"
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:109
+#: plugins/fast-price-updater/fast-price-updater.php:101
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:110
 msgid "How To Update product Price By % / Fixed value "
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:110
+#: plugins/fast-price-updater/fast-price-updater.php:102
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:111
 msgid "Fixed Value"
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:110
+#: plugins/fast-price-updater/fast-price-updater.php:102
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:111
 msgid "Percentage (%) Value"
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:116
+#: plugins/fast-price-updater/fast-price-updater.php:108
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:119
 msgid "Value Operator"
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:117
+#: plugins/fast-price-updater/fast-price-updater.php:109
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:120
 msgid "How To Update product Price By + / - "
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:118
+#: plugins/fast-price-updater/fast-price-updater.php:110
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:121
 msgid "Add (+)"
 msgstr ""
 
-#: plugins/fast-price-updater/fast-price-updater.php:118
+#: plugins/fast-price-updater/fast-price-updater.php:110
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:121
 msgid "Subract (-)"
 msgstr ""
 
@@ -431,19 +398,19 @@ msgstr ""
 msgid "if checked Variable product variation will be hidden from product page "
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:109
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:110
 msgid "Custom Message"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:110
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:111
 msgid "Used when product price is hidden.. use [currency] to get current store currency"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:120
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:121
 msgid "Price Visibility"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:121
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:122
 msgid "You can set Custom Name For User Roles to make it easy for you to work"
 msgstr ""
 
@@ -467,6 +434,14 @@ msgstr ""
 msgid "RBP Bulk Price Edit"
 msgstr ""
 
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:98
+msgid "Dynamic Pricing : "
+msgstr ""
+
+#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:99
+msgid "Global Dynamic Pricing : "
+msgstr ""
+
 #: plugins/rbp-payment-gateway/rbp-payment-gateway.php:44
 msgid "Blocked Payment Gateway"
 msgstr ""
@@ -477,6 +452,34 @@ msgstr ""
 
 #: plugins/rbp-payment-gateway/rbp-payment-gateway.php:102
 msgid "Restrict WC Payment Gateway Based on user roles. or per user basics"
+msgstr ""
+
+#: plugins/rbp-pricing-table/rbp-pricing-table.php:35
+msgid "RBP Pricing Table"
+msgstr ""
+
+#: plugins/rbp-pricing-table/rbp-pricing-table.php:51
+msgid "Price To Show"
+msgstr ""
+
+#: plugins/rbp-pricing-table/rbp-pricing-table.php:62
+msgid "Allowed Roles : "
+msgstr ""
+
+#: plugins/rbp-pricing-table/rbp-pricing-table.php:69
+msgid "Vertical Template"
+msgstr ""
+
+#: plugins/rbp-pricing-table/rbp-pricing-table.php:69
+msgid "Horizontal Template"
+msgstr ""
+
+#: plugins/rbp-pricing-table/rbp-pricing-table.php:71
+msgid "Template Type : "
+msgstr ""
+
+#: plugins/rbp-pricing-table/rbp-pricing-table.php:82
+msgid "Role Price To Show For "
 msgstr ""
 
 #: plugins/rbp-product-blocking/rbp-product-blocking.php:48
@@ -571,15 +574,15 @@ msgstr ""
 msgid "Delete Key"
 msgstr ""
 
-#: plugins/rbp-universal-access/rbp-universal-access.php:238
+#: plugins/rbp-universal-access/rbp-universal-access.php:243
 msgid "RBP Universal Access "
 msgstr ""
 
-#: plugins/rbp-universal-access/rbp-universal-access.php:244
+#: plugins/rbp-universal-access/rbp-universal-access.php:249
 msgid "Access List"
 msgstr ""
 
-#: plugins/rbp-universal-access/rbp-universal-access.php:245
+#: plugins/rbp-universal-access/rbp-universal-access.php:250
 msgid "Add New Access"
 msgstr ""
 

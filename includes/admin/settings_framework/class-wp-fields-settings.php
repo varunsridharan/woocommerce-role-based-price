@@ -64,6 +64,22 @@ if ( !class_exists( 'WooCommerce_Role_Based_Price_Settings_WP_Fields' ) ) {
 
 			echo $args['before'] . $html . $args['after'] . $this->description( $args['desc'] );
 		}
+        
+        /**
+		 * Displays a textarea.
+		 *
+		 * @param array   $args
+		 */
+        public function callback_richtext( $args ) {
+            $settings = isset($args['richtext_settings']) ? $args['richtext_settings'] : array();
+			$size  = ( isset( $args['size'] ) && $args['size'] ) ? $args['size'] : 'regular';
+			$args  = $this->get_arguments( $args ); // escapes all attributes
+			$value = (string) esc_textarea( $this->get_option( $args ) );
+			$error = $this->get_setting_error( $args['id'] ); 
+
+            $content = wp_editor($value, $args['id'],$settings);
+			echo $args['before'] . $content . $args['after'] . $this->description( $args['desc'] );
+		}
 
 
 		/**

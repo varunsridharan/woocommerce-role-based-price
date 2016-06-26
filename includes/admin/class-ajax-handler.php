@@ -11,9 +11,8 @@ if ( ! defined( 'WPINC' ) ) { die; }
 class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
     
     public function __construct() {
-        
-        add_action( 'wp_ajax_wc_rbp_product_editor', array($this,'product_editor_template_handler' ));
-		add_action( 'wp_ajax_wc_rbp_save_product_prices',array($this,'save_product_rbp_price'));
+        add_action('wp_ajax_wc_rbp_product_editor', array($this,'product_editor_template_handler' ));
+		add_action('wp_ajax_wc_rbp_save_product_prices',array($this,'save_product_rbp_price'));
 		add_action('wp_ajax_nopriv_wc_rbp_addon_custom_css',array($this,'render_addon_css'));
 		add_action('wp_ajax_wc_rbp_addon_custom_css',array($this,'render_addon_css'));
 		add_action('wp_ajax_nopriv_wc_rbp_addon_custom_js',array($this,'render_addon_js'));

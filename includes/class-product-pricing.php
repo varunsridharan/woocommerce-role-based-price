@@ -24,54 +24,63 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         //add_filter( 'woocommerce_variation_prices',array(&$this,'change_variation_price'),10,4);
 	}
 	
-	public function get_product_price($price,$product,$price_meta_key = 'regular_price',$current_user = ''){
-		$return = false;
+	public function get_product_price($base_price,$product,$price_meta_key = 'regular_price',$current_user = ''){
+		$wc_rbp_price = false;
 		$product_id = '';
 		$opposite_key = 'selling_price';
 		if($price_meta_key == 'selling_price'){$opposite_key = 'regular_price';}
  		$product_id = $this->check_product_get_id($product);
-		$status = product_rbp_status($product_id,$product);
-		if(!$status){ $return = $price; }
+		$wc_rbp_status = product_rbp_status($product_id,$product);
+		if(!$wc_rbp_status){ $wc_rbp_price = $base_price; }
         
         if(empty($current_user)){$current_user = wc_rbp_get_current_user();}
 		
 		$rbp_price = wc_rbp_price($product_id,$current_user,'all',array(),$product);
         
-        if($status){
+        if($wc_rbp_status){
             if($rbp_price === false){
-                $return = $price;
+                $wc_rbp_price = $base_price;
             } else {
-                if($price_meta_key == 'all'){$return = $rbp_price[$price_meta_key];}
+                if($price_meta_key == 'all'){$wc_rbp_price = $rbp_price[$price_meta_key];}
 
                 if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
                     if($rbp_price[$price_meta_key] == "" && $rbp_price[$opposite_key] == ""){
-                        $return = $price;
+                        $wc_rbp_price = $price;
                     } else if( $rbp_price[$price_meta_key] == ""  && $rbp_price[$opposite_key] != ""){
-                        $return = $rbp_price[$opposite_key];
+                        $wc_rbp_price = $rbp_price[$opposite_key];
                     } else if($rbp_price[$price_meta_key] != ""  && $rbp_price[$opposite_key] == ""){
-                        $return = $rbp_price[$price_meta_key];
+                        $wc_rbp_price = $rbp_price[$price_meta_key];
                     } else if($rbp_price[$price_meta_key] != ""){
-                        $return = $rbp_price[$price_meta_key];
+                        $wc_rbp_price = $rbp_price[$price_meta_key];
                     }
                 } else if(isset($rbp_price[$price_meta_key]) && ! isset($rbp_price[$opposite_key])){
                     if($rbp_price[$price_meta_key] == ""){
-                        $return = $price;
+                        $wc_rbp_price = $price;
                     } else if($rbp_price[$price_meta_key] != ""){
-                        $return = $rbp_price[$price_meta_key];
+                        $wc_rbp_price = $rbp_price[$price_meta_key];
                     }
                 } else if(isset($rbp_price[$opposite_key]) && ! isset($rbp_price[$price_meta_key])){
                     if($rbp_price[$opposite_key] == ""){
-                        $return = $price;
+                        $wc_rbp_price = $base_price;
                     } else if($rbp_price[$opposite_key] != ""){
-                        $return = $rbp_price[$opposite_key];
+                        $wc_rbp_price = $rbp_price[$opposite_key];
                     }
                 }
             }
         }
         
         
-	 	$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key,$current_user);
-		$return = wc_format_decimal($return);
+	 	//$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key,$current_user);
+        
+        $wc_rbp_price = apply_filters('wc_rbp_product_price_value',
+                                      $wc_rbp_price,
+                                      $base_price, 
+                                      $product_id,
+                                      $product,
+                                      $price_meta_key,
+                                      $current_user
+                                     );
+		$return = wc_format_decimal($wc_rbp_price);
         $return = apply_filters('wcml_raw_price_amount', $return);
 		return $return;
 	}
