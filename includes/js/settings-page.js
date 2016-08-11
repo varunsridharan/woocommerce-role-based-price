@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
         jQuery('p.submit').remove();
     }
     jQuery('select.wc-rbp-enhanced-select').selectize({
-        plugins: ['remove_button', 'restore_on_backspace'],
+        plugins: ['remove_button', 'restore_on_backspace','drag_drop'],
         persist: false,
         create: true,
     });

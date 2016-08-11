@@ -74,7 +74,8 @@ class WooCommerce_Role_Based_Price_Shortcode_Handler {
     } 
     
     public function get_selprice($role,$price = 'all',$product_id){
-       $p = $this->rbpPP->get_product_price('',$product_id,$price,$role); 
+       $product = wc_get_product($product_id);
+       $p = $this->rbpPP->get_product_price('',$product,$price,$role); 
        return wc_price($p); 
     }
     
