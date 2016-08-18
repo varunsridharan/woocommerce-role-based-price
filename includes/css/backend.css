@@ -1,3 +1,104 @@
+table.wc_rbp_settings_table { 
+	box-shadow: none;
+	border: 0 none; 
+	border-spacing: 0;
+	clear: both;
+	margin: 0;
+    max-width: 900px;
+    min-width: 800px;
+    width: auto;
+    background:#fff;
+    border: 1px solid #e1e1e1;
+}
+
+table.wc_rbp_settings_table th {
+	font-weight: bold;
+	text-align: left;
+	font-size: 14px;
+	padding: 8px 15px;
+	line-height: 28px;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+table.wc_rbp_settings_table td {
+	padding: 13px 15px;
+	border-top: 1px solid #f5f5f5;
+    width: 70% !important;
+}
+
+table.wc_rbp_settings_table td:first-child {
+	width:26%;
+}
+
+table.wc_rbp_settings_table td.wcff-sortable{
+	cursor:move;
+}
+
+table.wc_rbp_settings_table td.add {
+	width:40px;
+}
+
+table.wc_rbp_settings_table td.remove {
+	width:20px;
+}
+
+table.wc_rbp_settings_table tr > th {
+	width: 30% !important;
+	vertical-align: middle;
+	background: #F9F9F9;
+	border-top: 1px solid #f0f0f0;
+	border-right: 1px solid #E1E1E1;
+}
+
+table.wc_rbp_settings_table > tbody > tr:first-child > td, 
+table.wc_rbp_settings_table > tbody > tr:first-child > th {
+	border-top: 0 none;
+}
+
+table.wc_rbp_settings_table tr > th label {
+	display: block;
+	font-size: 13px;
+	line-height: 1.4em;
+	font-weight: bold;
+	padding: 0;
+	margin: 0 0 3px;
+	color: #333;
+} 
+
+table.wc_rbp_settings_table tr > th p {
+	display: block; 
+	line-height: 1.4em;
+	padding: 0 !important;
+	margin: 3px 0 0 !important;
+	font-size: 12px;
+    font-style: italic;
+	/*line-height: 16px;*/
+	color: #666;
+}
+
+table.wc_rbp_settings_table select,
+table.wc_rbp_settings_table textarea,
+table.wc_rbp_settings_table input[type=text],
+table.wc_rbp_settings_table input[type=password],
+table.wc_rbp_settings_table input[type=email],
+table.wc_rbp_settings_table input[type=number] {
+	width:100%;
+	padding: 3px;
+	height: auto;
+}
+
+table.wc_rbp_settings_table textarea {
+	resize: vertical;
+}
+ 
+
+.wc_rbp_settings .wc_rbp_settings_submenu {
+    display: block !important;
+    margin: 10px 0 0 !important;
+    width: 100%;
+} 
+
+
 .wc_rbp_settings .addons-search-form {
     display: inline-block;
     float: right;
@@ -20,7 +121,8 @@ div.wc-rbp-enhanced-select {
     display: inline-block;
     margin-right: 10px !important;
     vertical-align: middle;
-    width: 50% !important;
+    min-width:200px;
+    width: 100% !important;
 }
 
 div.wc-rbp-enhanced-select div.selectize-dropdown {

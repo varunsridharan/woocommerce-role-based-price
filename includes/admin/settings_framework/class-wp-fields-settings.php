@@ -92,7 +92,8 @@ if ( !class_exists( 'WooCommerce_Role_Based_Price_Settings_WP_Fields' ) ) {
 			$value = array_map( 'esc_attr', array_values( (array) $this->get_option( $args ) ) );
 			$multiple = ( preg_match( '/multiple="multiple"/', strtolower( $args['attr'] ) ) ) ? '[]' : '';
 			$value = ( '[]' === $multiple ) ? $value : $value[0];
-			$html  = sprintf( '<select id="%1$s_%2$s" name="%1$s[%2$s]%4$s"%3$s>', $args['section'], $args['id'], $args['attr'], $multiple );
+			$html  = sprintf( '<select id="%1$s_%2$s" name="%1$s[%2$s]%4$s"%3$s>', $args['section'], $args['id'], $args['attr'], $multiple ); 
+            
 			foreach ( (array) $args['options'] as $opt => $label ) {
 				if ( '[]' === $multiple ) {
 					$selected = ( in_array( $opt , $value ) ) ? ' selected="selected" ' : '';
@@ -210,7 +211,7 @@ if ( !class_exists( 'WooCommerce_Role_Based_Price_Settings_WP_Fields' ) ) {
 		 */
 		public function description( $desc = '' ) {
 			if ( $desc ) {
-				return sprintf( '<p class="description">%s</p>', $desc );
+				//return sprintf( '<p class="description">%s</p>', $desc );
 			}
 		}
 
