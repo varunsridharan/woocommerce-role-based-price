@@ -137,6 +137,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 	 */
 	public function get_regular_price($price, $product){
 		$price = $this->get_product_price($price,$product); 
+        $price = apply_filters("wc_rbp_product_regular_price",$price,$product,$this);
 		return $price;
 	}
 	
@@ -146,6 +147,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 	 */
 	public function get_selling_price($price, $product){
 		$price = $this->get_product_price($price,$product,'selling_price');
+        $price = apply_filters("wc_rbp_product_selling_price",$price,$product,$this);
 		return $price;
 	}
 	
@@ -157,6 +159,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		$sale_price = $product->get_sale_price();
 		$wcrbp_price = ( $sale_price !== '' && $sale_price > 0 )? $sale_price : $this->get_regular_price( $price, $product );
         $wcrbp_price = wc_format_decimal($wcrbp_price); 
+        $wcrbp_price = apply_filters("wc_rbp_product_get_price",$wcrbp_price,$product,$this);
 		return $wcrbp_price; 
 	}	
 	
