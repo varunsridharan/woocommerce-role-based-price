@@ -1,0 +1,313 @@
+# Copyright (C) 2015 WooCommerce Role Based Price
+# This file is distributed under the same license as the WooCommerce Role Based Price package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Role Based Price 2.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-"
+"based-price\n"
+"POT-Creation-Date: 2015-12-23 13:05+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-12-23 13:22+0100\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.6\n"
+"Last-Translator: Fabio Tielen <info@7grafix.be>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl_NL\n"
+
+#: admin/class-admin-init.php:183
+msgid "Settings"
+msgstr "Instellingen"
+
+#: admin/class-admin-init.php:189
+msgid "F.A.Q"
+msgstr "FAQ"
+
+#: admin/class-admin-init.php:200
+msgid "Report Issue"
+msgstr "Rapporteer een bug"
+
+#: admin/class-admin-init.php:206
+msgid "Donate"
+msgstr "Doneer"
+
+#: admin/class-admin-init.php:211
+msgid "Contact Author"
+msgstr "Contact met auteur opnemen"
+
+#: admin/class-admin-settings.php:41
+#: plugins/class-wp-all-import-pro-Integration.php:23
+msgid "WooCommerce Role Based Pricing"
+msgstr "WooCommerce Role Based Pricing"
+
+#: admin/class-admin-settings.php:53
+msgid "General"
+msgstr "Algemeen"
+
+#: admin/class-admin-settings.php:54
+msgid "User Role Rename"
+msgstr "Gebruikersrol hernoemen"
+
+#: admin/class-admin-settings.php:55
+msgid "Price Visibility"
+msgstr "Prijs zichtbaarheid"
+
+#: admin/class-admin-settings.php:56
+msgid "Newsletter"
+msgstr "Nieuwsbrief"
+
+#: admin/class-admin-settings.php:61
+msgid "Plugins"
+msgstr "Plugins"
+
+#: admin/includes/class-simple-product.php:42
+#: admin/includes/class-simple-product.php:72
+msgid ""
+"<span class=\"wc_rbp_error\"> <strong> Please Save Or Publish This Product "
+"To Add Role Based Price </strong> </span>"
+msgstr ""
+"<span class=\"wc_rbp_error\"> <strong> Bewaar of publiceer dit product voor "
+"gebruikersrol gebaseerde prijzen</strong> </span>"
+
+#: admin/includes/class-simple-product.php:45
+msgid "Role Based Price"
+msgstr "Rol gebaseerde prijs"
+
+#: admin/includes/class-simple-product.php:49
+#: admin/includes/class-simple-product.php:79
+msgid "Add / Edit Role Pricing"
+msgstr "Toevoegen / Bewerken gebruikersrol prijzen"
+
+#: admin/includes/class-simple-product.php:106
+#: admin/includes/class-simple-product.php:128
+msgid "Unable To Save Product Role Price. Please Try Again."
+msgstr ""
+"Nee mogelijk om gebruikersrol gebaseerde prijs te bewaren. Probeer het aub "
+"opnieuw."
+
+#: admin/includes/class-simple-product.php:119
+#: admin/includes/class-simple-product.php:143
+msgid "Product's Role Based Pricing Updated"
+msgstr "Product gebruikersrol gebaseerde prijs is bijgewerkt"
+
+#: admin/includes/settings-general.php:14
+msgid "Allowed User Roles"
+msgstr "Toegelaten gebruikersrollen"
+
+#: admin/includes/settings-general.php:15
+msgid "User Roles To List In Product Edit Page"
+msgstr "Gebruikersrollen polijsten in productpagina bewerken"
+
+#: admin/includes/settings-general.php:24
+msgid "Allowed Product Pricing"
+msgstr "Toegelaten productprijzen"
+
+#: admin/includes/settings-general.php:25
+msgid "Price Fields To List In Product Edit Page"
+msgstr "Prijsvelden polijsten in productpagina bewerken"
+
+#: admin/includes/settings-general.php:30
+#: admin/includes/views/popup_rbform_content.php:18
+#: plugins/class-wp-all-import-pro-Integration.php:40
+msgid "Regular Price"
+msgstr "Normale prijs"
+
+#: admin/includes/settings-general.php:30
+msgid "Sale Price"
+msgstr "Kortingsprijs"
+
+#: admin/includes/settings-newsletter.php:8 includes/page-html.php:73
+msgid "Subscribe to our mailing list"
+msgstr "Inschrijven voor onze nieuwsbrief"
+
+#: admin/includes/settings-newsletter.php:15 includes/page-html.php:86
+msgid "Email Address"
+msgstr "E-mailadres"
+
+#: admin/includes/settings-newsletter.php:20 includes/page-html.php:94
+msgid "First Name"
+msgstr "Voornaam"
+
+#: admin/includes/settings-newsletter.php:25 includes/page-html.php:100
+msgid "Last Name"
+msgstr "Achternaam"
+
+#: admin/includes/settings-newsletter.php:29 includes/page-html.php:106
+msgid "Website"
+msgstr "Website"
+
+#: admin/includes/settings-newsletter.php:34 includes/page-html.php:115
+msgid "Country"
+msgstr "Land"
+
+#: admin/includes/settings-price-views.php:4
+#: admin/includes/settings-price-views.php:41
+msgid "Simple Product"
+msgstr "Simpel product"
+
+#: admin/includes/settings-price-views.php:4
+#: admin/includes/settings-price-views.php:41
+msgid "Variable Product"
+msgstr "Variabel product"
+
+#: admin/includes/settings-price-views.php:14
+msgid "Hide Price For"
+msgstr "Verberg prijs voor"
+
+#: admin/includes/settings-price-views.php:15
+msgid "Use to hide product price for selected roles"
+msgstr ""
+"Gebruik om productprijzen te verbergen voor geselecteerde gebruikersrollen"
+
+#: admin/includes/settings-price-views.php:25
+msgid "Hide Add To Cart Button For"
+msgstr "Verberg de knop In winkelmandje plaatsen voor"
+
+#: admin/includes/settings-price-views.php:26
+msgid "Use to hide product add to cart button link for selected roles"
+msgstr ""
+"Gebruiken om knop in winkelmandje plaatsen te verbergen voor geselecteerde "
+"gebruikersrollen"
+
+#: admin/includes/settings-price-views.php:35
+msgid "Products To Hide"
+msgstr "Producten te verbergen"
+
+#: admin/includes/settings-price-views.php:36
+msgid "For Which Products To Apply The Above Settings"
+msgstr "Voor welke producten gelden bovenstaande instellingen"
+
+#: admin/includes/settings-price-views.php:45
+msgid "Variable Product Settings"
+msgstr "Variabele product instellingen"
+
+#: admin/includes/settings-price-views.php:46
+msgid " "
+msgstr ""
+
+#: admin/includes/settings-price-views.php:51
+msgid "Show Variations"
+msgstr "Toon variaties"
+
+#: admin/includes/settings-price-views.php:51
+msgid "Hide Variations"
+msgstr "Verberg variaties"
+
+#: admin/includes/settings-price-views.php:54
+msgid "Message For Price"
+msgstr "Bericht voor prijs"
+
+#: admin/includes/settings-price-views.php:55
+msgid "use <code>[curr]</code> to replace the currency symbol"
+msgstr "Gebruik <code>[curr]</code> om het valutasymbool te vervangen"
+
+#: admin/includes/settings-user-role-edit.php:6
+msgid "Custom Name For User Roles"
+msgstr "Personaliseer de naam voor gebruikersrollen"
+
+#: admin/includes/views/popup_rbform_content.php:26
+#: plugins/class-wp-all-import-pro-Integration.php:41
+msgid "Selling Price"
+msgstr "Verkoopprijs"
+
+#: admin/includes/views/popup_rbform_footer.php:11
+#: admin/includes/views/popup_rbpform_bulkedit_footer.php:14
+msgid "Save Price"
+msgstr "Kortingsprijs"
+
+#: admin/includes/views/popup_rbform_header.php:6
+msgid "Enable Role Based Pricing"
+msgstr "Gebruikersrol gebaseerde prijzen inschakelen"
+
+#: admin/includes/views/popup_rbform_header.php:9
+msgid "on"
+msgstr "Aan"
+
+#: admin/includes/views/popup_rbform_header.php:9
+msgid "off"
+msgstr "Uit"
+
+#: includes/class-activation.php:117
+msgid "Change Log"
+msgstr "Logboek"
+
+#: includes/class-activation.php:128
+msgid " Download's so far. help use reach more audience by sharing"
+msgstr ""
+"Downloads tot nu toe. Help ons om meer publiek te bereiken door te delen"
+
+#: includes/class-product-functions.php:47
+msgid "Invalid Product ID Given"
+msgstr "Ongeldig product ID ingegeven"
+
+#: includes/class-product-functions.php:51
+msgid "Invalid User Role Given"
+msgstr "Ongeldige gebruikersrol ingegeven"
+
+#: includes/class-product-functions.php:58
+msgid "Invalid Price Type Given"
+msgstr "Ongeldige prijstype ingegeven"
+
+#: includes/class-product-pricing-frontend.php:233
+#: includes/class-product-pricing-frontend.php:238
+msgctxt "Price range: from-to"
+msgid "%1$s&ndash;%2$s"
+msgstr "%1$s&ndash;%2$s"
+
+#: includes/class-product-pricing-frontend.php:245
+msgid "Free!"
+msgstr "Gratis!"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:49
+msgid "Aelia Currency Switcher"
+msgstr "Aelia Currency Switcher"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:63
+msgid "Allowed Currency"
+msgstr "Toegelaten valuta"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:64
+msgid "Allowed Currency To Show In Role Based Price Listing"
+msgstr ""
+"Toegelaten valuta om te tonen in gebruikersrol gebaseerde prijslijsten"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:108
+msgid "Role Based Price for Aelia Currency Switcher"
+msgstr "Gebruikersrol gebaseerde prijs voor Aelia Currency Switcher"
+
+#: plugins/class-wc-rbp-wp-all-import-aelia-Integration.php:24
+msgid "Aelia Currency Switcher Integration"
+msgstr "Aelia Currency Switcher Integratie"
+
+#: woocommerce-role-based-price.php:380
+msgid "<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires"
+msgstr "<strong> <i> WooCommerce Role Based Pricing </i> </strong> vereist"
+
+#: woocommerce-role-based-price.php:380
+msgid " <u>Woocommerce</u>"
+msgstr " <u>Woocommerce</u>"
+
+#: woocommerce-role-based-price.php:380
+msgid " To Be Installed And Activated"
+msgstr " Geïnstalleerd en geactiveerd"
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Role Based Price"
+msgstr "WooCommerce Role Based Price"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/woocommerce-role-based-price/"
+msgstr "https://wordpress.org/plugins/woocommerce-role-based-price/"
+
+#. Description of the plugin/theme
+msgid "Set WooCommerce Product Price Based On User Role"
+msgstr "Instellingen WooCommerce Product Price Based On User Role"
+
+#. Author of the plugin/theme
+msgid "Varun Sridharan"
+msgstr "Varun Sridharan"
+
+#. Author URI of the plugin/theme
+msgid "http://varunsridharan.in"
+msgstr "http://varunsridharan.in"
