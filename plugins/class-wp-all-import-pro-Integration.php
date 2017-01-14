@@ -16,15 +16,16 @@ class WooCommerce_Role_Based_Price_WPALLIMPORTER_PLUG {
     private $wpallimport_plug = '';
     
     public function __construct (){
-        add_action( 'admin_init', array($this,'wc_rbp_import_init'),1);  
+      //add_action( 'admin_init', array($this,'wc_rbp_import_init'),1);
+      $this->wpallimport_plug = new RapidAddon( __('WooCommerce Role Based Pricing',WC_RBP_TXT), 'wc_rbp_wp_all_import');
+      $this->wpallimport_plug->run(array( "post_types" => array( "product" ) ));
+      $this->wpallimport_plug->set_import_function(array($this,'wc_rbp_importer_function'));
+      $this->add_fields();
     }
     
-    public function wc_rbp_import_init(){  
-        $this->wpallimport_plug = new RapidAddon( __('WooCommerce Role Based Pricing',WC_RBP_TXT), 'wc_rbp_wp_all_import');
-        $this->add_fields();
-        $this->plug()->run(array( "post_types" => array( "product" ) ));  
-        $this->plug()->set_import_function(array($this,'wc_rbp_importer_function'));
-    }
+//    public function wc_rbp_import_init(){
+//      $this->add_fields();
+//    }
     
     private function plug(){ return $this->wpallimport_plug; }
     
@@ -32,21 +33,21 @@ class WooCommerce_Role_Based_Price_WPALLIMPORTER_PLUG {
         $this->plug()->add_field('_enable_role_based_price', 'Enable Role Based Price', 'text', null,'314agdag');
         $regular_price = WC_RBP()->get_allowed_price('regular');
         $selling_price = WC_RBP()->get_allowed_price('sale');
-        $allowed_Roles = WC_RBP()->get_allowed_roles(); 
+        $allowed_Roles = WC_RBP()->get_allowed_roles();
 
-        foreach($allowed_Roles as $key => $val){ 
+        foreach($allowed_Roles as $key => $val){
             $name = WC_RBP()->get_mod_name($key);
             $fields = array();
             if($regular_price){ $fields[] = $this->plug()->add_field( $key.'_regular_price', __( 'Regular Price', WC_RBP_TXT), 'text', null, '' ); }
-            if($regular_price){ $fields[] = $this->plug()->add_field( $key.'_selling_price', __( 'Selling Price', WC_RBP_TXT), 'text', null, '' ); } 
-            $this->plug()->add_options('',__($name.' { '.$key.' } ',WC_RBP_TXT),$fields); 
+            if($regular_price){ $fields[] = $this->plug()->add_field( $key.'_selling_price', __( 'Selling Price', WC_RBP_TXT), 'text', null, '' ); }
+            $this->plug()->add_options('',__($name.' { '.$key.' } ',WC_RBP_TXT),$fields);
             unset($fields);
-        }      
+        }
     } 
     
     public function wc_rbp_importer_function($post_id, $data, $import_options){
         //$product = get_product( $post_id);
-      
+
         $roles = array_keys(WC_RBP()->get_allowed_roles());
         $enable = $data['_enable_role_based_price'];
         $prices = array();

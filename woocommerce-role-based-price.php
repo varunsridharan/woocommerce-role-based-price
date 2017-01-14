@@ -174,7 +174,8 @@ final class  WooCommerce_Role_Based_Price{
      * @return Array
      */
     public function get_registered_roles(){
-        $user_roles = get_editable_roles();
+        $all_roles = wp_roles()->roles;
+        $user_roles = apply_filters( 'editable_roles', $all_roles );
         $user_roles['logedout'] = array('name' => 'Visitor / LogedOut User');  
         return $user_roles;
     }
