@@ -1,0 +1,303 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Role Based Price\n"
+"POT-Creation-Date: 2015-11-08 17:12+0330\n"
+"PO-Revision-Date: 2015-11-08 17:13+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/class-admin-init.php:183
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: admin/class-admin-init.php:189
+msgid "F.A.Q"
+msgstr "سؤالات متداول"
+
+#: admin/class-admin-init.php:200
+msgid "Report Issue"
+msgstr "نمایش جزئیات"
+
+#: admin/class-admin-init.php:206
+msgid "Donate"
+msgstr "کمک کردن"
+
+#: admin/class-admin-init.php:211
+msgid "Contact Author"
+msgstr "تماس با نویسنده"
+
+#: admin/class-admin-settings.php:41
+#: plugins/class-wp-all-import-pro-Integration.php:23
+msgid "WooCommerce Role Based Pricing"
+msgstr "قیمت گذاری در ووکامرس بر اساس نقش"
+
+#: admin/class-admin-settings.php:53
+msgid "General"
+msgstr "اصلی"
+
+#: admin/class-admin-settings.php:54
+msgid "User Role Rename"
+msgstr "تغییر نام نقش کاربر"
+
+#: admin/class-admin-settings.php:55
+msgid "Price Visibility"
+msgstr "قیمت دید"
+
+#: admin/class-admin-settings.php:56
+msgid "Newsletter"
+msgstr "خبرنامه"
+
+#: admin/class-admin-settings.php:61
+msgid "Plugins"
+msgstr "پلاگین ها"
+
+#: admin/includes/class-simple-product.php:42
+#: admin/includes/class-simple-product.php:72
+msgid ""
+"<span class=\"wc_rbp_error\"> <strong> Please Save Or Publish This Product "
+"To Add Role Based Price </strong> </span>"
+msgstr ""
+"<span class=\"wc_rbp_error\"><strong>لطفا ذخیره یا انتشار این محصول برای "
+"افزودن نقش بر اساس قیمت</strong></span>"
+
+#: admin/includes/class-simple-product.php:45
+msgid "Role Based Price"
+msgstr " قیمت بر اساس نقش"
+
+#: admin/includes/class-simple-product.php:49
+#: admin/includes/class-simple-product.php:79
+msgid "Add / Edit Role Pricing"
+msgstr "افزودن / ویرایش قیمت گذاری نقش"
+
+#: admin/includes/class-simple-product.php:106
+#: admin/includes/class-simple-product.php:128
+msgid "Unable To Save Product Role Price. Please Try Again."
+msgstr "قادر به ذخیره محصول نقش قیمت. لطفا دوباره سعی کنید."
+
+#: admin/includes/class-simple-product.php:119
+#: admin/includes/class-simple-product.php:143
+msgid "Product's Role Based Pricing Updated"
+msgstr "محصول قیمت گذاری مبتنی بر نقش بروز"
+
+#: admin/includes/settings-general.php:14
+msgid "Allowed User Roles"
+msgstr "نقش کاربر مجاز"
+
+#: admin/includes/settings-general.php:15
+msgid "User Roles To List In Product Edit Page"
+msgstr "نقش کاربر را به لیست در ویرایش محصولات صفحه"
+
+#: admin/includes/settings-general.php:24
+msgid "Allowed Product Pricing"
+msgstr "اجازه قیمت گذاری محصولات"
+
+#: admin/includes/settings-general.php:25
+msgid "Price Fields To List In Product Edit Page"
+msgstr "زمینه قیمت به لیست در ویرایش محصولات صفحه"
+
+#: admin/includes/settings-general.php:30
+#: admin/includes/views/popup_rbform_content.php:18
+#: plugins/class-aelia-currencyswitcher-Integration.php:120
+#: plugins/class-wc-rbp-wp-all-import-aelia-Integration.php:51
+#: plugins/class-wp-all-import-pro-Integration.php:40
+msgid "Regular Price"
+msgstr "قیمت اصلی"
+
+#: admin/includes/settings-general.php:30
+msgid "Sale Price"
+msgstr "قیمت فروش ویژه"
+
+#: admin/includes/settings-newsletter.php:8 includes/page-html.php:73
+msgid "Subscribe to our mailing list"
+msgstr "مشترک شدن در لیست پستی ما"
+
+#: admin/includes/settings-newsletter.php:15 includes/page-html.php:86
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: admin/includes/settings-newsletter.php:20 includes/page-html.php:94
+msgid "First Name"
+msgstr "نام"
+
+#: admin/includes/settings-newsletter.php:25 includes/page-html.php:100
+msgid "Last Name"
+msgstr "نام خانوادگی"
+
+#: admin/includes/settings-newsletter.php:29 includes/page-html.php:106
+msgid "Website"
+msgstr "وب سایت"
+
+#: admin/includes/settings-newsletter.php:34 includes/page-html.php:115
+msgid "Country"
+msgstr "کشور"
+
+#: admin/includes/settings-price-views.php:4
+#: admin/includes/settings-price-views.php:41
+msgid "Simple Product"
+msgstr "ثبت محصول"
+
+#: admin/includes/settings-price-views.php:4
+#: admin/includes/settings-price-views.php:41
+msgid "Variable Product"
+msgstr "تنوع محصول"
+
+#: admin/includes/settings-price-views.php:14
+msgid "Hide Price For"
+msgstr "قیمت برای مخفی کردن"
+
+#: admin/includes/settings-price-views.php:15
+msgid "Use to hide product price for selected roles"
+msgstr "استفاده برای مخفی کردن قیمت محصول برای نقش های انتخاب شده"
+
+#: admin/includes/settings-price-views.php:25
+msgid "Hide Add To Cart Button For"
+msgstr "اضافه کردن به سبد خرید دکمه برای"
+
+#: admin/includes/settings-price-views.php:26
+msgid "Use to hide product add to cart button link for selected roles"
+msgstr ""
+"برای مخفی کردن محصول استفاده از اضافه کردن به سبد خرید دکمه لینک برای نقش "
+"های انتخاب شده"
+
+#: admin/includes/settings-price-views.php:35
+msgid "Products To Hide"
+msgstr "مخفی کردن محصولات"
+
+#: admin/includes/settings-price-views.php:36
+msgid "For Which Products To Apply The Above Settings"
+msgstr "برای محصولات که برای اعمال تنظیمات بالا"
+
+#: admin/includes/settings-price-views.php:45
+msgid "Variable Product Settings"
+msgstr "تنظیمات متغیر محصول"
+
+#: admin/includes/settings-price-views.php:46
+msgid " "
+msgstr ""
+
+#: admin/includes/settings-price-views.php:51
+msgid "Show Variations"
+msgstr "تغییرات نمایش"
+
+#: admin/includes/settings-price-views.php:51
+msgid "Hide Variations"
+msgstr "مخفی کردن متغیرها"
+
+#: admin/includes/settings-price-views.php:54
+msgid "Message For Price"
+msgstr "پیام برای قیمت"
+
+#: admin/includes/settings-price-views.php:55
+msgid "use <code>[curr]</code> to replace the currency symbol"
+msgstr "استفاده از <code>[curr]</code> به جای نماد پول رایج"
+
+#: admin/includes/settings-user-role-edit.php:6
+msgid "Custom Name For User Roles"
+msgstr "نام های سفارشی برای نقش های کاربر"
+
+#: admin/includes/views/popup_rbform_content.php:26
+#: plugins/class-aelia-currencyswitcher-Integration.php:129
+#: plugins/class-wc-rbp-wp-all-import-aelia-Integration.php:56
+#: plugins/class-wp-all-import-pro-Integration.php:41
+msgid "Selling Price"
+msgstr "قیمت فروش"
+
+#: admin/includes/views/popup_rbform_footer.php:11
+#: admin/includes/views/popup_rbpform_bulkedit_footer.php:14
+msgid "Save Price"
+msgstr "صرفه جویی در قیمت"
+
+#: admin/includes/views/popup_rbform_header.php:6
+msgid "Enable Role Based Pricing"
+msgstr "قیمت گذاری بر اساس نقش فعال"
+
+#: admin/includes/views/popup_rbform_header.php:9
+msgid "on"
+msgstr "فعال"
+
+#: admin/includes/views/popup_rbform_header.php:9
+msgid "off"
+msgstr "غیرفعال"
+
+#: includes/class-activation.php:117
+msgid "Change Log"
+msgstr "مشاهده ی تغییرات"
+
+#: includes/class-activation.php:128
+msgid " Download's so far. help use reach more audience by sharing"
+msgstr ""
+"تا به حال دانلود شده.برای کمک به ما با مخاطبان بیشتری این افزونه را به "
+"اشتراک بگذارید"
+
+#: includes/class-product-functions.php:47
+msgid "Invalid Product ID Given"
+msgstr "شناسه محصول داده نامعتبر"
+
+#: includes/class-product-functions.php:51
+msgid "Invalid User Role Given"
+msgstr "نقش کاربر نامعتبر داده"
+
+#: includes/class-product-functions.php:58
+msgid "Invalid Price Type Given"
+msgstr "نوع نامعتبر قيمت داده"
+
+#: includes/class-product-pricing-frontend.php:233
+#: includes/class-product-pricing-frontend.php:238
+#, php-format
+msgctxt "Price range: from-to"
+msgid "%1$s&ndash;%2$s"
+msgstr "%1$sنوع %2$s"
+
+#: includes/class-product-pricing-frontend.php:245
+msgid "Free!"
+msgstr "رایگان!"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:49
+msgid "Aelia Currency Switcher"
+msgstr "سیستمهای ارز Aelia"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:63
+msgid "Allowed Currency"
+msgstr "ارز مجاز"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:64
+msgid "Allowed Currency To Show In Role Based Price Listing"
+msgstr "مجاز به نمایش ارز ها در این افزونه"
+
+#: plugins/class-aelia-currencyswitcher-Integration.php:108
+msgid "Role Based Price for Aelia Currency Switcher"
+msgstr "استفاده این افزونه در سیستم ارزی Aelia"
+
+#: plugins/class-wc-rbp-wp-all-import-aelia-Integration.php:24
+msgid "Aelia Currency Switcher Integration"
+msgstr "ادغام سیستمهای ارز Aelia"
+
+#: plugins/class-wc-rbp-wp-all-import-aelia-Integration.php:61
+#: plugins/class-wp-all-import-pro-Integration.php:42
+msgid " { "
+msgstr "{"
+
+#: woocommerce-role-based-price.php:380
+msgid "<strong> <i> WooCommerce Role Based Pricing </i> </strong> Requires"
+msgstr "<i><strong>قیمت گذاری بر اساس نقش WooCommerce</strong></i> نیاز"
+
+#: woocommerce-role-based-price.php:380
+msgid " <u>Woocommerce</u>"
+msgstr "ووکامرس"
+
+#: woocommerce-role-based-price.php:380
+msgid " To Be Installed And Activated"
+msgstr "برای نصب و فعال"
