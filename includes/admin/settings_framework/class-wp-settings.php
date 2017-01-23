@@ -531,7 +531,7 @@ if ( !class_exists( 'WooCommerce_Role_Based_Price_WP_Settings' ) ) {
 		public function render_section_description( $section ) {
 			foreach ( $this->current_page['sections'] as $setting ) {
 				if ( $this->page_hook .''. $setting['id'] === $section['id'] )
-					echo $setting['desc'];
+                    echo sprintf('<p class="section_desc">%s</p>',$setting['desc']);
 			}
 		}
 
@@ -607,6 +607,94 @@ if ( !class_exists( 'WooCommerce_Role_Based_Price_WP_Settings' ) ) {
 			echo $html;
 		} // render_header()
 
+ 
+        /**
+         * Prints out all settings sections added to a particular settings page
+         *
+         * Part of the Settings API. Use this in a settings page callback function
+         * to output all the sections and fields that were added to that $page with
+         * add_settings_section() and add_settings_field()
+         *
+         * @global $wp_settings_sections Storage array of all settings sections added to admin pages
+         * @global $wp_settings_fields Storage array of settings fields and info about their pages/sections
+         * @since 2.7.0
+         *
+         * @param string $page The slug name of the page whose settings sections you want to output
+         */
+        function do_settings_sections( $page ) {
+            global $wp_settings_sections, $wp_settings_fields;
+
+            if ( ! isset( $wp_settings_sections[$page] ) )
+                return;
+            $section_count = count($wp_settings_sections[$page]);
+            if($section_count > 1){
+                echo '<ul class="subsubsub wc_rbp_settings_submenu">';
+                foreach ( (array) $wp_settings_sections[$page] as $section ) {
+                    echo '<li> <a href="#'.$section['id'].'">'.$section['title'].'</a> | </li>';
+                }	
+                echo '</ul> <br/>';
+            }
+
+            foreach ( (array) $wp_settings_sections[$page] as $section ) {
+                if($section_count > 1){ echo '<div id="settings_'.$section['id'].'" class="hidden wc_rbp_settings_content">'; }
+                
+                    if ( $section['title'] )
+                        echo "<h2>{$section['title']}</h2>\n";
+                
+                    if ( $section['callback'] )
+                        call_user_func( $section['callback'], $section );
+
+                    if ( ! isset( $wp_settings_fields ) || !isset( $wp_settings_fields[$page] ) || !isset( $wp_settings_fields[$page][$section['id']] ) )
+                        continue;
+                    echo '<table class="wc_rbp_settings_table">';
+                    $this->do_settings_fields( $page, $section['id'] );
+                    echo '</table>';
+                if($section_count > 1){echo '</div>';}
+            }
+        } 
+        
+        /**
+         * Print out the settings fields for a particular settings section
+         *
+         * Part of the Settings API. Use this in a settings page to output
+         * a specific section. Should normally be called by do_settings_sections()
+         * rather than directly.
+         *
+         * @global $wp_settings_fields Storage array of settings fields and their pages/sections
+         *
+         * @since 2.7.0
+         *
+         * @param string $page Slug title of the admin page who's settings fields you want to show.
+         * @param string $section Slug title of the settings section who's fields you want to show.
+         */
+        function do_settings_fields($page, $section) {
+            global $wp_settings_fields;
+
+            if ( ! isset( $wp_settings_fields[$page][$section] ) )
+                return;
+
+            foreach ( (array) $wp_settings_fields[$page][$section] as $field ) {
+                $class = '';
+
+                if ( ! empty( $field['args']['class'] ) ) {
+                    $class = ' class="' . esc_attr( $field['args']['class'] ) . '"';
+                }
+
+                echo "<tr{$class}>";
+                $desc = sprintf( '<p class="description">%s</p>', $field['args']['desc'] );
+                if ( ! empty( $field['args']['label_for'] ) ) {
+                    echo '<th scope="row"><label for="' . esc_attr( $field['args']['label_for'] ) . '">' . $field['title'] . $desc. '</label></th>';
+                } else {
+                    echo '<th scope="row">' . $field['title'] .  $desc.'</th>';
+                }
+
+                echo '<td>'; 
+                call_user_func($field['callback'], $field['args']);
+                echo '</td>';
+                echo '</tr>';
+            }
+        }
+        
 
 		/**
 		 * Displays the form(s) and sections.
@@ -643,7 +731,7 @@ if ( !class_exists( 'WooCommerce_Role_Based_Price_WP_Settings' ) ) {
 					echo apply_filters( "{$this->page_hook}_form_fields", '', $form['id'], $form );
 
 					settings_fields( $this->page_hook .''. $form['id'] );
-					wc_rbp_do_settings_sections( $this->page_hook .''. $form['id'] );
+					$this->do_settings_sections( $this->page_hook .''. $form['id'] );
 
 					$submit = ( isset( $form['submit'] ) && $form['submit'] ) ? $form['submit'] : '';
 

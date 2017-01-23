@@ -774,3 +774,18 @@ if(!function_exists('wc_rbp_active_price')){
         return $price['regular_price'];
     }
 }
+
+
+
+if(!function_exists('wc_rbp_sort_array_by_array')){
+    function wc_rbp_sort_array_by_array(array $array, array $orderArray) {
+        $ordered = array();
+        foreach($orderArray as $key) {
+            if(array_key_exists($key,$array)) {
+                $ordered[$key] = $array[$key];
+                unset($array[$key]);
+            }
+        }
+        return $ordered + $array;
+    }
+}

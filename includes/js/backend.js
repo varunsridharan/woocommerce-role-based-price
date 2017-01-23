@@ -224,12 +224,14 @@ function wc_rbp_check_price_Status() {
             var filled = 0;
             var unfilled = 0;
             var totalf = 0;
-            jQuery(divClass).find('input[type=text]').each(function () {
-                if (jQuery(this).val() == '') {
-                    unfilled = unfilled + 1;
-                } else {
-                    filled = filled + 1;
-                }
+            jQuery(divClass).find('input[type=text]').each(function () { 
+                if(jQuery(this).hasClass("include_count") || ! jQuery(this).hasClass("exclude_count")){
+                    if (jQuery(this).val() == '') {
+                        unfilled = unfilled + 1;
+                    } else {
+                        filled = filled + 1;
+                    }    
+                } 
             });
 
             totalf = filled + unfilled;

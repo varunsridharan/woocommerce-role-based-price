@@ -36,6 +36,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         $tabs = $this->get_metabox_tabs($id,$prodType);
         $content = $this->get_metabox_content($id,$tabs,$prod,$prodType);
         $base_price = $this->get_base_price($id);
+        
         $url = admin_url('admin-ajax.php?action=wc_rbp_save_product_prices'); 
         echo '<div class="wc-rbp-metabox-container" method="POST" action="'.$url.'" > ';
         echo wc_rbp_get_ajax_overlay(); 
@@ -58,17 +59,28 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
     public function get_base_price($id){
         $pro = wc_get_product($id);
         $price = array();
-        
+        $this->hook_filter(true);
         $price['regular_price'] = wc_rbp_price_types('regular_price').' : ';
         $price['regular_price'] .= wc_price($pro->get_regular_price());
 
         $price['selling_price'] = wc_rbp_price_types('selling_price').' : ';
         $price['selling_price'] .= wc_price($pro->get_sale_price());  
-
+        $this->hook_filter(false);
         $price = implode(' | ',$price);
         $head = '<span class="headTxt">'.__("WC Product Price : ").'</span>'.$price;
         return $head;
     }
+    
+    public function hook_filter($hook = true){
+        if($hook == true){
+            add_filter('role_based_price_status',array($this,'base_price_return_false'));
+        }
+        if(! $hook == true){
+            remove_filter('role_based_price_status',array($this,'base_price_return_false'));
+        }
+    }
+    
+    public function base_price_return_false($s){ return false;}
     
     public function get_metabox_content($id,$tabs,$prod,$prodType){
         $content = array() ;

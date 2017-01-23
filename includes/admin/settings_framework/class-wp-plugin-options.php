@@ -23,8 +23,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 		return $page;
 	}
 	public function settings_section($section){
-		$section['general'][] = array( 'id'=>'general', 'title'=> __('General',WC_RBP_TXT));
-		$section['general'][] = array( 'id'=>'price_edit_view', 'title'=> __('Popup Editor View',WC_RBP_TXT));
+		$section['general'][] = array( 'id'=>'general', 'title'=> __('General',WC_RBP_TXT)); 
 		$section['addons'][] = array( 'id'=>'addons', 'title'=>'');
 		$addonSettings = array('addon_sample' => array( 'id'=>'addonssettings', 'title'=>__('No Addons Activated / Installed.',WC_RBP_TXT)));
 		$addonSettings = apply_filters('wc_rbp_addon_sections',$addonSettings);
@@ -42,12 +41,14 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 			'type'    => 'select',
 			'label' => __('Allowed User Roles',WC_RBP_TXT),
 			'desc' => __('User Roles To List In Product Edit Page',WC_RBP_TXT),
-			'options' => wc_rbp_get_user_roles_selectbox(),
+			'options' => wc_rbp_sort_array_by_array(wc_rbp_get_user_roles_selectbox(),wc_rbp_allowed_roles()),
 			'attr'    => array(
 				'class' => 'wc-rbp-enhanced-select',
 				'multiple' => 'multiple'
 			),
 		);
+        
+        
 		
 		$fields['general']['general'][] =
 			array(
@@ -56,7 +57,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
 			'multiple' => true,
 			'label' => __('Allowed Product Pricing',WC_RBP_TXT),
 			'desc' => __('Price Fields To List In Product Edit Page',WC_RBP_TXT),
-			'options' => wc_rbp_avaiable_price_type(),
+            'options' => wc_rbp_sort_array_by_array(wc_rbp_avaiable_price_type(),wc_rbp_allowed_price()), 
 			'attr'    => array(
 				'class' => 'wc-rbp-enhanced-select',
 				'style' => 'width:auto;max-width:35%;',
@@ -79,21 +80,17 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
             ); 
         }
         
-		
-		$fields['general']['price_edit_view'][] =
-			array(
-			'id' => WC_RBP_DB.'price_editor_tab_pos',
-			'type' => 'select',
-			'label' => __('Price Editor TAB Position',WC_RBP_TXT),
-			'desc' => __('you can change the tab position in price editor view',WC_RBP_TXT),
-			'options' => array( 
-				'horizontal_top' => __('Horizontal Top',WC_RBP_TXT), 
-				'horizontal_bottom' => __('Horizontal Bottom',WC_RBP_TXT), 
-				'vertical_left' => __('Vertical Left',WC_RBP_TXT),
-				'vertical_right' => __('Vertical right',WC_RBP_TXT),
-				),
-			'attr'    => array( 'class' => 'wc-rbp-enhanced-select', 'style' => 'width:auto;max-width:35%;', )
-		);
+        if(class_exists('woocommerce_wpml')){
+            $fields['general']['general'][] = array(
+                'id' => WC_RBP_DB.'enable_wpml_integration',
+                'type'    => 'checkbox',
+                'label' => __('WPML Integration',WC_RBP_TXT),
+                'desc' => __('check if you have installed wpml and the price are showing wrong. ',WC_RBP_TXT),
+                'attr'    => array( 'class' => 'wc_rbp_checkbox', ),
+            );
+        }
+        
+        
 		 
 		$addonSettings = array('addon_sample' => array());
 		$addonSettings = apply_filters('wc_rbp_addon_fields',$addonSettings);
