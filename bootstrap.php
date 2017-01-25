@@ -74,6 +74,7 @@ class WooCommerce_Role_Based_Price {
      * Loads Required Plugins For Plugin
      */
     private function load_required_files(){
+        require_once(WC_RBP_INC.'helpers/class-admin-notice.php');
 		$this->load_files(WC_RBP_INC.'class-*.php');
 		$this->load_files(WC_RBP_ADMIN.'settings_framework/class-wp-plugin-options.php');
 		$this->load_files(WC_RBP_ADMIN.'settings_framework/class-wp-*.php');

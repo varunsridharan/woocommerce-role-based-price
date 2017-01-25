@@ -789,3 +789,82 @@ if(!function_exists('wc_rbp_sort_array_by_array')){
         return $ordered + $array;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+if(!function_exists('wc_rbp_remove_notice')){
+    function wc_rbp_remove_notice($id){
+        WooCommerce_Plugin_Boiler_Plate_Admin_Notices::getInstance()->deleteNotice($id);
+        return true;
+    }
+}
+if(!function_exists('wc_rbp_notice')){
+    function wc_rbp_notice( $message, $type = 'update',$args = array()) {
+        $notice = '';
+        $defaults = array('times' => 1,'screen' => array(),'users' => array(), 'wraper' => true,'id'=>'');    
+        $args = wp_parse_args( $args, $defaults );
+        extract($args);
+        
+        if($type == 'error'){
+            $notice = new WooCommerce_Role_Based_Price_Admin_Error_Notice($message,$id,$times, $screen, $users);
+        }
+        
+        if($type == 'update'){
+            $notice = new WooCommerce_Role_Based_Price_Admin_Updated_Notice($message,$id,$times, $screen, $users);
+        }
+        
+        if($type == 'upgrade'){
+            $notice = new WooCommerce_Role_Based_Price_Admin_UpdateNag_Notice($message,$id,$times, $screen, $users);
+        } 
+        
+        $msgID = $notice->getId();
+        $message = str_replace('$msgID$',$msgID,$message);
+        $notice->setContent($message);
+        $notice->setWrapper($wraper);
+        WooCommerce_Role_Based_Price_Admin_Notices::getInstance()->addNotice($notice);
+    }
+}
+if(!function_exists('wc_rbp_admin_error')){
+    function wc_rbp_admin_error( $message,$times = 1, $id, $screen = array(),$args = array()) {
+        $args['id'] = $id;
+        $args['times'] = $times;
+        $args['screen'] = $screen;
+        wc_rbp_notice($message,'error',$args);
+    }
+}
+if(!function_exists('wc_rbp_admin_update')){
+    function wc_rbp_admin_update( $message,$times = 1, $id, $screen = array(),$args = array()) {
+        $args['id'] = $id;
+        $args['times'] = $times;
+        $args['screen'] = $screen;
+        wc_rbp_notice($message,'update',$args);
+    }
+}
+if(!function_exists('wc_rbp_admin_upgrade')){
+    function wc_rbp_admin_upgrade( $message,$times = 1, $id, $screen = array(),$args = array()) {
+        $args['id'] = $id;
+        $args['times'] = $times;
+        $args['screen'] = $screen;
+        wc_rbp_notice($message,'upgrade',$args);
+    }
+}
+if(!function_exists('wc_rbp_remove_link')){
+    function wc_rbp_remove_link($attributes = '',$msgID = '$msgID$', $text = 'Remove Notice') {
+        if(!empty($msgID)){
+            $removeKey = PLUGIN_DB.'MSG';
+            $url = admin_url().'?'.$removeKey.'='.$msgID ;
+            //$url = wp_nonce_url($url, 'WCQDREMOVEMSG');
+            $url = urldecode($url);
+            $tag = '<a '.$attributes.' href="'.$url.'">'.__($text,WC_RBP_TXT).'</a>';
+            return $tag;
+        }
+    }
+}

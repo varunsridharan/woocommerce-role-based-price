@@ -80,11 +80,6 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
             ); 
         }
         
-        
-        
-        
-        
-        
         if(class_exists('woocommerce_wpml')){
             $fields['general']['general'][] = array(
                 'id' => WC_RBP_DB.'enable_wpml_integration',
@@ -96,10 +91,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
         }
         
         
-        
-        
-        
-        
+		 
 		$addonSettings = array('addon_sample' => array());
 		$addonSettings = apply_filters('wc_rbp_addon_fields',$addonSettings);
 		unset($addonSettings['addon_sample']);

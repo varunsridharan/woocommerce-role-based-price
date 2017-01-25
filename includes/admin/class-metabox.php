@@ -67,7 +67,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         $price['selling_price'] .= wc_price($pro->get_sale_price());  
         $this->hook_filter(false);
         $price = implode(' | ',$price);
-        $head = '<span class="headTxt">'.__("WC Product Price : ", WC_RBP_TXT).'</span>'.$price;
+        $head = '<span class="headTxt">'.__("WC Product Price : ").'</span>'.$price;
         return $head;
     }
     
