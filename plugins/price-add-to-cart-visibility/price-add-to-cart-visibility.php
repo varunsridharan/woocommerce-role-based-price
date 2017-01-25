@@ -108,18 +108,18 @@ class Price_add_to_cart_visibility_WC_RBP {
 			'type'    => 'richtext',
             'richtext_settings' => array('textarea_rows' => 5),
 			'label' => __('Custom Message',WC_RBP_TXT),
-			'desc' => __('Used when product price is hidden.. use [currency] to get current store currency',WC_RBP_TXT),
+			'desc' => __('Used when product price is hidden.. use <code>[currency]</code> to get current store currency',WC_RBP_TXT),
 			'attr'    => array( 'class' => 'wc_rbp_checkbox', ),
 		);
-		
+        
 		return $fields;
 	}
 	
 	public function add_settings_section($section){
 		$c_section = array();
 		$c_section['id'] = 'price_visibility';
-		$c_section['title'] = __('Price Visibility',WC_RBP_TXT);
-		$c_section['desc'] = __('You can set Custom Name For User Roles to make it easy for you to work',WC_RBP_TXT);
+		$c_section['title'] = __('Price & AddToCart Visibility',WC_RBP_TXT);
+		$c_section['desc'] = __('Hide Product Price & Add To Cart button based on users role and set custom messsage to show if price is hidden',WC_RBP_TXT);
 		$section[] = $c_section;
 		return $section;
 	}
