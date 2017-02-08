@@ -2,15 +2,19 @@
     
 class WooCommerce_Role_Based_Price_Admin_Notices {
 
-    protected static $instance = null;
-    protected $noticesArrayName = WC_RBP_DB.'AdminNotices';
-    protected $REQUESTID = WC_RBP_DB.'MSG';       
-    protected $notices = array();
+    protected static $instance;
+    protected $noticesArrayName;
+    protected $REQUESTID;       
+    protected $notices;
 
     /**
      * Costructor (private since this is a singleton)
      */
     private function __construct() {
+    self::$instance = null;
+    $this->noticesArrayName = WC_RBP_DB.'AdminNotices';
+    $this->REQUESTID = WC_RBP_DB.'MSG';       
+    $this->notices = array();
         $this->loadNotices();
         $this->auto_remove_Notice();
         add_action('admin_notices', array($this, 'displayNotices'));

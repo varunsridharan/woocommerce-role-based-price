@@ -1,14 +1,14 @@
-# Copyright (C) 2016 WooCommerce Role Based Price
+# Copyright (C) 2017 WooCommerce Role Based Price
 # This file is distributed under the same license as the WooCommerce Role Based Price package.
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Role Based Price 3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
-"POT-Creation-Date: 2016-06-26 03:47:08+00:00\n"
+"POT-Creation-Date: 2017-01-26 09:45:50+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -69,15 +69,15 @@ msgstr ""
 msgid "WC Role Based Price Editor"
 msgstr ""
 
-#: includes/admin/class-metabox.php:52
+#: includes/admin/class-metabox.php:53
 msgid "Save Price"
 msgstr ""
 
-#: includes/admin/class-metabox.php:69
+#: includes/admin/class-metabox.php:70
 msgid "WC Product Price : "
 msgstr ""
 
-#: includes/admin/class-metabox.php:106
+#: includes/admin/class-metabox.php:118
 msgid "Select A Variation : "
 msgstr ""
 
@@ -89,7 +89,6 @@ msgid "General"
 msgstr ""
 
 #: includes/admin/class-price-editor-fields.php:30
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:60
 msgid "Enable Role Based Pricing"
 msgstr ""
 
@@ -98,20 +97,10 @@ msgid "Enter Product's "
 msgstr ""
 
 #: includes/admin/class-product-functions.php:26
-#: includes/admin/class-product-functions.php:45
-msgid " Please Save Or Publish This Product To Add Role Based Price"
-msgstr ""
-
-#: includes/admin/class-product-functions.php:58
-#: includes/admin/views/ajax-modal-header.php:3
-msgid "Role Based Price Editor"
-msgstr ""
-
-#: includes/admin/class-product-functions.php:84
 msgid "Product Price Updated."
 msgstr ""
 
-#: includes/admin/class-product-functions.php:86
+#: includes/admin/class-product-functions.php:28
 msgid "Price Not Defined. Please Try Again"
 msgstr ""
 
@@ -123,66 +112,36 @@ msgstr ""
 msgid "Extensions"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:27
-msgid "Popup Editor View"
-msgstr ""
-
-#: includes/admin/settings_framework/class-wp-plugin-options.php:29
+#: includes/admin/settings_framework/class-wp-plugin-options.php:28
 msgid "No Addons Activated / Installed."
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:43
+#: includes/admin/settings_framework/class-wp-plugin-options.php:42
 msgid "Allowed User Roles"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:44
+#: includes/admin/settings_framework/class-wp-plugin-options.php:43
 msgid "User Roles To List In Product Edit Page"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:57
+#: includes/admin/settings_framework/class-wp-plugin-options.php:58
 msgid "Allowed Product Pricing"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:58
+#: includes/admin/settings_framework/class-wp-plugin-options.php:59
 msgid "Price Fields To List In Product Edit Page"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:74
+#: includes/admin/settings_framework/class-wp-plugin-options.php:75
 msgid " Label "
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:87
-msgid "Price Editor TAB Position"
+msgid "WPML Integration"
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-plugin-options.php:88
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:42
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:57
-msgid "you can change the tab position in price editor view"
-msgstr ""
-
-#: includes/admin/settings_framework/class-wp-plugin-options.php:90
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:44
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:59
-msgid "Horizontal Top"
-msgstr ""
-
-#: includes/admin/settings_framework/class-wp-plugin-options.php:91
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:45
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:60
-msgid "Horizontal Bottom"
-msgstr ""
-
-#: includes/admin/settings_framework/class-wp-plugin-options.php:92
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:46
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:61
-msgid "Vertical Left"
-msgstr ""
-
-#: includes/admin/settings_framework/class-wp-plugin-options.php:93
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:47
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:62
-msgid "Vertical right"
+msgid "check if you have installed wpml and the price are showing wrong. "
 msgstr ""
 
 #: includes/admin/settings_framework/class-wp-settings-framework.php:41
@@ -223,12 +182,15 @@ msgid "Last Updated:"
 msgstr ""
 
 #: includes/admin/views/ajax-modal-footer.php:3
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:97
 msgid "Close"
 msgstr ""
 
 #: includes/admin/views/ajax-modal-footer.php:4
 msgid "Update Price"
+msgstr ""
+
+#: includes/admin/views/ajax-modal-header.php:3
+msgid "Role Based Price Editor"
 msgstr ""
 
 #: includes/class-extensions.php:27 includes/class-extensions.php:43
@@ -275,13 +237,13 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: includes/class-product-pricing.php:300
-#: includes/class-product-pricing.php:304
+#: includes/class-product-pricing.php:247
+#: includes/class-product-pricing.php:251
 msgctxt "Price range: from-to"
 msgid "%1$s&ndash;%2$s"
 msgstr ""
 
-#: includes/class-product-pricing.php:308
+#: includes/class-product-pricing.php:255
 msgid "Free!"
 msgstr ""
 
@@ -313,6 +275,22 @@ msgstr ""
 msgid "Selling Price"
 msgstr ""
 
+#: includes/helpers/class-activator.php:31
+msgid "Thank you for installing <strong>WooCommerce Role Based Price</strong> : <strong>Version 3.0 </strong>"
+msgstr ""
+
+#: includes/helpers/class-activator.php:32
+msgid "We have worked entire 1 year to improve our plugin to best of our ability and we hope you will enjoy working with it. We are always open for your sugestions and feature requests"
+msgstr ""
+
+#: includes/helpers/class-activator.php:35
+msgid "If you have installed <strong>WPRB</strong> for the 1st time or upgrading from <strong> Version 2.8.7</strong> then you will need to update its' settings once again or this plugin will not function properly. "
+msgstr ""
+
+#: includes/helpers/class-activator.php:37
+msgid "Click Here to update the settings"
+msgstr ""
+
 #: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:71
 #: plugins/aelia-currencyswitcher-integration/wc_rbp_fields.php:3
 msgid "Aelia Currency Switcher"
@@ -328,50 +306,6 @@ msgstr ""
 
 #: plugins/aelia-currencyswitcher-integration/wc_rbp_fields.php:21
 msgid "Enter Product's %s For %s Currency"
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:96
-msgid "Fast Price Updater"
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:100
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:109
-msgid "Price Update Type"
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:101
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:110
-msgid "How To Update product Price By % / Fixed value "
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:102
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:111
-msgid "Fixed Value"
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:102
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:111
-msgid "Percentage (%) Value"
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:108
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:119
-msgid "Value Operator"
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:109
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:120
-msgid "How To Update product Price By + / - "
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:110
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:121
-msgid "Add (+)"
-msgstr ""
-
-#: plugins/fast-price-updater/fast-price-updater.php:110
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:121
-msgid "Subract (-)"
 msgstr ""
 
 #: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:75
@@ -403,227 +337,15 @@ msgid "Custom Message"
 msgstr ""
 
 #: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:111
-msgid "Used when product price is hidden.. use [currency] to get current store currency"
+msgid "Used when product price is hidden.. use <code>[currency]</code> to get current store currency"
 msgstr ""
 
 #: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:121
-msgid "Price Visibility"
+msgid "Price & AddToCart Visibility"
 msgstr ""
 
 #: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:122
-msgid "You can set Custom Name For User Roles to make it easy for you to work"
-msgstr ""
-
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:94
-msgid "Save RBP Force Sell"
-msgstr ""
-
-#: plugins/rbp-bulk-variation-price-editor/modal-editor-view.php:96
-msgid "Expand"
-msgstr ""
-
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:41
-msgid "Variation Tab POS"
-msgstr ""
-
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:56
-msgid "Price Tab POS"
-msgstr ""
-
-#: plugins/rbp-bulk-variation-price-editor/rbp-bulk-variation-price-edtor.php:94
-msgid "RBP Bulk Price Edit"
-msgstr ""
-
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:98
-msgid "Dynamic Pricing : "
-msgstr ""
-
-#: plugins/rbp-dynamic-pricing/rbp-dynamic-pricing.php:99
-msgid "Global Dynamic Pricing : "
-msgstr ""
-
-#: plugins/rbp-payment-gateway/rbp-payment-gateway.php:44
-msgid "Blocked Payment Gateway"
-msgstr ""
-
-#: plugins/rbp-payment-gateway/rbp-payment-gateway.php:101
-msgid "RBP Payment Gateway Blocker"
-msgstr ""
-
-#: plugins/rbp-payment-gateway/rbp-payment-gateway.php:102
-msgid "Restrict WC Payment Gateway Based on user roles. or per user basics"
-msgstr ""
-
-#: plugins/rbp-pricing-table/rbp-pricing-table.php:35
-msgid "RBP Pricing Table"
-msgstr ""
-
-#: plugins/rbp-pricing-table/rbp-pricing-table.php:51
-msgid "Price To Show"
-msgstr ""
-
-#: plugins/rbp-pricing-table/rbp-pricing-table.php:62
-msgid "Allowed Roles : "
-msgstr ""
-
-#: plugins/rbp-pricing-table/rbp-pricing-table.php:69
-msgid "Vertical Template"
-msgstr ""
-
-#: plugins/rbp-pricing-table/rbp-pricing-table.php:69
-msgid "Horizontal Template"
-msgstr ""
-
-#: plugins/rbp-pricing-table/rbp-pricing-table.php:71
-msgid "Template Type : "
-msgstr ""
-
-#: plugins/rbp-pricing-table/rbp-pricing-table.php:82
-msgid "Role Price To Show For "
-msgstr ""
-
-#: plugins/rbp-product-blocking/rbp-product-blocking.php:48
-msgid "RBP Product Blocker"
-msgstr ""
-
-#: plugins/rbp-product-blocking/rbp-product-blocking.php:49
-msgid "Restrict Products & Products Variation Based on user roles"
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:4
-msgid "Name : "
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:9
-msgid "Secret Key : "
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:14
-msgid "User Role : "
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:32
-msgid "Valid Till Date : "
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:38
-msgid "Hide Add To Cart ? : "
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:44
-msgid "Allowed Products  : "
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:53
-msgid "Works only when $products is global Pages work with [Archive / Shop,Single Product Page]"
-msgstr ""
-
-#: plugins/rbp-universal-access/add_new_form.php:59
-msgid "Save Access Key"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:5
-msgid "Add The Access Key to url like this <code>http://example.com/?wcrbpua={code}</code> replace <strong>{code}</strong> with your access code"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:10
-#: plugins/rbp-universal-access/list_keys.php:60
-msgid "Access Name "
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:11
-#: plugins/rbp-universal-access/list_keys.php:61
-msgid "Access Code"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:12
-#: plugins/rbp-universal-access/list_keys.php:62
-msgid "Secret Key "
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:13
-#: plugins/rbp-universal-access/list_keys.php:63
-msgid "User Role"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:14
-#: plugins/rbp-universal-access/list_keys.php:64
-msgid "Products"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:15
-#: plugins/rbp-universal-access/list_keys.php:65
-msgid "Hide Cart"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:16
-#: plugins/rbp-universal-access/list_keys.php:66
-msgid "Valid Date"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:17
-#: plugins/rbp-universal-access/list_keys.php:67
-msgid "Actions"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:24
-msgid "No Access Key Registered Or Not Found"
-msgstr ""
-
-#: plugins/rbp-universal-access/list_keys.php:49
-msgid "Delete Key"
-msgstr ""
-
-#: plugins/rbp-universal-access/rbp-universal-access.php:243
-msgid "RBP Universal Access "
-msgstr ""
-
-#: plugins/rbp-universal-access/rbp-universal-access.php:249
-msgid "Access List"
-msgstr ""
-
-#: plugins/rbp-universal-access/rbp-universal-access.php:250
-msgid "Add New Access"
-msgstr ""
-
-#: plugins/wc-bulk-price-updater-integration/wc-bulk-price-updater-integration.php:36
-msgid "Allowed Roles"
-msgstr ""
-
-#: plugins/wc-bulk-price-updater-integration/wc-bulk-price-updater-integration.php:37
-msgid "option to choose which roles filed need to be generated @ WooCommerce Bulk Price Updater Plugin"
-msgstr ""
-
-#: plugins/wc-bulk-price-updater-integration/wc-bulk-price-updater-integration.php:52
-msgid "WC Bulk Price Updater Integration"
-msgstr ""
-
-#: plugins/wc-bulk-price-updater-integration/wc-bulk-price-updater-integration.php:95
-msgid "RBP For "
-msgstr ""
-
-#: plugins/wc-rbp-wpallimport-acs-for-woocommerce/page.php:6
-#: plugins/wp-all-import-integration/page.php:6
-#: plugins/wp-all-import-integration/wp-all-import-integration.php:41
-msgid "Enable Role Based Price"
-msgstr ""
-
-#: plugins/wc-rbp-wpallimport-acs-for-woocommerce/page.php:9
-#: plugins/wp-all-import-integration/page.php:9
-#: plugins/wp-all-import-integration/wp-all-import-integration.php:40
-msgid "To Enable Please Use [active,yes] Or To Disable Please leave empty "
-msgstr ""
-
-#: plugins/wc-rbp-wpallimport-acs-for-woocommerce/wcrbp-wpallimport-acs.php:24
-msgid "ACS + WCRBP Price Import"
-msgstr ""
-
-#: plugins/wp-all-import-integration/wp-all-import-integration.php:27
-msgid "RBP Price Import"
-msgstr ""
-
-#: plugins/wp-all-import-integration/wp-all-import-integration.php:42
-msgid "General Settings"
+msgid "Hide Product Price & Add To Cart button based on users role and set custom messsage to show if price is hidden"
 msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "WooCommerce Role Based Price"
