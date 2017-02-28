@@ -10,7 +10,7 @@
 if ( ! defined( 'WPINC' ) ) { die; }
  
 class WooCommerce_Role_Based_Price {
-	public $version = '3.0.1';
+	public $version = '3.0.2';
 	public $plugin_vars = array();
 	
 	protected static $_instance = null; # Required Plugin Class Instance
@@ -135,6 +135,8 @@ class WooCommerce_Role_Based_Price {
     
 	# Returns Plugin's Functions Instance
 	public function func(){ return self::$functions; }
+	# Returns Plugin's Functions Instance
+	public function frontend(){ return self::$frontend; }
 	
 	# Returns Plugin's Settings Instance
 	public function settings(){ return self::$settings; }

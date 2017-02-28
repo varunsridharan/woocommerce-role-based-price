@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.7.1
 WC requires at least: 2.0
 WC tested up to: 2.7
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -176,6 +176,10 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+
+= 3.0.2 [08-02-2017] =
+* Fixed : Tax Price issue in variable product. tax getting add 2 times in base price.
+* Tweaks : Minor Core Updates
 
 = 3.0.1 [26-01-2017] =
 * Fixed : Parse error: syntax error, unexpected '.', expecting ',' or ';' in ../includes/helpers/class-admin-notice.php on line 6 [https://wordpress.org/support/topic/output-error-after-update/]

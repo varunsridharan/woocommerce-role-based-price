@@ -129,15 +129,16 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
 		);
 
 		$variations = get_children( $args );
-        
+        $return .= ' <optgroup  label="'.__("Variations",WC_RBP_TXT).'"> ';
         foreach($variations as $ids){
             $prod = wc_get_product($ids);
-            $name = '#'.$ids;
+            $name = '#'.$ids.' | ';
             $name .= ' '.$prod->get_formatted_variation_attributes(true);
             $selecteds = '';
             if($selected == $ids){$selecteds = 'selected';}
             $return .= '<option value="'.$ids.'" '.$selecteds.'>'.$name.'</option>';
         }
+        $return .= ' </optgroup> ';
         
         $return .= '</select>';
         echo $return;

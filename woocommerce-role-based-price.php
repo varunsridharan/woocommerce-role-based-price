@@ -15,7 +15,7 @@
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Sell product in different price for different user role based on your settings. 
- * Version:           3.0.1
+ * Version:           3.0.2
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
  * License:           GPL-2.0+

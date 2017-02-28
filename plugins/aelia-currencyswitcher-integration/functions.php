@@ -72,18 +72,22 @@ if(!function_exists('product_acs_rbp_price')){
         }
 
         if(!is_null($productOBJ)){
-             if($productOBJ->id == $post_id){
-                 if(isset($productOBJ->post->wc_rbp_acs) && !empty($productOBJ->post->wc_rbp_acs)) {
-                    return $productOBJ->post->wc_rbp_acs;   
+            if(isset($productOBJ->id)){
+                 if($productOBJ->id == $post_id){
+                     if(isset($productOBJ->post->wc_rbp_acs) && !empty($productOBJ->post->wc_rbp_acs)) {
+                        return $productOBJ->post->wc_rbp_acs;   
+                     }
                  }
-             }
+            }
         } 
 
         if(!is_null($product)){
+            if(isset($product->id)){
             if($product->id == $post_id){
                 if(isset($product->post->wc_rbp_acs) && !empty($product->post->wc_rbp_acs)) {
                     return $product->post->wc_rbp_acs;    
                 }
+            }
             }
         }
  

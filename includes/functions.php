@@ -640,19 +640,23 @@ if(!function_exists('product_rbp_price')){
         }
         
        if(!is_null($productOBJ)){
-             if($productOBJ->id == $post_id){
-                 if(isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp)) {
-                    return $productOBJ->post->wc_rbp;   
-                 }
-             }
+            if(isset($productOBJ->id)){
+                if($productOBJ->id == $post_id){
+                    if(isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp)) {
+                        return $productOBJ->post->wc_rbp;   
+                    }
+                }
+            }
         } 
         
         if(!is_null($product)){
-            if($product->id == $post_id){
-                if(isset($product->post->wc_rbp) && !empty($product->post->wc_rbp)) {
-                    return $product->post->wc_rbp;    
+            if(isset($product->id)){
+                if($product->id == $post_id){
+                    if(isset($product->post->wc_rbp) && !empty($product->post->wc_rbp)) {
+                        return $product->post->wc_rbp;    
+                    }
                 }
-            }
+            } 
         }
         
 		$price = wc_rbp_get_product_price($post_id);
@@ -678,14 +682,18 @@ if(!function_exists('product_rbp_status')){
         }
         
         if(!is_null($productOBJ)){
-            if($productOBJ->id == $post_id){
-               if(isset($productOBJ->post->wc_rbp) && ! empty($productOBJ->post->wc_rbp) ){ return $productOBJ->post->wc_rbp_status; }
+            if(isset($productOBJ->id)){
+                if($productOBJ->id == $post_id){
+                    if(isset($productOBJ->post->wc_rbp) && ! empty($productOBJ->post->wc_rbp) ){ return $productOBJ->post->wc_rbp_status; }
+                }
             }
         }
         
         if(!is_null($product) ){
-            if($product->id == $post_id){
-                if(isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp) ){ return $product->post->wc_rbp_status; }
+            if(isset($product->id)){
+                if($product->id == $post_id){
+                     if(isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp) ){ return $product->post->wc_rbp_status; }
+                }
             }
         } 
 

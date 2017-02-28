@@ -144,7 +144,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 	 */
 	public function get_regular_price($price, $product){
 		$price = $this->get_product_price($price,$product); 
-        $price = apply_filters("wc_rbp_product_regular_price",$price,$product,$this);
+        $price = apply_filters("wc_rbp_product_regular_price",$price,$product,$this); 
 		return $price;
 	}
 	
@@ -154,7 +154,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 	 */
 	public function get_selling_price($price, $product){
 		$price = $this->get_product_price($price,$product,'selling_price');
-        $price = apply_filters("wc_rbp_product_selling_price",$price,$product,$this); 
+        $price = apply_filters("wc_rbp_product_selling_price",$price,$product,$this);
 		return $price;
 	}
 	
@@ -220,6 +220,10 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
     public function get_price_html($price = '', $product){
         if('WC_Product_Variable' == get_class( $product )){
         
+            $product_id = $this->check_product_get_id($product); 
+            $wc_rbp_status = product_rbp_status($product_id,$product);
+            if(!$wc_rbp_status){ return $price; }
+            
         	// Ensure variation prices are synced with variations
             if($product->get_variation_regular_price( 'min' ) === false || 
               $product->get_variation_price( 'min' ) === false || 
@@ -233,7 +237,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
             } else {
 				
                 // Main price
-                $prices = array($product->get_variation_price('min', true), $product->get_variation_price('max', true));
+                $prices = array($product->get_variation_price('min', false), $product->get_variation_price('max', false)); 
                 
                 if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) { 
                     $prices[0] = '' === $prices[0] ? '' : $product->get_price_including_tax( 1, $prices[0] );  
@@ -247,6 +251,15 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
                 // Sale
                 $prices = array($product->get_variation_regular_price('min',true), $product->get_variation_regular_price('max',true));
                 sort($prices);
+                
+                if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) { 
+                    $prices[0] = '' === $prices[0] ? '' : $product->get_price_including_tax( 1, $prices[0] );  
+                    $prices[1] = '' === $prices[1] ? '' : $product->get_price_including_tax( 1, $prices[1] ); 
+                } else {
+                    $prices[0] = '' === $prices[0] ? '' : $product->get_price_excluding_tax( 1, $prices[0] ); 
+                    $prices[1] = '' === $prices[1] ? '' : $product->get_price_excluding_tax( 1, $prices[1] ); 
+                }
+                
                 $saleprice = $prices[0] !== $prices[1] ? sprintf(_x( '%1$s&ndash;%2$s','Price range: from-to','woocommerce'), wc_price( $prices[0] ), wc_price( $prices[1] ) ) : wc_price( $prices[0] );  
          
                 
