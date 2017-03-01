@@ -74,7 +74,8 @@ class WooCommerce_Role_Based_Price {
      * Loads Required Plugins For Plugin
      */
     private function load_required_files(){
-        require_once(WC_RBP_INC.'helpers/class-admin-notice.php');
+        $this->load_files(WC_RBP_INC.'abstract-*.php');
+        $this->load_files(WC_RBP_INC.'helpers/class-admin-notice.php');
 		$this->load_files(WC_RBP_INC.'class-*.php');
 		$this->load_files(WC_RBP_ADMIN.'settings_framework/class-wp-plugin-options.php');
 		$this->load_files(WC_RBP_ADMIN.'settings_framework/class-wp-*.php');
@@ -93,7 +94,7 @@ class WooCommerce_Role_Based_Price {
 		if(!empty($addons)){
 			foreach($addons as $addon){
 				if(apply_filters('wc_rbp_load_addon',true,$addon)){
-					do_action('wc_rbp_before_'.$addon.'_addon_load');
+					do_action('wc_rbp_before_'.$addon.'_addon_load'); 
 					$this->load_addon($addon);
 					do_action('wc_rbp_after_'.$addon.'_addon_load');
 				}
@@ -102,10 +103,12 @@ class WooCommerce_Role_Based_Price {
 	}
 	
 	public function load_addon($file){
+        $other_file = apply_filters('wc_rbp_addon_file_location',$file);
+        
 		if(file_exists(WC_RBP_PLUGIN.$file)){
 			$this->load_files(WC_RBP_PLUGIN.$file);
-		} else if(file_exists($file = apply_filters('wc_rbp_addon_file_location',$file))) {
-			$this->load_files($file);
+		} else if(file_exists($other_file)) {
+			$this->load_files($other_file);
 		} else {
             if(has_action('wc_rbp_addon_'.$file.'_load')){
                 do_action('wc_rbp_addon_'.$file.'_load');
@@ -113,6 +116,7 @@ class WooCommerce_Role_Based_Price {
                 wc_rbp_deactivate_addon($file);
             }
 		}
+        
 	}
     
     /**

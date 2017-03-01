@@ -11,7 +11,7 @@ if ( ! defined( 'WPINC' ) ) { die; }
 class WooCommerce_Role_Based_Price_Admin_Product_Functions {
     
     public function __construct() { 
-        add_action('wc_rbp_product_save',array($this,'simple_save_product_price'),1,3); 
+        add_action('wc_rbp_product_save_default',array($this,'simple_save_product_price'),1,3); 
     }
 	 
     public function simple_save_product_price(&$posted_values,&$success,&$error){

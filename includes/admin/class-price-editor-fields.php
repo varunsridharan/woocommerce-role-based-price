@@ -11,13 +11,13 @@ if ( ! defined( 'WPINC' ) ) { die; }
 class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
     
     public function __construct() {
+        add_action("wc_rbp_before_metabox_content",array($this,'register_price_fields'));
         add_filter('wc_rbp_before_default_product_tabs',array($this,'add_general_tab'));
     	add_action('wc_rbp_price_edit_tab_general',array($this,'add_status_field'),10,4);
         
     }
 	
     public function add_general_tab($tabs){
-        $this->register_price_fields();
         $tabs['general'] = array('title' => __('General',WC_RBP_TXT),'icon' => 'dashicons-admin-tools','show_status' => false);
         return $tabs;
     }

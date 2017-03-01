@@ -53,12 +53,14 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
 	public function save_product_rbp_price(){
 		$is_verifyed_nounce = wp_verify_nonce($_POST['wc_rbp_nounce'], 'wc_rbp_save_product_prices' );
 		$error = array();
-        $type = isset($_POST['type']) ? $_POST['type'] : 'simple';
+        $type = isset($_POST['type']) ? $_POST['type'] : 'default';
 		$success = array('hidden_fields' => wc_rbp_get_editor_fields($type));
 		$posted_values = $_POST;
 		
 		if($is_verifyed_nounce){
-            do_action_ref_array('wc_rbp_product_save',array(&$posted_values,&$success,&$error));
+            do_action_ref_array('wc_rbp_product_save_'.$type,array(&$posted_values,&$success,&$error));
+            
+            //do_action_ref_array('wc_rbp_product_save',array(&$posted_values,&$success,&$error));
 		} else { 
 			$error['html'] = '<h3>'.__("Unable To Process Your Request Please Try Again later",WC_RBP_TXT).'</h3>'; 
 		}
