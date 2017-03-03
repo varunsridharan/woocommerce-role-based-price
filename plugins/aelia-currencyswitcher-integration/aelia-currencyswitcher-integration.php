@@ -3,7 +3,7 @@
  * Plugin Name: Aelia Currency Switcher Integration
  * Plugin URI:
  * Version: 1.0
- * Description: Integrates With Aelia Currency Switcher Integration And Allows you to set product's role based price on currency based 
+ * Description: Works With Aelia Currency Switcher Integration And Allows you to set product's role based price on currency based
  * Author: Varun Sridharan
  * Author URI: http://varunsridharan.in
  * Last Update: 2016-03-04 
