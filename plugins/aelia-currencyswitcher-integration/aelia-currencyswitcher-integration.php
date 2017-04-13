@@ -6,7 +6,8 @@
  * Description: Works With Aelia Currency Switcher Integration And Allows you to set product's role based price on currency based
  * Author: Varun Sridharan
  * Author URI: http://varunsridharan.in
- * Last Update: 2016-03-04 
+ * Created: 2016-03-04 
+ * Last Update: 2017-03-23 
  * Required Plugins: [ Name : Aelia Currency Switcher for WooCommerce | URL : http://aelia.co/shop/currency-switcher-woocommerce/ | Version : 3.8.2 | Slug : woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php]
  * Category:Integration
  */
@@ -133,27 +134,79 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
                 if(empty($from_currency)) { $from_currency = get_option('woocommerce_currency'); }
                 if(empty($to_currency)) { $to_currency = get_woocommerce_currency(); } 
 
-                $prices_per_currency = wc_rbp_acs_price($product_id,$userrole,$to_currency,$price_meta_key);
-
-
+                $wc_rbp_status = product_rbp_status($product_id,null);
+		          
+                if(!$wc_rbp_status){ return $return; }
+                
+                
                 if($this->base_currency == $to_currency){
                     $price = wc_rbp_price($product_id,$userrole,$price_meta_key); 
                     if(!empty($price )){return $price;}
-                } else if(!empty($prices_per_currency)) {
+                } else { 
+                    $rbp_price = wc_rbp_acs_price($product_id,$userrole,$to_currency,'currency');
+                    $price = '';
+                    $opposite_key = 'selling_price';
+                    if($price_meta_key == 'selling_price'){$opposite_key = 'regular_price';}
+
+
+                    if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
+                        if($rbp_price[$price_meta_key] == "" && $rbp_price[$opposite_key] == ""){
+                            $price = $return;
+                        } else if( $rbp_price[$price_meta_key] == ""  && $rbp_price[$opposite_key] != ""){
+                            $price = $rbp_price[$opposite_key];
+                        } else if($rbp_price[$price_meta_key] != ""  && $rbp_price[$opposite_key] == ""){
+                            $price = $rbp_price[$price_meta_key];
+                        } else if($rbp_price[$price_meta_key] != ""){
+                            $price = $rbp_price[$price_meta_key];
+                        }
+                    } else if(isset($rbp_price[$price_meta_key]) && ! isset($rbp_price[$opposite_key])){
+                        if($rbp_price[$price_meta_key] == ""){
+                            $price = $base_price;
+                        } else if($rbp_price[$price_meta_key] != ""){
+                            $price = $rbp_price[$price_meta_key];
+                        }
+                    } else if(isset($rbp_price[$opposite_key]) && ! isset($rbp_price[$price_meta_key])){
+                        if($rbp_price[$opposite_key] == ""){
+                            $price = $base_price;
+                        } else if($rbp_price[$opposite_key] != ""){
+                            $price = $rbp_price[$opposite_key];
+                        }
+                    }
                     
-                    return $prices_per_currency; 
-                } 
+                    return $price;
+                }
             }else {
                 $price_meta_key = wc_rbp_get_oppo_metakey($price_meta_key);
-                $return = $this->get_acs_role_price($return,$product_id,$userrole,$price_meta_key,$from_currency,$to_currency);
-                if(!empty($return)){return $return;}
-                
+                $price = $this->get_acs_role_price($return,$product_id,$userrole,$price_meta_key,$from_currency,$to_currency);
+                if(!empty($price)){return $price;}
             }
+        } else {
+            $this->hook_function_disableenable(true);
+            
+            
+            $product = new WC_Product($product_id);
+            if($price_meta_key == 'regular_price'){
+                $return = $product->get_regular_price();
+            }
+             if($price_meta_key == 'selling_price'){
+                $return = $product->get_sale_price();
+            }
+            
+            $this->hook_function_disableenable(false); 
         }
         
-        //return $return;
         return apply_filters('wc_aelia_cs_convert', $return, $from_currency, $to_currency);
 	}
+    
+    public function hook_function_disableenable($disable = false){
+        if($disable){
+            add_filter('role_based_price_status',array($this,'disable_rbp_price'));
+        } else {
+            remove_filter('role_based_price_status',array($this,'disable_rbp_price'));
+        }
+    }
+	 
+	public function disable_rbp_price(){return false;}
     
     public function change_wc_rbp_product_price($return,$role,$price,$post_id,$args){
         if(!isset($args['currency'])){return $return;}
@@ -178,7 +231,6 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
             }
             
         }
-        
         return $return;        
     }
 	
@@ -214,25 +266,31 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
 			if(empty($allowed_currency)){ $allowed_currency = $this->get_enabled_currencies (); }
             if($price_type == 'variable_regular_currency_prices' || $price_type == '_regular_currency_prices' ){ $type = "regular_price"; }
         
-            if(!in_array($type,$allowed_price)){
-                $send_currency = array();
-            }else {
-                foreach($allowed_currency as $currency) {                 
-                    if($this->base_currency == $currency){
-                        $price = wc_rbp_price($product_id,$current_user,$type);  
-                        if($price !== false){ 
+        
+            
+            $allowed_roles = wc_rbp_allowed_roles();
+
+            if(in_array($current_user,$allowed_roles)){
+                if(!in_array($type,$allowed_price)){
+                    $send_currency = array();
+                }else {
+                    foreach($allowed_currency as $currency) {
+                        if($this->base_currency == $currency){
+                            $price = wc_rbp_price($product_id,$current_user,$type);
+                            if($price !== false){ 
+                                if(!empty($price))
+                                    $send_currency[$currency] = $price;
+                            }
+                        } else {
+                            $price = wc_rbp_acs_price($product_id,$current_user,$currency,$type);  
                             $send_currency[$currency] = $price;
                         }
-                    } else {
-                        $price = wc_rbp_acs_price($product_id,$current_user,$currency,$type);  
-                        $send_currency[$currency] = $price;
-                    }
 
-                } 
+                    } 
+                }
             }
-            
         
-			$product_prices = array_merge($product_prices, $send_currency); 
+			$product_prices = array_merge($product_prices, $send_currency);
             return $product_prices;
     }	
 }

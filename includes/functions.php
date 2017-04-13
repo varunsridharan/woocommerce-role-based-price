@@ -633,6 +633,10 @@ if(!function_exists('product_rbp_price')){
 	function product_rbp_price($post_id,$productOBJ = null){
 		global $product; 
         
+        if(wc_rbp_is_wc_v('>=','3.0.1')){
+            $price = wc_rbp_get_product_price($post_id);
+			return $price;
+        }
         
         if(is_null($product) && is_null($productOBJ) ){
             $price = wc_rbp_get_product_price($post_id);
@@ -640,8 +644,8 @@ if(!function_exists('product_rbp_price')){
         }
         
        if(!is_null($productOBJ)){
-            if(isset($productOBJ->id)){
-                if($productOBJ->id == $post_id){
+            if(method_exists($productOBJ,'get_id')){
+                if($productOBJ->get_id() == $post_id){
                     if(isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp)) {
                         return $productOBJ->post->wc_rbp;   
                     }
@@ -650,8 +654,8 @@ if(!function_exists('product_rbp_price')){
         } 
         
         if(!is_null($product)){
-            if(isset($product->id)){
-                if($product->id == $post_id){
+            if(method_exists($product,'get_id')){
+                if($product->get_id() == $post_id){
                     if(isset($product->post->wc_rbp) && !empty($product->post->wc_rbp)) {
                         return $product->post->wc_rbp;    
                     }
@@ -676,22 +680,27 @@ if(!function_exists('product_rbp_status')){
 	function product_rbp_status($post_id,$productOBJ = null){
 		global $product;  
         
+        if(wc_rbp_is_wc_v('>=','3.0.1') ){
+            $price = wc_rbp_product_status($post_id);
+			return $price;
+        }
+        
         if(is_null($product) && is_null($productOBJ) ){
             $price = wc_rbp_product_status($post_id);
 			return $price;
         }
         
         if(!is_null($productOBJ)){
-            if(isset($productOBJ->id)){
-                if($productOBJ->id == $post_id){
+            if(method_exists($productOBJ,'get_id')){
+                if($productOBJ->get_id() == $post_id){
                     if(isset($productOBJ->post->wc_rbp) && ! empty($productOBJ->post->wc_rbp) ){ return $productOBJ->post->wc_rbp_status; }
                 }
             }
         }
         
         if(!is_null($product) ){
-            if(isset($product->id)){
-                if($product->id == $post_id){
+            if(method_exists($product,'get_id')){
+                if($product->get_id() == $post_id){
                      if(isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp) ){ return $product->post->wc_rbp_status; }
                 }
             }
@@ -764,6 +773,7 @@ if(!function_exists('wc_rbp_price')){
 		} else if(isset($dbprice[$role][$price])){
 			$return = $dbprice[$role][$price];
 		}
+        
 		$return = apply_filters('wc_rbp_product_price',$return,$role,$price,$post_id,$args);
 		return $return;
 	}
@@ -873,6 +883,17 @@ if(!function_exists('wc_rbp_remove_link')){
             $url = urldecode($url);
             $tag = '<a '.$attributes.' href="'.$url.'">'.__($text,WC_RBP_TXT).'</a>';
             return $tag;
+        }
+    }
+}
+
+if(!function_exists('wc_rbp_is_wc_v')){
+    function wc_rbp_is_wc_v($compare = '>=',$version = ''){
+        $version = empty($version) ? WOOCOMMERCE_VERSION : $version; 
+        if(version_compare( WOOCOMMERCE_VERSION, $version,$compare)){
+            return true;
+        } else {
+            return false;
         }
     }
 }

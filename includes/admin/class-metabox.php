@@ -12,6 +12,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
     
     public function get_post_type($id){
         $product_type = '';
+        
         if ( $terms = wp_get_object_terms( $id, 'product_type' ) ) {
 			$product_type = sanitize_title( current( $terms )->name );
 		} else {
@@ -30,12 +31,14 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
     
     
     
-    public function render_default_metabox($id,$post){
+    public function render_default_metabox($id,$post,$args){
         $product_type = $this->get_post_type($id);
         
         $render_info = '';
-        if($product_type == 'variable'){
-            $render_info .= $this->generate_variation_selectbox($id);
+        $post_type = get_post_type($id);
+        
+        if($product_type == 'variable' || $post_type == 'product_variation'){
+            $render_info .= $this->generate_variation_selectbox($args['parentID'],$id);
         } else {
             ob_start();
                 do_action("wc_rbp_metabox_header",$id,$product_type,$post,$this);
@@ -44,8 +47,11 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         }
         
         $prod = wc_get_product($id);
-        $prodType = $prod->product_type;
-        
+        if(wc_rbp_is_wc_v('>=','3.0.0')){
+            $prodType = $prod->get_type();
+        } else {
+            $prodType = $prod->product_type;    
+        }
         
         ob_start();
             do_action('wc_rbp_before_metabox_content',$prod,$prodType);
@@ -93,13 +99,13 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         $args['html'] = '';
         $args['postid'] = $id;
         $args['mb'] = $this;
-        $args['parentID'] = isset($_REQUEST['parentID']) ? $_REQUEST['parentID'] : null;
-        $args['selectedID'] = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : null;
+        $args['parentID'] = isset($_REQUEST['parentID']) ? $_REQUEST['parentID'] : $id;
+        $args['selectedID'] = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : $id;
         
         $args = apply_filters_ref_array( 'wc_rbp_metabox_render', array( &$args ));
         
         if($args['render_default']){
-            $render_info .= $this->render_default_metabox($id,$post);
+            $render_info .= $this->render_default_metabox($id,$post,$args);
         } else {
             $render_info .= $args['html'];
         }
@@ -192,7 +198,14 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         foreach($variations as $ids){
             $prod = wc_get_product($ids);
             $name = '#'.$ids.' | ';
-            $name .= ' '.$prod->get_formatted_variation_attributes(true);
+            
+            if(wc_rbp_is_wc_v('>=','3.0')){
+                $name .= ' '.wc_get_formatted_variation($prod,true);
+            } else {
+                $name .= ' '.$prod->get_formatted_variation_attributes(true);
+            }
+            
+            
             $selecteds = '';
             if($selected == $ids){$selecteds = 'selected';}
             $return .= '<option data-type="variation" value="'.$ids.'" '.$selecteds.'>'.$name.'</option>';

@@ -37,34 +37,7 @@ if(!function_exists('product_acs_rbp_price')){
 	 * Gets product price from DB
 	 */
 	function product_acs_rbp_price($post_id,$productOBJ = null){
-		global $product;
-        
-        /* $price = wc_rbp_get_acs_product_price($post_id);
-        return $price;
-
-        if(is_null($product) && is_null($productOBJ) ){
-            $price = wc_rbp_get_acs_product_price($post_id);
-            return $price;
-        } else if(!is_null($productOBJ)){
-            
-            if($productOBJ->id == $post_id &&  ( isset($productOBJ->post->wc_rbp_acs) && ! empty($productOBJ->post->wc_rbp_acs)))  {
-                return $productOBJ->post->wc_rbp_acs;    
-            }
-            
-        } else if(!is_null($product)){
-            if($product->id == $post_id && ( isset($product->post->wc_rbp_acs) && ! empty($product->post->wc_rbp_acs)) ){
-                return $product->post->wc_rbp_acs;    
-            }
-            
-        } else {
-            $price = wc_rbp_get_acs_product_price($post_id);
-            return $price;
-        }     
-        
-		$price = wc_rbp_get_acs_product_price($post_id);
-        return $price;*/
-        
-        
+		global $product; 
         
         if(is_null($product) && is_null($productOBJ) ){
             $price = wc_rbp_get_acs_product_price($post_id);
@@ -72,8 +45,8 @@ if(!function_exists('product_acs_rbp_price')){
         }
 
         if(!is_null($productOBJ)){
-            if(isset($productOBJ->id)){
-                 if($productOBJ->id == $post_id){
+            if(isset($productOBJ->get_id())){
+                 if($productOBJ->get_id() == $post_id){
                      if(isset($productOBJ->post->wc_rbp_acs) && !empty($productOBJ->post->wc_rbp_acs)) {
                         return $productOBJ->post->wc_rbp_acs;   
                      }
@@ -82,8 +55,8 @@ if(!function_exists('product_acs_rbp_price')){
         } 
 
         if(!is_null($product)){
-            if(isset($product->id)){
-            if($product->id == $post_id){
+            if(isset($product->get_id())){
+            if($product->get_id() == $post_id){
                 if(isset($product->post->wc_rbp_acs) && !empty($product->post->wc_rbp_acs)) {
                     return $product->post->wc_rbp_acs;    
                 }
@@ -114,6 +87,10 @@ if(!function_exists('wc_rbp_acs_price')){
 		} else if($price == 'all' && $role !== 'all'){
 			if(isset($dbprice[$role])){
 				$return = $dbprice[$role];
+			}			
+		} else if($price == 'currency' && $role !== 'all'){
+			if(isset($dbprice[$role])){
+				$return = $dbprice[$role][$currency];
 			}			
 		} else if(isset($dbprice[$role][$currency][$price])){
 			$return = $dbprice[$role][$currency][$price];

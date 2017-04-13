@@ -32,8 +32,17 @@ class WooCommerce_Role_Based_Price_Shortcode_Handler {
         
         if($vars['id'] == null){
 			global $product;
-			if(!isset($product->id)){ return __('Invalid Product ID Given',WC_RBP_TXT); } 
-			$vars['id'] = $product->id;
+            
+            
+            $id =  '';
+            if(wc_rbp_is_wc_v('>=','3.0.1')){
+                $id = $product->get_id();
+            } else {
+                $product->id;
+            }
+            
+			if(!isset($id)){ return __('Invalid Product ID Given',WC_RBP_TXT); } 
+			$vars['id'] = $id;
 		}
         
         if($vars['role'] == null){return __('Invalid User Role Given',WC_RBP_TXT);}
