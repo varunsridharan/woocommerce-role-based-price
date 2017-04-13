@@ -2,7 +2,7 @@
 Contributors: varunms,arnis.arbidans
 Author URI: http://varunsridharan.in/
 Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
-Tags: WooCommerce,Quick Dontion,quick donation,online donation,wordpress donation,simple donation,donation form,WC donation,Online Payment,Payment,Online,Donate,Monthly Goal,affiliate, cart, checkout, commerce, configurable, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, roles, wholesale, woocommerce,advertising, bogo, deals, discount, dynamic pricing, group pricing, marketing, Membership, price, promotion, role
+Tags: WC Role Based Price,WooCommerce,Role based pricing,user role,wc dynamic pricing,wpallimport,wpallexport,product addons,role,selling price,regular price,sale price,selling,discounts,wordpress,ecommerce,membership discounts,membership,digital,downloads,download,drop price,dropshipper,advertising,deals,group pricing,wpml,wpml currencyswitcher,aelia currency swticher, Online Payment,Payment,Online, affiliate, cart, checkout, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, wholesale, woocommerce,advertising, discount, marketing, Membership, price, promotion
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
 Tested up to: 4.7.1
