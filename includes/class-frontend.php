@@ -23,10 +23,11 @@ class WooCommerce_Role_Based_Price_Functions {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		add_filter( 'woocommerce_product_object',array($this,'setup_product_prices'));
+		add_filter( 'woocommerce_product_object',array($this,'setup_product_prices')); 
         add_action( 'wp_enqueue_scripts', array($this,'enqueue_styles') );
         add_action( 'wp_enqueue_scripts', array($this,'enqueue_scripts') );
     }
+     
 	
 	public function setup_product_prices($product){
         if($product == null){return $product;}

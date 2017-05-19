@@ -30,3 +30,5 @@ class WooCommerce_Role_Based_Price_Admin_Product_Functions {
         do_action_ref_array('wc_rbp_product_save_after',array(&$posted_values));
     }
 }
+
+return new WooCommerce_Role_Based_Price_Admin_Product_Functions;

@@ -74,7 +74,7 @@ if ( !class_exists( 'WooCommerce_Role_Based_Price_Settings_WP_Fields' ) ) {
             $settings = isset($args['richtext_settings']) ? $args['richtext_settings'] : array();
 			$size  = ( isset( $args['size'] ) && $args['size'] ) ? $args['size'] : 'regular';
 			$args  = $this->get_arguments( $args ); // escapes all attributes
-			$value = (string) esc_textarea( $this->get_option( $args ) );
+			$value =  $this->get_option( $args ) ;
 			$error = $this->get_setting_error( $args['id'] ); 
             $settings['textarea_name'] = $args['section'].'['.$args['id'].']';
             $content = wp_editor($value, $args['id'],$settings);

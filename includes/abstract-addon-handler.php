@@ -28,9 +28,7 @@ abstract class WooCommerce_Role_Based_Price_Addon_Handler {
     public function register_section($settings_section){return $settings_section;}
     public function register_fields($settings_fields){return $settings_fields;}
     
-    public function init_class(){ 
-        
-    } 
+    public function init_class(){} 
     
     public function admin_style(){}
     public function admin_script(){}

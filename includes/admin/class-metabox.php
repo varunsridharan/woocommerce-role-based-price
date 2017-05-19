@@ -29,8 +29,6 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
                 <button type="button" id="wc_rbp_update_price" class="button button-primary">'.__('Save Price',WC_RBP_TXT).'</button></h2> ';
     }
     
-    
-    
     public function render_default_metabox($id,$post,$args){
         $product_type = $this->get_post_type($id);
         
@@ -47,11 +45,14 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         }
         
         $prod = wc_get_product($id);
-        if(wc_rbp_is_wc_v('>=','3.0.0')){
-            $prodType = $prod->get_type();
-        } else {
-            $prodType = $prod->product_type;    
-        }
+        $prodType = 'simple';
+        if(is_object($prod)){
+            if(wc_rbp_is_wc_v('>=','3.0.0')){
+                $prodType = $prod->get_type();
+            } else {
+                $prodType = $prod->product_type;    
+            }
+        } 
         
         ob_start();
             do_action('wc_rbp_before_metabox_content',$prod,$prodType);
@@ -74,8 +75,6 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         
         return $render_info;
     }
-    
-    
     
     public function render_price_editor_metabox($post){
         if(is_object($post)){ 
@@ -118,15 +117,18 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
     
     public function get_base_price($id){
         $pro = wc_get_product($id);
-        $price = array();
-        $this->hook_filter(true);
-        $price['regular_price'] = wc_rbp_price_types('regular_price').' : ';
-        $price['regular_price'] .= wc_price($pro->get_regular_price());
+        $price = '';
+        if(is_object($pro)){
+            $price = array();
+            $this->hook_filter(true);
+            $price['regular_price'] = wc_rbp_price_types('regular_price').' : ';
+            $price['regular_price'] .= wc_price($pro->get_regular_price());
 
-        $price['selling_price'] = wc_rbp_price_types('selling_price').' : ';
-        $price['selling_price'] .= wc_price($pro->get_sale_price());  
-        $this->hook_filter(false);
-        $price = implode(' | ',$price);
+            $price['selling_price'] = wc_rbp_price_types('selling_price').' : ';
+            $price['selling_price'] .= wc_price($pro->get_sale_price());  
+            $this->hook_filter(false);
+            $price = implode(' | ',$price);
+        }
         $head = '<span class="headTxt">'.__("WC Product Price : ").'</span>'.$price;
         return $head;
     }

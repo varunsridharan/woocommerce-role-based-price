@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.7.1
 WC requires at least: 2.0
 WC tested up to: 2.7
-Stable tag: 3.0.5
+Stable tag: 3.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -176,6 +176,15 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 3.0.7 [15-05-2017] =
+* Fixed : Improved Stability With WC 3.0
+* Fixed : Changes Settings Framework A Bit
+* Fixed : Minor Changes Done. 
+
+= 3.0.6 [18-04-2017] =
+* Fixed : Tax Issue in variable product with WC 3.0
+* Fixed : Sale Price display issue with WC 3.0
+
 = 3.0.5 [13-04-2017] =
 * Fixed : Issues With WooCommerce 3.0.1 
 * Tweaks : Improved Plugin With WC 3.0.1

@@ -36,37 +36,8 @@ if(!function_exists('product_acs_rbp_price')){
 	/**
 	 * Gets product price from DB
 	 */
-	function product_acs_rbp_price($post_id,$productOBJ = null){
-		global $product; 
-        
-        if(is_null($product) && is_null($productOBJ) ){
-            $price = wc_rbp_get_acs_product_price($post_id);
-            return $price;
-        }
-
-        if(!is_null($productOBJ)){
-            if(isset($productOBJ->get_id())){
-                 if($productOBJ->get_id() == $post_id){
-                     if(isset($productOBJ->post->wc_rbp_acs) && !empty($productOBJ->post->wc_rbp_acs)) {
-                        return $productOBJ->post->wc_rbp_acs;   
-                     }
-                 }
-            }
-        } 
-
-        if(!is_null($product)){
-            if(isset($product->get_id())){
-            if($product->get_id() == $post_id){
-                if(isset($product->post->wc_rbp_acs) && !empty($product->post->wc_rbp_acs)) {
-                    return $product->post->wc_rbp_acs;    
-                }
-            }
-            }
-        }
- 
-        
-		$price = wc_rbp_get_acs_product_price($post_id);
-        
+	function product_acs_rbp_price($post_id){
+        $price = wc_product_variable($post_id,'wc_rbp_acs','wc_rbp_get_acs_product_price');
         return $price;
 	}
 }
@@ -77,8 +48,8 @@ if(!function_exists('wc_rbp_acs_price')){
 	 * @role : enter role slug / use all to get all roles values
 	 * @price : use selling_price / regular_price or use all to get all values for the given role
 	 */
-	function wc_rbp_acs_price($post_id,$role,$currency,$price = 'regular_price',$product = null,$args = array()){
-		$dbprice = product_acs_rbp_price($post_id,$product); 
+	function wc_rbp_acs_price($post_id,$role,$currency,$price = 'regular_price',$args = array()){
+		$dbprice = product_acs_rbp_price($post_id); 
 
 		$return = false; 
 		

@@ -102,9 +102,10 @@ class Price_add_to_cart_visibility_WC_RBP {
 			'attr'    => array( 'class' => 'wc_rbp_checkbox', ),
 		);
 		
-		
+        
 		$fields['price_visibility'][] = array(
 			'id' => WC_RBP_DB.'pv_custom_message',
+            'value' => html_entity_decode(wc_rbp_option('pv_custom_message')),
 			'type'    => 'richtext',
             'richtext_settings' => array('textarea_rows' => 5),
 			'label' => __('Custom Message',WC_RBP_TXT),

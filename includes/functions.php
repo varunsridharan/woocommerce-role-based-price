@@ -9,10 +9,10 @@
  */
 if ( ! defined( 'WPINC' ) ) { die; }
 
-global $wc_rbp_db_settins_values;
+global $wc_rbp_db_settins_values,$wc_rbp_db_array;
 $wc_rbp_db_settins_values = array();
+$wc_rbp_db_array = array();
 add_action('wc_rbp_loaded','wc_rbp_get_settings_from_db');
-
 
 if(!function_exists('wc_rbp_option')){
 	function wc_rbp_option($key = '',$return_failure = ''){
@@ -101,92 +101,6 @@ if(!function_exists('wc_rbp_dependency_message')){
 	}
 }
 
-if(!function_exists('wc_rbp_get_settings_sample')){
-	/**
-	 * Retunrs the sample array of the settings framework
-	 * @param [string] [$type = 'page' | 'section' | 'field'] [[Description]]
-	 */
-	function wc_rbp_get_settings_sample($type = 'page'){
-		$return = array();
-		
-		if($type == 'page'){
-			$return = array( 
-				'id'=>'settings_general', 
-				'slug'=>'general', 
-				'title'=>__('General',WC_RBP_TXT),
-				'multiform' => 'false / true',
-				'submit' => array( 
-					'text' => __('Save Changes',WC_RBP_TXT), 
-					'type' => 'primary / secondary / delete', 
-					'name' => 'submit'
-				)
-			);
-			
-		} else if($type == 'section'){
-			$return['page_id'][] = array(
-				'id'=>'general',
-				'title'=>'general', 
-				'desc' => 'general',
-				'submit' => array(
-					'text' => __('Save Changes',WC_RBP_TXT), 
-					'type' => 'primary / secondary / delete', 
-					'name' => 'submit'
-				)
-			);
-		} else if($type == 'field'){
-			$return['page_id']['section_id'][] = array(
-				'id' => '',
-				'type' => 'text, textarea, checkbox, multicheckbox, radio, select, field_row, extra',
-				'label' => '',
-				'options' => 'Only required for type radio, select, multicheckbox [KEY Value Pair]',
-				'desc' => '',
-				'size' => '',
-				'default' => '',
-				'attr' => "Key Value Pair",
-				'before' => 'Content before the field label',
-				'after' => 'Content after the field label',
-				'content' => 'Content used for type extra' ,
-				'text_type' => "Set the type for text input field (e.g. 'hidden' )",
-			);
-		}
-	}
-}
-
-if(!function_exists('wc_rbp_get_edit_button')){
-    function wc_rbp_get_edit_button($post_ID,$type = 'simple',$args = array()){
-        
-        $default_args = array(
-            'attrs' => '',
-            'text' => 'Add / Edit Role Pricing',
-            'button_type' => 'button',
-            'action' => 'wc_rbp_product_editor',
-            'tag' => 'button',
-            'class' => 'button button-primary',
-            'id' => '',
-        );
-        $args = wp_parse_args( $args, $default_args );
-        extract($args);
-        
-        $return = '<'.$tag.' id="'.$id.'" type="'.$button_type.'" class=" '.$class.' wc_rbp_product_editor_btn"  ';
-        $return .= ' data-href="'.admin_url('admin-ajax.php?action='.$action.'&type='.$type.'&post_id='.$post_ID).'" ';
-        $return .= $attrs;
-        $return .= '>'.__($text,WC_RBP_TXT).' </'.$tag.'>';
-        return $return;
-    }   
-}
-
-if(!function_exists('wc_rbp_get_tab_pos')){
-    function wc_rbp_get_tab_pos($tab_pos = ''){
-        $horizontalPosition = '';
-        $verticalPosition = '';
-
-        if($tab_pos == 'horizontal_top'){ $tab_pos  = 'horizontal'; $horizontalPosition  = 'top';  }
-        else if($tab_pos == 'horizontal_bottom'){ $tab_pos  = 'horizontal'; $horizontalPosition  = 'bottom'; }
-        else if($tab_pos == 'vertical_left'){ $tab_pos  = 'vertical'; $verticalPosition = 'left'; }
-        else if($tab_pos == 'vertical_right'){ $tab_pos  = 'vertical'; $verticalPosition = 'right';}
-        return array('horizontalPosition' => $horizontalPosition, 'verticalPosition' => $verticalPosition,'tab_pos' => $tab_pos);
-    }
-}
 
 
 if(!function_exists('wc_rbp_custom_wp_user_roles')){
@@ -251,7 +165,7 @@ if(!function_exists('wc_rbp_get_current_user')){
 			$user_roles = $current_user->roles;
 			$user_role = array_shift($user_roles);
 			if($user_role == null){ $user_role = 'logedout'; }
-		}
+        }
         
 		return apply_filters('wc_rbp_active_user',$user_role,$userroleonly);
 	}
@@ -275,13 +189,10 @@ if(!function_exists('wc_rbp_get_userrole_by_id')){
      */
     function wc_rbp_get_userrole_by_id( $id ){
         $user = new WP_User( $id );
-
         if ( empty ( $user->roles ) or ! is_array( $user->roles ) ) {return '';}
-            
         foreach ( $user->roles as $role ) {
             return $role;
         }
-
         return null;
     }
 }
@@ -323,41 +234,6 @@ if(!function_exists('wc_rbp_price_types')){
         
         return $price;
     }
-}
-
- 
-if(!function_exists('wc_rbp_modal_template')){
-    /**
-     * returns modal templaate code
-     * @param  [[Type]] [$title ='']    [[Description]]
-     * @param  [[Type]] [$content = ''] [[Description]]
-     * @return string   [[Description]]
-     */
-    function wc_rbp_modal_template($title ='',$content = ''){
-        return '<div class="wc-rbp-modal wc-rbp-modal-ajax" style="display: block;">
-            <button type="button" class="close" onclick="Custombox.close();"> <span>&times;</span></button>
-            <h4 class="title">'.$title.'</h4>
-            <div class="wc-rbp-modal-content text"> '.$content.'</div>
-        </div>';
-    }
-}
-
-if(!function_exists('wc_rbp_modal_header')){
-	/**
-	 * Includes Ajax Modal Header File
-	 */
-	function wc_rbp_modal_header(){
-		include(WC_RBP_ADMIN.'views/ajax-modal-header.php');
-	}
-}
-
-if(!function_exists('wc_rbp_modal_footer')){
-	/**
-	 * Includes Ajax Modal Footer File
-	 */
-	function wc_rbp_modal_footer(){
-		include(WC_RBP_ADMIN.'views/ajax-modal-footer.php');
-	}
 }
 
 if(!function_exists('wc_rbp_do_settings_sections')){
@@ -591,11 +467,8 @@ if(!function_exists('wc_rbp_allowed_price')){
     }
 }
 
+/** @public Below Function Are Used By The Plugin users */
 
-
-/**
- * @public Below Function Are Used By The Plugin users 
- */
 if(!function_exists('wc_rbp_update_role_based_price')){
 	/**
 	 * Updates Products Role Based Price Array In DB
@@ -626,45 +499,52 @@ if(!function_exists('wc_rbp_get_product_price')){
 	
 }
 
+if(!function_exists('wc_product_get_db')){
+    function wc_product_get_db($post_id,$type = 'price',$function = ''){
+        global $wc_rbp_db_array;
+        $return_val = $function($post_id);
+        $wc_rbp_db_array[$post_id][$type] = $return_val;
+        $return_val = $wc_rbp_db_array[$post_id][$type];
+        return $return_val;
+    }
+}
+
+if(!function_exists("wc_product_variable")){
+    function wc_product_variable($post_id,$type = 'price',$function = ''){
+        global $wc_rbp_db_array;
+        
+        if($type == 'price'){
+            $function = 'wc_rbp_get_product_price';
+        } else if($type == 'status'){
+            $function = 'wc_rbp_product_status';
+        }
+        
+        $return_val = '';
+        
+        if(isset($wc_rbp_db_array[$post_id])){
+            if(isset($wc_rbp_db_array[$post_id][$type])){
+                $return_val = $wc_rbp_db_array[$post_id][$type];
+            } else {
+                $return_val = wc_product_get_db($post_id,$type,$function);
+            }
+            
+        } else {
+            $return_val = wc_product_get_db($post_id,$type,$function);
+        }
+        
+        
+        $return_val = apply_filters("wc_rbp_variable_".$type,$return_val,$post_id,$type,$function);
+        return $return_val;
+    }
+}
+
 if(!function_exists('product_rbp_price')){
 	/**
 	 * Gets product price from DB
 	 */
-	function product_rbp_price($post_id,$productOBJ = null){
-		global $product; 
-        
-        if(wc_rbp_is_wc_v('>=','3.0.1')){
-            $price = wc_rbp_get_product_price($post_id);
-			return $price;
-        }
-        
-        if(is_null($product) && is_null($productOBJ) ){
-            $price = wc_rbp_get_product_price($post_id);
-			return $price;
-        }
-        
-       if(!is_null($productOBJ)){
-            if(method_exists($productOBJ,'get_id')){
-                if($productOBJ->get_id() == $post_id){
-                    if(isset($productOBJ->post->wc_rbp) && !empty($productOBJ->post->wc_rbp)) {
-                        return $productOBJ->post->wc_rbp;   
-                    }
-                }
-            }
-        } 
-        
-        if(!is_null($product)){
-            if(method_exists($product,'get_id')){
-                if($product->get_id() == $post_id){
-                    if(isset($product->post->wc_rbp) && !empty($product->post->wc_rbp)) {
-                        return $product->post->wc_rbp;    
-                    }
-                }
-            } 
-        }
-        
-		$price = wc_rbp_get_product_price($post_id);
-        
+	function product_rbp_price($post_id){
+        $price = wc_product_variable($post_id,'price');
+        $price = apply_filters("product_rbp_price",$price,$post_id);
         return $price;
 	}
 }
@@ -677,36 +557,10 @@ if(!function_exists('product_rbp_status')){
 	 * @return boolean  [[Description]]
 	 * #TODO Integrate WC_RBP_PRODUCT_STATUS Function For Speed Outpu
 	 */
-	function product_rbp_status($post_id,$productOBJ = null){
+	function product_rbp_status($post_id){
 		global $product;  
-        
-        if(wc_rbp_is_wc_v('>=','3.0.1') ){
-            $price = wc_rbp_product_status($post_id);
-			return $price;
-        }
-        
-        if(is_null($product) && is_null($productOBJ) ){
-            $price = wc_rbp_product_status($post_id);
-			return $price;
-        }
-        
-        if(!is_null($productOBJ)){
-            if(method_exists($productOBJ,'get_id')){
-                if($productOBJ->get_id() == $post_id){
-                    if(isset($productOBJ->post->wc_rbp) && ! empty($productOBJ->post->wc_rbp) ){ return $productOBJ->post->wc_rbp_status; }
-                }
-            }
-        }
-        
-        if(!is_null($product) ){
-            if(method_exists($product,'get_id')){
-                if($product->get_id() == $post_id){
-                     if(isset($product->post->wc_rbp) && ! empty($product->post->wc_rbp) ){ return $product->post->wc_rbp_status; }
-                }
-            }
-        } 
-
-		$price = wc_rbp_product_status($post_id);
+        $price = wc_product_variable($post_id,'status');
+        $price = apply_filters("product_rbp_status",$price,$post_id);
         return $price;
 	}
 }
@@ -746,10 +600,15 @@ if(!function_exists('wc_rbp_product_status')){
 	 * @return [[Type]] [[Description]]
 	 * #TODO Integrate With product_rbp_status
 	 */
-	function wc_rbp_product_status($post_id){
+	function wc_rbp_product_status($post_id,$supress_filter=false){
+        $cstatus = false;
 		$status = get_post_meta($post_id,'_enable_role_based_price',true); 
-		if($status == '1' || $status == 'true'){return true;}
-		return false;
+		if($status == '1' || $status == 'true'){$cstatus = true;}
+        
+        if(!$supress_filter)
+            $cstatus = apply_filters('wc_rbp_product_status',$cstatus,$post_id);
+        
+		return $cstatus;
 	}
 }
 
@@ -760,8 +619,8 @@ if(!function_exists('wc_rbp_price')){
 	 * @price : use selling_price / regular_price or use all to get all values for the given role
 	 */
 	
-	function wc_rbp_price($post_id,$role,$price = 'regular_price',$args = array(),$product = null){ 
-		$dbprice = product_rbp_price($post_id,$product); 
+	function wc_rbp_price($post_id,$role,$price = 'regular_price',$args = array()){ 
+		$dbprice = product_rbp_price($post_id); 
 		$return = false; 
 		
 		if($price == 'all' && $role == 'all'){
@@ -793,8 +652,6 @@ if(!function_exists('wc_rbp_active_price')){
     }
 }
 
-
-
 if(!function_exists('wc_rbp_sort_array_by_array')){
     function wc_rbp_sort_array_by_array(array $array, array $orderArray) {
         $ordered = array();
@@ -808,22 +665,13 @@ if(!function_exists('wc_rbp_sort_array_by_array')){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
 if(!function_exists('wc_rbp_remove_notice')){
     function wc_rbp_remove_notice($id){
         WooCommerce_Plugin_Boiler_Plate_Admin_Notices::getInstance()->deleteNotice($id);
         return true;
     }
 }
+
 if(!function_exists('wc_rbp_notice')){
     function wc_rbp_notice( $message, $type = 'update',$args = array()) {
         $notice = '';
@@ -850,6 +698,7 @@ if(!function_exists('wc_rbp_notice')){
         WooCommerce_Role_Based_Price_Admin_Notices::getInstance()->addNotice($notice);
     }
 }
+
 if(!function_exists('wc_rbp_admin_error')){
     function wc_rbp_admin_error( $message,$times = 1, $id, $screen = array(),$args = array()) {
         $args['id'] = $id;
@@ -858,6 +707,7 @@ if(!function_exists('wc_rbp_admin_error')){
         wc_rbp_notice($message,'error',$args);
     }
 }
+
 if(!function_exists('wc_rbp_admin_update')){
     function wc_rbp_admin_update( $message,$times = 1, $id, $screen = array(),$args = array()) {
         $args['id'] = $id;
@@ -866,6 +716,7 @@ if(!function_exists('wc_rbp_admin_update')){
         wc_rbp_notice($message,'update',$args);
     }
 }
+
 if(!function_exists('wc_rbp_admin_upgrade')){
     function wc_rbp_admin_upgrade( $message,$times = 1, $id, $screen = array(),$args = array()) {
         $args['id'] = $id;
@@ -874,6 +725,7 @@ if(!function_exists('wc_rbp_admin_upgrade')){
         wc_rbp_notice($message,'upgrade',$args);
     }
 }
+
 if(!function_exists('wc_rbp_remove_link')){
     function wc_rbp_remove_link($attributes = '',$msgID = '$msgID$', $text = 'Remove Notice') {
         if(!empty($msgID)){

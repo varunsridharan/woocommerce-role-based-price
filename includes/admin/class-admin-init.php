@@ -28,6 +28,7 @@ class WooCommerce_Role_Based_Price_Admin {
 	public function set_wc_screen_ids($screens){ 
         $screen = $screens; 
       	$screen[] = 'woocommerce_page_woocommerce-role-based-price-settings';
+        $screen[] = 'product_page_rbp_global_addons';
         return $screen;
     }    
 	
@@ -35,7 +36,6 @@ class WooCommerce_Role_Based_Price_Admin {
      * Inits Admin Sttings
      */
     public function admin_init(){
-		new WooCommerce_Role_Based_Price_Admin_Product_Functions;
         new WooCommerce_Role_Based_Price_Admin_Ajax_Handler;
 		new WooCommerce_Role_Based_Price_Addons;
     } 
