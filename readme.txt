@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 4.7.1
 WC requires at least: 2.0
 WC tested up to: 2.7
-Stable tag: 3.0.7
+Stable tag: 3.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -176,6 +176,15 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 3.0.9 [31-05-2017] =
+* Fixed : Fatal Error Below WC 3.0.
+
+= 3.0.8 [19-05-2017] =
+* Tweaks : Removed Old & Unwated Codes
+* Tweaks : Improved Stability With WC 3.0 
+* Tweaks : Reducded DB query for product prices more than once 
+* Tweaks : Addon : Improved Integration With Aelia Currency Switcher
+
 = 3.0.7 [15-05-2017] =
 * Fixed : Improved Stability With WC 3.0
 * Fixed : Changes Settings Framework A Bit

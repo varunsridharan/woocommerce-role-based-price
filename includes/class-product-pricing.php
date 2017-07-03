@@ -329,7 +329,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
             if(wc_rbp_is_wc_v('>=','3.0')){
                 return $this->get_price_html_wc3($price,$product);
             } else {
-                return $this-get_price_html_below_wc3($price,$product);
+                return $this->get_price_html_below_wc3($price,$product);
             } 
         }
 
