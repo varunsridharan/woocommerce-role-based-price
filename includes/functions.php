@@ -476,10 +476,50 @@ if(!function_exists('wc_rbp_update_role_based_price')){
 	 * @param  array $price_array Price List
 	 * @return boolean  [[Description]]
 	 */
-	function wc_rbp_update_role_based_price($post_id,$price_array){
+	function wc_rbp_update_role_based_price($post_id,$price_array,$force_update_parent = true){
 		update_post_meta($post_id,'_role_based_price', $price_array);
+        if($force_update_parent){
+            $parent = wp_get_post_parent_id($post_id);
+            if($parent !== false){
+                wc_rbp_update_variations_data($parent);
+            }
+        }
 		return true;
 	}
+}
+
+if(!function_exists("wc_rbp_update_variations_data")){
+    function wc_rbp_update_variations_data($pid,$role = array(),$aprice = array()){
+        if(empty($role) && is_array($role)){
+            $allowed_roles = wc_rbp_allowed_roles();    
+        } else {
+            $allowed_roles = $role;
+        }
+        
+        $allowed_price = wc_rbp_allowed_price();
+        
+        $product = wc_get_product($pid);
+        if(!$product){
+            return;
+        }
+        $pricing = new WooCommerce_Role_Based_Price_Product_Pricing(false);
+        
+        foreach($allowed_roles as $role){
+            $cache_key = '_wcrbp_p_'.$pid.'_'.$role;
+            $prices = array();
+            foreach($allowed_price as $A_price){
+                foreach($product->get_children() as $vid){
+                    $price = get_post_meta($vid,'_regular_price',true);
+                    if($A_price == 'selling_price'){
+                        $price = get_post_meta($vid,'_sale_price',true);
+                    }
+                    $prices[$A_price][$vid] = $pricing->get_product_price($price,$vid,$A_price);
+                }
+            }
+            
+            set_transient( $cache_key, $prices, 240 * HOUR_IN_SECONDS );
+        }
+    }
 }
 
 if(!function_exists('wc_rbp_get_product_price')){
@@ -490,10 +530,11 @@ if(!function_exists('wc_rbp_get_product_price')){
 	 */
 	function wc_rbp_get_product_price($post_id,$supress_filter = false){
 		$price = get_post_meta($post_id,'_role_based_price');
+        
 		if(!empty($price)) {$price = $price[0];}
-		else if(empty($price)) {$price = array();}
-		if(!$supress_filter)
-			$price = apply_filters('wc_rbp_product_prices',$price);
+		else {$price = array();}
+        if(!$supress_filter)
+            $price = apply_filters('wc_rbp_product_prices',$price);
 		return $price;
 	}
 	
@@ -502,6 +543,7 @@ if(!function_exists('wc_rbp_get_product_price')){
 if(!function_exists('wc_product_get_db')){
     function wc_product_get_db($post_id,$type = 'price',$function = ''){
         global $wc_rbp_db_array;
+        
         $return_val = $function($post_id);
         $wc_rbp_db_array[$post_id][$type] = $return_val;
         $return_val = $wc_rbp_db_array[$post_id][$type];
@@ -518,7 +560,7 @@ if(!function_exists("wc_product_variable")){
         } else if($type == 'status'){
             $function = 'wc_rbp_product_status';
         }
-        
+        return wc_product_get_db($post_id,$type,$function);
         $return_val = '';
         
         if(isset($wc_rbp_db_array[$post_id])){
@@ -641,7 +683,7 @@ if(!function_exists('wc_rbp_price')){
 if(!function_exists('wc_rbp_active_price')){
     
     function wc_rbp_active_price($post_id,$role,$args = array(),$product = null){
-        $price = wc_rbp_price($post_id,$role,'all',$args,$product);
+        $price = wc_rbp_price($post_id,$role,'all',$args);
         if(isset($price['selling_price'])){
             if(!empty($price['selling_price'])){
                 return $price['selling_price'];
@@ -740,7 +782,7 @@ if(!function_exists('wc_rbp_remove_link')){
 }
 
 if(!function_exists('wc_rbp_is_wc_v')){
-    function wc_rbp_is_wc_v($compare = '>=',$version = ''){
+    function wc_rbp_is_wc_v($compare = '>=',$version = '3.0'){
         $version = empty($version) ? WOOCOMMERCE_VERSION : $version; 
         if(version_compare( WOOCOMMERCE_VERSION, $version,$compare)){
             return true;

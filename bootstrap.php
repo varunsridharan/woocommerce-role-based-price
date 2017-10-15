@@ -126,12 +126,13 @@ class WooCommerce_Role_Based_Price {
 		do_action('wc_rbp_before_init');
 		
         self::$functions = new WooCommerce_Role_Based_Price_Functions;
-		self::$settings = new WooCommerce_Role_Based_Price_Settings_Framework; 
-		self::$frontend = new WooCommerce_Role_Based_Price_Product_Pricing;
+		self::$settings = new WooCommerce_Role_Based_Price_Settings_Framework;
         self::$shortcode_handler = new WooCommerce_Role_Based_Price_Shortcode_Handler;
         
 		if(wc_rbp_is_request('admin')){
             self::$admin = new WooCommerce_Role_Based_Price_Admin;
+        } else {
+            self::$frontend = new WooCommerce_Role_Based_Price_Product_Pricing;
         }
 		
 		do_action('wc_rbp_init');

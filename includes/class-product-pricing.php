@@ -10,8 +10,11 @@ if ( ! defined( 'WPINC' ) ) { die; }
 
 class WooCommerce_Role_Based_Price_Product_Pricing {
     
-    public function __construct() {
-    	add_action( 'woocommerce_init', array( $this, 'wc_init'));
+    public function __construct($is_hook = true) {
+        $this->already_given_prices = array();
+        if($is_hook == true){
+            add_action( 'woocommerce_init', array( $this, 'wc_init'));
+        }
     }
 	
 	public function wc_init(){
@@ -19,8 +22,6 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
             add_filter( 'woocommerce_product_get_regular_price', array( &$this, 'get_regular_price') , 99, 2 );
             add_filter( 'woocommerce_product_get_sale_price', array( &$this, 'get_selling_price') , 99, 2 );
             add_filter( 'woocommerce_product_get_price', array( &$this, 'get_price' ), 99, 2 );
-            
-            
             add_filter( 'woocommerce_product_variation_get_regular_price', array( &$this, 'get_regular_price') , 99, 2 );
             add_filter( 'woocommerce_product_variation_get_sale_price', array( &$this, 'get_selling_price') , 99, 2 );
             add_filter( 'woocommerce_product_variation_get_price', array( &$this, 'get_price' ), 99, 2 );
@@ -46,63 +47,64 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
  		$product_id = $this->check_product_get_id($product);
         
         if(empty($current_user)){$current_user = wc_rbp_get_current_user();}
-        $wc_rbp_status = product_rbp_status($product_id,$product);
         
-        $allowed_roles = wc_rbp_allowed_roles();
         
-        if(in_array($current_user,$allowed_roles)){ 
+        $key = md5($base_price.'-'.$product_id.'-'.$price_meta_key.'-'.$opposite_key.'-'.$current_user);
         
-            $rbp_price = wc_rbp_price($product_id,$current_user,'all',array(),$product);
         
-            if($wc_rbp_status){
-                if($rbp_price === false){
-                    $wc_rbp_price = $base_price;
-                } else {
-                    if($price_meta_key == 'all'){$wc_rbp_price = $rbp_price[$price_meta_key];}
+        if(isset($this->already_given_prices[$key])){
+            $wc_rbp_price = $this->already_given_prices[$key];
+        } else {
+            $wc_rbp_status = product_rbp_status($product_id);
+            $allowed_roles = wc_rbp_allowed_roles();
 
-                    if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
-                        if($rbp_price[$price_meta_key] == "" && $rbp_price[$opposite_key] == ""){
-                            $wc_rbp_price = $base_price;
-                        } else if( $rbp_price[$price_meta_key] == ""  && $rbp_price[$opposite_key] != ""){
-                            $wc_rbp_price = $rbp_price[$opposite_key];
-                        } else if($rbp_price[$price_meta_key] != ""  && $rbp_price[$opposite_key] == ""){
-                            $wc_rbp_price = $rbp_price[$price_meta_key];
-                        } else if($rbp_price[$price_meta_key] != ""){
-                            $wc_rbp_price = $rbp_price[$price_meta_key];
-                        }
-                    } else if(isset($rbp_price[$price_meta_key]) && ! isset($rbp_price[$opposite_key])){
-                        if($rbp_price[$price_meta_key] == ""){
-                            $wc_rbp_price = $base_price;
-                        } else if($rbp_price[$price_meta_key] != ""){
-                            $wc_rbp_price = $rbp_price[$price_meta_key];
-                        }
-                    } else if(isset($rbp_price[$opposite_key]) && ! isset($rbp_price[$price_meta_key])){
-                        if($rbp_price[$opposite_key] == ""){
-                            $wc_rbp_price = $base_price;
-                        } else if($rbp_price[$opposite_key] != ""){
-                            $wc_rbp_price = $rbp_price[$opposite_key];
+            if(in_array($current_user,$allowed_roles)){
+                $rbp_price = wc_rbp_price($product_id,$current_user,'all',array());
+                //$rbp_price = array();
+                if($wc_rbp_status){
+                    if($rbp_price === false){
+                        $wc_rbp_price = $base_price;
+                    } else {
+                        if($price_meta_key == 'all'){$wc_rbp_price = $rbp_price[$price_meta_key];}
+
+                        if(isset($rbp_price[$price_meta_key]) && isset($rbp_price[$opposite_key])){
+                            if($rbp_price[$price_meta_key] == "" && $rbp_price[$opposite_key] == ""){
+                                $wc_rbp_price = $base_price;
+                            } else if( $rbp_price[$price_meta_key] == ""  && $rbp_price[$opposite_key] != ""){
+                                $wc_rbp_price = $rbp_price[$opposite_key];
+                            } else if($rbp_price[$price_meta_key] != ""  && $rbp_price[$opposite_key] == ""){
+                                $wc_rbp_price = $rbp_price[$price_meta_key];
+                            } else if($rbp_price[$price_meta_key] != ""){
+                                $wc_rbp_price = $rbp_price[$price_meta_key];
+                            }
+                        } else if(isset($rbp_price[$price_meta_key]) && ! isset($rbp_price[$opposite_key])){
+                            if($rbp_price[$price_meta_key] == ""){
+                                $wc_rbp_price = $base_price;
+                            } else if($rbp_price[$price_meta_key] != ""){
+                                $wc_rbp_price = $rbp_price[$price_meta_key];
+                            }
+                        } else if(isset($rbp_price[$opposite_key]) && ! isset($rbp_price[$price_meta_key])){
+                            if($rbp_price[$opposite_key] == ""){
+                                $wc_rbp_price = $base_price;
+                            } else if($rbp_price[$opposite_key] != ""){
+                                $wc_rbp_price = $rbp_price[$opposite_key];
+                            }
                         }
                     }
+
+                } else { 
+                    $wc_rbp_price = $base_price; 
                 }
-        
-            } else { 
-                $wc_rbp_price = $base_price; 
+            } else {
+                $wc_rbp_price = $base_price;
             }
-        } else {
-            $wc_rbp_price = $base_price;
         }
-        
         
 	 	//$return = apply_filters('wc_rbp_product_price_value',$return,$price,$product_id,$product,$price_meta_key,$current_user);
         
-        $wc_rbp_price = apply_filters('wc_rbp_product_price_value',
-                                      $wc_rbp_price,
-                                      $base_price, 
-                                      $product_id,
-                                      $product,
-                                      $price_meta_key,
-                                      $current_user
-                                     );
+        $wc_rbp_price = apply_filters('wc_rbp_product_price_value', $wc_rbp_price, $base_price,  $product_id, $product, $price_meta_key, $current_user );
+        
+        $this->already_given_prices[$key] = $wc_rbp_price;
         
 		$return = wc_format_decimal($wc_rbp_price);
         
@@ -222,22 +224,34 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 		$return = $price;
 		$prices = array();
 		$display = array();  
+        $childrens = $product->get_children();
+        $total_childs = array_sum($product->get_children());
+        $pid = 0;
         
-		foreach ($product->get_children() as $variation_id) {
-            
-            if(wc_rbp_is_wc_v('>=','3.0')){
-                $variation = wc_get_product( $variation_id );    
-            } else {
-                $variation = $product->get_child( $variation_id );
-            }
-            
-            
-			if ( $variation ) {
-				$prices[$variation_id] =   $this->get_product_price($price,$variation,$price_meta_key);
-			}				 
-		}			
-		
-		if ( $min_or_max == 'min' ) { asort($prices);  }
+        if(wc_rbp_is_wc_v('>=','3.0')){
+            $pid = $product->get_id();    
+        } else {
+            $pid = $product->id;
+        }
+        
+        $role = wc_rbp_get_current_user();
+        $cache_key = '_wcrbp_p_'.$pid.'_'.$role;
+        $prices = get_transient($cache_key);
+        
+        if(empty($prices)){
+            wc_rbp_update_variations_data($pid,array($role));
+            $prices = get_transient($cache_key);
+		}
+
+        if(empty($prices[$price_meta_key])){
+            $key = wc_rbp_get_oppo_metakey($price_meta_key);
+            $prices = $prices[$key];
+        } else {
+            $prices = $prices[$price_meta_key];
+        }
+        
+        
+        if ( $min_or_max == 'min' ) { asort($prices);  }
 		else { arsort($prices);}		
 		
 		if ( $display ) {
@@ -260,7 +274,6 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 	public function get_variation_price( $price, $product, $min_or_max, $display ) {		
 		return $this->get_variation_regular_price( $price, $product, $min_or_max, $display, 'selling_price' );		
 	}	
-    
     
     public function get_variation_tax_status_price($prices,$product){
         if ( 'incl' === get_option( 'woocommerce_tax_display_shop' ) ) { 
@@ -293,7 +306,6 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         
         return $prices;
     }
-    
     
     public function product_rbp_status($id,$product){
         $type = $product->get_type();
@@ -335,9 +347,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
         return $price;
     }
-    
-    
-    
+
     public function get_price_html_wc3($price = '',$product){
        
         $prices = $product->get_variation_prices( true );
@@ -419,5 +429,4 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
         return $price;
     }
-    
 }
