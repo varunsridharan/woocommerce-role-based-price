@@ -87,6 +87,4 @@ class WooCommerce_Role_Based_Price_Shortcode_Handler {
        $p = $this->rbpPP->get_product_price('',$product,$price,$role); 
        return wc_price($p); 
     }
-    
-   
 }

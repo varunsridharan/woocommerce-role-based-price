@@ -9,7 +9,7 @@
  * Created: 2016-03-04 
  * Last Update: 2017-03-23 
  * Required Plugins: [ Name : Aelia Currency Switcher for WooCommerce | URL : http://aelia.co/shop/currency-switcher-woocommerce/ | Version : 3.8.2 | Slug : woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php]
- * Category:Integration
+ * Category:Integration,Currency Switcher
  */
 if ( ! defined( 'WC_RBP_PLUGIN' ) ) { die; }
 

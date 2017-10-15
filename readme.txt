@@ -7,8 +7,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Requires at least: 3.0
 Tested up to: 4.7.1
 WC requires at least: 2.0
-WC tested up to: 2.7
-Stable tag: 3.0.9
+WC tested up to: 3.1
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -38,6 +38,7 @@ We have worked on this plugin for last 3 years and so far it have been all free 
 * Aelia Currency Switcher Integration
 * Price & AddToCart Visiablity
 * Shortcode to get product price
+* Integration With WC Product Importer / Exporter
 
 = Pro Features + Add-ons =
 * Schedule Selling Price 
@@ -52,11 +53,12 @@ We have worked on this plugin for last 3 years and so far it have been all free 
 
 
 = Integration =
+* Integration With <a href="https://woocommerce.wordpress.com/2017/06/28/woocommerce-3-1-has-landed/">WC Product Importer / Exporter</a>
 * Integration  To <a href="https://aelia.co/shop/currency-switcher-woocommerce/" > Aelia Currency Swticher  </a>
 * Integration  To <a href="http://www.wpallimport.com/" > WP All Import Plugin </a>
 * Integration  To <a href="https://codecanyon.net/item/woocommerce-bulk-price-updater/14276992" >WC Bulk Price Updater </a>
 * Integration  To <a href="http://wpml.org/" >WPML Currency Switcher </a>
- 
+
 
 = Get Product's Regular Price With Custom User Role =
 `[wc_rbp id='99' role='administrator' price='regular_price']`
@@ -156,7 +158,6 @@ The manual installation method involves downloading our plugin and uploading it 
 Yes This Plugin Support Aelia Currency Switcher. by activation of Aelia Currency Switcher In Settings Menu
 
 **How I Can Get Support For This Plugin**
-
 * http://varunsridharan.in/plugin-support/ 
 * https://wordpress.org/support/plugin/woocommerce-role-based-price
 * https://github.com/technofreaky/WooCommerce-Role-Based-Price
@@ -176,6 +177,11 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
+= 3.1.0 [07-07-2017] =
+* Added : New Integration With WC Default Product Exporter
+* Added : New Integration With WC Default Product Importer
+* Fixed : Minor Tweaks Done.
+
 = 3.0.9 [31-05-2017] =
 * Fixed : Fatal Error Below WC 3.0.
 

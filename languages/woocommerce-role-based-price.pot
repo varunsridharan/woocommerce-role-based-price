@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WooCommerce Role Based Price package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Role Based Price 3.0\n"
+"Project-Id-Version: WooCommerce Role Based Price 3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
-"POT-Creation-Date: 2017-01-26 09:45:50+00:00\n"
+"POT-Creation-Date: 2017-07-07 13:11:41+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,43 +48,38 @@ msgstr ""
 msgid "Contact Author"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:25
-#: includes/admin/class-ajax-handler.php:27
+#: includes/admin/class-ajax-handler.php:24
+#: includes/admin/class-ajax-handler.php:26
 msgid "Invalid Product ID"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:63
+#: includes/admin/class-ajax-handler.php:64
 msgid "Unable To Process Your Request Please Try Again later"
-msgstr ""
-
-#: includes/admin/class-ajax-handler.php:85
-msgid "Product Price Edit Failed"
-msgstr ""
-
-#: includes/admin/class-ajax-handler.php:86
-msgid "<h3> Invalid Product Selected Or Unable To Process Your Request Now.. <small> Please Try Again Later</small> </h3>"
 msgstr ""
 
 #: includes/admin/class-metabox.php:10
 msgid "WC Role Based Price Editor"
 msgstr ""
 
-#: includes/admin/class-metabox.php:53
+#: includes/admin/class-metabox.php:29
 msgid "Save Price"
 msgstr ""
 
-#: includes/admin/class-metabox.php:70
+#: includes/admin/class-metabox.php:132
 msgid "WC Product Price : "
 msgstr ""
 
-#: includes/admin/class-metabox.php:118
+#: includes/admin/class-metabox.php:180
 msgid "Select A Variation : "
+msgstr ""
+
+#: includes/admin/class-metabox.php:199
+msgid "Variations"
 msgstr ""
 
 #: includes/admin/class-price-editor-fields.php:21
 #: includes/admin/settings_framework/class-wp-plugin-options.php:20
 #: includes/admin/settings_framework/class-wp-plugin-options.php:26
-#: includes/functions.php:116
 msgid "General"
 msgstr ""
 
@@ -237,41 +232,37 @@ msgstr ""
 msgid "Deactivate"
 msgstr ""
 
-#: includes/class-product-pricing.php:247
-#: includes/class-product-pricing.php:251
+#: includes/class-product-pricing.php:396
+#: includes/class-product-pricing.php:403
 msgctxt "Price range: from-to"
 msgid "%1$s&ndash;%2$s"
 msgstr ""
 
-#: includes/class-product-pricing.php:255
+#: includes/class-product-pricing.php:407
 msgid "Free!"
 msgstr ""
 
-#: includes/class-shortcode-handler.php:35
+#: includes/class-shortcode-handler.php:44
 msgid "Invalid Product ID Given"
 msgstr ""
 
-#: includes/class-shortcode-handler.php:39
+#: includes/class-shortcode-handler.php:48
 msgid "Invalid User Role Given"
 msgstr ""
 
-#: includes/class-shortcode-handler.php:46
+#: includes/class-shortcode-handler.php:55
 msgid "Invalid Price Type Given"
 msgstr ""
 
-#: includes/functions.php:119 includes/functions.php:131
-msgid "Save Changes"
-msgstr ""
-
-#: includes/functions.php:207
+#: includes/functions.php:121
 msgid "Visitor / LogedOut User"
 msgstr ""
 
-#: includes/functions.php:296
+#: includes/functions.php:207
 msgid "Regular Price"
 msgstr ""
 
-#: includes/functions.php:297
+#: includes/functions.php:208
 msgid "Selling Price"
 msgstr ""
 
@@ -287,20 +278,20 @@ msgstr ""
 msgid "If you have installed <strong>WPRB</strong> for the 1st time or upgrading from <strong> Version 2.8.7</strong> then you will need to update its' settings once again or this plugin will not function properly. "
 msgstr ""
 
-#: includes/helpers/class-activator.php:37
+#: includes/helpers/class-activator.php:38
 msgid "Click Here to update the settings"
 msgstr ""
 
-#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:71
+#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:72
 #: plugins/aelia-currencyswitcher-integration/wc_rbp_fields.php:3
 msgid "Aelia Currency Switcher"
 msgstr ""
 
-#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:82
+#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:83
 msgid "Allowed Currency"
 msgstr ""
 
-#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:83
+#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:84
 msgid "Allowed Currency To Show In Role Based Price Listing"
 msgstr ""
 
@@ -332,20 +323,45 @@ msgstr ""
 msgid "if checked Variable product variation will be hidden from product page "
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:110
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:111
 msgid "Custom Message"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:111
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:112
 msgid "Used when product price is hidden.. use <code>[currency]</code> to get current store currency"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:121
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:122
 msgid "Price & AddToCart Visibility"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:122
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:123
 msgid "Hide Product Price & Add To Cart button based on users role and set custom messsage to show if price is hidden"
+msgstr ""
+
+#: plugins/wc-product-exporter/wc-product-exporter.php:113
+msgid "WC Role Based Price All"
+msgstr ""
+
+#: plugins/wc-product-exporter/wc-product-exporter.php:117
+msgid "WC RBP Status"
+msgstr ""
+
+#: plugins/wc-product-exporter/wc-product-exporter.php:121
+msgid "WC Role Based "
+msgstr ""
+
+#: plugins/wc-product-exporter/wc-product-exporter.php:121
+msgid " Price "
+msgstr ""
+
+#: plugins/wc-product-importer/wc-product-importer.php:60
+#: plugins/wc-product-importer/wc-product-importer.php:61
+msgid "Price Status"
+msgstr ""
+
+#: plugins/wc-product-importer/wc-product-importer.php:77
+msgid "WC Role Based Price"
 msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "WooCommerce Role Based Price"
