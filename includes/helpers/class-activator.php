@@ -39,6 +39,8 @@ class WooCommerce_Role_Based_Price_Activator {
             
             wc_rbp_admin_update($message,1,'activate_message',array(),array('wraper' => false,'times' => 1));
             
+            set_transient( '_welcome_redirect_wcrbp', true, 60 );
+            
 		} else {
 			if ( is_plugin_active(WC_RBP_FILE) ) { deactivate_plugins(WC_RBP_FILE);} 
 			wp_die(wc_rbp_dependency_message());

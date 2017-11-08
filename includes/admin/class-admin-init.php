@@ -22,6 +22,7 @@ class WooCommerce_Role_Based_Price_Admin {
 		add_filter( 'woocommerce_screen_ids',array($this,'set_wc_screen_ids'),99);
         add_filter( 'plugin_row_meta', array($this, 'plugin_row_links' ), 10, 2 );
         add_filter( 'plugin_action_links_'.WC_RBP_FILE, array($this,'plugin_action_links'),10,10); 
+        add_action( 'admin_menu',array($this,'add_welcome_menu'));
 	}
 
 	
@@ -36,9 +37,42 @@ class WooCommerce_Role_Based_Price_Admin {
      * Inits Admin Sttings
      */
     public function admin_init(){
+        $this->handle_welcome_page();
+        
+        
         new WooCommerce_Role_Based_Price_Admin_Ajax_Handler;
 		new WooCommerce_Role_Based_Price_Addons;
     } 
+    
+    public function handle_welcome_page(){
+        if ( ! get_transient( '_welcome_redirect_wcrbp' ) ) {
+            return;
+        }
+        
+        delete_transient( '_welcome_redirect_wcrbp' );
+        
+        if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
+            return;
+		}
+        wp_safe_redirect( add_query_arg(array('page' => 'wcrbp_welcome_page'),admin_url( 'plugins.php' )));
+    }
+    
+    public function add_welcome_menu(){
+        if ( ! get_transient( '_welcome_redirect_wcrbp' ) ) {
+            //return;
+        }
+        
+        if ( is_network_admin() || isset( $_GET['activate-multi'] ) ) {
+            return;
+		}
+        
+        add_submenu_page( 'plugins.php', __( 'WC Role Based Price Welcome Page', 'WPW' ), __( 'WC Role Based Price Welcome Page', 'WPW' ), 'read', 'wcrbp_welcome_page', array($this,'wcrbp_welcome_page_content') );
+        
+    }
+    
+    public function wcrbp_welcome_page_content(){
+        include(WC_RBP_ADMIN.'views/plugin-welcome-page.php');
+    }
     
     /**
 	 * Register the stylesheets for the admin area.
@@ -51,8 +85,6 @@ class WooCommerce_Role_Based_Price_Admin {
 		wp_register_style(WC_RBP_SLUG.'_addons_style',$addon_url , array(), WC_RBP_V, 'all' );  
         wp_register_style(WC_RBP_SLUG.'_settings_selectize_style',WC_RBP_CSS.'selectize.js.css' , array(), WC_RBP_V, 'all' );  
         wp_register_style(WC_RBP_SLUG.'_tabs_style',WC_RBP_CSS.'tabs.css' , array(), WC_RBP_V, 'all' );  
-        wp_register_style(WC_RBP_SLUG.'_jquery-custombox_style',WC_RBP_CSS.'custombox.min.css' , array(), WC_RBP_V, 'all' );
-        
         
         wp_enqueue_style(WC_RBP_SLUG.'_backend_style');  
 		wp_enqueue_style(WC_RBP_SLUG.'_addons_style');  
@@ -60,11 +92,11 @@ class WooCommerce_Role_Based_Price_Admin {
 		
         if('woocommerce_page_woocommerce-role-based-price-settings' == $current_screen){
 			wp_enqueue_style(WC_RBP_SLUG.'_settings_selectize_style');  
+                add_thickbox();
 		}
         
         if('product' == $current_screen) {
-		 	wp_enqueue_style(WC_RBP_SLUG.'_tabs_style');  
-            wp_enqueue_style(WC_RBP_SLUG.'_jquery-custombox_style');  
+		 	wp_enqueue_style(WC_RBP_SLUG.'_tabs_style');
             wp_enqueue_style(WC_RBP_SLUG.'_settings_selectize_style');  
         }
         
@@ -87,8 +119,6 @@ class WooCommerce_Role_Based_Price_Admin {
         wp_register_script(WC_RBP_SLUG.'_settings_js', WC_RBP_JS.'settings-page.js', array('jquery',WC_RBP_SLUG.'_settings_selectize.js'), WC_RBP_V, false ); 
         wp_register_script(WC_RBP_SLUG.'_settings_checkbox.js', WC_RBP_JS.'checkbox.js', array('jquery'), WC_RBP_V, false ); 
         wp_register_script(WC_RBP_SLUG.'_jquery-tabs-script', WC_RBP_JS.'tabs.js', array('jquery'), WC_RBP_V, false ); 
-        wp_register_script(WC_RBP_SLUG.'_jquery-custombox-script', WC_RBP_JS.'custombox.min.js', array('jquery'), WC_RBP_V, false ); 
-        wp_register_script(WC_RBP_SLUG.'_jquery-custombox-legacy-script', WC_RBP_JS.'custombox-legacy.min.js', array(WC_RBP_SLUG.'_jquery-custombox-script'), WC_RBP_V, false ); 
         wp_register_script(WC_RBP_SLUG.'_jquery-product-script', WC_RBP_JS.'product-page.js', array(WC_RBP_SLUG.'_jquery-custombox-legacy-script'), WC_RBP_V, false ); 
         
         
@@ -105,9 +135,7 @@ class WooCommerce_Role_Based_Price_Admin {
         
         if('product' == $current_screen){
 			wp_enqueue_script(WC_RBP_SLUG.'_settings_checkbox.js'); 
-		 	wp_enqueue_script(WC_RBP_SLUG.'_jquery-tabs-script'); 
-            wp_enqueue_script(WC_RBP_SLUG.'_jquery-custombox-script'); 
-            wp_enqueue_script(WC_RBP_SLUG.'_jquery-custombox-legacy-script'); 
+		 	wp_enqueue_script(WC_RBP_SLUG.'_jquery-tabs-script');
             wp_enqueue_script(WC_RBP_SLUG.'_jquery-product-script'); 
             wp_enqueue_script(WC_RBP_SLUG.'_settings_selectize.js'); 
         }

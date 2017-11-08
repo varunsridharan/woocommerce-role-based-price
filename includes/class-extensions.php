@@ -78,7 +78,7 @@ class WooCommerce_Role_Based_Price_Addons {
 		
 		if(!empty($search_dirs)){ 
 			foreach($search_dirs as $dir){
-				$dir_addons = $this->get_plugins($dir); 
+				$dir_addons = $this->get_plugins($dir);
 				$addons_others = array_merge($addons_others,$dir_addons);
 				unset($dir_addons);
 			}
@@ -254,7 +254,9 @@ class WooCommerce_Role_Based_Price_Addons {
 					if ( $plugins_subdir ) {
 						while (($subfile = readdir( $plugins_subdir ) ) !== false ) {
 							if ( substr($subfile, 0, 1) == '.' ) {continue;}
-							if ( substr($subfile, -4) == '.php' ) {$plugin_files[] = "$file/$subfile";}
+							if ( substr($subfile, -4) == '.php' ) {
+                                $plugin_files[] = "$file/$subfile";
+                            }
 						}
 						closedir( $plugins_subdir );
 					}
@@ -270,8 +272,10 @@ class WooCommerce_Role_Based_Price_Addons {
 			if ( !is_readable( "$plugin_root/$plugin_file" ) ) {continue;}
 			$plugin_data = $this->get_plugin_data( "$plugin_root/$plugin_file", false, true ); 
             
-			if ( empty ( $plugin_data['Name'] ) ) { continue;} 
+            $plugin_base = $plugin_root.dirname($plugin_file);
             
+            
+			if ( empty ( $plugin_data['Name'] ) ) { continue;}
             $is_active = wc_rbp_check_active_addon("$plugin_file");
             $plugin_data["is_active"] = $is_active;
             $plugin_data["installed"] = true;
@@ -280,9 +284,10 @@ class WooCommerce_Role_Based_Price_Addons {
             $plugin_data["addon_url"] = plugin_dir_url("$plugin_root/$plugin_file");
 			$plugin_data["addon_slug"] = sanitize_title(dirname($plugin_file));
 			$plugin_data["addon_folder"] = dirname($plugin_file).'/';
+            $plugin_data['screenshots'] = glob($plugin_base.'/screenshot*.*');
 			$wp_plugins[plugin_basename( $plugin_file )] = $plugin_data;
 		}
-		
+        
 		return $wp_plugins;
 	}
 	

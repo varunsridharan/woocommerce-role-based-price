@@ -60,6 +60,24 @@ if($wc_rbp_plugin_data['is_active']){
 				
 			</div>
 		<?php endif; ?>
+       
+       <?php if(!empty($wc_rbp_plugin_data['screenshots'])) : ?>
+           <div class="addon-screenshots">
+               <h3><?php _e("Screenshots",WC_RBP_TXT); ?></h3>
+               <ul>
+                   <?php
+                   $i = 1;
+                   $url = $wc_rbp_plugin_data['addon_url'];
+                   foreach($wc_rbp_plugin_data['screenshots'] as $screen){
+                       echo '<li><a class="thickbox" href="'.$url.basename($screen).'?TB_iframe=true">'.$i.'</a></li>';
+                       $i++;
+                   }
+                   ?>
+               </ul>
+           </div>
+       
+       <?php endif; ?>
+       
         <small><strong><?php _e('Addon Slug : ',WC_RBP_TXT); ?></strong><?php echo $wc_rbp_plugin_slug;?></small>
 	</div>
 	<div class="plugin-card-bottom">

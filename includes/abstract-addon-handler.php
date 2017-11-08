@@ -10,29 +10,35 @@
  */
 if ( ! defined( 'WPINC' ) ) { die; }
 
-abstract class WooCommerce_Role_Based_Price_Addon_Handler { 
+class WooCommerce_Role_Based_Price_Addon_Handler { 
     
 	public function __construct() {
         add_filter('wc_rbp_addon_sections',array($this,'register_section'));
         add_filter('wc_rbp_addon_fields',array($this,'register_fields'));
+        
+        add_action( 'wp_enqueue_scripts', array($this,'frontend_style') );
+        add_action( 'wp_enqueue_scripts', array($this,'frontend_script') );
+        
         if(is_admin()){
             add_action('wc_rbp_admin_styles',array($this,'admin_style'));
             add_action('wc_rbp_admin_scripts',array($this,'admin_script'));
         }
             
-        //add_action('wc_rbp_addon_frontend_scripts',array($this,'frontend_script'));
-        //add_action('wc_rbp_addon_frontend_styles',array($this,'frontend_style'));
 		add_action('wc_rbp_loaded',array($this,'init_class')); 
     }
     
     public function register_section($settings_section){return $settings_section;}
+
     public function register_fields($settings_fields){return $settings_fields;}
     
-    public function init_class(){} 
+    public function init_class(){}
+
+    public function admin_style($screen = ''){}
     
-    public function admin_style(){}
-    public function admin_script(){}
+    public function admin_script($screen = ''){}
+    
     public function frontend_style(){}
+    
     public function frontend_script(){}
     
     public function addon_path($file = __DIR__){

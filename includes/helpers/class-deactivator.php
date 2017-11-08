@@ -28,6 +28,7 @@ class WooCommerce_Role_Based_Price_Deactivator {
 	}
 	
 	public static function deactivate_dependent(){
+        delete_transient( '_welcome_redirect_wcrbp' );
 		deactivate_plugins(WC_RBP_FILE);
 	}
 

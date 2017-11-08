@@ -21,7 +21,6 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         return $product_type;
     }
     
-    
     public function render_metabox_footer($id){
         $base_price = $this->get_base_price($id);
         return  ' <h2 class="" style="margin: 0px -12px -12px; border-top: 1px solid #eee; text-align:right;">
@@ -29,7 +28,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
                 <button type="button" id="wc_rbp_update_price" class="button button-primary">'.__('Save Price',WC_RBP_TXT).'</button></h2> ';
     }
     
-    public function render_default_metabox($id,$post,$args){
+    public function render_default_metabox($id,$post,$args,$type = 'default'){
         $product_type = $this->get_post_type($id);
         
         $render_info = '';
@@ -63,7 +62,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         $content = $this->get_metabox_content($id,$tabs,$prod,$prodType);
 
         $render_info .= wc_rbp_generate_tabs($tabs,$content);
-        $render_info .= wc_rbp_get_editor_fields('default');
+        $render_info .= wc_rbp_get_editor_fields($type);
         $render_info .=  '<input type="hidden" id="wc_rbp_product_id" name="product_id" value="'.$id.'" /> ';
 
         ob_start();
@@ -175,17 +174,19 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         return $tabs;
     }
     
-    
     public function render_selectbox_header($placeholder = ''){
         if(empty($placeholder)){$placeholder =  __("Select A Variation : ",WC_RBP_TXT);}
-        return '<select id="wc_rbp_variation_select" style="width: 30%; display: inline-block; vertical-align: middle; margin-left: 10px;" name="wc_rbp_variation_select" class="wcrbpvariationbx"> <option value="">'.$placeholder.'</option>';   
+        $header = '<select id="wc_rbp_variation_select" style="width: 30%; display: inline-block; vertical-align: middle; margin-left: 10px;" name="wc_rbp_variation_select" class="wcrbpvariationbx"> <option value="">'.$placeholder.'</option>';   
+        return apply_filters("role_based_price_admin_selectbox_header",$header);
     }
     
-    public function render_selectbox_footer(){ return '</select>';   }
+    public function render_selectbox_footer(){ 
+        return apply_filters("role_based_price_admin_selectbox_header",'</select>');
+    }
     
     public function generate_variation_selectbox($id,$selected = ''){
         
-        $return = $this->render_selectbox_header();
+        $header = $this->render_selectbox_header();
         $args = array(
 			'post_type'      => 'product_variation',
 			'post_status'    => array( 'private', 'publish' ),
@@ -196,7 +197,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
 		);
 
 		$variations = get_children( $args );
-        $return .= ' <optgroup  label="'.__("Variations",WC_RBP_TXT).'"> ';
+        $return = ' <optgroup  label="'.__("Variations",WC_RBP_TXT).'"> ';
         foreach($variations as $ids){
             $prod = wc_get_product($ids);
             $name = '#'.$ids.' | ';
@@ -214,7 +215,9 @@ class WooCommerce_Role_Based_Price_Product_Metabox{
         }
         $return .= ' </optgroup> ';
         
-        $return .= $this->render_selectbox_footer();
+        $footer = $this->render_selectbox_footer();
+        $return = apply_filters("role_based_price_metabox_variation_select",$return,$selected,$id);
+        $return = $header.$return.$footer;
         return $return;
     }
     
