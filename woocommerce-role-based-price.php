@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * WooCommerce Role Based Price Main File
  *
@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       WooCommerce Role Based Price
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
- * Description:       Sell product in different price for different user role based on your settings. 
+ * Description:       Sell product in different price for different user role based on your settings.
  * Version:           3.2.4
  * Author:            Varun Sridharan
  * Author URI:        http://varunsridharan.in
@@ -25,12 +25,12 @@
  */
 
 if ( ! defined( 'WPINC' ) ) { die; }
- 
+
 define('WC_RBP_FILE',plugin_basename( __FILE__ ));
 define('WC_RBP_PATH',plugin_dir_path( __FILE__ )); # Plugin DIR
 define('WC_RBP_INC',WC_RBP_PATH.'includes/'); # Plugin INC Folder
 define('WC_RBP_DEPEN','woocommerce/woocommerce.php');
-
+define('WC_RBP_VARIABLE_VERSION','3.0.0.1');
 register_activation_hook( __FILE__, 'wc_rbp_activate_plugin_name' );
 register_deactivation_hook( __FILE__, 'wc_rbp_deactivate_plugin_name' );
 register_deactivation_hook( WC_RBP_DEPEN, 'wc_rbp_dependency_plugin_deactivate' );

@@ -37,7 +37,7 @@ if(!function_exists('product_acs_rbp_price')){
 	 * Gets product price from DB
 	 */
 	function product_acs_rbp_price($post_id){
-        $price = wc_product_variable($post_id,'wc_rbp_acs','wc_rbp_get_acs_product_price');
+        $price = wc_rbp_product_variable($post_id,'wc_rbp_acs','wc_rbp_get_acs_product_price');
         return $price;
 	}
 }
