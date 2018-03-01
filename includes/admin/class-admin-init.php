@@ -22,7 +22,7 @@ class WooCommerce_Role_Based_Price_Admin {
 		add_filter( 'woocommerce_screen_ids',array($this,'set_wc_screen_ids'),99);
         add_filter( 'plugin_row_meta', array($this, 'plugin_row_links' ), 10, 2 );
         add_filter( 'plugin_action_links_'.WC_RBP_FILE, array($this,'plugin_action_links'),10,10); 
-        add_action( 'admin_menu',array($this,'add_welcome_menu'));
+        //add_action( 'admin_menu',array($this,'add_welcome_menu'));
 	}
 
 	
@@ -37,7 +37,7 @@ class WooCommerce_Role_Based_Price_Admin {
      * Inits Admin Sttings
      */
     public function admin_init(){
-        $this->handle_welcome_page();
+        //$this->handle_welcome_page();
         
         
         new WooCommerce_Role_Based_Price_Admin_Ajax_Handler;
@@ -119,9 +119,7 @@ class WooCommerce_Role_Based_Price_Admin {
         wp_register_script(WC_RBP_SLUG.'_settings_js', WC_RBP_JS.'settings-page.js', array('jquery',WC_RBP_SLUG.'_settings_selectize.js'), WC_RBP_V, false ); 
         wp_register_script(WC_RBP_SLUG.'_settings_checkbox.js', WC_RBP_JS.'checkbox.js', array('jquery'), WC_RBP_V, false ); 
         wp_register_script(WC_RBP_SLUG.'_jquery-tabs-script', WC_RBP_JS.'tabs.js', array('jquery'), WC_RBP_V, false ); 
-        wp_register_script(WC_RBP_SLUG.'_jquery-product-script', WC_RBP_JS.'product-page.js', array(WC_RBP_SLUG.'_jquery-custombox-legacy-script'), WC_RBP_V, false ); 
-        
-        
+          
         wp_enqueue_script(WC_RBP_SLUG.'_backend_script', WC_RBP_JS.'backend.js', array('jquery'), WC_RBP_V, false ); 
         
         
@@ -174,9 +172,9 @@ class WooCommerce_Role_Based_Price_Admin {
 	public function plugin_row_links( $plugin_meta, $plugin_file ) {
 		if ( WC_RBP_FILE == $plugin_file ) {
             $plugin_meta[] = sprintf('<a href="%s">%s</a>', '#', __('Docs',WC_RBP_TXT) );
-            $plugin_meta[] = sprintf('<a href="%s">%s</a>', '#', __('View On Github',WC_RBP_TXT) );
-            $plugin_meta[] = sprintf('<a href="%s">%s</a>', '#', __('Report Issue',WC_RBP_TXT) );
-            $plugin_meta[] = sprintf('&hearts; <a href="%s">%s</a>', '#', __('Donate',WC_RBP_TXT) );
+            $plugin_meta[] = sprintf('<a href="%s">%s</a>', 'https://github.com/varunsridharan/woocommerce-role-based-price', __('View On Github',WC_RBP_TXT) );
+            $plugin_meta[] = sprintf('<a href="%s">%s</a>', 'https://github.com/varunsridharan/woocommerce-role-based-price/issues', __('Report Issue',WC_RBP_TXT) );
+            $plugin_meta[] = sprintf('&hearts; <a href="%s">%s</a>', 'https://www.paypal.me/varunsridharan23', __('Donate',WC_RBP_TXT) );
             $plugin_meta[] = sprintf('<a href="%s">%s</a>', 'http://varunsridharan.in/plugin-support/', __('Contact Author',WC_RBP_TXT) );
 		}
 		return $plugin_meta;

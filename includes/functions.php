@@ -504,16 +504,22 @@ if(!function_exists("wc_rbp_update_variations_data")){
         }
         $pricing = new WooCommerce_Role_Based_Price_Product_Pricing(false);
         
-        foreach($allowed_roles as $role){
-            $cache_key = '_wcrbp_p_'.$pid.'_'.$role;
-            $prices = array();
+        foreach($allowed_roles as $_role){
+            $cache_key = 'wcrbp_p_'.$pid.'_'.$_role;
+            $prices = array('base_selling_price'=> array(),'base_regular_price' => array(),'last_updated' => time());
             foreach($allowed_price as $A_price){
                 foreach($product->get_children() as $vid){
                     $price = get_post_meta($vid,'_regular_price',true);
                     if($A_price == 'selling_price'){
                         $price = get_post_meta($vid,'_sale_price',true);
                     }
-                    $prices[$A_price][$vid] = $pricing->get_product_price($price,$vid,$A_price);
+                    $prices['base_'.$A_price][$vid] = $price;
+                    $pprice = $pricing->get_product_price($price,$vid,$A_price,$_role);
+                    if($pprice === ''){
+                        continue;
+                    }
+                    
+                    $prices[$A_price][$vid] = $pprice;
                 }
             }
             

@@ -5,10 +5,10 @@ Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
 Tags: WC Role Based Price,WooCommerce,Role based pricing,user role,wc dynamic pricing,wpallimport,wpallexport,product addons,role,selling price,regular price,sale price,selling,discounts,wordpress,ecommerce,membership discounts,membership,digital,downloads,download,drop price,dropshipper,advertising,deals,group pricing,wpml,wpml currencyswitcher,aelia currency swticher, Online Payment,Payment,Online, affiliate, cart, checkout, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, wholesale, woocommerce,advertising, discount, marketing, Membership, price, promotion
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
-Tested up to: 4.7.1
+Tested up to: 4.8
 WC requires at least: 2.0
-WC tested up to: 3.1
-Stable tag: 3.1.0
+WC tested up to: 3.5
+Stable tag: 3.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -25,7 +25,7 @@ We have added built-in plugin extension marketplace for more PRO level functions
 
 [youtube https://www.youtube.com/watch?v=rlX8okqNfs4]
 
-We have worked on this plugin for last 3 years and so far it have been all free but in order for us to continue with this plugin development we had to move few of its’ features/extensions in to PRO(paid) version that is available for very generous price of $59 (+$20 for extended 12 month support) here: https://codecanyon.net/item/woocommerce-role-based-pricing-pro/14120734
+We have worked on this plugin for last 3 years and so far it have been all free but in order for us to continue with this plugin development we had to move few of its’ features/extensions in to PRO(paid) version that is available for very generous price of $59 (+$20 for extended 12 month support) here: https://codecanyon.net/item/woocommerce-role-based-pricing-pro/14120734?ref=varunsridharan
 
 
 = Features + Add-Ons =
@@ -54,11 +54,13 @@ We have worked on this plugin for last 3 years and so far it have been all free 
 
 = Integration =
 * Integration With <a href="https://woocommerce.wordpress.com/2017/06/28/woocommerce-3-1-has-landed/">WC Product Importer / Exporter</a>
-* Integration  To <a href="https://aelia.co/shop/currency-switcher-woocommerce/" > Aelia Currency Swticher  </a>
-* Integration  To <a href="http://www.wpallimport.com/" > WP All Import Plugin </a>
-* Integration  To <a href="https://codecanyon.net/item/woocommerce-bulk-price-updater/14276992" >WC Bulk Price Updater </a>
-* Integration  To <a href="http://wpml.org/" >WPML Currency Switcher </a>
-
+* Integration With <a href="https://aelia.co/shop/currency-switcher-woocommerce/" > Aelia Currency Swticher  </a>
+* Integration With <a href="http://www.wpallimport.com/" > WP All Import Plugin </a>
+* Integration With <a href="https://codecanyon.net/item/woocommerce-bulk-price-updater/14276992?ref=varunsridharan" >WC Bulk Price Updater </a>
+* Integration With <a href="http://wpml.org/" >WPML Currency Switcher </a>
+* Integration With <a href="https://wordpress.org/plugins/wc-frontend-manager/">WC Frontend Manager</a>
+* Integration With <a href="https://barn2.co.uk/wordpress-plugins/woocommerce-product-table/">WC Product Table</a>
+* Integration With <a href="https://codecanyon.net/item/improved-variable-product-attributes-for-woocommerce/9981757?ref=varunsridharan">Improved Variable Product Attributes for WooCommerce </a>
 
 = Get Product's Regular Price With Custom User Role =
 `[wc_rbp id='99' role='administrator' price='regular_price']`
@@ -177,7 +179,31 @@ Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Rol
 
 
 == Changelog ==
-= 3.1.0 [07-07-2017] =
+= 3.2.4 [14-12-2017] =
+* Fixed : Variation Product Showing Base price if product role price set to 0
+* Tweaks : Minor Bug Fixes
+
+= 3.2.3 [14-12-2017] =
+* Fixed : Variation Product Showing Base price if product role price set to 0
+* Tweaks : Minor Bug Fixes
+
+= 3.2.2 [29-11-2017] =
+* Fixed : Variation Product Showing 0 (Updated--);
+
+= 3.2.1 [29-11-2017] =
+* Fixed : Variation Product showing 0 (https://wordpress.org/support/topic/v3-2-problem-variable-products)
+* Tweaks : Minor Code Changes
+
+= 3.2 [28-11-2017] =
+* Tweaks : Removed Unwanted Codes & Codeclean Up Done
+* Tweaks : Improved Speed & Stability For Variation Products
+* Tweaks : Overall Plugin Speed Improved
+* Tweaks : Minor Bug Fixed
+
+* Added : Added Cache For Variation Pricing
+* Added : Tested With Latest WP & WC
+
+= 3.1 [07-07-2017] =
 * Added : New Integration With WC Default Product Exporter
 * Added : New Integration With WC Default Product Importer
 * Fixed : Minor Tweaks Done.
