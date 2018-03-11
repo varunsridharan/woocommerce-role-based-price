@@ -117,7 +117,7 @@ class WooCommerce_Role_Based_Price {
             }
 		}
         
-	}
+}
     
     /**
      * Inits loaded Class
@@ -129,13 +129,13 @@ class WooCommerce_Role_Based_Price {
 		self::$settings = new WooCommerce_Role_Based_Price_Settings_Framework;
         self::$shortcode_handler = new WooCommerce_Role_Based_Price_Shortcode_Handler;
         
-		if(wc_rbp_is_request('admin')){
-            self::$admin = new WooCommerce_Role_Based_Price_Admin;
-        } else {
+        if(wc_rbp_is_request('frontend')){
             self::$frontend = new WooCommerce_Role_Based_Price_Product_Pricing;
+        } else if(wc_rbp_is_request('admin')){
+            self::$admin = new WooCommerce_Role_Based_Price_Admin;
         }
 		
-		do_action('wc_rbp_init');
+	do_action('wc_rbp_init');
     }
     
 	# Returns Plugin's Functions Instance
