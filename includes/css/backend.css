@@ -1,79 +1,79 @@
 table.wc_rbp_settings_table {
-    box-shadow: none;
-    border: 0 none;
-    border-spacing: 0;
-    clear: both;
-    margin: 0;
-    max-width: 900px;
-    min-width: 800px;
-    width: auto;
-    background: #fff;
-    border: 1px solid #e1e1e1;
+    box-shadow     : none;
+    border         : 0 none;
+    border-spacing : 0;
+    clear          : both;
+    margin         : 0;
+    max-width      : 900px;
+    min-width      : 800px;
+    width          : auto;
+    background     : #fff;
+    border         : 1px solid #e1e1e1;
 }
 
 table.wc_rbp_settings_table th {
-    font-weight: bold;
-    text-align: left;
-    font-size: 14px;
-    padding: 8px 15px;
-    line-height: 28px;
-    border-bottom: 1px solid #e1e1e1;
+    font-weight   : bold;
+    text-align    : left;
+    font-size     : 14px;
+    padding       : 8px 15px;
+    line-height   : 28px;
+    border-bottom : 1px solid #e1e1e1;
 }
 
 table.wc_rbp_settings_table td {
-    padding: 13px 15px;
-    border-top: 1px solid #f5f5f5;
-    width: 70% !important;
+    padding    : 13px 15px;
+    border-top : 1px solid #f5f5f5;
+    width      : 70% !important;
 }
 
 table.wc_rbp_settings_table td:first-child {
-    width: 26%;
+    width : 26%;
 }
 
 table.wc_rbp_settings_table td.wcff-sortable {
-    cursor: move;
+    cursor : move;
 }
 
 table.wc_rbp_settings_table td.add {
-    width: 40px;
+    width : 40px;
 }
 
 table.wc_rbp_settings_table td.remove {
-    width: 20px;
+    width : 20px;
 }
 
 table.wc_rbp_settings_table tr > th {
-    width: 30% !important;
-    vertical-align: middle;
-    background: #F9F9F9;
-    border-top: 1px solid #f0f0f0;
-    border-right: 1px solid #E1E1E1;
+    width          : 30% !important;
+    vertical-align : middle;
+    background     : #F9F9F9;
+    border-top     : 1px solid #f0f0f0;
+    border-right   : 1px solid #E1E1E1;
 }
 
 table.wc_rbp_settings_table > tbody > tr:first-child > td,
 table.wc_rbp_settings_table > tbody > tr:first-child > th {
-    border-top: 0 none;
+    border-top : 0 none;
 }
 
 table.wc_rbp_settings_table tr > th label {
-    display: block;
-    font-size: 13px;
-    line-height: 1.4em;
-    font-weight: bold;
-    padding: 0;
-    margin: 0 0 3px;
-    color: #333;
+    display     : block;
+    font-size   : 13px;
+    line-height : 1.4em;
+    font-weight : bold;
+    padding     : 0;
+    margin      : 0 0 3px;
+    color       : #333;
 }
 
 table.wc_rbp_settings_table tr > th p {
-    display: block;
-    line-height: 1.4em;
-    padding: 0 !important;
-    margin: 3px 0 0 !important;
-    font-size: 12px;
-    font-style: italic;
+    display     : block;
+    line-height : 1.4em;
+    padding     : 0 !important;
+    margin      : 3px 0 0 !important;
+    font-size   : 12px;
+    font-style  : italic;
     /*line-height: 16px;*/
-    color: #666;
+    color       : #666;
 }
 
 table.wc_rbp_settings_table select,
@@ -82,656 +82,649 @@ table.wc_rbp_settings_table input[type=text],
 table.wc_rbp_settings_table input[type=password],
 table.wc_rbp_settings_table input[type=email],
 table.wc_rbp_settings_table input[type=number] {
-    width: 100%;
-    padding: 3px;
-    height: auto;
+    width   : 100%;
+    padding : 3px;
+    height  : auto;
 }
 
 table.wc_rbp_settings_table textarea {
-    resize: vertical;
+    resize : vertical;
 }
 
-
 .wc_rbp_settings .wc_rbp_settings_submenu {
-    display: block !important;
-    margin: 10px 0 0 !important;
-    width: 100%;
+    display : block !important;
+    margin  : 10px 0 0 !important;
+    width   : 100%;
 }
 
 .wc_rbp_settings .addon-screenshots ul {
-    padding: 0;
+    padding : 0;
 }
 
 .wc_rbp_settings .addon-screenshots ul li {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 0;
+    display      : inline-block;
+    margin-right : 10px;
+    padding      : 0;
 }
 
 .wc_rbp_settings .addon-screenshots ul li a {
-    border: 1px solid #ccc;
-    padding: 2px 8px;
-
+    border  : 1px solid #ccc;
+    padding : 2px 8px;
 }
 
 .wc_rbp_settings .addon-screenshots ul li a:hover {
-    background: #444;
-    color: white;
+    background : #444;
+    color      : white;
 }
 
-
 .wc_rbp_settings .addons-search-form {
-    display: inline-block;
-    float: right;
-    padding: 5px 0;
-    right: 0;
+    display : inline-block;
+    float   : right;
+    padding : 5px 0;
+    right   : 0;
 }
 
 .wc_rbp_settings .addons-search-form .wp-filter-search {
-    line-height: 20px;
-    margin: 4px 0;
-    padding: 6px 5px;
+    line-height : 20px;
+    margin      : 4px 0;
+    padding     : 6px 5px;
 }
 
 .wc_rbp_addon_listing .plugin-icon {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border        : 1px solid #ccc;
+    border-radius : 5px;
 }
 
 div.wc-rbp-enhanced-select {
-    display: inline-block;
-    margin-right: 10px !important;
-    vertical-align: middle;
-    min-width: 200px;
-    width: 100% !important;
+    display        : inline-block;
+    margin-right   : 10px !important;
+    vertical-align : middle;
+    min-width      : 200px;
+    width          : 100% !important;
 }
 
 div.wc-rbp-enhanced-select div.selectize-dropdown {
-    width: 100% !important;
+    width : 100% !important;
 }
 
 .wc_rbp_base_product_price {
-    display: inline-block;
-    margin-right: 25px;
-    margin-top: 5px;
-    font-style: italic;
-    font-weight: bold;
+    display      : inline-block;
+    margin-right : 25px;
+    margin-top   : 5px;
+    font-style   : italic;
+    font-weight  : bold;
 }
 
 .wc_rbp_base_product_price .headTxt {
-    color: red !important;
-    font-style: normal !important;
-    font-weight: normal !important;
+    color       : red !important;
+    font-style  : normal !important;
+    font-weight : normal !important;
 }
 
 /***@todo : check it */
 
 div.jqibox {
-    z-index: 100010 !important;
+    z-index : 100010 !important;
 }
 
 /***@todo : check it */
 
 div.jqifade {
-    background-color: black !important;
+    background-color : black !important;
 }
 
 .enable_text {
-    color: black;
-    font-size: 14px;
-    font-weight: bold;
-    margin-right: 10px;
+    color        : black;
+    font-size    : 14px;
+    font-weight  : bold;
+    margin-right : 10px;
 }
 
 .wc_rbp_settings_content {
-    display: inline-block;
-    float: none;
-    margin-top: 10px;
-    width: 100%;
+    display    : inline-block;
+    float      : none;
+    margin-top : 10px;
+    width      : 100%;
 }
 
 .subsubsub.addons_category {
-    display: block;
-    font-size: 14px;
-    margin: 10px 0;
-    width: 100%;
+    display   : block;
+    font-size : 14px;
+    margin    : 10px 0;
+    width     : 100%;
 }
 
 #wc-rbp-product-editor .selectize-control {
-    display: inline-block !important;
-    margin-left: 10px !important;
-    vertical-align: middle !important;
+    display        : inline-block !important;
+    margin-left    : 10px !important;
+    vertical-align : middle !important;
 }
 
 #wc-rbp-product-editor .selectize-control > .selectize-input {
-    padding: 5px 10px !important;
+    padding : 5px 10px !important;
 }
 
 #wc-rbp-product-editor .selectize-dropdown.single {
-    font-weight: normal !important;
+    font-weight : normal !important;
 }
 
-
 .wc_rbp_price_editor_footer {
-    border-top: 1px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px !important;
+    border-top  : 1px solid #ccc;
+    margin-top  : 20px;
+    padding-top : 20px !important;
 }
 
 .wc_rbp_price_editor_footer > p {
-    margin: 0 !important;
+    margin : 0 !important;
 }
 
 .wc_rbp_price_editor_footer #update_price {
-    float: right;
+    float : right;
 }
 
 .wc_rbp_ajax_overlay {
-    background: black none repeat scroll 0 0;
-    opacity: 0.3;
-    position: fixed;
-    z-index: 2147483647;
-    display: none;
+    background : black none repeat scroll 0 0;
+    opacity    : 0.3;
+    position   : fixed;
+    z-index    : 2147483647;
+    display    : none;
 }
 
 .wc_rbp_ajax_overlay .sk-folding-cube {
-    height: 75px;
-    margin: 0 auto;
-    top: 50%;
-    width: 75px;
+    height : 75px;
+    margin : 0 auto;
+    top    : 50%;
+    width  : 75px;
 }
-
 
 /**
  * WC RBP Price Editor Tab Styles
  */
 
 .wc_rbp_popup_section {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    border-bottom  : 1px solid #ccc;
+    margin-bottom  : 10px;
+    padding-bottom : 10px;
 }
 
 .wc_rbp_popup_section:last-child {
-    border-bottom: 0px solid #ccc;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+    border-bottom  : 0px solid #ccc;
+    margin-bottom  : 10px;
+    padding-bottom : 10px;
 }
 
 div.wc_rbp_popup_section > div.wc_rbp_pop_field {
-    display: inline-block;
-    margin-right: 7px;
-    margin-left: 0;
-    width: 99%;
+    display      : inline-block;
+    margin-right : 7px;
+    margin-left  : 0;
+    width        : 99%;
 }
 
 div.wc_rbp_popup_section div.wc_rbp_pop_field_50 {
-    display: inline-block;
-    margin-right: calc(50% - 49%);
-    margin-left: 0;
-    width: 49%;
+    display      : inline-block;
+    margin-right : calc(50% - 49%);
+    margin-left  : 0;
+    width        : 49%;
 }
 
 div.wc_rbp_popup_section div.wc_rbp_pop_field_50:last-child {
-    display: inline-block;
-    margin-right: 0;
-    margin-left: calc(50% - 49%);
+    display      : inline-block;
+    margin-right : 0;
+    margin-left  : calc(50% - 49%);
 }
 
 .wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins {
-    min-height: auto;
-    padding: 5px 20px;
+    min-height : auto;
+    padding    : 5px 20px;
 }
 
 .wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins > div > p {
-    margin: 0;
+    margin : 0;
 }
 
 .wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins ul {
-    list-style: inside none disc;
-    display: inline-block;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    list-style    : inside none disc;
+    display       : inline-block;
+    margin-bottom : 10px;
+    margin-top    : 10px;
 }
 
 .wc_rbp_required_addon_plugin_name {
-    color: #0073aa;
+    color : #0073aa;
 }
 
 .wc_rbp_required_addon_plugin_status.active {
-    color: green;
-    font-weight: bold;
+    color       : green;
+    font-weight : bold;
 }
 
 .wc_rbp_required_addon_plugin_status.deactivated {
-    color: red;
-    font-weight: bold;
+    color       : red;
+    font-weight : bold;
 }
 
 .wc-rbp-addons-required-plugins li {
-    padding: 0 10px;
+    padding : 0 10px;
 }
 
 .wc-rbp-addons-required-plugins li.notexist {
-    background: #ffe1e1 none repeat scroll 0 0;
-    border: 1px solid red;
-    font-weight: bold;
+    background  : #ffe1e1 none repeat scroll 0 0;
+    border      : 1px solid red;
+    font-weight : bold;
 }
 
 .wc-rbp-addons-required-plugins li.notexist .wc_rbp_required_addon_plugin_name {
-    color: white;
+    color : white;
 }
 
 .wc_rbp_addon_listing .plugin-card-top.wc-rbp-addons-required-plugins h3 {
-    color: navy;
-    font-size: 14px;
-    margin-bottom: 0;
+    color         : navy;
+    font-size     : 14px;
+    margin-bottom : 0;
 }
 
 .wc_rbp_addon_listing .desc.column-description {
-    margin-right: 0;
+    margin-right : 0;
 }
 
 .wc_rbp_addon_listing .name.column-name {
-    margin-right: 0;
+    margin-right : 0;
 }
 
 .wc_rbp_addon_listing .plugin-card-bottom .column-updated {
-    width: calc(100% - 300px);
+    width : calc(100% - 300px);
 }
 
 .wc_rbp_addon_listing .wc_rbp_ajax_overlay {
-    border-radius: 3px;
-    opacity: 0.13;
-    position: absolute;
+    border-radius : 3px;
+    opacity       : 0.13;
+    position      : absolute;
 }
 
 .wc_rbp_addon_listing .sk-folding-cube {
-    height: 50px;
-    margin: 10px auto;
-    top: 30%;
-    width: 50px;
+    height : 50px;
+    margin : 10px auto;
+    top    : 30%;
+    width  : 50px;
 }
 
 .column-downloaded.wc_rbp_ajax_response {
-    float: none;
-    max-width: none;
-    display: block;
-    max-width: 330px;
+    float     : none;
+    max-width : none;
+    display   : block;
+    max-width : 330px;
 }
 
 .column-downloaded.wc_rbp_ajax_response span {
-    margin-top: 0;
+    margin-top : 0;
 }
 
 .wc_rbp_ajax_error {
-    color: red;
-    display: block;
-    font-size: 13px;
-    font-weight: bold;
-    margin-top: 5px;
+    color       : red;
+    display     : block;
+    font-size   : 13px;
+    font-weight : bold;
+    margin-top  : 5px;
 }
 
 .wc_rbp_ajax_success {
-    color: green;
-    display: block;
-    font-size: 13px;
-    font-weight: bold;
-    margin-top: 5px;
+    color       : green;
+    display     : block;
+    font-size   : 13px;
+    font-weight : bold;
+    margin-top  : 5px;
 }
 
-
 .sk-folding-cube {
-    margin: 20px auto;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    -webkit-transform: rotateZ(45deg);
-    transform: rotateZ(45deg);
+    margin            : 20px auto;
+    width             : 40px;
+    height            : 40px;
+    position          : relative;
+    -webkit-transform : rotateZ(45deg);
+    transform         : rotateZ(45deg);
 }
 
 .sk-folding-cube .sk-cube {
-    float: left;
-    width: 50%;
-    height: 50%;
-    position: relative;
-    -webkit-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    transform: scale(1.1);
+    float             : left;
+    width             : 50%;
+    height            : 50%;
+    position          : relative;
+    -webkit-transform : scale(1.1);
+    -ms-transform     : scale(1.1);
+    transform         : scale(1.1);
 }
 
 .sk-folding-cube .sk-cube:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #FFF;
-    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
-    animation: sk-foldCubeAngle 2.4s infinite linear both;
-    -webkit-transform-origin: 100% 100%;
-    -ms-transform-origin: 100% 100%;
-    transform-origin: 100% 100%;
+    content                  : '';
+    position                 : absolute;
+    top                      : 0;
+    left                     : 0;
+    width                    : 100%;
+    height                   : 100%;
+    background-color         : #FFF;
+    -webkit-animation        : sk-foldCubeAngle 2.4s infinite linear both;
+    animation                : sk-foldCubeAngle 2.4s infinite linear both;
+    -webkit-transform-origin : 100% 100%;
+    -ms-transform-origin     : 100% 100%;
+    transform-origin         : 100% 100%;
 }
 
 .sk-folding-cube .sk-cube2 {
-    -webkit-transform: scale(1.1) rotateZ(90deg);
-    transform: scale(1.1) rotateZ(90deg);
+    -webkit-transform : scale(1.1) rotateZ(90deg);
+    transform         : scale(1.1) rotateZ(90deg);
 }
 
 .sk-folding-cube .sk-cube3 {
-    -webkit-transform: scale(1.1) rotateZ(180deg);
-    transform: scale(1.1) rotateZ(180deg);
+    -webkit-transform : scale(1.1) rotateZ(180deg);
+    transform         : scale(1.1) rotateZ(180deg);
 }
 
 .sk-folding-cube .sk-cube4 {
-    -webkit-transform: scale(1.1) rotateZ(270deg);
-    transform: scale(1.1) rotateZ(270deg);
+    -webkit-transform : scale(1.1) rotateZ(270deg);
+    transform         : scale(1.1) rotateZ(270deg);
 }
 
 .sk-folding-cube .sk-cube2:before {
-    -webkit-animation-delay: 0.3s;
-    animation-delay: 0.3s;
+    -webkit-animation-delay : 0.3s;
+    animation-delay         : 0.3s;
 }
 
 .sk-folding-cube .sk-cube3:before {
-    -webkit-animation-delay: 0.6s;
-    animation-delay: 0.6s;
+    -webkit-animation-delay : 0.6s;
+    animation-delay         : 0.6s;
 }
 
 .sk-folding-cube .sk-cube4:before {
-    -webkit-animation-delay: 0.9s;
-    animation-delay: 0.9s;
+    -webkit-animation-delay : 0.9s;
+    animation-delay         : 0.9s;
 }
 
 @-webkit-keyframes sk-foldCubeAngle {
     0%,
     10% {
-        -webkit-transform: perspective(140px) rotateX(-180deg);
-        transform: perspective(140px) rotateX(-180deg);
-        opacity: 0;
+        -webkit-transform : perspective(140px) rotateX(-180deg);
+        transform         : perspective(140px) rotateX(-180deg);
+        opacity           : 0;
     }
     25%,
     75% {
-        -webkit-transform: perspective(140px) rotateX(0deg);
-        transform: perspective(140px) rotateX(0deg);
-        opacity: 1;
+        -webkit-transform : perspective(140px) rotateX(0deg);
+        transform         : perspective(140px) rotateX(0deg);
+        opacity           : 1;
     }
     90%,
     100% {
-        -webkit-transform: perspective(140px) rotateY(180deg);
-        transform: perspective(140px) rotateY(180deg);
-        opacity: 0;
+        -webkit-transform : perspective(140px) rotateY(180deg);
+        transform         : perspective(140px) rotateY(180deg);
+        opacity           : 0;
     }
 }
 
 @keyframes sk-foldCubeAngle {
     0%,
     10% {
-        -webkit-transform: perspective(140px) rotateX(-180deg);
-        transform: perspective(140px) rotateX(-180deg);
-        opacity: 0;
+        -webkit-transform : perspective(140px) rotateX(-180deg);
+        transform         : perspective(140px) rotateX(-180deg);
+        opacity           : 0;
     }
     25%,
     75% {
-        -webkit-transform: perspective(140px) rotateX(0deg);
-        transform: perspective(140px) rotateX(0deg);
-        opacity: 1;
+        -webkit-transform : perspective(140px) rotateX(0deg);
+        transform         : perspective(140px) rotateX(0deg);
+        opacity           : 1;
     }
     90%,
     100% {
-        -webkit-transform: perspective(140px) rotateY(180deg);
-        transform: perspective(140px) rotateY(180deg);
-        opacity: 0;
+        -webkit-transform : perspective(140px) rotateY(180deg);
+        transform         : perspective(140px) rotateY(180deg);
+        opacity           : 0;
     }
 }
 
 .bar {
-    width: auto;
-    min-width: 100px;
-    max-width: 600px;
-    height: 20px;
-    border: 1px solid #2980b9;
-    border-radius: 3px;
-    background-image: repeating-linear-gradient( -45deg, #2980b9, #2980b9 11px, #eee 10px, #eee 20px/* determines size */
+    width            : auto;
+    min-width        : 100px;
+    max-width        : 600px;
+    height           : 20px;
+    border           : 1px solid #2980b9;
+    border-radius    : 3px;
+    background-image : repeating-linear-gradient(-45deg, #2980b9, #2980b9 11px, #eee 10px, #eee 20px /* determines size */
     );
-    background-size: 28px 28px;
-    animation: move .5s linear infinite;
+    background-size  : 28px 28px;
+    animation        : move .5s linear infinite;
 }
 
 @keyframes move {
     0% {
-        background-position: 0 0;
+        background-position : 0 0;
     }
     100% {
-        background-position: 28px 0;
+        background-position : 28px 0;
     }
 }
-
 
 /**
  * Styled Checkbox CSS Code
  */
 
 .switchery {
-    background-color: #fff;
-    border: 1px solid #dfdfdf;
-    border-radius: 20px;
-    cursor: pointer;
-    display: inline-block;
-    height: 30px;
-    position: relative;
-    vertical-align: middle;
-    width: 50px;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    box-sizing: content-box;
-    background-clip: content-box
+    background-color    : #fff;
+    border              : 1px solid #dfdfdf;
+    border-radius       : 20px;
+    cursor              : pointer;
+    display             : inline-block;
+    height              : 30px;
+    position            : relative;
+    vertical-align      : middle;
+    width               : 50px;
+    -moz-user-select    : none;
+    -khtml-user-select  : none;
+    -webkit-user-select : none;
+    -ms-user-select     : none;
+    user-select         : none;
+    box-sizing          : content-box;
+    background-clip     : content-box
 }
 
 .switchery > small {
-    background: #fff;
-    border-radius: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-    height: 30px;
-    position: absolute;
-    top: 0;
-    width: 30px
+    background    : #fff;
+    border-radius : 100%;
+    box-shadow    : 0 1px 3px rgba(0, 0, 0, 0.4);
+    height        : 30px;
+    position      : absolute;
+    top           : 0;
+    width         : 30px
 }
 
 .switchery-small {
-    border-radius: 20px;
-    height: 20px;
-    width: 33px
+    border-radius : 20px;
+    height        : 20px;
+    width         : 33px
 }
 
 .switchery-small > small {
-    height: 20px;
-    width: 20px
+    height : 20px;
+    width  : 20px
 }
 
 .switchery-large {
-    border-radius: 40px;
-    height: 40px;
-    width: 66px
+    border-radius : 40px;
+    height        : 40px;
+    width         : 66px
 }
 
 .switchery-large > small {
-    height: 40px;
-    width: 40px
+    height : 40px;
+    width  : 40px
 }
 
 .wcrbp-tab-nav {
-    margin-bottom: -1px;
+    margin-bottom : -1px;
 }
 
 .wcrbp-tab-nav > li {
-    margin: 0;
-    display: inline-block;
+    margin  : 0;
+    display : inline-block;
 }
 
 .wcrbp-tab-nav > .wcrbp-tab-active {
-    border: 1px solid #dfdfdf;
-    border-bottom-color: transparent;
-    background: #fdfdfd;
+    border              : 1px solid #dfdfdf;
+    border-bottom-color : transparent;
+    background          : #fdfdfd;
 }
 
 .wcrbp-tab-nav > li > a {
-    display: block;
-    padding: 3px 5px 5px;
-    text-decoration: none;
+    display         : block;
+    padding         : 3px 5px 5px;
+    text-decoration : none;
 }
 
 .wcrbp-tab-nav > li > a:active,
 .wcrbp-tab-nav > li > a:focus {
-    outline: none;
-    box-shadow: none;
+    outline    : none;
+    box-shadow : none;
 }
 
 .wcrbp-tab-nav i,
 .wcrbp-tab-nav img {
-    vertical-align: middle;
-    margin-right: .3em;
+    vertical-align : middle;
+    margin-right   : .3em;
 }
 
 .wcrbp-tab-nav i {
-    width: 16px;
-    height: 16px;
-    font-size: 16px;
+    width     : 16px;
+    height    : 16px;
+    font-size : 16px;
 }
 
 .wcrbp-tab-nav img {
-    width: 12px;
-    height: 12px;
-    display: inline-block;
+    width   : 12px;
+    height  : 12px;
+    display : inline-block;
 }
 
 .wcrbp-tab-active > a {
-    color: #333;
+    color : #333;
 }
 
 .wcrbp-tab-panel {
-    padding: 10px 5px 0;
-    border: solid 1px #dfdfdf;
-    background: #fdfdfd;
-    display: none;
+    padding    : 10px 5px 0;
+    border     : solid 1px #dfdfdf;
+    background : #fdfdfd;
+    display    : none;
 }
 
 .wcrbp-tabs-left {
-    overflow: hidden;
+    overflow : hidden;
     /*  margin: -6px -12px -12px;*/
-    margin: -6px -12px 0;
+    margin   : -6px -12px 0;
 }
 
 .wcrbp-tabs-left > .wcrbp-tab-nav {
-    float: left;
-    margin: 0 -1px 0 0;
-    background: #fdfdfd;
-    border-right: 1px solid #dfdfdf;
-    z-index: 9;
+    float        : left;
+    margin       : 0 -1px 0 0;
+    background   : #fdfdfd;
+    border-right : 1px solid #dfdfdf;
+    z-index      : 9;
 }
 
 .wcrbp-tabs-left > .wcrbp-tab-nav > li {
-    display: block;
+    display : block;
 }
 
 .wcrbp-tabs-left > .wcrbp-tab-nav > li:first-child {
-    border-top: none;
+    border-top : none;
 }
 
 .wcrbp-tabs-left > .wcrbp-tab-nav > li > a {
-    padding: 5px 20px 8px 10px;
+    padding : 5px 20px 8px 10px;
 }
 
 .wcrbp-tabs-left > ul > li.wcrbp-tab-active {
-    border: 1px solid #dfdfdf;
-    border-right-color: #fdfdfd;
-    border-left: 2px #2ea2cc;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.02);
-    position: relative;
-    right: -1px;
+    border             : 1px solid #dfdfdf;
+    border-right-color : #fdfdfd;
+    border-left        : 2px #2ea2cc;
+    box-shadow         : 0 2px 0 rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.02);
+    position           : relative;
+    right              : -1px;
 }
 
 .wcrbp-tabs-left > .wcrbp-tab-panels {
-    overflow: auto;
-    border-left: 1px solid #dfdfdf;
-    z-index: 1;
+    overflow    : auto;
+    border-left : 1px solid #dfdfdf;
+    z-index     : 1;
 }
 
 .wcrbp-tabs-left > .wcrbp-tab-panels > .wcrbp-tab-panel {
-    padding: 3px 20px 0;
-    background: transparent;
-    border: none;
+    padding    : 3px 20px 0;
+    background : transparent;
+    border     : none;
 }
 
 .wcrbp-tabs-no-controls {
-    border: 0;
-    background: transparent;
+    border     : 0;
+    background : transparent;
 }
 
 .wcrbp-tabs-no-controls .hndle,
 .wcrbp-tabs-no-controls .handlediv {
-    display: none;
+    display : none;
 }
 
 .wcrbp-tabs-no-controls .inside {
-    margin: 0;
-    padding: 0;
+    margin  : 0;
+    padding : 0;
 }
 
 .wcrbp-tabs-box .wcrbp-tab-nav li {
-    background: #ebebeb;
-    border: 1px solid #dedede;
-    margin-right: 5px;
+    background   : #ebebeb;
+    border       : 1px solid #dedede;
+    margin-right : 5px;
 }
 
 .wcrbp-tabs-box .wcrbp-tab-nav li:hover {
-    background: #fff;
+    background : #fff;
 }
 
 .wcrbp-tabs-box .wcrbp-tab-nav a {
-    color: #777;
+    color : #777;
 }
 
 .wcrbp-tabs-box .wcrbp-tab-nav .wcrbp-tab-active {
-    border-bottom-color: transparent;
+    border-bottom-color : transparent;
 }
 
 .wcrbp-tabs-box .wcrbp-tab-nav .wcrbp-tab-active,
 .wcrbp-tabs-box .wcrbp-tab-nav .wcrbp-tab-active:hover {
-    background: #f5f5f5;
+    background : #f5f5f5;
 }
 
 .wcrbp-tabs-box .wcrbp-tab-nav .wcrbp-tab-active a {
-    color: #555;
+    color : #555;
 }
 
 .wcrbp-tabs-box .wcrbp-tab-panel {
-    background: #f5f5f5;
-    border: solid 1px #dedede;
+    background : #f5f5f5;
+    border     : solid 1px #dedede;
 }
 
 .wcrbp-tab-nav .wc-rbp-tab-status {
-    border-radius: 30px;
-    float: right;
-    height: 10px !important;
-    margin-left: 10px;
-    margin-top: 3%;
-    width: 10px !important;
+    border-radius : 30px;
+    float         : right;
+    height        : 10px !important;
+    margin-left   : 10px;
+    margin-top    : 3%;
+    width         : 10px !important;
 }
 
 .wcrbp-tab-nav .wc-rbp-tab-status.bgred {
-    background: red;
+    background : red;
 }
 
 .wcrbp-tab-nav .wc-rbp-tab-status.bggreen {
-    background: green;
+    background : green;
 }
 
 .wcrbp-tab-nav .wc-rbp-tab-status.bgblue {
-    background: #14A4B7;
+    background : #14A4B7;
 }

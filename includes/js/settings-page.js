@@ -1,5 +1,5 @@
 ;
-(function ($, window, document, undefined) {
+( function ($, window, document, undefined) {
     'use strict';
 
     $.WCRBP_SETTINGS = $.WCRBP_SETTINGS || {};
@@ -12,7 +12,7 @@
         var id = window.location.hash;
         jQuery('.wc_rbp_settings_submenu a').removeClass('current');
         jQuery('.wc_rbp_settings_submenu a[href="' + id + '" ]').addClass('current');
-        if (id == '') {
+        if ( id == '' ) {
             jQuery('.wc_rbp_settings_submenu a:first').addClass('current');
             id = jQuery('.wc_rbp_settings_submenu a:first').attr('href');
         }
@@ -36,7 +36,7 @@
     }
 
     $.WCRBP_SETTINGS.handle_activate_deactivate_addons = function (elem, $class) {
-        if (typeof ($class) === 'undefined') $class = '.wc-rbp-deactivate-now';
+        if ( typeof ( $class ) === 'undefined' ) $class = '.wc-rbp-deactivate-now';
         var clicked = elem;
         var slug = elem.parent().attr('data-pluginslug');
         var parent_div = '.plugin-card-' + slug;
@@ -52,7 +52,7 @@
             var status = response.success;
             jQuery(parent_div + ' .wc_rbp_ajax_overlay').fadeOut();
             clicked.removeAttr('disabled');
-            if (status) {
+            if ( status ) {
                 clicked.hide();
                 jQuery(parent_div).find($class).fadeIn();
             }
@@ -75,7 +75,7 @@
 
 
     $(document).ready(function () {
-        if (jQuery('div.wc_rbp_addon_listing').size() > 0) {
+        if ( jQuery('div.wc_rbp_addon_listing').size() > 0 ) {
             jQuery('p.submit').remove();
         }
 
@@ -87,7 +87,7 @@
 
         jQuery('.wc_rbp_settings_submenu a').click($.WCRBP_SETTINGS.settings_click_handler);
 
-        if (jQuery('.wc_rbp_settings_submenu').size() > 0) {
+        if ( jQuery('.wc_rbp_settings_submenu').size() > 0 ) {
             $.WCRBP_SETTINGS.handle_settings_page_url();
         }
 
@@ -121,7 +121,7 @@
         jQuery('div.addons-search-form input.wp-filter-search').keyup(function () {
             var val = jQuery(this).val();
             var html_source = $.WCRBP_SETTINGS.addons_html.clone();
-            if (val == '') {
+            if ( val == '' ) {
                 jQuery('.wc_rbp_addon_listing').html(html_source);
                 jQuery('.wc-rbp-addon-all').show();
             } else {
@@ -132,4 +132,4 @@
 
     });
 
-})(jQuery, window, document);
+} )(jQuery, window, document);

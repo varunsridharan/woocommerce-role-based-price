@@ -181,14 +181,14 @@
 
     $.WCRBP.action_clear_product_prices = function () {
         var $clickedBtn = $(this);
-         $clickedBtn.attr('disabled', 'disable');
+        $clickedBtn.attr('disabled', 'disable');
 
         $.WCRBP.block($('div#wc-rbp-product-editor div.inside'));
 
         $.ajax({
             url: ajaxurl,
             method: 'post',
-            data: {post_id:$("#post_ID").val(),action:"wc_rbp_clear_variation_cache"}
+            data: {post_id: $("#post_ID").val(), action: "wc_rbp_clear_variation_cache"}
         }).done(function (data) {
             $clickedBtn.removeAttr('disabled');
             $.WCRBP.unblock($('div#wc-rbp-product-editor div.inside'));

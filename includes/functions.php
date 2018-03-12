@@ -2,10 +2,10 @@
 /**
  * Common Plugin Functions
  *
- * @link https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package WooCommerce Role Based Price
+ * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
+ * @package    WooCommerce Role Based Price
  * @subpackage WooCommerce Role Based Price/core
- * @since 3.0
+ * @since      3.0
  */
 if( ! defined('WPINC') ) {
     die;
@@ -13,7 +13,7 @@ if( ! defined('WPINC') ) {
 
 global $wc_rbp_db_settins_values, $wc_rbp_db_array;
 $wc_rbp_db_settins_values = array();
-$wc_rbp_db_array = array();
+$wc_rbp_db_array          = array();
 add_action('wc_rbp_loaded', 'wc_rbp_get_settings_from_db');
 
 if( ! function_exists('wc_rbp_option') ) {
@@ -40,7 +40,7 @@ if( ! function_exists('wc_rbp_get_settings_from_db') ) {
         global $wc_rbp_db_settins_values;
         $section = array();
         $section = apply_filters('wc_rbp_settings_section', $section);
-        $values = array();
+        $values  = array();
 
         foreach( $section as $settings ) {
             foreach( $settings as $set ) {
@@ -59,6 +59,7 @@ if( ! function_exists('wc_rbp_is_request') ) {
     /**
      * What type of request is this?
      * string $type ajax, frontend or admin
+     *
      * @return bool
      */
     function wc_rbp_is_request($type) {
@@ -78,6 +79,7 @@ if( ! function_exists('wc_rbp_is_request') ) {
 if( ! function_exists('wc_rbp_current_screen') ) {
     /**
      * Gets Current Screen ID from wordpress
+     *
      * @return string [Current Screen ID]
      */
     function wc_rbp_current_screen() {
@@ -89,10 +91,11 @@ if( ! function_exists('wc_rbp_current_screen') ) {
 if( ! function_exists('wc_rbp_get_screen_ids') ) {
     /**
      * Returns Predefined Screen IDS
+     *
      * @return [Array]
      */
     function wc_rbp_get_screen_ids() {
-        $screen_ids = array();
+        $screen_ids   = array();
         $screen_ids[] = 'woocommerce_page_woocommerce-role-based-price-settings';
         return $screen_ids;
     }
@@ -121,12 +124,13 @@ if( ! function_exists('wc_rbp_custom_wp_user_roles') ) {
 if( ! function_exists('wc_rbp_get_wp_roles') ) {
     /**
      * Returns Registered WP User Roles
+     *
      * @return [[Type]] [[Description]]
      */
     function wc_rbp_get_wp_roles() {
-        $user_roles = wc_rbp_custom_wp_user_roles();
+        $user_roles             = wc_rbp_custom_wp_user_roles();
         $user_roles['logedout'] = array( 'name' => __('Visitor / LogedOut User', WC_RBP_TXT) );
-        $user_roles = apply_filters('wc_rbp_wp_user_roles', $user_roles);
+        $user_roles             = apply_filters('wc_rbp_wp_user_roles', $user_roles);
         return $user_roles;
     }
 
@@ -150,7 +154,7 @@ if( ! function_exists('wc_rbp_get_user_roles_selectbox') ) {
     function wc_rbp_get_user_roles_selectbox() {
         $user_roles = wc_rbp_get_wp_roles();
         $list_roles = array();
-        $roles = array_keys($user_roles);
+        $roles      = array_keys($user_roles);
         foreach( $roles as $role ) {
             $list_roles[$role] = $user_roles[$role]['name'];
         }
@@ -164,7 +168,9 @@ if( ! function_exists('wc_rbp_get_current_user') ) {
      * Gets Current Logged in User Role / User Object.
      * returns user role if $userroleonly set to true
      * or returns the user object
+     *
      * @param  [boolean] [$userroleonly = true / false]
+     *
      * @return [string / object]
      */
     function wc_rbp_get_current_user($userroleonly = TRUE) {
@@ -172,7 +178,7 @@ if( ! function_exists('wc_rbp_get_current_user') ) {
         $user_role = $current_user;
         if( $userroleonly ) {
             $user_roles = $current_user->roles;
-            $user_role = array_shift($user_roles);
+            $user_role  = array_shift($user_roles);
             if( $user_role == NULL ) {
                 $user_role = 'logedout';
             }
@@ -198,6 +204,7 @@ if( ! function_exists('wc_rbp_get_userrole_by_id') ) {
      * Get user roles by user ID.
      *
      * @param  int $id
+     *
      * @return array
      */
     function wc_rbp_get_userrole_by_id($id) {
@@ -215,13 +222,14 @@ if( ! function_exists('wc_rbp_get_userrole_by_id') ) {
 if( ! function_exists('wc_rbp_avaiable_price_type') ) {
     /**
      * Returns avaiable_price type with label
+     *
      * @return [[Type]] [[Description]]
      */
     function wc_rbp_avaiable_price_type($key = '') {
-        $avaiable_price = array();
+        $avaiable_price                  = array();
         $avaiable_price['regular_price'] = __('Regular Price', WC_RBP_TXT);
         $avaiable_price['selling_price'] = __('Selling Price', WC_RBP_TXT);
-        $avaiable_price = apply_filters('wc_rbp_avaiable_price', $avaiable_price);
+        $avaiable_price                  = apply_filters('wc_rbp_avaiable_price', $avaiable_price);
 
         if( ! empty($key) ) {
             if( isset($avaiable_price[$key]) ) {
@@ -237,7 +245,7 @@ if( ! function_exists('wc_rbp_price_types') ) {
     function wc_rbp_price_types($key = '') {
         $price = wc_rbp_avaiable_price_type();
         foreach( $price as $price_id => $priceVal ) {
-            $lable = wc_rbp_option($price_id . '_label', $priceVal);
+            $lable            = wc_rbp_option($price_id . '_label', $priceVal);
             $price[$price_id] = $lable;
         }
 
@@ -260,10 +268,10 @@ if( ! function_exists('wc_rbp_do_settings_sections') ) {
      * add_settings_section() and add_settings_field()
      *
      * @global       $wp_settings_sections Storage array of all settings sections added to admin pages
-     * @global       $wp_settings_fields Storage array of settings fields and info about their pages/sections
+     * @global       $wp_settings_fields   Storage array of settings fields and info about their pages/sections
      * @since 2.7.0
      *
-     * @param string $page The slug name of the page whose settings sections you want to output
+     * @param string $page                 The slug name of the page whose settings sections you want to output
      */
     function wc_rbp_do_settings_sections($page) {
         global $wp_settings_sections, $wp_settings_fields;
@@ -355,6 +363,7 @@ if( ! function_exists('wc_rbp_check_active_addon') ) {
 if( ! function_exists('wc_rbp_get_active_addons') ) {
     /**
      * Returns Active Addons List
+     *
      * @return [[Type]] [[Description]]
      */
     function wc_rbp_get_active_addons() {
@@ -366,6 +375,7 @@ if( ! function_exists('wc_rbp_get_active_addons') ) {
 if( ! function_exists('wc_rbp_update_active_addons') ) {
     /**
      * Returns Active Addons List
+     *
      * @return [[Type]] [[Description]]
      */
     function wc_rbp_update_active_addons($addons) {
@@ -417,12 +427,12 @@ if( ! function_exists('wc_rbp_generate_tabs') ) {
         );
 
 
-        $args = wp_parse_args($args, $default_args);
+        $args         = wp_parse_args($args, $default_args);
         $wraper_start = '<div class="wcrbp-tabs  wcrbp-tabs-' . $args['tab_style'] . '">';
-        $wraper_end = '</div>';
+        $wraper_end   = '</div>';
 
         $tabs_code = '<ul class="wcrbp-tab-nav">';
-        $i = 0;
+        $i         = 0;
         foreach( $tabs as $key => $tab_data ) {
             if( is_string($tab_data) ) {
                 $tab_data = array( 'title' => $tab_data );
@@ -436,14 +446,14 @@ if( ! function_exists('wc_rbp_generate_tabs') ) {
                 }
                 $tab_data['icon'] = array_filter(array_map('trim', explode(' ', $tab_data['icon'])));
                 $tab_data['icon'] = implode(' ', array_unique($tab_data['icon']));
-                $icon = $tab_data['icon'] ? '<i class="' . $tab_data['icon'] . '"></i>' : '';
+                $icon             = $tab_data['icon'] ? '<i class="' . $tab_data['icon'] . '"></i>' : '';
             }
 
             $show_status = 'no';
-            $status_tag = '';
+            $status_tag  = '';
             if( $tab_data['show_status'] ) {
                 $show_status = 'yes';
-                $status_tag = '<i class="wc-rbp-tab-status"></i>';
+                $status_tag  = '<i class="wc-rbp-tab-status"></i>';
             }
 
             $class = "wcrbp-tab-$key";
@@ -500,8 +510,10 @@ if( ! function_exists('wc_rbp_allowed_price') ) {
 if( ! function_exists('wc_rbp_update_role_based_price') ) {
     /**
      * Updates Products Role Based Price Array In DB
-     * @param  int   $post_id Post ID To Update
+     *
+     * @param  int   $post_id     Post ID To Update
      * @param  array $price_array Price List
+     *
      * @return boolean  [[Description]]
      */
     function wc_rbp_update_role_based_price($post_id, $price_array, $force_update_parent = TRUE) {
@@ -537,7 +549,7 @@ if( ! function_exists('wc_rbp_delete_variation_data') ) {
 
 if( ! function_exists('wc_rbp_get_variation_data') ) {
     function wc_rbp_get_variation_data($product_id = '', $user_role = '') {
-        $key = wc_rbp_get_variation_cache_key($product_id, $user_role);
+        $key    = wc_rbp_get_variation_cache_key($product_id, $user_role);
         $prices = get_transient($key);
 
         if( is_array($prices) && isset($prices['wc_rbp_version']) ) {
@@ -573,11 +585,11 @@ if( ! function_exists("wc_rbp_update_variations_data") ) {
 
         foreach( $allowed_roles as $_role ) {
             $cache_key = wc_rbp_get_variation_cache_key($pid, $_role);
-            $prices = array(
+            $prices    = array(
                 'base_selling_price' => array(),
                 'base_regular_price' => array(),
                 'last_updated'       => time(),
-                'wc_rbp_version' => WC_RBP_VARIABLE_VERSION,
+                'wc_rbp_version'     => WC_RBP_VARIABLE_VERSION,
             );
             foreach( $allowed_price as $A_price ) {
                 foreach( $product->get_children() as $vid ) {
@@ -586,7 +598,7 @@ if( ! function_exists("wc_rbp_update_variations_data") ) {
                         $price = get_post_meta($vid, '_sale_price', TRUE);
                     }
                     $prices['base_' . $A_price][$vid] = $price;
-                    $pprice = $pricing->get_product_price($price, $vid, $A_price, $_role);
+                    $pprice                           = $pricing->get_product_price($price, $vid, $A_price, $_role);
                     if( $pprice === '' ) {
                         continue;
                     }
@@ -625,9 +637,9 @@ if( ! function_exists('wc_rbp_product_get_db') ) {
     function wc_rbp_product_get_db($post_id, $type = 'price', $function = '') {
         global $wc_rbp_db_array;
 
-        $return_val = $function($post_id);
+        $return_val                       = $function($post_id);
         $wc_rbp_db_array[$post_id][$type] = $return_val;
-        $return_val = $wc_rbp_db_array[$post_id][$type];
+        $return_val                       = $wc_rbp_db_array[$post_id][$type];
         return $return_val;
     }
 }
@@ -657,8 +669,10 @@ if( ! function_exists('product_rbp_price') ) {
 if( ! function_exists('product_rbp_status') ) {
     /**
      * Returns Products Role Based Price Array In DB
-     * @param  int   $post_id Post ID To Update
+     *
+     * @param  int   $post_id     Post ID To Update
      * @param  array $price_array Price List
+     *
      * @return boolean  [[Description]]
      * #TODO Integrate WC_RBP_PRODUCT_STATUS Function For Speed Outpu
      */
@@ -674,9 +688,12 @@ if( ! function_exists('wc_rbp_settings_products_json') ) {
     function wc_rbp_settings_products_json($ids) {
         $json_ids = array();
         if( ! empty($ids) ) {
-            $ids = explode(',', $ids);
+            if( is_string($ids) ) {
+                $ids = explode(',', $ids);
+            }
+
             foreach( $ids as $product_id ) {
-                $product = wc_get_product($product_id);
+                $product               = wc_get_product($product_id);
                 $json_ids[$product_id] = wp_kses_post($product->get_formatted_name());
             }
         }
@@ -688,8 +705,10 @@ if( ! function_exists('wc_rbp_update_role_based_price_status') ) {
 
     /**
      * Updates Products Role Based Price Array In DB
-     * @param  int   $post_id Post ID To Update
+     *
+     * @param  int   $post_id     Post ID To Update
      * @param  array $price_array Price List
+     *
      * @return boolean  [[Description]]
      */
     function wc_rbp_update_role_based_price_status($post_id, $status = TRUE) {
@@ -701,13 +720,15 @@ if( ! function_exists('wc_rbp_update_role_based_price_status') ) {
 if( ! function_exists('wc_rbp_product_status') ) {
     /**
      * Retrives Status value from Databse.
+     *
      * @param  [[Type]] $post_id [[Description]]
+     *
      * @return [[Type]] [[Description]]
      * #TODO Integrate With product_rbp_status
      */
     function wc_rbp_product_status($post_id, $supress_filter = FALSE) {
         $cstatus = FALSE;
-        $status = get_post_meta($post_id, '_enable_role_based_price', TRUE);
+        $status  = get_post_meta($post_id, '_enable_role_based_price', TRUE);
         if( $status == '1' || $status == 'true' ) {
             $cstatus = TRUE;
         }
@@ -722,13 +743,14 @@ if( ! function_exists('wc_rbp_product_status') ) {
 if( ! function_exists('wc_rbp_price') ) {
     /**
      * Returns Price Based On Give Value
-     * @role : enter role slug / use all to get all roles values
+     *
+     * @role  : enter role slug / use all to get all roles values
      * @price : use selling_price / regular_price or use all to get all values for the given role
      */
 
     function wc_rbp_price($post_id, $role, $price = 'regular_price', $args = array()) {
         $dbprice = product_rbp_price($post_id);
-        $return = FALSE;
+        $return  = FALSE;
 
         if( $price == 'all' && $role == 'all' ) {
             $return = $dbprice;
@@ -774,16 +796,17 @@ if( ! function_exists('wc_rbp_sort_array_by_array') ) {
 
 if( ! function_exists('wc_rbp_remove_notice') ) {
     function wc_rbp_remove_notice($id) {
-        WooCommerce_Plugin_Boiler_Plate_Admin_Notices::getInstance()->deleteNotice($id);
+        WooCommerce_Plugin_Boiler_Plate_Admin_Notices::getInstance()
+                                                     ->deleteNotice($id);
         return TRUE;
     }
 }
 
 if( ! function_exists('wc_rbp_notice') ) {
     function wc_rbp_notice($message, $type = 'update', $args = array()) {
-        $notice = '';
+        $notice   = '';
         $defaults = array( 'times' => 1, 'screen' => array(), 'users' => array(), 'wraper' => TRUE, 'id' => '' );
-        $args = wp_parse_args($args, $defaults);
+        $args     = wp_parse_args($args, $defaults);
         extract($args);
 
         if( $type == 'error' ) {
@@ -798,18 +821,19 @@ if( ! function_exists('wc_rbp_notice') ) {
             $notice = new WooCommerce_Role_Based_Price_Admin_UpdateNag_Notice($message, $id, $times, $screen, $users);
         }
 
-        $msgID = $notice->getId();
+        $msgID   = $notice->getId();
         $message = str_replace('$msgID$', $msgID, $message);
         $notice->setContent($message);
         $notice->setWrapper($wraper);
-        WooCommerce_Role_Based_Price_Admin_Notices::getInstance()->addNotice($notice);
+        WooCommerce_Role_Based_Price_Admin_Notices::getInstance()
+                                                  ->addNotice($notice);
     }
 }
 
 if( ! function_exists('wc_rbp_admin_error') ) {
     function wc_rbp_admin_error($message, $times = 1, $id, $screen = array(), $args = array()) {
-        $args['id'] = $id;
-        $args['times'] = $times;
+        $args['id']     = $id;
+        $args['times']  = $times;
         $args['screen'] = $screen;
         wc_rbp_notice($message, 'error', $args);
     }
@@ -817,8 +841,8 @@ if( ! function_exists('wc_rbp_admin_error') ) {
 
 if( ! function_exists('wc_rbp_admin_update') ) {
     function wc_rbp_admin_update($message, $times = 1, $id, $screen = array(), $args = array()) {
-        $args['id'] = $id;
-        $args['times'] = $times;
+        $args['id']     = $id;
+        $args['times']  = $times;
         $args['screen'] = $screen;
         wc_rbp_notice($message, 'update', $args);
     }
@@ -826,8 +850,8 @@ if( ! function_exists('wc_rbp_admin_update') ) {
 
 if( ! function_exists('wc_rbp_admin_upgrade') ) {
     function wc_rbp_admin_upgrade($message, $times = 1, $id, $screen = array(), $args = array()) {
-        $args['id'] = $id;
-        $args['times'] = $times;
+        $args['id']     = $id;
+        $args['times']  = $times;
         $args['screen'] = $screen;
         wc_rbp_notice($message, 'upgrade', $args);
     }
@@ -837,7 +861,7 @@ if( ! function_exists('wc_rbp_remove_link') ) {
     function wc_rbp_remove_link($attributes = '', $msgID = '$msgID$', $text = 'Remove Notice') {
         if( ! empty($msgID) ) {
             $removeKey = PLUGIN_DB . 'MSG';
-            $url = admin_url() . '?' . $removeKey . '=' . $msgID;
+            $url       = admin_url() . '?' . $removeKey . '=' . $msgID;
             //$url = wp_nonce_url($url, 'WCQDREMOVEMSG');
             $url = urldecode($url);
             $tag = '<a ' . $attributes . ' href="' . $url . '">' . __($text, WC_RBP_TXT) . '</a>';

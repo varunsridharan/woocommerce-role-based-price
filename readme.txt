@@ -5,10 +5,10 @@ Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
 Tags: WC Role Based Price,WooCommerce,Role based pricing,user role,wc dynamic pricing,wpallimport,wpallexport,product addons,role,selling price,regular price,sale price,selling,discounts,wordpress,ecommerce,membership discounts,membership,digital,downloads,download,drop price,dropshipper,advertising,deals,group pricing,wpml,wpml currencyswitcher,aelia currency swticher, Online Payment,Payment,Online, affiliate, cart, checkout, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, wholesale, woocommerce,advertising, discount, marketing, Membership, price, promotion
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
-Tested up to: 4.8
-WC requires at least: 2.0
-WC tested up to: 3.5
-Stable tag: 3.2.4
+Tested up to: 5.0
+WC requires at least: 3.0
+WC tested up to:3.3.5
+Stable tag: 3.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -162,23 +162,32 @@ Yes This Plugin Support Aelia Currency Switcher. by activation of Aelia Currency
 **How I Can Get Support For This Plugin**
 * http://varunsridharan.in/plugin-support/ 
 * https://wordpress.org/support/plugin/woocommerce-role-based-price
-* https://github.com/technofreaky/WooCommerce-Role-Based-Price
+* https://github.com/varunsridharan/WooCommerce-Role-Based-Price
 * Email : varunsridharan23@gmail.com
-* Email : plugin@varunsridharan.in
 
 **I have an idea for your plugin!**  
 That's great. We are always open to your input, and we would like to add anything we think will be useful to a lot of people. please contact us using above methods.
 
 **I found a bug!**  
-Oops. Please Use github / WordPress to post bugs.  <a href="https://github.com/technofreaky/WooCommerce-Role-Based-Price"> Open an Issue </a>
+Oops. Please Use github / WordPress to post bugs.  <a href="https://github.com/varunsridharan/WooCommerce-Role-Based-Price"> Open an Issue </a>
 
 
 **Where can I request new features**
-
-Please open an issue at <a href="https://github.com/technofreaky/WooCommerce-Role-Based-Price"> GitHub </a> and we will look into it
+Please open an issue at <a href="https://github.com/varunsridharan/WooCommerce-Role-Based-Price"> GitHub </a> and we will look into it
 
 
 == Changelog ==
+= 3.3.1 [12-03-2018] =
+* Tweaks : Code CleanUP done.
+* Tested : Checked With latest WC Version
+* Tested : Checked With Latest WP Version
+
+= 3.3 [01-03-2018] =
+* Added : Option To Clear Cache Of Variation in product edit view.
+* Fixed : Pricing Issue
+* Tweaks : Formated Source Code
+* Tweaks : Improved Variable Caching Methods.
+
 = 3.2.4 [14-12-2017] =
 * Fixed : Variation Product Showing Base price if product role price set to 0
 * Tweaks : Minor Bug Fixes

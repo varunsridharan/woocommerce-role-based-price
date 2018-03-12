@@ -1,10 +1,11 @@
 <?php
 /**
  * The admin-specific functionality of the plugin.
- * @link https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package WooCommerce Role Based Price
+ *
+ * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
+ * @package    WooCommerce Role Based Price
  * @subpackage WooCommerce Role Based Price/Admin
- * @since 3.0
+ * @since      3.0
  */
 if( ! defined('WPINC') ) {
     die;
@@ -42,6 +43,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
     /**
      * @param $price
      * @param $product
+     *
      * @return mixed|string
      */
     public function get_selling_price($price, $product) {
@@ -186,7 +188,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
     }
 
     private function is_simple_product($product) {
-        $class = $this->get_product_class($product);
+        $class   = $this->get_product_class($product);
         $classes = apply_filters("wc_rbp_simple_product_class", array( 'WC_Product_Simple', 'WC_Product_Yith_Bundle' ));
         if( in_array($class, $classes) ) {
             return TRUE;
@@ -218,15 +220,17 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
     /**
      * Returns the product's active price.
+     *
      * @param string $price
      * @param string $product
+     *
      * @return string price
      */
     public function get_price($price = '', $product = '') {
         if( empty($product) ) {
             return $price;
         }
-        $sale_price = $product->get_sale_price();
+        $sale_price  = $product->get_sale_price();
         $wcrbp_price = ( $sale_price !== '' && $sale_price > 0 ) ? $sale_price : $this->get_regular_price($price, $product);
         $wcrbp_price = wc_format_decimal($wcrbp_price);
         $wcrbp_price = apply_filters("wc_rbp_product_get_price", $wcrbp_price, $product, $this);
@@ -235,8 +239,10 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
     /**
      * Returns the product's regular price
+     *
      * @param $price
      * @param $product
+     *
      * @return string price
      */
     public function get_regular_price($price, $product) {
@@ -247,10 +253,12 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
     /**
      * Get the min or max variation active price.
+     *
      * @param          $price
      * @param          $product
      * @param  string  $min_or_max - min or max
-     * @param  boolean $display Whether the value is going to be displayed
+     * @param  boolean $display    Whether the value is going to be displayed
+     *
      * @return string price
      */
     public function get_variation_price($price, $product, $min_or_max, $display) {
@@ -259,14 +267,16 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
     /**
      * Get the min or max variation regular price.
+     *
      * @param  string  $min_or_max - min or max
-     * @param  boolean $display Whether the value is going to be displayed
+     * @param  boolean $display    Whether the value is going to be displayed
+     *
      * @return string price
      */
     public function get_variation_regular_price($price, $product, $min_or_max, $display, $price_meta_key = 'regular_price') {
-        $return = $price;
+        $return  = $price;
         $display = array();
-        $pid = 0;
+        $pid     = 0;
 
         if( wc_rbp_is_wc_v('>=', '3.0') ) {
             $pid = $product->get_id();
@@ -274,9 +284,9 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
             $pid = $product->id;
         }
 
-        $role = wc_rbp_get_current_user();
+        $role    = wc_rbp_get_current_user();
         $opp_key = wc_rbp_get_oppo_metakey($price_meta_key);
-        $prices = wc_rbp_get_variation_data($pid, $role);
+        $prices  = wc_rbp_get_variation_data($pid, $role);
 
 
         foreach( $prices as $id => $arr ) {
@@ -306,7 +316,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
         if( $display ) {
             $variation_id = key($prices);
-            $return = $display[$variation_id];
+            $return       = $display[$variation_id];
         } else {
             $return = current($prices);
         }
@@ -316,7 +326,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
 
     public function get_price_html($price = '', $product) {
         if( 'WC_Product_Variable' == get_class($product) ) {
-            $product_id = $this->check_product_get_id($product);
+            $product_id    = $this->check_product_get_id($product);
             $wc_rbp_status = $this->product_rbp_status($product_id, $product);
             if( ! $wc_rbp_status ) {
                 return $price;
@@ -363,12 +373,12 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
             return apply_filters('woocommerce_variable_empty_price_html', '', $this);
         }
 
-        $prices = array();
-        $prices['min_price'] = $product->get_variation_price('min', FALSE);
-        $prices['max_price'] = $product->get_variation_price('max', FALSE);
+        $prices                  = array();
+        $prices['min_price']     = $product->get_variation_price('min', FALSE);
+        $prices['max_price']     = $product->get_variation_price('max', FALSE);
         $prices['min_reg_price'] = $product->get_variation_regular_price('min', TRUE);
         $prices['max_reg_price'] = $product->get_variation_regular_price('max', TRUE);
-        $prices = $this->get_variation_tax_status_price($prices, $product);
+        $prices                  = $this->get_variation_tax_status_price($prices, $product);
 
         /*if( $prices['min_price'] !== $prices['max_price'] ) {
             $price = apply_filters('woocommerce_variable_price_html', wc_format_price_range($prices['min_price'], $prices['max_price']) . $product->get_price_suffix(), $product);
@@ -450,7 +460,9 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
      * Returns the price in html format.
      *
      * @access public
+     *
      * @param string $price (default: '')
+     *
      * @return string
      */
     public function get_price_html_below_wc3($price = '', $product) {

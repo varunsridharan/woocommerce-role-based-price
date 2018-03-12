@@ -1,59 +1,68 @@
-# Copyright (C) 2017 WooCommerce Role Based Price
+# Copyright (C) 2018 WooCommerce Role Based Price
 # This file is distributed under the same license as the WooCommerce Role Based Price package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Role Based Price 3.1\n"
+"Project-Id-Version: WooCommerce Role Based Price 3.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
-"POT-Creation-Date: 2017-07-07 13:11:41+00:00\n"
+"POT-Creation-Date: 2018-03-12 04:57:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: bootstrap.php:58
+#: bootstrap.php:157
 msgid "Cloning instances of the class is forbidden."
 msgstr ""
 
-#: bootstrap.php:70
+#: bootstrap.php:171
 msgid "Unserializing instances of the class is forbidden."
 msgstr ""
 
-#: includes/admin/class-admin-init.php:132
+#: includes/admin/class-admin-init.php:72
+msgid "WC Role Based Price Welcome Page"
+msgstr ""
+
+#: includes/admin/class-admin-init.php:170
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-admin-init.php:133
+#: includes/admin/class-admin-init.php:171
 msgid "Add-ons"
 msgstr ""
 
-#: includes/admin/class-admin-init.php:148
+#: includes/admin/class-admin-init.php:188
 msgid "Docs"
 msgstr ""
 
-#: includes/admin/class-admin-init.php:149
+#: includes/admin/class-admin-init.php:189
 msgid "View On Github"
 msgstr ""
 
-#: includes/admin/class-admin-init.php:150
+#: includes/admin/class-admin-init.php:190
 msgid "Report Issue"
 msgstr ""
 
-#: includes/admin/class-admin-init.php:151
+#: includes/admin/class-admin-init.php:191
 msgid "Donate"
 msgstr ""
 
-#: includes/admin/class-admin-init.php:152
+#: includes/admin/class-admin-init.php:192
 msgid "Contact Author"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:24
-#: includes/admin/class-ajax-handler.php:26
+#: includes/admin/class-ajax-handler.php:29
+#: includes/admin/class-ajax-handler.php:46
+#: includes/admin/class-ajax-handler.php:50
 msgid "Invalid Product ID"
 msgstr ""
 
-#: includes/admin/class-ajax-handler.php:64
+#: includes/admin/class-ajax-handler.php:41
+msgid "Success"
+msgstr ""
+
+#: includes/admin/class-ajax-handler.php:87
 msgid "Unable To Process Your Request Please Try Again later"
 msgstr ""
 
@@ -61,126 +70,133 @@ msgstr ""
 msgid "WC Role Based Price Editor"
 msgstr ""
 
-#: includes/admin/class-metabox.php:29
-msgid "Save Price"
-msgstr ""
-
-#: includes/admin/class-metabox.php:132
-msgid "WC Product Price : "
-msgstr ""
-
-#: includes/admin/class-metabox.php:180
-msgid "Select A Variation : "
-msgstr ""
-
-#: includes/admin/class-metabox.php:199
+#: includes/admin/class-metabox.php:126
 msgid "Variations"
 msgstr ""
 
-#: includes/admin/class-price-editor-fields.php:21
-#: includes/admin/settings_framework/class-wp-plugin-options.php:20
-#: includes/admin/settings_framework/class-wp-plugin-options.php:26
+#: includes/admin/class-metabox.php:154
+msgid "Select A Variation : "
+msgstr ""
+
+#: includes/admin/class-metabox.php:205
+msgid "Clear Cache"
+msgstr ""
+
+#: includes/admin/class-metabox.php:211
+msgid "Save Price"
+msgstr ""
+
+#: includes/admin/class-metabox.php:228
+msgid "WC Product Price : "
+msgstr ""
+
+#: includes/admin/class-price-editor-fields.php:24
+#: includes/admin/settings_framework/class-wp-plugin-options.php:23
+#: includes/admin/settings_framework/class-wp-plugin-options.php:34
 msgid "General"
 msgstr ""
 
-#: includes/admin/class-price-editor-fields.php:30
+#: includes/admin/class-price-editor-fields.php:36
 msgid "Enable Role Based Pricing"
 msgstr ""
 
-#: includes/admin/class-price-editor-fields.php:57
+#: includes/admin/class-price-editor-fields.php:63
 msgid "Enter Product's "
 msgstr ""
 
-#: includes/admin/class-product-functions.php:26
+#: includes/admin/class-product-functions.php:29
 msgid "Product Price Updated."
 msgstr ""
 
-#: includes/admin/class-product-functions.php:28
+#: includes/admin/class-product-functions.php:31
 msgid "Price Not Defined. Please Try Again"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:21
+#: includes/admin/settings_framework/class-wp-plugin-options.php:27
 msgid "Extensions Options"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:22
+#: includes/admin/settings_framework/class-wp-plugin-options.php:29
 msgid "Extensions"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:28
+#: includes/admin/settings_framework/class-wp-plugin-options.php:39
 msgid "No Addons Activated / Installed."
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:42
+#: includes/admin/settings_framework/class-wp-plugin-options.php:55
 msgid "Allowed User Roles"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:43
+#: includes/admin/settings_framework/class-wp-plugin-options.php:56
 msgid "User Roles To List In Product Edit Page"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:58
+#: includes/admin/settings_framework/class-wp-plugin-options.php:69
 msgid "Allowed Product Pricing"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:59
+#: includes/admin/settings_framework/class-wp-plugin-options.php:70
 msgid "Price Fields To List In Product Edit Page"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:75
+#: includes/admin/settings_framework/class-wp-plugin-options.php:85
 msgid " Label "
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:87
+#: includes/admin/settings_framework/class-wp-plugin-options.php:97
 msgid "WPML Integration"
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-plugin-options.php:88
+#: includes/admin/settings_framework/class-wp-plugin-options.php:98
 msgid "check if you have installed wpml and the price are showing wrong. "
 msgstr ""
 
-#: includes/admin/settings_framework/class-wp-settings-framework.php:41
-#: includes/admin/settings_framework/class-wp-settings-framework.php:42
+#: includes/admin/settings_framework/class-wp-settings-framework.php:78
 msgid "Role Based Price Settings"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:20
+#: includes/admin/views/addons-single.php:21
 msgid "V"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:29
+#: includes/admin/views/addons-single.php:31
 msgid "By"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:38
+#: includes/admin/views/addons-single.php:40
 msgid "Required Plugins :"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:44 includes/class-extensions.php:109
+#: includes/admin/views/addons-single.php:46 includes/class-extensions.php:214
 msgid "InActive"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:46
+#: includes/admin/views/addons-single.php:49
 msgid "Plugin Does Not Exist"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:47 includes/class-extensions.php:108
+#: includes/admin/views/addons-single.php:52 includes/class-extensions.php:213
 msgid "Active"
 msgstr ""
 
-#: includes/admin/views/addons-single.php:63
+#: includes/admin/views/addons-single.php:74
+msgid "Screenshots"
+msgstr ""
+
+#: includes/admin/views/addons-single.php:89
 msgid "Addon Slug : "
 msgstr ""
 
-#: includes/admin/views/addons-single.php:69
+#: includes/admin/views/addons-single.php:95
 msgid "Last Updated:"
 msgstr ""
 
-#: includes/admin/views/ajax-modal-footer.php:3
+#: includes/admin/views/ajax-modal-footer.php:4
 msgid "Close"
 msgstr ""
 
-#: includes/admin/views/ajax-modal-footer.php:4
+#: includes/admin/views/ajax-modal-footer.php:6
 msgid "Update Price"
 msgstr ""
 
@@ -188,180 +204,189 @@ msgstr ""
 msgid "Role Based Price Editor"
 msgstr ""
 
-#: includes/class-extensions.php:27 includes/class-extensions.php:43
-msgid "Unable to process you request. please try again later"
+#: includes/admin/views/plugin-welcome-page.php:2
+msgid "Welcome To"
 msgstr ""
 
-#: includes/class-extensions.php:29 includes/class-extensions.php:35
-msgid "Unable To De-Activate Addon. Please Try Again Later"
+#: includes/admin/views/plugin-welcome-page.php:3
+#: plugins/wc-product-importer/wc-product-importer.php:79
+msgid "WC Role Based Price"
 msgstr ""
 
-#: includes/class-extensions.php:31
-msgid "Addon De-Activated"
+#: includes/admin/views/plugin-welcome-page.php:6
+msgid " now with improved speed and stability"
 msgstr ""
 
-#: includes/class-extensions.php:33
-msgid "Addon Already De-Activated"
-msgstr ""
-
-#: includes/class-extensions.php:45 includes/class-extensions.php:51
-msgid "Unable To Activate Addon. Please Try Again Later"
-msgstr ""
-
-#: includes/class-extensions.php:47
-msgid "Addon Activated"
-msgstr ""
-
-#: includes/class-extensions.php:49
-msgid "Addon Already Activated"
-msgstr ""
-
-#: includes/class-extensions.php:107
+#: includes/class-extensions.php:212
 msgid "All"
 msgstr ""
 
-#: includes/class-extensions.php:123
+#: includes/class-extensions.php:228
 msgid "Search Addons"
 msgstr ""
 
-#: includes/class-extensions.php:201
+#: includes/class-extensions.php:277 includes/class-extensions.php:312
+msgid "Unable to process you request. please try again later"
+msgstr ""
+
+#: includes/class-extensions.php:279 includes/class-extensions.php:285
+msgid "Unable To De-Activate Addon. Please Try Again Later"
+msgstr ""
+
+#: includes/class-extensions.php:281
+msgid "Addon De-Activated"
+msgstr ""
+
+#: includes/class-extensions.php:283
+msgid "Addon Already De-Activated"
+msgstr ""
+
+#: includes/class-extensions.php:314 includes/class-extensions.php:320
+msgid "Unable To Activate Addon. Please Try Again Later"
+msgstr ""
+
+#: includes/class-extensions.php:316
+msgid "Addon Activated"
+msgstr ""
+
+#: includes/class-extensions.php:318
+msgid "Addon Already Activated"
+msgstr ""
+
+#: includes/class-extensions.php:329
 msgid "Activate"
 msgstr ""
 
-#: includes/class-extensions.php:202
+#: includes/class-extensions.php:330
 msgid "Deactivate"
 msgstr ""
 
-#: includes/class-product-pricing.php:396
-#: includes/class-product-pricing.php:403
-msgctxt "Price range: from-to"
-msgid "%1$s&ndash;%2$s"
+#: includes/class-product-pricing.php:484
+#: includes/class-product-pricing.php:494
+msgctxt "Price range: from - to"
+msgid " % 1$s & ndash;%2$s"
 msgstr ""
 
-#: includes/class-product-pricing.php:407
-msgid "Free!"
+#: includes/class-product-pricing.php:498
+msgid "Free! "
 msgstr ""
 
-#: includes/class-shortcode-handler.php:44
+#: includes/class-shortcode-handler.php:47
 msgid "Invalid Product ID Given"
 msgstr ""
 
-#: includes/class-shortcode-handler.php:48
+#: includes/class-shortcode-handler.php:53
 msgid "Invalid User Role Given"
 msgstr ""
 
-#: includes/class-shortcode-handler.php:55
+#: includes/class-shortcode-handler.php:61
 msgid "Invalid Price Type Given"
 msgstr ""
 
-#: includes/functions.php:121
+#: includes/functions.php:132
 msgid "Visitor / LogedOut User"
 msgstr ""
 
-#: includes/functions.php:207
+#: includes/functions.php:230
 msgid "Regular Price"
 msgstr ""
 
-#: includes/functions.php:208
+#: includes/functions.php:231
 msgid "Selling Price"
 msgstr ""
 
-#: includes/helpers/class-activator.php:31
+#: includes/helpers/class-activator.php:32
 msgid "Thank you for installing <strong>WooCommerce Role Based Price</strong> : <strong>Version 3.0 </strong>"
 msgstr ""
 
-#: includes/helpers/class-activator.php:32
+#: includes/helpers/class-activator.php:33
 msgid "We have worked entire 1 year to improve our plugin to best of our ability and we hope you will enjoy working with it. We are always open for your sugestions and feature requests"
 msgstr ""
 
-#: includes/helpers/class-activator.php:35
+#: includes/helpers/class-activator.php:36
 msgid "If you have installed <strong>WPRB</strong> for the 1st time or upgrading from <strong> Version 2.8.7</strong> then you will need to update its' settings once again or this plugin will not function properly. "
 msgstr ""
 
-#: includes/helpers/class-activator.php:38
+#: includes/helpers/class-activator.php:39
 msgid "Click Here to update the settings"
 msgstr ""
 
-#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:72
+#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:82
 #: plugins/aelia-currencyswitcher-integration/wc_rbp_fields.php:3
 msgid "Aelia Currency Switcher"
 msgstr ""
 
-#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:83
+#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:93
 msgid "Allowed Currency"
 msgstr ""
 
-#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:84
+#: plugins/aelia-currencyswitcher-integration/aelia-currencyswitcher-integration.php:94
 msgid "Allowed Currency To Show In Role Based Price Listing"
 msgstr ""
 
-#: plugins/aelia-currencyswitcher-integration/wc_rbp_fields.php:21
+#: plugins/aelia-currencyswitcher-integration/wc_rbp_fields.php:23
 msgid "Enter Product's %s For %s Currency"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:75
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:78
 msgid "Hide Price For"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:76
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:79
 msgid "Product Price will be hidden for the selected user roles"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:88
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:91
 msgid "Hide Add To Cart Button"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:89
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:92
 msgid "Product Add To Cart Button will be hidden for the selected user roles"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:100
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:103
 msgid "Hide Product Variations"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:101
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:104
 msgid "if checked Variable product variation will be hidden from product page "
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:111
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:114
 msgid "Custom Message"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:112
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:115
 msgid "Used when product price is hidden.. use <code>[currency]</code> to get current store currency"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:122
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:125
 msgid "Price & AddToCart Visibility"
 msgstr ""
 
-#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:123
+#: plugins/price-add-to-cart-visibility/price-add-to-cart-visibility.php:126
 msgid "Hide Product Price & Add To Cart button based on users role and set custom messsage to show if price is hidden"
 msgstr ""
 
-#: plugins/wc-product-exporter/wc-product-exporter.php:113
+#: plugins/wc-product-exporter/wc-product-exporter.php:119
 msgid "WC Role Based Price All"
 msgstr ""
 
-#: plugins/wc-product-exporter/wc-product-exporter.php:117
+#: plugins/wc-product-exporter/wc-product-exporter.php:123
 msgid "WC RBP Status"
 msgstr ""
 
-#: plugins/wc-product-exporter/wc-product-exporter.php:121
+#: plugins/wc-product-exporter/wc-product-exporter.php:127
 msgid "WC Role Based "
 msgstr ""
 
-#: plugins/wc-product-exporter/wc-product-exporter.php:121
+#: plugins/wc-product-exporter/wc-product-exporter.php:127
 msgid " Price "
 msgstr ""
 
-#: plugins/wc-product-importer/wc-product-importer.php:60
-#: plugins/wc-product-importer/wc-product-importer.php:61
+#: plugins/wc-product-importer/wc-product-importer.php:62
+#: plugins/wc-product-importer/wc-product-importer.php:63
 msgid "Price Status"
-msgstr ""
-
-#: plugins/wc-product-importer/wc-product-importer.php:77
-msgid "WC Role Based Price"
 msgstr ""
 #. Plugin Name of the plugin/theme
 msgid "WooCommerce Role Based Price"
