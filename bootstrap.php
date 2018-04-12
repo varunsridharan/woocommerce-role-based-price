@@ -18,7 +18,7 @@ class WooCommerce_Role_Based_Price {
     protected static $settings          = NULL; # Required Plugin Class Instance
     protected static $frontend          = NULL;     # Required Plugin Class Instance
     protected static $shortcode_handler = NULL;  # Required Plugin Class Instance
-    public           $version           = '3.3';  # Required Plugin Class INstance
+    public           $version           = '3.3.2';  # Required Plugin Class INstance
     public           $plugin_vars       = array();  # Required Plugin Class INstance
 
     /**

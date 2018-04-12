@@ -258,8 +258,8 @@ class WooCommerce_Role_Based_Price_Addons {
             foreach( $plug as $p ) {
 
                 $s              = preg_split("/ : /", $p);
-                $s[0]           = trim($s[0]);
-                $s[1]           = trim($s[1]);
+                $s[0]           = isset($s[0]) ? trim($s[0]) : "";
+                $s[1]           = isset($s[1]) ? trim($s[1]) : "";
                 $tmp_arr[$s[0]] = $s[1];
             }
 

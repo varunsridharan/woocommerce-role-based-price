@@ -1,5 +1,5 @@
 ;
-( function ($, window, document, undefined) {
+( function ($, window, document) {
     'use strict';
 
     $.WCRBP = $.WCRBP || {};
@@ -8,7 +8,7 @@
     /**
      * Global Functions
      */
-    $.WCRBP.validate_selling_price = function () {
+    $.WCRBP.validate_selling_price = function (e) {
         var sale_price_field = $(this),
             regular_price_field;
 
@@ -17,12 +17,22 @@
         var sale_price = parseFloat(window.accounting.unformat(sale_price_field.val(), woocommerce_admin.mon_decimal_point));
         var regular_price = parseFloat(window.accounting.unformat(regular_price_field.val(), woocommerce_admin.mon_decimal_point));
 
+
         if ( sale_price >= regular_price ) {
             $(document.body).triggerHandler('wc_add_error_tip', [$(this), 'i18_sale_less_than_regular_error']);
+            if ( 'change' === e.type ) {
+                if ( sale_price >= regular_price ) {
+                    $(this).val('');
+                    $('div#wc-rbp-product-editor #wc_rbp_update_price').removeAttr('disabled');
+                }
+            } else {
+                $('div#wc-rbp-product-editor #wc_rbp_update_price').attr('disabled', 'disabled');
+            }
         } else {
             $(document.body).triggerHandler('wc_remove_error_tip', [$(this), 'i18_sale_less_than_regular_error']);
+            $('div#wc-rbp-product-editor #wc_rbp_update_price').removeAttr('disabled');
         }
-    }
+    };
 
     $.WCRBP.tab_navigation = function (e) {
         e.preventDefault();
@@ -34,7 +44,7 @@
 
         $li.addClass('wcrbp-tab-active').siblings().removeClass('wcrbp-tab-active');
         $panel.show().siblings().hide();
-    }
+    };
 
     $.WCRBP.render_wootabs = function () {
         $(".wcrbp-tab-nav").on("click", 'a', $.WCRBP.tab_navigation);
@@ -52,7 +62,7 @@
         $('.wcrbp-tabs-no-wrapper').closest('.postbox').addClass('wcrbp-tabs-no-controls');
 
 
-    }
+    };
 
     $.WCRBP.block = function ($elem) {
         $elem.block({
@@ -62,11 +72,11 @@
                 opacity: 0.6
             }
         });
-    }
+    };
 
     $.WCRBP.unblock = function ($elem) {
         $elem.unblock();
-    }
+    };
 
     $.WCRBP.render_price_status = function () {
         $('.wcrbp-tab-nav > li').each(function () {
@@ -103,7 +113,7 @@
             }
 
         });
-    }
+    };
 
     $.WCRBP.add_variation_selectbox = function () {
         if ( $(".wcrbpvariationbx").size() > 0 ) {
@@ -138,7 +148,7 @@
                 }
             });
         }
-    }
+    };
 
     $.WCRBP.move_selectbox_metabox = function () {
         $('#wc-rbp-product-editor').find('.hndle').unbind('click');
@@ -151,7 +161,7 @@
 
             return;
         });
-    }
+    };
 
     $.WCRBP.action_save_product_prices = function () {
         var $clickedBtn = $(this),
@@ -177,7 +187,7 @@
                 jQuery('div.wc_rbp_price_editor_ajax_response').fadeOut('slow');
             });
         })
-    }
+    };
 
     $.WCRBP.action_clear_product_prices = function () {
         var $clickedBtn = $(this);
@@ -224,7 +234,7 @@
         $("body").on("click", 'div#wc-rbp-product-editor #wc_rbp_update_price', $.WCRBP.action_save_product_prices);
         $("body").on("click", 'div#wc-rbp-product-editor #wc_rbp_clear_trasient', $.WCRBP.action_clear_product_prices);
 
-    }
+    };
 
     /**
      * Internal Functions
@@ -256,7 +266,7 @@
 
 
         })
-    }
+    };
 
     $(document).ready(function () {
         $.WCRBP.basic_init_metabox();

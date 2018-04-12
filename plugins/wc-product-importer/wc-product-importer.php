@@ -3,9 +3,12 @@
  * Plugin Name: WooCommerce Product Importer
  * Plugin URI:
  * Version: 1.0
- * Description: This Addon Integration With Default  Product Importer In WooCommerce And Provides Options To Import
- * Role Based Prices Author: Varun Sridharan Author URI: http://varunsridharan.in Last Update: 2017-07-07 Category:
- * Tools,Price Import
+ * Description: This Addon Integration With Default  Product Importer In WooCommerce And Provides Options To Import,
+ * Role Based Prices
+ * Author: Varun Sridharan
+ * Author URI: http://varunsridharan.in
+ * Last Update: 2017-07-07
+ * Category: Tools,Price Import
  */
 
 if( ! defined('WC_RBP_PLUGIN') ) {
@@ -42,7 +45,7 @@ class wc_product_price_importer {
                 $role       = $attribute['role'];
                 $price_type = $attribute['price'];
                 if( $value != '' ) {
-                    $final_price[$role][$price_type] = floatval($value);
+                    $final_price[$role][$price_type] = wc_format_decimal($value);
                 }
             }
         }

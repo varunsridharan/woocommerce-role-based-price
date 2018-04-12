@@ -569,7 +569,7 @@ if( ! function_exists('wc_rbp_get_variation_data') ) {
 
 if( ! function_exists("wc_rbp_update_variations_data") ) {
     function wc_rbp_update_variations_data($pid, $role = array(), $aprice = array()) {
-        if( empty($role) && is_array($role) ) {
+        if( empty($role) || ! is_array($role) ) {
             $allowed_roles = array_keys(wc_rbp_get_user_roles_selectbox());
         } else {
             $allowed_roles = $role;
