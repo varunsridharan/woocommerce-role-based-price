@@ -20,8 +20,8 @@ class Price_add_to_cart_visibility_WC_RBP {
     public function __construct() {
         add_filter('wc_rbp_addon_sections', array( $this, 'add_settings_section' ));
         add_filter('wc_rbp_addon_fields', array( $this, 'add_settings_fields' ));
-        add_filter('init', array( $this, 'check_remove_add_to_cart' ), 99);
-        add_filter('woocommerce_get_price_html', array( $this, 'remove_price' ), 99, 2);
+        add_filter('init', array( $this, 'check_remove_add_to_cart' ), 999);
+        add_filter('woocommerce_get_price_html', array( $this, 'remove_price' ), 999, 2);
     }
 
 
