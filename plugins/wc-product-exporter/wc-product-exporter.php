@@ -3,9 +3,11 @@
  * Plugin Name: WooCommerce Product Export
  * Plugin URI:
  * Version: 1.0
- * Description: This Addon Integration With Default Product Exporter In WooCommerce And Provides Options To Export Role
- * Based Prices Author: Varun Sridharan Author URI: http://varunsridharan.in Last Update: 2017-07-07 Category:
- * Tools,Price Export
+ * Description: This Addon Integration With Default Product Exporter In WooCommerce And Provides Options To Export Role Based Prices
+ * Author: Varun Sridharan
+ * Author URI: http://varunsridharan.in
+ * Last Update: 2017-07-07
+ * Category: Tools,Price Export
  */
 
 if( ! defined('WC_RBP_PLUGIN') ) {

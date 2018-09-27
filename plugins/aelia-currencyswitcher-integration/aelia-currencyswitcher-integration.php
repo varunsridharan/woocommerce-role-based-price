@@ -3,11 +3,13 @@
  * Plugin Name: Aelia Currency Switcher Integration
  * Plugin URI:
  * Version: 1.0
- * Description: Works With Aelia Currency Switcher Integration And Allows you to set product's role based price on
- * currency based Author: Varun Sridharan Author URI: http://varunsridharan.in Created: 2016-03-04 Last Update:
- * 2017-03-23 Required Plugins: [ Name : Aelia Currency Switcher for WooCommerce | URL :
- * http://aelia.co/shop/currency-switcher-woocommerce/ | Version : 3.8.2 | Slug :
- * woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php] Category:Integration,Currency Switcher
+ * Description: Works With Aelia Currency Switcher Integration And Allows you to set product's role based price on currency based
+ * Author: Varun Sridharan
+ * Author URI: http://varunsridharan.in
+ * Created: 2016-03-04
+ * Last Update: 2017-03-23
+ * Required Plugins: [ Name : Aelia Currency Switcher for WooCommerce | URL : http://aelia.co/shop/currency-switcher-woocommerce/ | Version : 3.8.2 | Slug : woocommerce-aelia-currencyswitcher/woocommerce-aelia-currencyswitcher.php]
+ * Category:Integration,Currency Switcher
  */
 if( ! defined('WC_RBP_PLUGIN') ) {
     die;

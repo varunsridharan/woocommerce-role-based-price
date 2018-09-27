@@ -693,8 +693,10 @@ if ( ! function_exists( 'wc_rbp_settings_products_json' ) ) {
 			}
 
 			foreach ( $ids as $product_id ) {
-				$product                 = wc_get_product( $product_id );
-				$json_ids[ $product_id ] = wp_kses_post( $product->get_formatted_name() );
+				$product = wc_get_product( $product_id );
+				if ( $product ) {
+					$json_ids[ $product_id ] = wp_kses_post( $product->get_formatted_name() );
+				}
 			}
 		}
 		return $json_ids;

@@ -24,18 +24,18 @@
  * Domain Path:       /languages/
  */
 
-if( ! defined('WPINC') ) {
-    die;
+if ( ! defined( 'WPINC' ) ) {
+	die;
 }
 
-define('WC_RBP_FILE', plugin_basename(__FILE__));
-define('WC_RBP_PATH', plugin_dir_path(__FILE__)); # Plugin DIR
-define('WC_RBP_INC', WC_RBP_PATH . 'includes/'); # Plugin INC Folder
-define('WC_RBP_DEPEN', 'woocommerce/woocommerce.php');
-define('WC_RBP_VARIABLE_VERSION', '3.0.0.2');
-register_activation_hook(__FILE__, 'wc_rbp_activate_plugin_name');
-register_deactivation_hook(__FILE__, 'wc_rbp_deactivate_plugin_name');
-register_deactivation_hook(WC_RBP_DEPEN, 'wc_rbp_dependency_plugin_deactivate');
+define( 'WC_RBP_FILE', plugin_basename( __FILE__ ) );
+define( 'WC_RBP_PATH', plugin_dir_path( __FILE__ ) ); # Plugin DIR
+define( 'WC_RBP_INC', WC_RBP_PATH . 'includes/' ); # Plugin INC Folder
+define( 'WC_RBP_DEPEN', 'woocommerce/woocommerce.php' );
+define( 'WC_RBP_VARIABLE_VERSION', '3.0.0.2' );
+register_activation_hook( __FILE__, 'wc_rbp_activate_plugin_name' );
+register_deactivation_hook( __FILE__, 'wc_rbp_deactivate_plugin_name' );
+register_deactivation_hook( WC_RBP_DEPEN, 'wc_rbp_dependency_plugin_deactivate' );
 
 
 /**
@@ -43,8 +43,8 @@ register_deactivation_hook(WC_RBP_DEPEN, 'wc_rbp_dependency_plugin_deactivate');
  * This action is documented in includes/class-plugin-name-activator.php
  */
 function wc_rbp_activate_plugin_name() {
-    require_once( WC_RBP_INC . 'helpers/class-activator.php' );
-    woocommerce_role_based_price_Activator::activate();
+	require_once( WC_RBP_INC . 'helpers/class-activator.php' );
+	woocommerce_role_based_price_Activator::activate();
 }
 
 /**
@@ -52,8 +52,8 @@ function wc_rbp_activate_plugin_name() {
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
 function wc_rbp_deactivate_plugin_name() {
-    require_once( WC_RBP_INC . 'helpers/class-deactivator.php' );
-    woocommerce_role_based_price_Deactivator::deactivate();
+	require_once( WC_RBP_INC . 'helpers/class-deactivator.php' );
+	woocommerce_role_based_price_Deactivator::deactivate();
 }
 
 
@@ -62,16 +62,16 @@ function wc_rbp_deactivate_plugin_name() {
  * This action is documented in includes/class-plugin-name-deactivator.php
  */
 function wc_rbp_dependency_plugin_deactivate() {
-    require_once( WC_RBP_INC . 'helpers/class-deactivator.php' );
-    woocommerce_role_based_price_Deactivator::dependency_deactivate();
+	require_once( WC_RBP_INC . 'helpers/class-deactivator.php' );
+	woocommerce_role_based_price_Deactivator::dependency_deactivate();
 }
 
 require_once( WC_RBP_INC . 'functions.php' );
-require_once( plugin_dir_path(__FILE__) . 'bootstrap.php' );
+require_once( plugin_dir_path( __FILE__ ) . 'bootstrap.php' );
 
-if( ! function_exists('woocommerce_role_based_price') ) {
-    function woocommerce_role_based_price() {
-        return woocommerce_role_based_price::get_instance();
-    }
+if ( ! function_exists( 'woocommerce_role_based_price' ) ) {
+	function woocommerce_role_based_price() {
+		return woocommerce_role_based_price::get_instance();
+	}
 }
 woocommerce_role_based_price();
