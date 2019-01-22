@@ -231,7 +231,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
             return $price;
         }
         $sale_price  = $product->get_sale_price();
-        $wcrbp_price = ( $sale_price !== '' && $sale_price > 0 ) ? $sale_price : $this->get_regular_price($price, $product);
+        $wcrbp_price = ( $sale_price !== '' && $sale_price > 0 && $product->is_on_sale() ) ? $sale_price : $this->get_regular_price($price, $product);
         $wcrbp_price = wc_format_decimal($wcrbp_price);
         $wcrbp_price = apply_filters("wc_rbp_product_get_price", $wcrbp_price, $product, $this);
         return $wcrbp_price;
