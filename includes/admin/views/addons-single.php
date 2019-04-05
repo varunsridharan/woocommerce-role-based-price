@@ -48,7 +48,7 @@ if( $wc_rbp_plugin_data['is_active'] ) {
                         if( $plugin_status === 'notexist' ) {
                             $status_val = __('Plugin Does Not Exist', WC_RBP_TXT);
                             $class      = 'notexist';
-                        } else if( $plugin_status === TRUE ) {
+                        } else if( $plugin_status === true ) {
                             $status_val = __('Active', WC_RBP_TXT);
                             $class      = 'active';
                         }

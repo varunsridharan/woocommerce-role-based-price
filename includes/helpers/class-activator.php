@@ -38,9 +38,9 @@ class WooCommerce_Role_Based_Price_Activator {
             $url     = admin_url('admin.php?page=woocommerce-role-based-price-settings');
             $message .= '<a href="' . $url . '" class="button button-primary">' . __("Click Here to update the settings", WC_RBP_TXT) . '</a> </p>';
 
-            wc_rbp_admin_update($message, 1, 'activate_message', array(), array( 'wraper' => FALSE, 'times' => 1 ));
+            wc_rbp_admin_update($message, 1, 'activate_message', array(), array( 'wraper' => false, 'times' => 1 ));
 
-            set_transient('_welcome_redirect_wcrbp', TRUE, 60);
+            set_transient('_welcome_redirect_wcrbp', true, 60);
 
         } else {
             if( is_plugin_active(WC_RBP_FILE) ) {

@@ -14,8 +14,8 @@ if( ! defined('WPINC') ) {
 
 class WooCommerce_Role_Based_Price_Shortcode_Handler {
 
-    private static $_instance = NULL;
-    private static $db_prices = NULL;
+    private static $_instance = null;
+    private static $db_prices = null;
 
     public function __construct() {
         add_shortcode('wc_rbp', array( $this, 'shortcodehandler' ));
@@ -27,12 +27,12 @@ class WooCommerce_Role_Based_Price_Shortcode_Handler {
 
     public function shortcodehandler($attrs) {
         $vars = shortcode_atts(array(
-            'id'    => NULL,
+            'id'    => null,
             'price' => 'regular_price',
             'role'  => 'current',
         ), $attrs, 'wc_rbp');
 
-        if( $vars['id'] == NULL ) {
+        if( $vars['id'] == null ) {
             global $product;
 
 
@@ -49,7 +49,7 @@ class WooCommerce_Role_Based_Price_Shortcode_Handler {
             $vars['id'] = $id;
         }
 
-        if( $vars['role'] == NULL ) {
+        if( $vars['role'] == null ) {
             return __('Invalid User Role Given', WC_RBP_TXT);
         }
 
@@ -78,7 +78,7 @@ class WooCommerce_Role_Based_Price_Shortcode_Handler {
 
     public function get_base_product_price($id, $price) {
         if( ! defined('WC_RBP_SHORTCODE_PRODUCT_BASE_PRICING') ) {
-            define('WC_RBP_SHORTCODE_PRODUCT_BASE_PRICING', TRUE);
+            define('WC_RBP_SHORTCODE_PRODUCT_BASE_PRICING', true);
         }
 
         $product = new WC_Product($id);

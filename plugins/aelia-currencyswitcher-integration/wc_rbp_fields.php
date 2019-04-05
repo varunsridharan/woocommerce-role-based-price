@@ -29,7 +29,7 @@
                     'class'             => array(),
                     'label_class'       => array(),
                     'input_class'       => array( 'wc_input_price', $price, 'wc_rbp_' . $price ),
-                    'return'            => TRUE,
+                    'return'            => true,
                     'custom_attributes' => array(),
                 );
 

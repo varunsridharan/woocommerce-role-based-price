@@ -73,14 +73,14 @@ class WooCommerce_Role_Based_Price_Addons {
         $plugin_files = array();
 
         if( $plugins_dir ) {
-            while( ( $file = readdir($plugins_dir) ) !== FALSE ) {
+            while( ( $file = readdir($plugins_dir) ) !== false ) {
                 if( substr($file, 0, 1) == '.' ) {
                     continue;
                 }
                 if( is_dir($plugin_root . '/' . $file) ) {
                     $plugins_subdir = @ opendir($plugin_root . '/' . $file);
                     if( $plugins_subdir ) {
-                        while( ( $subfile = readdir($plugins_subdir) ) !== FALSE ) {
+                        while( ( $subfile = readdir($plugins_subdir) ) !== false ) {
                             if( substr($subfile, 0, 1) == '.' ) {
                                 continue;
                             }
@@ -106,7 +106,7 @@ class WooCommerce_Role_Based_Price_Addons {
             if( ! is_readable("$plugin_root/$plugin_file") ) {
                 continue;
             }
-            $plugin_data = $this->get_plugin_data("$plugin_root/$plugin_file", FALSE, TRUE);
+            $plugin_data = $this->get_plugin_data("$plugin_root/$plugin_file", false, true);
 
             $plugin_base = $plugin_root . dirname($plugin_file);
 
@@ -116,7 +116,7 @@ class WooCommerce_Role_Based_Price_Addons {
             }
             $is_active                = wc_rbp_check_active_addon("$plugin_file");
             $plugin_data["is_active"] = $is_active;
-            $plugin_data["installed"] = TRUE;
+            $plugin_data["installed"] = true;
 
             $plugin_data["addon_root"]                 = $plugin_root . dirname($plugin_file) . '/';
             $plugin_data["addon_url"]                  = plugin_dir_url("$plugin_root/$plugin_file");
@@ -149,7 +149,7 @@ class WooCommerce_Role_Based_Price_Addons {
      * @param bool   $markup      Optional. If the returned data should have HTML markup applied. Default true.
      * @param bool   $translate   Optional. If the returned data should be translated. Default true.
      */
-    public function get_plugin_data($plugin_file, $markup = TRUE, $translate = TRUE) {
+    public function get_plugin_data($plugin_file, $markup = true, $translate = true) {
         $default_headers = array(
             'Name'        => 'Plugin Name',
             'PluginURI'   => 'Plugin URI',
@@ -169,7 +169,7 @@ class WooCommerce_Role_Based_Price_Addons {
             $plugin_data['TextDomain'] = WC_RBP_TXT;
         }
         if( empty($plugin_data['DomainPath']) ) {
-            $plugin_data['DomainPath'] = FALSE;
+            $plugin_data['DomainPath'] = false;
         }
         if( empty($plugin_data['Category']) ) {
             $plugin_data['Category'] = 'general';
@@ -277,7 +277,7 @@ class WooCommerce_Role_Based_Price_Addons {
             wp_send_json_error(array( 'msg' => '<span class="wc_rbp_ajax_error">' . __('Unable to process you request. please try again later', WC_RBP_TXT) . '</span>' ));
         } else if( $status === 'verifyfailed' ) {
             wp_send_json_error(array( 'msg' => '<span class="wc_rbp_ajax_ajaxerror">' . __('Unable To De-Activate Addon. Please Try Again Later', WC_RBP_TXT) . '</span>' ));
-        } else if( $status === TRUE ) {
+        } else if( $status === true ) {
             wp_send_json_success(array( 'msg' => '<span class="wc_rbp_ajax_success">' . __('Addon De-Activated', WC_RBP_TXT) . '</span>' ));
         } else if( $status === 'alreadyactive' ) {
             wp_send_json_success(array( 'msg' => '<span class="wc_rbp_ajax_success">' . __('Addon Already De-Activated', WC_RBP_TXT) . '</span>' ));
@@ -299,11 +299,11 @@ class WooCommerce_Role_Based_Price_Addons {
         $function_call = 'wc_rbp_' . $action . '_addon';
         $status        = $function_call($_REQUEST['addon_slug']);
         if( $status ) {
-            return TRUE;
+            return true;
         } else if( ! $status ) {
             return 'alreadyactive';
         }
-        return FALSE;
+        return false;
     }
 
     public function activate_plugin() {
@@ -312,7 +312,7 @@ class WooCommerce_Role_Based_Price_Addons {
             wp_send_json_error(array( 'msg' => '<span class="wc_rbp_ajax_error">' . __('Unable to process you request. please try again later', WC_RBP_TXT) . '</span>' ));
         } else if( $status === 'verifyfailed' ) {
             wp_send_json_error(array( 'msg' => '<span class="wc_rbp_ajax_ajaxerror">' . __('Unable To Activate Addon. Please Try Again Later', WC_RBP_TXT) . '</span>' ));
-        } else if( $status === TRUE ) {
+        } else if( $status === true ) {
             wp_send_json_success(array( 'msg' => '<span class="wc_rbp_ajax_success">' . __('Addon Activated', WC_RBP_TXT) . '</span>' ));
         } else if( $status === 'alreadyactive' ) {
             wp_send_json_success(array( 'msg' => '<span class="wc_rbp_ajax_success">' . __('Addon Already Activated', WC_RBP_TXT) . '</span>' ));
@@ -361,7 +361,7 @@ class WooCommerce_Role_Based_Price_Addons {
         $failed  = 0;
         foreach( $requireds as $plugin ) {
             $plugin_status = $this->check_plugin_status($plugin['Slug']);
-            if( $plugin_status === TRUE ) {
+            if( $plugin_status === true ) {
                 $success++;
             } else {
                 $failed++;
@@ -369,9 +369,9 @@ class WooCommerce_Role_Based_Price_Addons {
         }
 
         if( $success == count($requireds) ) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function check_plugin_status($slug) {
@@ -379,11 +379,11 @@ class WooCommerce_Role_Based_Price_Addons {
         if( is_wp_error($val_plugin) ) {
             return 'notexist';
         } else if( is_plugin_active($slug) ) {
-            return TRUE;
+            return true;
         } else if( is_plugin_inactive($slug) ) {
-            return FALSE;
+            return false;
         }
-        return FALSE;
+        return false;
     }
 
     public function get_addon_action_link($plugin_slug, $type = "active") {
@@ -397,7 +397,7 @@ class WooCommerce_Role_Based_Price_Addons {
         return $url;
     }
 
-    public function get_addon_icon($data, $echo = TRUE) {
+    public function get_addon_icon($data, $echo = true) {
         $icon = WC_RBP_IMG . 'addon_icon.jpg';
 
         if( file_exists($data['addon_root'] . 'icon.png') ) {
@@ -409,7 +409,7 @@ class WooCommerce_Role_Based_Price_Addons {
         } else if( file_exists($data['addon_root'] . $data['addon_slug'] . '-icon.jpg') ) {
             $icon = $data['addon_url'] . $data['addon_slug'] . '-icon.jpg';
         } else if( isset($data['icon']) ) {
-            if( filter_var($data['icon'], FILTER_VALIDATE_URL) !== FALSE ) {
+            if( filter_var($data['icon'], FILTER_VALIDATE_URL) !== false ) {
                 $icon = $data['icon'];
             }
         }

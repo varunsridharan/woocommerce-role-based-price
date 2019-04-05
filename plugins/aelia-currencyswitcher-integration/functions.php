@@ -11,7 +11,7 @@ if( ! function_exists('wc_rbp_update_acs_role_based_price') ) {
      */
     function wc_rbp_update_acs_role_based_price($post_id, $price_array) {
         update_post_meta($post_id, '_acs_role_based_price', $price_array);
-        return TRUE;
+        return true;
     }
 }
 
@@ -21,7 +21,7 @@ if( ! function_exists('wc_rbp_get_acs_product_price') ) {
      * Gets Product price from DB
      * #TODO Integrate Wth product_rbp_price function to make it faster
      */
-    function wc_rbp_get_acs_product_price($post_id, $supress_filter = FALSE) {
+    function wc_rbp_get_acs_product_price($post_id, $supress_filter = false) {
         $price = get_post_meta($post_id, '_acs_role_based_price');
 
         if( ! empty($price) ) {
@@ -57,7 +57,7 @@ if( ! function_exists('wc_rbp_acs_price') ) {
     function wc_rbp_acs_price($post_id, $role, $currency, $price = 'regular_price', $args = array()) {
         $dbprice = product_acs_rbp_price($post_id);
 
-        $return = FALSE;
+        $return = false;
 
         if( $price == 'all' && $role == 'all' ) {
             $return = $dbprice;

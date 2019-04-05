@@ -15,7 +15,7 @@ if( ! defined('WC_RBP_PLUGIN') ) {
 class wc_product_price_exporter {
 
     public function __construct() {
-        $this->is_wcrbp_export = FALSE;
+        $this->is_wcrbp_export = false;
         $this->key_vals();
         add_filter("woocommerce_product_export_product_default_columns", array( $this, 'add_option' ));
         add_filter("woocommerce_product_export_row_data", array( $this, 'add_wcrbp_prices' ), 1, 2);
@@ -53,14 +53,14 @@ class wc_product_price_exporter {
                 if( in_array('wcrbp_price', $_POST['selected_columns']) ) {
                     $this->remove_post_data('wcrbp_price');
                     $_POST['selected_columns'] = array_merge($_POST['selected_columns'], array_keys($this->key_vals()));
-                    $this->is_wcrbp_export     = TRUE;
+                    $this->is_wcrbp_export     = true;
 
                 } else {
                     foreach( array_keys($this->user_roles) as $role ) {
                         if( in_array($role, $_POST['selected_columns']) ) {
                             $this->remove_post_data($role);
                             $_POST['selected_columns'] = array_merge($_POST['selected_columns'], array_keys($this->user_roles[$role]));
-                            $this->is_wcrbp_export     = TRUE;
+                            $this->is_wcrbp_export     = true;
                         }
                     }
                 }
@@ -84,7 +84,7 @@ class wc_product_price_exporter {
         if( $this->is_wcrbp_export ) {
             $prices = wc_rbp_price($product->get_id(), 'all', 'all');
             if( isset($row['wcrbp_status']) )
-                $row['wcrbp_status'] = wc_rbp_product_status($product->get_id(), TRUE);
+                $row['wcrbp_status'] = wc_rbp_product_status($product->get_id(), true);
 
             if( ! empty($prices) ) {
                 foreach( $prices as $user => $price_types ) {

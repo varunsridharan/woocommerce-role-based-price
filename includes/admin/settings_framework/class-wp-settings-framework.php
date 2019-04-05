@@ -131,7 +131,7 @@ class WooCommerce_Role_Based_Price_Settings_Framework {
                 return $this->settings_values[$id];
             }
         }
-        return FALSE;
+        return false;
 
     }
 

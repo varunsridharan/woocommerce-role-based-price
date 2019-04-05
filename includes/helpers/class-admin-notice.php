@@ -11,7 +11,7 @@ class WooCommerce_Role_Based_Price_Admin_Notices {
      * Costructor (private since this is a singleton)
      */
     private function __construct() {
-        self::$instance         = NULL;
+        self::$instance         = null;
         $this->noticesArrayName = WC_RBP_DB . 'AdminNotices';
         $this->REQUESTID        = WC_RBP_DB . 'MSG';
         $this->notices          = array();
@@ -73,7 +73,7 @@ class WooCommerce_Role_Based_Price_Admin_Notices {
      * @return WP_Admin_Notices
      */
     public static function getInstance() {
-        if( NULL == self::$instance ) {
+        if( null == self::$instance ) {
             self::$instance = new self();
         }
         return self::$instance;
@@ -111,7 +111,7 @@ class WooCommerce_Role_Based_Price_Admin_Notices {
         if( ! empty($screens) ) {
             $curScreen = get_current_screen();
             if( ! is_array($screens) || ! in_array($curScreen->id, $screens) ) {
-                return FALSE;
+                return false;
             }
         }
 
@@ -119,17 +119,17 @@ class WooCommerce_Role_Based_Price_Admin_Notices {
         if( ! empty($usersArray) ) {
             $curUser = get_current_user_id();
             if( ! is_array($usersArray) || ! in_array($curUser, $usersArray) || $usersArray[$curUser] >= $notice->getTimes() ) {
-                return FALSE;
+                return false;
             }
 
 
         } else if( $notice->getTimes() == 0 ) {
-            return TRUE;
+            return true;
         } else if( $notice->getTimes() <= $notice->getDisplayedTimes() ) {
-            return FALSE;
+            return false;
         }
 
-        return TRUE;
+        return true;
     }
 
     /**
@@ -158,8 +158,8 @@ abstract class WooCommerce_Role_Based_Price_Admin_Notice {
     protected $users            = array();
     protected $displayedTimes   = 0;
     protected $displayedToUsers = array();
-    protected $WithWraper       = TRUE;
-    protected $is_dismissible   = TRUE;
+    protected $WithWraper       = true;
+    protected $is_dismissible   = true;
 
     /**
      *
@@ -168,7 +168,7 @@ abstract class WooCommerce_Role_Based_Price_Admin_Notice {
      * @param array $screen  The admin screens this notice will be displayed into (empty for all screens)
      * @param array $users   Array of users this notice concernes (empty for all users)
      */
-    public function __construct($content, $id = '', $times = 1, $screen = array(), $users = array(), $WithWraper = TRUE) {
+    public function __construct($content, $id = '', $times = 1, $screen = array(), $users = array(), $WithWraper = true) {
         $this->content = $content;
         $this->screen  = $screen;
         if( empty($id) ) {
@@ -188,7 +188,7 @@ abstract class WooCommerce_Role_Based_Price_Admin_Notice {
      *
      * @return string Formated content
      */
-    public function getContentFormated($wrapInParTag = TRUE) {
+    public function getContentFormated($wrapInParTag = true) {
         $class = $this->type;
         $extrC = '';
 
@@ -256,10 +256,10 @@ abstract class WooCommerce_Role_Based_Price_Admin_Notice {
                 }
             }
             if( $i >= count($this->users) ) {
-                return TRUE;
+                return true;
             }
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -274,7 +274,7 @@ abstract class WooCommerce_Role_Based_Price_Admin_Notice {
      *
      * @param boolean $screen
      */
-    public function setWrapper($wrapper = TRUE) {
+    public function setWrapper($wrapper = true) {
         $this->WithWraper = $wrapper;
         return $this;
     }

@@ -98,7 +98,7 @@ if( ! class_exists('WooCommerce_Role_Based_Price_Settings_WP_Fields') ) {
                 if( '[]' === $multiple ) {
                     $selected = ( in_array($opt, $value) ) ? ' selected="selected" ' : '';
                 } else {
-                    $selected = selected($value, $opt, FALSE);
+                    $selected = selected($value, $opt, false);
                 }
                 $html .= sprintf('<option value="%s"%s>%s</option>', $opt, $selected, $label);
             }
@@ -117,7 +117,7 @@ if( ! class_exists('WooCommerce_Role_Based_Price_Settings_WP_Fields') ) {
             $value = (string) esc_attr($this->get_option($args));
             $error = $this->get_setting_error($args['id'], ' style="border: 1px solid red; padding: 2px 1em 2px 0; "');
             $html  = '';
-            $input = sprintf('<input type="checkbox" id="%1$s_%2$s" name="%1$s[%2$s]" value="on"%4$s%5$s />', $args['section'], $args['id'], $value, checked($value, 'on', FALSE), $args['attr']);
+            $input = sprintf('<input type="checkbox" id="%1$s_%2$s" name="%1$s[%2$s]" value="on"%4$s%5$s />', $args['section'], $args['id'], $value, checked($value, 'on', false), $args['attr']);
             $html  .= sprintf('<label for="%1$s_%2$s"%5$s>%3$s %4$s</label>', $args['section'], $args['id'], $input, $args['desc'], $error);
 
             echo $html . '';
@@ -168,7 +168,7 @@ if( ! class_exists('WooCommerce_Role_Based_Price_Settings_WP_Fields') ) {
             $i     = 0;
             $count = count($args['options']);
             foreach( (array) $args['options'] as $opt => $label ) {
-                $input = sprintf('<input type="radio" id="%1$s_%2$s_%3$s" name="%1$s[%2$s]" value="%3$s"%4$s%5$s />', $args['section'], $args['id'], $opt, checked($value, $opt, FALSE), $args['attr']);
+                $input = sprintf('<input type="radio" id="%1$s_%2$s_%3$s" name="%1$s[%2$s]" value="%3$s"%4$s%5$s />', $args['section'], $args['id'], $opt, checked($value, $opt, false), $args['attr']);
                 $html  .= sprintf('<label for="%1$s_%2$s_%4$s">%3$s%5$s</label>', $args['section'], $args['id'], $input, $opt, ' <span>' . $label . '</span>');
                 $html  .= ( isset($args['row_after'][$opt]) && $args['row_after'][$opt] ) ? $args['row_after'][$opt] : '';
                 $html  .= ( ++$i < $count ) ? '<br/>' : '';
@@ -253,7 +253,7 @@ if( ! class_exists('WooCommerce_Role_Based_Price_Settings_WP_Fields') ) {
          *
          * @return array All arguments and attributes
          */
-        protected function get_arguments($args = '', $class = FALSE) {
+        protected function get_arguments($args = '', $class = false) {
 
             // escape section, id and options used in attributes
             $args['section'] = esc_attr($args['section']);

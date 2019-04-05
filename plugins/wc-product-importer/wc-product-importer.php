@@ -27,17 +27,17 @@ class wc_product_price_importer {
         $obj         = $this->options_product_save;
         $obk         = array_keys($obj);
         $final_price = array();
-        $status      = FALSE;
+        $status      = false;
         foreach( $data as $id => $value ) {
             if( $id == 'wcrbp_status' ) {
                 if( $value == 'no' ) {
-                    $status = FALSE;
+                    $status = false;
                 } else if( $value == 'yes' ) {
-                    $status = TRUE;
+                    $status = true;
                 } else if( floatval($value) == 0 ) {
-                    $status = FALSE;
+                    $status = false;
                 } else if( floatval($value) == 1 ) {
-                    $status = TRUE;
+                    $status = true;
                 }
 
             } else if( in_array($id, $obk) ) {

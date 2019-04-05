@@ -20,7 +20,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox {
             $id = $post;
         }
 
-        $prod     = NULL;
+        $prod     = null;
         $prodType = $this->get_post_type($id);
 
         $url         = admin_url('admin-ajax.php?action=wc_rbp_save_product_prices');
@@ -31,7 +31,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox {
         $this->registered_roles = wc_rbp_get_wp_roles();
 
         $args                   = array();
-        $args['render_default'] = TRUE;
+        $args['render_default'] = true;
         $args['html']           = '';
         $args['postid']         = $id;
         $args['mb']             = $this;
@@ -129,9 +129,9 @@ class WooCommerce_Role_Based_Price_Product_Metabox {
             $name = '#' . $ids . ' | ';
 
             if( wc_rbp_is_wc_v('>=', '3.0') ) {
-                $name .= ' ' . wc_get_formatted_variation($prod, TRUE);
+                $name .= ' ' . wc_get_formatted_variation($prod, true);
             } else {
-                $name .= ' ' . $prod->get_formatted_variation_attributes(TRUE);
+                $name .= ' ' . $prod->get_formatted_variation_attributes(true);
             }
 
 
@@ -171,7 +171,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox {
                 $tabs[$role] = array(
                     'title'       => $registered_roles[$role]['name'],
                     'icon'        => $icon,
-                    'show_status' => TRUE,
+                    'show_status' => true,
                 );
             }
         }
@@ -216,30 +216,30 @@ class WooCommerce_Role_Based_Price_Product_Metabox {
         $price = '';
         if( is_object($pro) ) {
             $price = array();
-            $this->hook_filter(TRUE);
+            $this->hook_filter(true);
             $price['regular_price'] = wc_rbp_price_types('regular_price') . ' : ';
             $price['regular_price'] .= wc_price($pro->get_regular_price());
 
             $price['selling_price'] = wc_rbp_price_types('selling_price') . ' : ';
             $price['selling_price'] .= wc_price($pro->get_sale_price());
-            $this->hook_filter(FALSE);
+            $this->hook_filter(false);
             $price = implode(' | ', $price);
         }
         $head = '<span class="headTxt">' . __("WC Product Price : ") . '</span>' . $price;
         return $head;
     }
 
-    public function hook_filter($hook = TRUE) {
-        if( $hook == TRUE ) {
+    public function hook_filter($hook = true) {
+        if( $hook == true ) {
             add_filter('role_based_price_status', array( $this, 'base_price_return_false' ));
         }
-        if( ! $hook == TRUE ) {
+        if( ! $hook == true ) {
             remove_filter('role_based_price_status', array( $this, 'base_price_return_false' ));
         }
     }
 
     public function base_price_return_false($s) {
-        return FALSE;
+        return false;
     }
 
 }

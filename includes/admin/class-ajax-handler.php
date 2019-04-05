@@ -31,7 +31,7 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
         $id = $_REQUEST['post_id'];
 
         $parent = wp_get_post_parent_id($id);
-        if( $parent !== FALSE ) {
+        if( $parent !== false ) {
             $allowed_roles = array_keys(wc_rbp_get_user_roles_selectbox());
             foreach( $allowed_roles as $role ) {
                 wc_rbp_delete_variation_data($id, $role);
