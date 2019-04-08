@@ -65,7 +65,7 @@ class WooCommerce_Role_Based_Price_Admin_Settings_Options {
         $fields['general']['general'][] = array(
             'id'       => WC_RBP_DB . 'allowed_price',
             'type'     => 'select',
-            'multiple' => TRUE,
+            'multiple' => true,
             'label'    => __('Allowed Product Pricing', WC_RBP_TXT),
             'desc'     => __('Price Fields To List In Product Edit Page', WC_RBP_TXT),
             'options'  => wc_rbp_sort_array_by_array(wc_rbp_avaiable_price_type(), wc_rbp_allowed_price()),

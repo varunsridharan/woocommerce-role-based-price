@@ -12,11 +12,11 @@ if( ! defined('WPINC') ) {
 }
 
 class WooCommerce_Role_Based_Price_Product_Pricing {
-    public $already_given_prices = NULL;
+    public $already_given_prices = null;
 
-    public function __construct($is_hook = TRUE) {
+    public function __construct($is_hook = true) {
         $this->already_given_prices = array();
-        if( $is_hook == TRUE ) {
+        if( $is_hook == true ) {
             add_action('woocommerce_init', array( $this, 'wc_init' ));
         }
     }
@@ -53,10 +53,10 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
     }
 
     public function get_product_price($base_price, $product, $price_meta_key = 'regular_price', $current_user = '') {
-        if( ! apply_filters('role_based_price_status', TRUE) ) {
+        if( ! apply_filters('role_based_price_status', true) ) {
             return $base_price;
         }
-        $wc_rbp_price = FALSE;
+        $wc_rbp_price = false;
 
         $opposite_key = 'selling_price';
         if( $price_meta_key == 'selling_price' ) {
@@ -86,7 +86,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
                 $rbp_price = wc_rbp_price($product_id, $current_user, 'all', array());
 
                 if( $wc_rbp_status ) {
-                    if( $rbp_price === FALSE ) {
+                    if( $rbp_price === false ) {
                         $wc_rbp_price = $base_price;
                     } else {
                         if( $price_meta_key == 'all' ) {
@@ -191,9 +191,9 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         $class   = $this->get_product_class($product);
         $classes = apply_filters("wc_rbp_simple_product_class", array( 'WC_Product_Simple', 'WC_Product_Yith_Bundle' ));
         if( in_array($class, $classes) ) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     private function get_product_class($product) {
@@ -205,17 +205,17 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
     private function is_variable_product($product) {
         $class = $this->get_product_class($product);
         if( $class == 'WC_Product_Variable' ) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     private function is_variation_product($product) {
         $class = $this->get_product_class($product);
         if( $class == 'WC_Product_Variation' ) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -351,33 +351,33 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
                 foreach( $variations as $i ) {
                     $status = product_rbp_status($i);
                     if( $status ) {
-                        return TRUE;
+                        return true;
                     }
                 }
             }
         } else {
             $status = product_rbp_status($id);
             if( $status ) {
-                return TRUE;
+                return true;
             }
         }
 
-        return FALSE;
+        return false;
     }
 
     public function get_price_html_wc3($price = '', $product) {
 
-        $prices = $product->get_variation_prices(TRUE);
+        $prices = $product->get_variation_prices(true);
 
         if( empty($prices['price']) ) {
             return apply_filters('woocommerce_variable_empty_price_html', '', $this);
         }
 
         $prices                  = array();
-        $prices['min_price']     = $product->get_variation_price('min', FALSE);
-        $prices['max_price']     = $product->get_variation_price('max', FALSE);
-        $prices['min_reg_price'] = $product->get_variation_regular_price('min', TRUE);
-        $prices['max_reg_price'] = $product->get_variation_regular_price('max', TRUE);
+        $prices['min_price']     = $product->get_variation_price('min', false);
+        $prices['max_price']     = $product->get_variation_price('max', false);
+        $prices['min_reg_price'] = $product->get_variation_regular_price('min', true);
+        $prices['max_reg_price'] = $product->get_variation_regular_price('max', true);
         $prices                  = $this->get_variation_tax_status_price($prices, $product);
 
         /*if( $prices['min_price'] !== $prices['max_price'] ) {
@@ -468,7 +468,7 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
     public function get_price_html_below_wc3($price = '', $product) {
 
         // Ensure variation prices are synced with variations
-        if( $product->get_variation_regular_price('min') === FALSE || $product->get_variation_price('min') === FALSE || $product->get_variation_price('min') === '' || $product->get_price() === '' ) {
+        if( $product->get_variation_regular_price('min') === false || $product->get_variation_price('min') === false || $product->get_variation_price('min') === '' || $product->get_price() === '' ) {
             $product->variable_product_sync($product->get_id());
         }
         // Get the price
@@ -477,15 +477,15 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
         } else {
 
             // Main price
-            $prices = array( $product->get_variation_price('min', FALSE), $product->get_variation_price('max', FALSE) );
+            $prices = array( $product->get_variation_price('min', false), $product->get_variation_price('max', false) );
 
             $prices = $this->get_variation_tax_status_price($prices, $product);
 
             $price = $prices[0] !== $prices[1] ? sprintf(_x(' % 1$s & ndash;%2$s', 'Price range: from - to', 'woocommerce'), wc_price($prices[0]), wc_price($prices[1])) : wc_price($prices[0]);
             // Sale
             $prices = array(
-                $product->get_variation_regular_price('min', TRUE),
-                $product->get_variation_regular_price('max', TRUE),
+                $product->get_variation_regular_price('min', true),
+                $product->get_variation_regular_price('max', true),
             );
             sort($prices);
 

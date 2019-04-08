@@ -31,9 +31,9 @@ class WooCommerce_Role_Based_Price_Version_Check {
      */
     public static function compatible_version() {
         if( version_compare($GLOBALS['wp_version'], self::$version, '<') ) {
-            return FALSE;
+            return false;
         }
-        return TRUE;
+        return true;
     }
 
     /**

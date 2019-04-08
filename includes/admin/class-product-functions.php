@@ -22,7 +22,7 @@ class WooCommerce_Role_Based_Price_Admin_Product_Functions {
 
         do_action_ref_array('wc_rbp_product_save_before', array( &$posted_values ));
         if( isset($posted_values['role_based_price']) ) {
-            $status = isset($posted_values['enable_role_based_price']) ? TRUE : FALSE;
+            $status = isset($posted_values['enable_role_based_price']) ? true : false;
             wc_rbp_update_role_based_price_status($post_id, $status);
             wc_rbp_update_role_based_price($post_id, $posted_values['role_based_price']);
             clean_post_cache($post_id);

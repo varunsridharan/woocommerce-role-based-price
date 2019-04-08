@@ -23,7 +23,7 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
     public function add_general_tab($tabs) {
         $tabs['general'] = array( 'title'       => __('General', WC_RBP_TXT),
                                   'icon'        => 'dashicons-admin-tools',
-                                  'show_status' => FALSE,
+                                  'show_status' => false,
         );
         return $tabs;
     }
@@ -64,7 +64,7 @@ class WooCommerce_Role_Based_Price_Admin_Price_Editor_Fields {
                 'class'             => array(),
                 'label_class'       => array(),
                 'input_class'       => array( 'wc_input_price', $price, 'wc_rbp_' . $price ),
-                'return'            => TRUE,
+                'return'            => true,
                 'custom_attributes' => array(),
             );
             $output_html .= '<div class="wc_rbp_pop_field_50 wc_rbp_pop_field_' . $price . '">';

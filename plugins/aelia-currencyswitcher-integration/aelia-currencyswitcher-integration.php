@@ -128,7 +128,7 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
     }
 
 
-    public function get_acs_role_price($return, $product_id, $userrole, $price_meta_key = 'regular_price', $from_currency = NULL, $to_currency = NULL) {
+    public function get_acs_role_price($return, $product_id, $userrole, $price_meta_key = 'regular_price', $from_currency = null, $to_currency = null) {
 
 
         $allowed_price = wc_rbp_allowed_price();
@@ -150,7 +150,7 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
                     $to_currency = get_woocommerce_currency();
                 }
 
-                $wc_rbp_status = product_rbp_status($product_id, NULL);
+                $wc_rbp_status = product_rbp_status($product_id, null);
 
                 if( ! $wc_rbp_status ) {
                     return $return;
@@ -205,7 +205,7 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
                 }
             }
         } else {
-            $this->hook_function_disableenable(TRUE);
+            $this->hook_function_disableenable(true);
 
 
             $product = new WC_Product($product_id);
@@ -216,13 +216,13 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
                 $return = $product->get_sale_price();
             }
 
-            $this->hook_function_disableenable(FALSE);
+            $this->hook_function_disableenable(false);
         }
 
         return apply_filters('wc_aelia_cs_convert', $return, $from_currency, $to_currency);
     }
 
-    public function hook_function_disableenable($disable = FALSE) {
+    public function hook_function_disableenable($disable = false) {
         if( $disable ) {
             add_filter('role_based_price_status', array( $this, 'disable_rbp_price' ));
         } else {
@@ -231,7 +231,7 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
     }
 
     public function disable_rbp_price() {
-        return FALSE;
+        return false;
     }
 
     public function change_wc_rbp_product_price($return, $role, $price, $post_id, $args) {
@@ -243,19 +243,19 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
             $allowed_roles = wc_rbp_allowed_roles();
             foreach( $allowed_roles as $aroles ) {
                 foreach( $allowed_price as $aprice ) {
-                    $return[$aroles][$aprice] = $this->get_acs_role_price($return[$aroles][$aprice], $post_id, $aroles, $aprice, NULL, $args['currency']);
+                    $return[$aroles][$aprice] = $this->get_acs_role_price($return[$aroles][$aprice], $post_id, $aroles, $aprice, null, $args['currency']);
                 }
             }
         } else if( $role != 'all' && $price == 'all' ) {
             foreach( $allowed_price as $aprice ) {
-                $return[$aprice] = $this->get_acs_role_price($return[$aprice], $post_id, $role, $aprice, NULL, $args['currency']);
+                $return[$aprice] = $this->get_acs_role_price($return[$aprice], $post_id, $role, $aprice, null, $args['currency']);
             }
         } else {
             if( in_array($type, $allowed_price) ) {
-                $return = $this->get_acs_role_price($return, $post_id, $role, $price, NULL, $args['currency']);
+                $return = $this->get_acs_role_price($return, $post_id, $role, $price, null, $args['currency']);
             } else {
                 $price  = wc_rbp_get_oppo_metakey($price);
-                $return = $this->get_acs_role_price($return, $post_id, $role, $price, NULL, $args['currency']);
+                $return = $this->get_acs_role_price($return, $post_id, $role, $price, null, $args['currency']);
             }
 
         }
@@ -285,7 +285,7 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
         prices (e.g. GBP), don't add it to the array. Example:
         */
 
-        $status = product_rbp_status($product_id, NULL);
+        $status = product_rbp_status($product_id, null);
         if( ! $status ) {
             return $product_prices;
         }
@@ -312,7 +312,7 @@ class Aelia_Currency_Switcher_Integration_WC_RBP {
                 foreach( $allowed_currency as $currency ) {
                     if( $this->base_currency == $currency ) {
                         $price = wc_rbp_price($product_id, $current_user, $type);
-                        if( $price !== FALSE ) {
+                        if( $price !== false ) {
                             if( ! empty($price) )
                                 $send_currency[$currency] = $price;
                         }

@@ -12,12 +12,12 @@ if( ! defined('WPINC') ) {
 }
 
 class WooCommerce_Role_Based_Price {
-    protected static $_instance         = NULL;
-    protected static $functions         = NULL;
-    protected static $admin             = NULL; # Required Plugin Class Instance
-    protected static $settings          = NULL; # Required Plugin Class Instance
-    protected static $frontend          = NULL;     # Required Plugin Class Instance
-    protected static $shortcode_handler = NULL;  # Required Plugin Class Instance
+    protected static $_instance         = null;
+    protected static $functions         = null;
+    protected static $admin             = null; # Required Plugin Class Instance
+    protected static $settings          = null; # Required Plugin Class Instance
+    protected static $frontend          = null;     # Required Plugin Class Instance
+    protected static $shortcode_handler = null;  # Required Plugin Class Instance
     public           $version           = '3.3.2';  # Required Plugin Class INstance
     public           $plugin_vars       = array();  # Required Plugin Class INstance
 
@@ -101,7 +101,7 @@ class WooCommerce_Role_Based_Price {
         $addons = wc_rbp_get_active_addons();
         if( ! empty($addons) ) {
             foreach( $addons as $addon ) {
-                if( apply_filters('wc_rbp_load_addon', TRUE, $addon) ) {
+                if( apply_filters('wc_rbp_load_addon', true, $addon) ) {
                     do_action('wc_rbp_before_' . $addon . '_addon_load');
                     $this->load_addon($addon);
                     do_action('wc_rbp_after_' . $addon . '_addon_load');
@@ -137,7 +137,7 @@ class WooCommerce_Role_Based_Price {
      * Creates or returns an instance of this class.
      */
     public static function get_instance() {
-        if( NULL == self::$_instance ) {
+        if( null == self::$_instance ) {
             self::$_instance = new self;
         }
         return self::$_instance;
@@ -214,7 +214,7 @@ class WooCommerce_Role_Based_Price {
      * Set Plugin Text Domain
      */
     public function after_plugins_loaded() {
-        load_plugin_textdomain(WC_RBP_TXT, FALSE, WC_RBP_LANGUAGE_PATH);
+        load_plugin_textdomain(WC_RBP_TXT, false, WC_RBP_LANGUAGE_PATH);
     }
 
     /**

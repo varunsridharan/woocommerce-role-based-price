@@ -30,7 +30,7 @@ class WooCommerce_Role_Based_Price_Functions {
 
 
     public function setup_product_prices($product) {
-        if( $product == NULL ) {
+        if( $product == null ) {
             return $product;
         }
         $product->wc_rbp        = wc_rbp_get_product_price($product->ID);

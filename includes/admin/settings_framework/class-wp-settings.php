@@ -91,7 +91,7 @@ if( ! class_exists('WooCommerce_Role_Based_Price_WP_Settings') ) {
          * @since 2.0
          * @var bool
          */
-        private $multiple_forms = FALSE;
+        private $multiple_forms = false;
 
         /**
          * valid admin pages and fields arrays.
@@ -99,7 +99,7 @@ if( ! class_exists('WooCommerce_Role_Based_Price_WP_Settings') ) {
          * @since 2.0
          * @var bool
          */
-        private $valid_pages = FALSE;
+        private $valid_pages = false;
 
 
         /**
@@ -130,16 +130,16 @@ if( ! class_exists('WooCommerce_Role_Based_Price_WP_Settings') ) {
             $this->debug .= apply_filters("{$this->page_hook}_debug", $this->debug, $this->pages);
 
             if( $this->debug ) {
-                return $this->valid_pages = FALSE; // Don't display the form and navigation.
+                return $this->valid_pages = false; // Don't display the form and navigation.
             }
 
             // Passed validation (required to show form and navigation).
-            $this->valid_pages = TRUE;
+            $this->valid_pages = true;
 
             $this->current_page = $this->get_current_admin_page();
 
             if( isset($this->current_page['multiform']) && $this->current_page['multiform'] ) {
-                $this->multiple_forms = ( count($this->current_page['sections']) > 1 ) ? TRUE : FALSE;
+                $this->multiple_forms = ( count($this->current_page['sections']) > 1 ) ? true : false;
             }
 
             // Instanciate the form fields.
@@ -222,23 +222,23 @@ if( ! class_exists('WooCommerce_Role_Based_Price_WP_Settings') ) {
                 'type'    => '',
                 'label'   => '',
                 'desc'    => '',
-                'size'    => FALSE,
+                'size'    => false,
                 'options' => '',
                 'default' => '',
                 'content' => '',
-                'attr'    => FALSE,
+                'attr'    => false,
                 'before'  => '',
                 'after'   => '',
                 '_type'   => '',
             );
 
             // Check if database option exist (use defaults if it doesn't).
-            $use_defaults = ( FALSE === get_option($sections_id) ) ? TRUE : FALSE;
+            $use_defaults = ( false === get_option($sections_id) ) ? true : false;
 
             foreach( $fields as $field ) {
 
                 // Field (rows) can be added by external scripts.
-                $multiple = ( isset($field['fields']) && $field['fields'] ) ? TRUE : FALSE;
+                $multiple = ( isset($field['fields']) && $field['fields'] ) ? true : false;
                 $options  = ( $multiple ) ? (array) $field['fields'] : array( $field );
 
                 foreach( $options as $key => $opt ) {
@@ -560,7 +560,7 @@ if( ! class_exists('WooCommerce_Role_Based_Price_WP_Settings') ) {
          *
          * @return void
          */
-        public function render_header($plugin_title = '', $tab_id = FALSE) {
+        public function render_header($plugin_title = '', $tab_id = false) {
 
             if( ! empty($plugin_title) )
                 echo get_screen_icon() . '<h2>' . (string) $plugin_title . '</h2>';
@@ -753,12 +753,12 @@ if( ! class_exists('WooCommerce_Role_Based_Price_WP_Settings') ) {
                         $submit = $page['submit'];
                     }
 
-                    $text             = isset($submit['text']) ? $submit['text'] : NULL;
+                    $text             = isset($submit['text']) ? $submit['text'] : null;
                     $type             = isset($submit['$type']) ? $submit['text'] : 'primary';
                     $name             = isset($submit['$name']) ? $submit['name'] : 'submit';
                     $other_attributes = array( 'id' => $form['id'] );
 
-                    submit_button($text, $type, $name, TRUE, $other_attributes);
+                    submit_button($text, $type, $name, true, $other_attributes);
                     echo '</form>';
                 }
             }
