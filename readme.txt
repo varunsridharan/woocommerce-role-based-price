@@ -5,27 +5,34 @@ Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
 Tags: WC Role Based Price,WooCommerce,Role based pricing,user role,wc dynamic pricing,wpallimport,wpallexport,product addons,role,selling price,regular price,sale price,selling,discounts,wordpress,ecommerce,membership discounts,membership,digital,downloads,download,drop price,dropshipper,advertising,deals,group pricing,wpml,wpml currencyswitcher,aelia currency swticher, Online Payment,Payment,Online, affiliate, cart, checkout, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, wholesale, woocommerce,advertising, discount, marketing, Membership, price, promotion
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
-Tested up to: 5.0
+Tested up to: 5.2.1
 WC requires at least: 3.0
 WC tested up to:3.5
-Stable tag: 3.3.3
+Stable tag: 3.3.4
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html 
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Sell product in different price for different user role based on your settings.
 
 == Description ==
-This plugin can make your simple WooCommerce shop in to multi currency and price level marketplace where products can be offered at different prices for different customer groups. 
-For example, Subscribers or Contributors get different prices than new customers. Differentiate your registered users to get your shop more attractive. New roles can be created and managed. 
+
+<h3>Thanks For Your Continued Support For WC Role Based Price</h3>
+<p>We Are Already In A Process For Created Version 4.0 For This Plugin
+<a href="https://forms.gle/waxC4Mm9SZFWuq3A8">Join Newsletter / Request Beta Access</a></p>
+
+<hr/>
+
+This plugin can make your simple WooCommerce shop in to multi currency and price level marketplace where products can be offered at different prices for different customer groups.
+For example, Subscribers or Contributors get different prices than new customers. Differentiate your registered users to get your shop more attractive. New roles can be created and managed.
 
 
-Latest version have been greatly improved for smoother and more speedy functioning, all user interfaces have been improved for more friendly user/webmaster experience. It is now WPML ready straight of of box. 
+Latest version have been greatly improved for smoother and more speedy functioning, all user interfaces have been improved for more friendly user/webmaster experience. It is now WPML ready straight of of box.
 
 We have added built-in plugin extension marketplace for more PRO level functions that not all might need but we think they are very useful. Please check full feature list below.
 
 [youtube https://www.youtube.com/watch?v=rlX8okqNfs4]
 
-We have worked on this plugin for last 3 years and so far it have been all free but in order for us to continue with this plugin development we had to move few of its’ features/extensions in to PRO(paid) version that is available for very generous price of $59 (+$20 for extended 12 month support) here: https://codecanyon.net/item/woocommerce-role-based-pricing-pro/14120734?ref=varunsridharan
+We have worked on this plugin for last 3 years and so far it have been all free but in order for us to continue with this plugin development we had to move few of its’ features/extensions in to PRO(paid) version that is available for very generous price of $59 (+$20 for extended 12 month support) here: <a href="https://1.envato.market/wcrbp">WC Role Based Pricing Pro</a>
 
 
 = Features + Add-Ons =
@@ -177,6 +184,10 @@ Please open an issue at <a href="https://github.com/varunsridharan/WooCommerce-R
 
 
 == Changelog ==
+= 3.3.4 [29-05-2019] =
+* Tested : With Latest WordPress & WooCommerce
+* Fixed : Minor Issues
+
 = 3.3.3 [27-09-2018] =
 * Tweaks : Code Cleanup Done.
 * Tested : With Latest WooCommerce & WordPress
