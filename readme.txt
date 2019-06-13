@@ -8,7 +8,7 @@ Requires at least: 3.0
 Tested up to: 5.2.1
 WC requires at least: 3.0
 WC tested up to:3.5
-Stable tag: 3.3.4
+Stable tag: 3.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -184,6 +184,9 @@ Please open an issue at <a href="https://github.com/varunsridharan/WooCommerce-R
 
 
 == Changelog ==
+= 3.3.5 [29-05-2019] =
+* Fixed : https://wordpress.org/support/topic/error-message-in-backend-2/
+
 = 3.3.4 [29-05-2019] =
 * Tested : With Latest WordPress & WooCommerce
 * Fixed : Minor Issues

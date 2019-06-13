@@ -143,7 +143,7 @@ class WooCommerce_Role_Based_Price_Admin {
 			$msg = '<h3>' . __( 'Thanks For Your Continued Support For %1$s' ) . '</h3>';
 			$msg .= __( 'We Are Already In A Process For Created Version 4.0 For This Plugin' );
 			$msg .= '<br/><br/><a href="https://forms.gle/waxC4Mm9SZFWuq3A8" class="button button-secondary">' . __( 'Join Newsletter / Request Beta Access' ) . '</a>';
-			$msg = sprintf( $msg, WC_RBPP_NAME );
+			$msg = sprintf( $msg, WC_RBP_NAME );
 			wc_rbp_admin_update( $msg, 1, array(), array() );
 		}
 
