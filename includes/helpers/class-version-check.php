@@ -4,8 +4,8 @@
  * Check the version of WordPress
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/core
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/core
  * @since      3.0
  */
 class WooCommerce_Role_Based_Price_Version_Check {

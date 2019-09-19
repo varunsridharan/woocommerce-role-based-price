@@ -1,18 +1,6 @@
 <?php
 /**
- * WooCommerce Role Based Price Main File
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              https://wordpress.org/plugins/woocommerce-role-based-price/
- * @since             3.0
- * @package           WooCommerce Role Based Price
- *
- * @wordpress-plugin
- * Plugin Name:       WooCommerce Role Based Price
+ * Plugin Name:       Role Based Price For WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/woocommerce-role-based-price/
  * Description:       Sell product in different price for different user role based on your settings.
  * Version:           3.3.5

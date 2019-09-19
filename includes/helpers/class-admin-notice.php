@@ -36,8 +36,8 @@ class WooCommerce_Role_Based_Price_Admin_Notices {
     public function auto_remove_Notice() {
 
         if( isset($_REQUEST[$this->REQUESTID]) ) {
-            $nonce = $_REQUEST['_wpnonce'];
-            $this->deleteNotice($_REQUEST[$this->REQUESTID]);
+            $nonce = sanitize_text_field($_REQUEST['_wpnonce']);
+            $this->deleteNotice(sanitize_text_field($_REQUEST[$this->REQUESTID]));
             if( wp_get_referer() ) {
                 wp_safe_redirect(wp_get_referer());
             }

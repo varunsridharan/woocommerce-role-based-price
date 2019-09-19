@@ -3,8 +3,8 @@
  * Plugin Main File
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/core
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/core
  * @since      3.0
  */
 if ( ! defined( 'WPINC' ) ) {
@@ -35,7 +35,7 @@ class WooCommerce_Role_Based_Price {
 	 * Define Required Constant
 	 */
 	private function define_constant() {
-		$this->define( 'WC_RBP_NAME', 'WooCommerce Role Based Price' ); # Plugin Name
+		$this->define( 'WC_RBP_NAME', 'Role Based Price For WooCommerce' ); # Plugin Name
 		$this->define( 'WC_RBP_SLUG', 'woocommerce-role-based-price' ); # Plugin Slug
 		$this->define( 'WC_RBP_TXT', 'woocommerce-role-based-price' ); #plugin lang Domain
 		$this->define( 'WC_RBP_DB', 'wc_rbp_' );

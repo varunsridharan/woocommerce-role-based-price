@@ -1,8 +1,8 @@
-=== WC Role Based Price ===
+=== Role Based Price For WooCommerce ===
 Contributors: varunms,arnis.arbidans
 Author URI: http://varunsridharan.in/
 Plugin URL: https://wordpress.org/plugins/woocommerce-role-based-price/
-Tags: WC Role Based Price,WooCommerce,Role based pricing,user role,wc dynamic pricing,wpallimport,wpallexport,product addons,role,selling price,regular price,sale price,selling,discounts,wordpress,ecommerce,membership discounts,membership,digital,downloads,download,drop price,dropshipper,advertising,deals,group pricing,wpml,wpml currencyswitcher,aelia currency swticher, Online Payment,Payment,Online, affiliate, cart, checkout, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, wholesale, woocommerce,advertising, discount, marketing, Membership, price, promotion
+Tags: Role Based Price For WooCommerce,WooCommerce,Role based pricing,user role,wc dynamic pricing,wpallimport,wpallexport,product addons,role,selling price,regular price,sale price,selling,discounts,wordpress,ecommerce,membership discounts,membership,digital,downloads,download,drop price,dropshipper,advertising,deals,group pricing,wpml,wpml currencyswitcher,aelia currency swticher, Online Payment,Payment,Online, affiliate, cart, checkout, digital, download, downloadable, e-commerce, ecommerce, inventory, reports, sales, sell, shipping, shop, shopping, stock, store, tax, variable, widgets, woothemes, wordpress ecommerce,discounts, prices, wholesale, woocommerce,advertising, discount, marketing, Membership, price, promotion
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=36Y7KSYPF7KTU
 Requires at least: 3.0
 Tested up to: 5.2.1
@@ -16,7 +16,7 @@ Sell product in different price for different user role based on your settings.
 
 == Description ==
 
-<h3>Thanks For Your Continued Support For WC Role Based Price</h3>
+<h3>Thanks For Your Continued Support For Role Based Price For WooCommerce</h3>
 <p>We Are Already In A Process For Created Version 4.0 For This Plugin
 <a href="https://forms.gle/waxC4Mm9SZFWuq3A8">Join Newsletter / Request Beta Access</a></p>
 
@@ -137,9 +137,9 @@ We have worked on this plugin for last 3 years and so far it have been all free 
 
 = Automatic installation =
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of WooCommerce Role Based Price, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
+Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't need to leave your web browser. To do an automatic install of Role Based Price For WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu and click Add New.
 
-In the search field type "WooCommerce Role Based Price"  and click Search Plugins. Once you've found our plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking "Install Now"
+In the search field type "Role Based Price For WooCommerce"  and click Search Plugins. Once you've found our plugin you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking "Install Now"
 
 = Manual installation =
 
@@ -147,7 +147,7 @@ The manual installation method involves downloading our plugin and uploading it 
 
 1. Installing alternatives:
  * via Admin Dashboard:
- * Go to 'Plugins > Add New', search for "WooCommerce Role Based Price", click "install"
+ * Go to 'Plugins > Add New', search for "Role Based Price For WooCommerce", click "install"
  * OR via direct ZIP upload:
  * Upload the ZIP package via 'Plugins > Add New > Upload' in your WP Admin
  * OR via FTP upload:

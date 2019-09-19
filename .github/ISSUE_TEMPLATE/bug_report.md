@@ -18,14 +18,14 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
-1. WC Role Based Price Settings
+1. Role Based Price For WooCommerce Settings
 2. WC Price Editor View (For the product which has the issue)
 If applicable, add screenshots to help explain your problem.
 
 **Software Versions**
 1. WordPress :
 2. WooCommerce : 
-3. WC Role Based Price :
+3. Role Based Price For WooCommerce :
 
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]

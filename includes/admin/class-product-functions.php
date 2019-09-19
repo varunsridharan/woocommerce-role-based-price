@@ -3,8 +3,8 @@
  * WooCommerce Product Role Based Price Edit Functions
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/Admin
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/Admin
  * @since      3.0
  */
 if( ! defined('WPINC') ) {

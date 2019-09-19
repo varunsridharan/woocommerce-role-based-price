@@ -78,7 +78,7 @@ class wc_product_price_importer {
 
     public function add_import_options($options) {
         $options['wcrbp_options'] = array(
-            'name'    => __("WC Role Based Price"),
+            'name'    => __("Role Based Price For WooCommerce"),
             'options' => $this->generate_options_data(),
         );
         return $options;

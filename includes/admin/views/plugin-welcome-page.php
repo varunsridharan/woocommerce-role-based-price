@@ -1,6 +1,6 @@
 <div class="wrap about-wrap">
     <h1><?php _e("Welcome To", WC_RBP_TXT);
-        echo ' ' . __("WC Role Based Price", WC_RBP_TXT) . ' ' . WC_RBP_V; ?></h1>
+        echo ' ' . __("Role Based Price For WooCommerce", WC_RBP_TXT) . ' ' . WC_RBP_V; ?></h1>
     <p class="about-text">
         <?php echo WC_RBP_NAME;
         _e(" now with improved speed and stability"); ?>

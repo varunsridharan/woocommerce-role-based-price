@@ -4,8 +4,8 @@
  * For detailed instructions see: https://github.com/keesiemeijer/WP-Settings
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/WordPress/Settings
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/WordPress/Settings
  * @since      3.0
  * @version    2.0
  * @author     keesiemeijer

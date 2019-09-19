@@ -7,7 +7,7 @@ class WooCommerce_Role_Based_Price_Product_Metabox {
     }
 
     public function add_metabox($post) {
-        add_meta_box('wc-rbp-product-editor', __('WC Role Based Price Editor', WC_RBP_TXT), array(
+        add_meta_box('wc-rbp-product-editor', __('Role Based Price For WooCommerce Editor', WC_RBP_TXT), array(
             $this,
             'render_price_editor_metabox',
         ), 'product', 'advanced', 'high');
@@ -35,8 +35,8 @@ class WooCommerce_Role_Based_Price_Product_Metabox {
         $args['html']           = '';
         $args['postid']         = $id;
         $args['mb']             = $this;
-        $args['parentID']       = isset($_REQUEST['parentID']) ? $_REQUEST['parentID'] : $id;
-        $args['selectedID']     = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : $id;
+        $args['parentID']       = isset($_REQUEST['parentID']) ? sanitize_text_field($_REQUEST['parentID']) : $id;
+        $args['selectedID']     = isset($_REQUEST['pid']) ? sanitize_text_field($_REQUEST['pid']) : $id;
 
         $args = apply_filters_ref_array('wc_rbp_metabox_render', array( &$args ));
 

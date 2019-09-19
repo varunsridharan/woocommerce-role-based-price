@@ -118,7 +118,7 @@ class wc_product_price_exporter {
     }
 
     public function add_option($options) {
-        $options['wcrbp_price'] = __("WC Role Based Price All", WC_RBP_TXT);
+        $options['wcrbp_price'] = __("Role Based Price For WooCommerce All", WC_RBP_TXT);
 
         $allowed_user_roles      = wc_rbp_allowed_roles();
         $user_roles              = wc_rbp_get_wp_roles();

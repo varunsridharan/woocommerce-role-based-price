@@ -3,8 +3,8 @@
  * Plugin's Admin code
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/Admin
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/Admin
  * @since      3.0
  */
 if ( ! defined( 'WPINC' ) ) {
@@ -69,7 +69,7 @@ class WooCommerce_Role_Based_Price_Admin {
 			return;
 		}
 
-		add_submenu_page( 'plugins.php', __( 'WC Role Based Price Welcome Page', 'WPW' ), __( 'WC Role Based Price Welcome Page', 'WPW' ), 'read', 'wcrbp_welcome_page', array(
+		add_submenu_page( 'plugins.php', __( 'Role Based Price For WooCommerce Welcome Page', 'WPW' ), __( 'Role Based Price For WooCommerce Welcome Page', 'WPW' ), 'read', 'wcrbp_welcome_page', array(
 			$this,
 			'wcrbp_welcome_page_content',
 		) );

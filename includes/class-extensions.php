@@ -3,8 +3,8 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/Admin
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/Admin
  * @since      3.0
  */
 if( ! defined('WPINC') ) {
@@ -292,12 +292,12 @@ class WooCommerce_Role_Based_Price_Addons {
             return 'invalidcode';
         }
         $nonce_action = 'wc_rbp_' . $action . '_addon';
-        $verify       = wp_verify_nonce($_REQUEST['wc_rbp_security_code'], $nonce_action);
+        $verify       = wp_verify_nonce(sanitize_text_field($_REQUEST['wc_rbp_security_code']), $nonce_action);
         if( ! $verify ) {
             return 'verifyfailed';
         }
         $function_call = 'wc_rbp_' . $action . '_addon';
-        $status        = $function_call($_REQUEST['addon_slug']);
+        $status        = $function_call(sanitize_text_field($_REQUEST['addon_slug']));
         if( $status ) {
             return TRUE;
         } else if( ! $status ) {

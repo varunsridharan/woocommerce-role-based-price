@@ -1,8 +1,8 @@
-# Copyright (C) 2018 WooCommerce Role Based Price
-# This file is distributed under the same license as the WooCommerce Role Based Price package.
+# Copyright (C) 2018 Role Based Price For WooCommerce
+# This file is distributed under the same license as the Role Based Price For WooCommerce package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Role Based Price 3.3\n"
+"Project-Id-Version: Role Based Price For WooCommerce 3.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-role-based-price\n"
 "POT-Creation-Date: 2018-03-12 04:57:30+00:00\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Unserializing instances of the class is forbidden."
 msgstr ""
 
 #: includes/admin/class-admin-init.php:72
-msgid "WC Role Based Price Welcome Page"
+msgid "Role Based Price For WooCommerce Welcome Page"
 msgstr ""
 
 #: includes/admin/class-admin-init.php:170
@@ -67,7 +67,7 @@ msgid "Unable To Process Your Request Please Try Again later"
 msgstr ""
 
 #: includes/admin/class-metabox.php:10
-msgid "WC Role Based Price Editor"
+msgid "Role Based Price For WooCommerce Editor"
 msgstr ""
 
 #: includes/admin/class-metabox.php:126
@@ -210,7 +210,7 @@ msgstr ""
 
 #: includes/admin/views/plugin-welcome-page.php:3
 #: plugins/wc-product-importer/wc-product-importer.php:79
-msgid "WC Role Based Price"
+msgid "Role Based Price For WooCommerce"
 msgstr ""
 
 #: includes/admin/views/plugin-welcome-page.php:6
@@ -296,7 +296,7 @@ msgid "Selling Price"
 msgstr ""
 
 #: includes/helpers/class-activator.php:32
-msgid "Thank you for installing <strong>WooCommerce Role Based Price</strong> : <strong>Version 3.0 </strong>"
+msgid "Thank you for installing <strong>Role Based Price For WooCommerce</strong> : <strong>Version 3.0 </strong>"
 msgstr ""
 
 #: includes/helpers/class-activator.php:33
@@ -369,7 +369,7 @@ msgid "Hide Product Price & Add To Cart button based on users role and set custo
 msgstr ""
 
 #: plugins/wc-product-exporter/wc-product-exporter.php:119
-msgid "WC Role Based Price All"
+msgid "Role Based Price For WooCommerce All"
 msgstr ""
 
 #: plugins/wc-product-exporter/wc-product-exporter.php:123
@@ -389,7 +389,7 @@ msgstr ""
 msgid "Price Status"
 msgstr ""
 #. Plugin Name of the plugin/theme
-msgid "WooCommerce Role Based Price"
+msgid "Role Based Price For WooCommerce"
 msgstr ""
 
 #. Plugin URI of the plugin/theme

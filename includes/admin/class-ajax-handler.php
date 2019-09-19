@@ -3,8 +3,8 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/Admin
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/Admin
  * @since      3.0
  */
 if( ! defined('WPINC') ) {
@@ -28,7 +28,7 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
         if( ! isset($_REQUEST['post_id']) ) {
             wp_send_json_error(__('Invalid Product ID', WC_RBP_TXT));
         }
-        $id = $_REQUEST['post_id'];
+        $id = sanitize_text_field($_REQUEST['post_id']);
 
         $parent = wp_get_post_parent_id($id);
         if( $parent !== FALSE ) {
@@ -50,8 +50,8 @@ class WooCommerce_Role_Based_Price_Admin_Ajax_Handler {
             wp_send_json_error(__('Invalid Product ID', WC_RBP_TXT));
         }
 
-        $id       = $_REQUEST['pid'];
-        $parentid = $_REQUEST['parentID'];
+        $id       = sanitize_text_field($_REQUEST['pid']);
+        $parentid = sanitize_text_field($_REQUEST['parentID']);
         $metabox  = new WooCommerce_Role_Based_Price_Product_Metabox;
         ob_start();
         //$metabox->generate_variation_selectbox($parentid,$id);

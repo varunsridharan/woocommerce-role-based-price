@@ -6,8 +6,8 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/core
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/core
  * @since      3.0
  */
 class WooCommerce_Role_Based_Price_Activator {
@@ -29,7 +29,7 @@ class WooCommerce_Role_Based_Price_Activator {
         if( WooCommerce_Role_Based_Price_Dependencies(WC_RBP_DEPEN) ) {
             WooCommerce_Role_Based_Price_Version_Check::activation_check('3.7');
 
-            $message = '<h3> <center> ' . __("Thank you for installing <strong>WooCommerce Role Based Price</strong> : <strong>Version 3.0 </strong>", WC_RBP_TXT) . '</center> </h3>';
+            $message = '<h3> <center> ' . __("Thank you for installing <strong>Role Based Price For WooCommerce</strong> : <strong>Version 3.0 </strong>", WC_RBP_TXT) . '</center> </h3>';
             $message .= '<p>' . __("We have worked entire 1 year to improve our plugin to best of our ability and we hope you will enjoy working with it. We are always open for your sugestions and feature requests", WC_RBP_TXT) . '</p>';
 
             $message .= '</hr>';

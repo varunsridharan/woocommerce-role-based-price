@@ -5,8 +5,8 @@
  * Checks if required Dependency plugin is enabled
  *
  * @link       https://wordpress.org/plugins/woocommerce-role-based-price/
- * @package    WooCommerce Role Based Price
- * @subpackage WooCommerce Role Based Price/FrontEnd
+ * @package    Role Based Price For WooCommerce
+ * @subpackage Role Based Price For WooCommerce/FrontEnd
  * @since      3.0
  */
 if( ! defined('WPINC') ) {
