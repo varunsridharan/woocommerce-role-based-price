@@ -92,7 +92,7 @@ class wc_product_price_exporter {
                 foreach( $prices as $user => $price_types ) {
                     foreach( $price_types as $type => $price ) {
                         if( isset($row['wcrbp_' . $user . '_' . $type]) ) {
-                            $row['wcrbp_' . $user . '_' . $type] = $price;
+                            $row['wcrbp_' . $user . '_' . $type] = wc_format_localized_price($price);
                         }
                     }
                 }
