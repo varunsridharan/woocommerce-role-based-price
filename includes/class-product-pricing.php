@@ -170,6 +170,11 @@ class WooCommerce_Role_Based_Price_Product_Pricing {
                 $product_id = $product->get_id();
             }
 
+            /**
+             * $product_id needs to be set also if conditions above are not true.
+             */
+            $product_id = $product->get_id();
+
         } else {
 
             if( is_numeric($product) ) {
