@@ -1,0 +1,70 @@
+name: On Release
+
+env:
+  DIST_LOCATION: "./dist/"
+  VS_WORKFLOW_TYPE: "wordpress-org-release"
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  wordpress_publisher:
+    name: "🚀  WordPress Publisher"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📥  Fetching Repository Contents"
+        uses: actions/checkout@master
+
+      - name: "💾  Github Repository Metadata"
+        uses: varunsridharan/action-repository-meta@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "💫  VS Utility"
+        uses: varunsridharan/action-vs-utility@master
+
+      - name: "⚡  Repository - Before Hook"
+        run: |
+          echo " "
+          if [ -f $VS_BEFORE_HOOK_FILE_LOCATION ]; then
+            echo "✅ Before Hook File Found : $VS_BEFORE_HOOK_FILE_LOCATION"
+            sh $VS_BEFORE_HOOK_FILE_LOCATION
+          else
+            echo "⚠️ No Before Hook File Found : $VS_BEFORE_HOOK_FILE_LOCATION"
+          fi
+          echo " "
+
+      - name: "💽  Installing Composer"
+        uses: pxgamer/composer-action@master
+        with:
+          command: install --no-dev
+
+      - name: "🚀  Publishing Release"
+        uses: varunsridharan/action-wp-org-deploy@master
+        with:
+          WORDPRESS_PASSWORD: ${{ secrets.WP_PASSWORD }}
+          WORDPRESS_USERNAME: ${{ secrets.WP_USERNAME }}
+          SLUG: ${{ env.GITHUB_REPOSITORY_NAME }}
+          IGNORE_FILE: ${{ env.WORDPRESS_DIST_IGNORE }}
+          ASSETS_IGNORE_FILE: ${{ env.WORDPRESS_ASSETS_DIST_IGNORE }}
+          DIST_LOCATION: ${{ env.DIST_LOCATION }}
+
+      - name: "📦  Upload ZIP To Release in Github"
+        uses: Roang-zero1/github-upload-release-artifacts-action@master
+        with:
+          args: ${{ env.DIST_LOCATION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "⚡  Repository - After Hook"
+        run: |
+          echo " "
+          if [ -f $VS_AFTER_HOOK_FILE_LOCATION ]; then
+            echo "✅ After Hook File Found : $VS_AFTER_HOOK_FILE_LOCATION"
+            sh $VS_AFTER_HOOK_FILE_LOCATION
+          else
+            echo "⚠️ No After Hook File Found : $VS_AFTER_HOOK_FILE_LOCATION"
+          fi
+          echo " "
