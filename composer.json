@@ -11,7 +11,7 @@
   },
   "scripts"     : {
     "makepot"        : "makepot ./wp-pot.json",
-    "add-textdomain" : "add-textdomain -i {textdomain} ./",
+    "add-textdomain" : "add-textdomain -i wc-role-based-price ./",
     "classmaps"      : "classmap-generator \"includes/\" ./vsp-classmaps.php",
     "wpo-dev"        : "rm -rf ./vendor/wponion/wponion && git clone --branch development https://github.com/wponion/wponion ./vendor/wponion/wponion/",
     "vsp-dev"        : "rm -rf ./vendor/varunsridharan/vsp-framework && git clone https://github.com/varunsridharan/vsp-framework ./vendor/varunsridharan/vsp-framework/",
