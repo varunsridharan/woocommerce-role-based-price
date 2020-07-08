@@ -1,0 +1,10 @@
+{
+  "src"     : "./",
+  "dist"    : "./i18n/wc-role-based-price.pot",
+  "domain"  : "wc-role-based-price",
+  "exclude" : "assets/,src/,node_modules/,vendor/",
+  "headers" : {
+    "Report-Msgid-Bugs-To" : "https://wordpress.org/support/plugin/woocommerce-role-based-price\n",
+    "Language-Team"        : "varunsridharan23@gmail.com\n"
+  }
+}

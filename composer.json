@@ -1,0 +1,38 @@
+{
+  "require"     : {
+    "wponion/wponion"              : "*",
+    "varunsridharan/vsp-framework" : "*"
+  },
+  "require-dev" : {
+    "varunsridharan/wp-cli-textdomain"      : "*",
+    "varunsridharan/wp2github-md"           : "*",
+    "mustangostang/spyc"                    : "*",
+    "varunsridharan/php-classmap-generator" : "*"
+  },
+  "scripts"     : {
+    "makepot"        : "makepot ./wp-pot.json",
+    "add-textdomain" : "add-textdomain -i {textdomain} ./",
+    "classmaps"      : "classmap-generator \"includes/\" ./vsp-classmaps.php",
+    "wpo-dev"        : "rm -rf ./vendor/wponion/wponion && git clone --branch development https://github.com/wponion/wponion ./vendor/wponion/wponion/",
+    "vsp-dev"        : "rm -rf ./vendor/varunsridharan/vsp-framework && git clone https://github.com/varunsridharan/vsp-framework ./vendor/varunsridharan/vsp-framework/",
+    "build"          : [ "@classmaps", "@add-textdomain", "@makepot" ]
+  },
+  "authors"     : [
+    {
+      "name"     : "Varun Sridharan",
+      "email"    : "varunsridharan23@gmail.com",
+      "homepage" : "http://varunsridharan.in",
+      "role"     : "Developer"
+    }
+  ],
+  "config"      : {
+    "sort-packages"       : true,
+    "optimize-autoloader" : true
+  },
+  "funding"     : [
+    {
+      "type" : "paypal",
+      "url"  : "https://www.paypal.me/varunsridharan23"
+    }
+  ]
+}
