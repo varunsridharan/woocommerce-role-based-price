@@ -132,10 +132,10 @@ We have worked on this plugin for last 3 years and so far it have been all free 
 
 ## Screenshots 
 ### 1. Plugin Installed
-![Plugin Installed](https://ps.w.org/sku-shortlink-for-woocommerce/assets/screenshot-1.jpg)
+[missing image]
 
 ### 2. Plugin Settings Menu
-![Plugin Settings Menu](https://ps.w.org/sku-shortlink-for-woocommerce/assets/screenshot-2.jpg)
+[missing image]
 
 ### 3. Plugin Settings Page
 [missing image]
