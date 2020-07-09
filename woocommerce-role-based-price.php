@@ -17,6 +17,41 @@
 
 defined( 'ABSPATH' ) || exit;
 
-defined( 'WC_RBP_WC_FILE' ) || define( 'WC_RBP_WC_FILE', __FILE__ );
-defined( 'WC_RBP_WC_VERSION' ) || define( 'WC_RBP_WC_VERSION', '4.0' );
-defined( 'WC_RBP_WC_NAME' ) || define( 'WC_RBP_WC_NAME', __( 'Role Based Price For WooCommerce' ) );
+defined( 'WC_RBP_FILE' ) || define( 'WC_RBP_FILE', __FILE__ );
+defined( 'WC_RBP_VERSION' ) || define( 'WC_RBP_VERSION', '4.0' );
+defined( 'WC_RBP_NAME' ) || define( 'WC_RBP_NAME', __( 'Role Based Price For WooCommerce' ) );
+
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
+
+if ( function_exists( 'wponion_load' ) ) {
+	wponion_load( __DIR__ . '/vendor/wponion/wponion' );
+}
+
+if ( function_exists( 'vsp_maybe_load' ) ) {
+	vsp_maybe_load( 'wc_rbp_init', __DIR__ . '/vendor/varunsridharan/' );
+}
+
+register_activation_hook( WC_RBP_FILE, 'wc_rbp_installer' );
+
+if ( ! function_exists( 'wc_rbp_installer' ) ) {
+	/**
+	 * Runs Installer Script.
+	 */
+	function wc_rbp_installer() {
+		require_once __DIR__ . '/includes/db/class-price.php';
+		require_once __DIR__ . '/includes/db/class-price-meta.php';
+		require_once __DIR__ . '/installer/class-installer.php';
+	}
+}
+
+if ( ! function_exists( 'wc_rbp_init' ) ) {
+	/**
+	 * Inits The Plugin.
+	 */
+	function wc_rbp_init() {
+		if ( ! vsp_add_wc_required_notice( WC_RBP_NAME ) ) {
+		}
+	}
+}
