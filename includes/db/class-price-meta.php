@@ -37,11 +37,11 @@ class Price_Meta extends DB_Table {
 	protected function set_schema() {
 		return <<<SQL
 meta_id BIGINT UNSIGNED NOT NULL auto_increment,
-order_item_id BIGINT UNSIGNED NOT NULL,
+wc_role_based_price_id BIGINT UNSIGNED NOT NULL,
 meta_key varchar(255) default NULL,
 meta_value longtext NULL,
 PRIMARY KEY  (meta_id),
-KEY order_item_id (order_item_id),
+KEY wc_role_based_price_id (wc_role_based_price_id),
 KEY meta_key (meta_key(32))
 SQL;
 
