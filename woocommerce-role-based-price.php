@@ -52,6 +52,19 @@ if ( ! function_exists( 'wc_rbp_init' ) ) {
 	 */
 	function wc_rbp_init() {
 		if ( ! vsp_add_wc_required_notice( WC_RBP_NAME ) ) {
+			require_once __DIR__ . '/bootstrap.php';
+			wc_rbp();
 		}
+	}
+}
+
+if ( ! function_exists( 'wc_rbp' ) ) {
+	/**
+	 * Returns A New instance.
+	 *
+	 * @return \WC_RBP
+	 */
+	function wc_rbp() {
+		return WC_RBP::instance();
 	}
 }
