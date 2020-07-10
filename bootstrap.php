@@ -24,7 +24,12 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 				'hook_slug' => 'wc_rbp',
 				'file'      => WC_RBP_FILE,
 				'logging'   => false,
-				'addons'    => false,
+				'addons'    => array(
+					'base_path'               => $this->plugin_path( 'addons/', WC_RBP_FILE ),
+					'base_url'                => $this->plugin_url( 'addons/', WC_RBP_FILE ),
+					'addon_listing_tab_title' => __( 'Addons' ),
+					'addon_listing_tab_icon'  => ' wpoic-plug',
+				),
 				'localizer' => false,
 			);
 			$options['autoloader']    = array(
@@ -32,7 +37,7 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 				'namespace' => 'WC_RBP',
 			);
 			$options['settings_page'] = array(
-				'option_name'     => '_wcrbp',
+				'option_name'     => '_wc_role_based_price',
 				'framework_title' => __( 'Role Based Price For WooCommerce' ),
 				'framework_desc'  => __( 'Sell product in different price for different user role based on your settings.' ),
 				'theme'           => 'wp',
@@ -53,6 +58,15 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 		 */
 		public function settings_init_before() {
 			$this->_instance( '\WC_RBP\Admin\Settings\Settings' );
+		}
+
+		/**
+		 * Loads Required Files.
+		 *
+		 * @since {NEWVERSION}
+		 */
+		protected function load_files() {
+			$this->load_file( 'includes/functions/*.php' );
 		}
 	}
 }
