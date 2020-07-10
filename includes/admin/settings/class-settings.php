@@ -20,7 +20,7 @@ class Settings extends Plugin_Settings {
 
 	protected function general_settings() {
 		$page = $this->builder->container( 'general', __( 'General' ), 'wpoic-gear' );
-		$page->select( 'enabled_roles', __( 'Enabled User Roles' ) )
+		$page->select( 'allowed_roles', __( 'Enabled User Roles' ) )
 			->multiple( true )
 			->select_framework( 'selectize', array(
 				'plugins' => [ 'remove_button', 'restore_on_backspace', 'drag_drop' ],
