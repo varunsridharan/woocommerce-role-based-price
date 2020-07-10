@@ -15,7 +15,7 @@
     "wp2githubmd"    : "wp2gitthub-md \"wc-role-based-price\" \"./readme.txt\" ",
     "classmaps"      : "classmap-generator \"includes/\" ./vsp-classmaps.php",
     "wpo-dev"        : "rm -rf ./vendor/wponion/wponion && git clone --branch development https://github.com/wponion/wponion ./vendor/wponion/wponion/",
-    "vsp-dev"        : "rm -rf ./vendor/varunsridharan/vsp-framework && git clone https://github.com/varunsridharan/vsp-framework ./vendor/varunsridharan/vsp-framework/",
+    "vsp-dev"        : "rm -rf ./vendor/varunsridharan/vsp-framework && git clone https://github.com/varunsridharan/vsp-framework ./vendor/varunsridharan/vsp-framework/ && rm -rf ./vendor/varunsridharan/vsp-framework/.git",
     "build"          : [ "@classmaps", "@add-textdomain", "@makepot", "@wp2githubmd" ]
   },
   "authors"     : [
