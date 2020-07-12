@@ -40,7 +40,7 @@ class Price extends DB_Table {
 `type` varchar(255) NOT NULL,
 `user_role` varchar(255) NOT NULL,
 `regular_price` decimal(10,10) DEFAULT NULL,
-`selling_price` decimal(10,10) DEFAULT NULL,
+`sale_price` decimal(10,10) DEFAULT NULL,
 PRIMARY KEY (`ID`),
 UNIQUE KEY `ID` (`ID`),
 KEY `wc_product` (`wc_product`)
