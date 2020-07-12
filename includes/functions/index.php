@@ -39,7 +39,7 @@ if ( ! function_exists( 'wc_rbp_get_opposite_metakey' ) ) {
 	 * @return string
 	 */
 	function wc_rbp_get_opposite_metakey( $key ) {
-		return ( 'selling_price' === $key ) ? 'regular_price' : $key;
+		return ( 'sale_price' === $key ) ? 'regular_price' : $key;
 	}
 }
 
@@ -54,7 +54,7 @@ if ( ! function_exists( 'wc_rbp_avaiable_price_type' ) ) {
 	function wc_rbp_avaiable_price_type( $key = '' ) {
 		$avaiable_price = apply_filters( 'wc_rbp_avaiable_price', array(
 			'regular_price' => __( 'Regular Price' ),
-			'selling_price' => __( 'Selling Price' ),
+			'sale_price'    => __( 'Sale Price' ),
 		) );
 		return ( ! empty( $key ) && isset( $avaiable_price[ $key ] ) ) ? $avaiable_price[ $key ] : $avaiable_price;
 	}
