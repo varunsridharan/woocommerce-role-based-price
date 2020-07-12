@@ -16,7 +16,7 @@ abstract class Addon extends \VSP\Core\Abstracts\Addon {
 	 *
 	 * @return \WC_RBP
 	 */
-	protected function plugin() {
+	public function plugin() {
 		return wc_rbp();
 	}
 }
