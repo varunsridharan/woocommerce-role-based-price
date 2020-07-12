@@ -1,4 +1,9 @@
 <?php
+
+use VSP\Helper;
+use WC_RBP\Cache;
+use WPOnion\Exception\Cache_Not_Found;
+
 defined( 'ABSPATH' ) || exit;
 
 if ( ! function_exists( 'wc_rbp_option' ) ) {
@@ -13,6 +18,19 @@ if ( ! function_exists( 'wc_rbp_option' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wc_rbp_allowed_roles' ) ) {
+	/**
+	 * @return array|bool|\WPOnion\DB\Option
+	 */
+	function wc_rbp_allowed_roles() {
+		$roles = wc_rbp_option( 'allowed_roles' );
+		if ( empty( $roles ) ) {
+			$roles = array_keys( Helper::user_roles_lists() );
+		}
+
+		return $roles;
+	}
+}
 
 if ( ! function_exists( 'wc_rbp_get_opposite_metakey' ) ) {
 	/**
@@ -24,7 +42,6 @@ if ( ! function_exists( 'wc_rbp_get_opposite_metakey' ) ) {
 		return ( 'selling_price' === $key ) ? 'regular_price' : $key;
 	}
 }
-
 
 if ( ! function_exists( 'wc_rbp_avaiable_price_type' ) ) {
 	/**
@@ -43,21 +60,6 @@ if ( ! function_exists( 'wc_rbp_avaiable_price_type' ) ) {
 	}
 }
 
-
-if ( ! function_exists( 'wc_rbp_allowed_roles' ) ) {
-	/**
-	 * @return array|bool|\WPOnion\DB\Option
-	 */
-	function wc_rbp_allowed_roles() {
-		$roles = wc_rbp_option( 'allowed_roles' );
-		if ( empty( $roles ) ) {
-			$roles = array_keys( wc_rbp_get_user_roles_selectbox() );
-		}
-
-		return $roles;
-	}
-}
-
 if ( ! function_exists( 'wc_rbp_allowed_price' ) ) {
 	/**
 	 * @return array|bool|\WPOnion\DB\Option
@@ -69,5 +71,26 @@ if ( ! function_exists( 'wc_rbp_allowed_price' ) ) {
 		}
 
 		return $roles;
+	}
+}
+
+if ( ! function_exists( 'wc_rbp_price_type_label' ) ) {
+	/**
+	 * Returns A Valid Price Type Label.
+	 *
+	 * @param string $key
+	 *
+	 * @return string|array
+	 */
+	function wc_rbp_price_type_label( $key = '' ) {
+		try {
+			$price_types = Cache::get( 'price_types/labels' );
+		} catch ( Cache_Not_Found $exception ) {
+			$price_types = wc_rbp_avaiable_price_type();
+			foreach ( $price_types as $price_id => $default_label ) {
+				$price_types[ $price_id ] = wc_rbp_option( $price_id . '_label', $default_label );
+			}
+		}
+		return ( ! empty( $key ) && isset( $price_types[ $key ] ) ) ? $price_types[ $key ] : $price_types;
 	}
 }
