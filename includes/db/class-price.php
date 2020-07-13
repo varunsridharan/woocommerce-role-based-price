@@ -32,18 +32,20 @@ class Price extends DB_Table {
 	 * Price Table Schema
 	 *
 	 * @return string
+	 * @todo Set Proper Datatype for Regular Price And Sale Price
 	 */
 	protected function set_schema() {
 		return <<<SQL
 `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-`wc_product` bigint(20) NOT NULL,
-`type` varchar(255) NOT NULL,
+`object_id` bigint(20) NOT NULL,
+`object_type` varchar(255) NOT NULL,
+`price_type` varchar(255) NOT NULL,
 `user_role` varchar(255) NOT NULL,
-`regular_price` decimal(10,10) DEFAULT NULL,
-`sale_price` decimal(10,10) DEFAULT NULL,
+`regular_price` varchar(255) DEFAULT NULL,
+`sale_price` varchar(255) DEFAULT NULL,
 PRIMARY KEY (`ID`),
 UNIQUE KEY `ID` (`ID`),
-KEY `wc_product` (`wc_product`)
+KEY `object_id` (`object_id`)
 SQL;
 
 	}
