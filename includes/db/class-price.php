@@ -37,15 +37,15 @@ class Price extends DB_Table {
 	protected function set_schema() {
 		return <<<SQL
 `ID` bigint(20) NOT NULL AUTO_INCREMENT,
-`object_id` bigint(20) NOT NULL,
 `object_type` varchar(255) NOT NULL,
+`product_id` bigint(20) NOT NULL,
 `price_type` varchar(255) NOT NULL,
 `user_role` varchar(255) NOT NULL,
 `regular_price` varchar(255) DEFAULT NULL,
 `sale_price` varchar(255) DEFAULT NULL,
 PRIMARY KEY (`ID`),
 UNIQUE KEY `ID` (`ID`),
-KEY `object_id` (`object_id`)
+KEY `product_id` (`product_id`)
 SQL;
 
 	}
