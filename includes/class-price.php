@@ -271,7 +271,7 @@ class Price {
 	 *
 	 * @return bool|mixed
 	 */
-	public function get_meta( $key, $single = false ) {
+	public function get_meta( $key, $single = true ) {
 		if ( $this->has_option( $key ) ) {
 			return $this->option( $key );
 		}
