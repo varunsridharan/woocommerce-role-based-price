@@ -2,7 +2,9 @@
 
 namespace WC_RBP\Admin;
 
-class Price_Fields extends \VSP\Base {
+use VSP\Base;
+
+class Price_Fields extends Base {
 	/**
 	 * Stores WPOnion Builder.
 	 *
@@ -11,20 +13,40 @@ class Price_Fields extends \VSP\Base {
 	protected $builder;
 
 	/**
+	 * Stores Allowed User Roles.
+	 *
+	 * @var bool|array
+	 */
+	protected $roles = false;
+
+	/**
+	 * Stores Allowed Price Types.
+	 *
+	 * @var bool|array
+	 */
+	protected $price_types = false;
+
+	/**
 	 * Price_Fields constructor.
 	 *
 	 * @param null|\WPO\Builder $builder
+	 * @param string|bool|array $price_types
+	 * @param string|bool|array $roles
 	 */
-	public function __construct( $builder = null ) {
-		$this->builder = ( empty( $builder ) ) ? wponion_builder() : $builder;
+	public function __construct( $builder = null, $price_types = false, $roles = false ) {
+		$this->roles       = ( empty( $roles ) ) ? wc_rbp_allowed_roles() : wponion_cast_array( $roles );
+		$this->price_types = ( empty( $price_types ) ) ? wc_rbp_allowed_price() : wponion_cast_array( $price_types );
+		$this->builder     = ( empty( $builder ) ) ? wponion_builder() : $builder;
 	}
 
 	/**
-	 * Genertes Fields.
+	 * Returns A Simple CSS For Tab.
+	 *
+	 * @return string
 	 */
-	protected function setup() {
-		$tab           = $this->builder->tab( 'roles_price' )->tab_style( 'style2' )->un_array( true )->css( '
-		padding:0;
+	protected function tab_css() {
+		return <<<SCSS
+padding:0;
 > .wpo-row {
 	margin:0;
 	> .wponion-fieldset{
@@ -34,10 +56,17 @@ class Price_Fields extends \VSP\Base {
 		}
 	}
 }
-		' );
-		$allowed_roles = wc_rbp_allowed_roles();
+SCSS;
 
-		foreach ( $allowed_roles as $role_id ) {
+	}
+
+	/**
+	 * Genertes Fields.
+	 */
+	protected function setup() {
+		$tab = $this->builder->tab( 'roles_price' )->tab_style( 'style2' )->un_array( true )->css( $this->tab_css() );
+
+		foreach ( $this->roles as $role_id ) {
 			$section = $tab->section( $role_id, \VSP\Helper::user_role_title( $role_id, $role_id ), 'wpoic-user' );
 			$this->setup_single_role_fields( $section, $role_id );
 		}
@@ -48,13 +77,10 @@ class Price_Fields extends \VSP\Base {
 	 *
 	 * @param \WPO\Fields\Fieldset $section
 	 * @param string               $role_id
-	 *
-	 * @since {NEWVERSION}
 	 */
 	protected function setup_single_role_fields( $section, $role_id ) {
-		$allowed_price = wc_rbp_allowed_price();
-		$is_single     = ( count( $allowed_price ) === 1 ) ? '' : 'wpo-col-xs-12 wpo-col-md-12 wpo-col-lg-6';
-		foreach ( $allowed_price as $price_type ) {
+		$is_single = ( count( $this->price_types ) === 1 ) ? '' : 'wpo-col-xs-12 wpo-col-md-12 wpo-col-lg-6';
+		foreach ( $this->price_types as $price_type ) {
 			$label = wc_rbp_price_type_label( $price_type );
 			$section->text( $price_type, wc_rbp_price_type_label( $price_type ) )
 				->wrap_class( $is_single )
