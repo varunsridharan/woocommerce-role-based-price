@@ -59,7 +59,8 @@ class Price_Fields extends \VSP\Base {
 			$section->text( $price_type, wc_rbp_price_type_label( $price_type ) )
 				->wrap_class( $is_single )
 				->attribute( 'type', 'number' )
-				->style( 'width:50%;' )
+				->horizontal( true )
+				->style( 'width:100%;' )
 				->desc_field( sprintf( __( 'Enter Product\'s %1$s' ), $label ) );
 		}
 	}
