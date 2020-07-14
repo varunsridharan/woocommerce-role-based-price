@@ -1,6 +1,8 @@
 <?php
 
 use VSP\Framework;
+use WC_RBP\DB\Price;
+use WC_RBP\DB\Price_Meta;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -58,6 +60,18 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 		 */
 		public function settings_init_before() {
 			$this->_instance( '\WC_RBP\Admin\Settings\Settings' );
+		}
+
+		/**
+		 * Inits Certin Class.
+		 */
+		public function init_class() {
+			Price::instance();
+			Price_Meta::instance();
+
+			if ( vsp_is_admin() || vsp_is_ajax() ) {
+				$this->_instance( '\WC_RBP\Admin\Metabox' );
+			}
 		}
 
 		/**
