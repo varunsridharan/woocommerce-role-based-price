@@ -3,6 +3,7 @@
 namespace WC_RBP;
 
 use VSP\WC_Compatibility;
+use WC_RBP\DB\Query;
 use WPOnion\Traits\Class_Options;
 
 defined( 'ABSPATH' ) || exit;
@@ -86,11 +87,9 @@ class Price {
 	 * @param int|\WC_Product $product_id
 	 * @param string|bool     $user_role
 	 * @param string          $price_type
-	 *
-	 * @throws \Exception
 	 */
 	public function __construct( $product_id, $price_type = 'core', $user_role = false ) {
-		$this->product_id = \VSP\WC_Compatibility::get_product_id( $product_id );
+		$this->product_id = WC_Compatibility::get_product_id( $product_id );
 		$this->user_role  = $user_role;
 		$this->price_type = $price_type;
 		$this->fetch_data();
@@ -105,23 +104,18 @@ class Price {
 
 	/**
 	 * Fetches Data From DB.
-	 *
-	 * @throws \Exception
 	 */
 	protected function fetch_data() {
-		$result = $this->db()
-			->select( '*' )
-			->where( 'object_type', $this->object_type )
-			->where( 'product_id', $this->product_id )
-			->where( 'price_type', $this->price_type )
-			->where( 'user_role', $this->user_role )
-			->one();
+		$is_exists = Query::exists( $this->object_type, $this->product_id, $this->price_type, $this->user_role );
+		if ( $is_exists ) {
+			$result = Query::get_price( $this->object_type, $this->product_id, $this->price_type, $this->user_role );
 
-		if ( isset( $result->ID ) ) {
-			$this->ID            = $result->ID;
-			$this->sale_price    = $result->sale_price;
-			$this->regular_price = $result->regular_price;
-			$this->object_type   = $result->object_type;
+			if ( isset( $result->ID ) ) {
+				$this->ID            = $result->ID;
+				$this->sale_price    = $result->sale_price;
+				$this->regular_price = $result->regular_price;
+				$this->object_type   = $result->object_type;
+			}
 		}
 	}
 
@@ -151,7 +145,11 @@ class Price {
 	 * @return $this
 	 */
 	public function set_regular_price( $price ) {
-		$this->regular_price = floatval( wc_format_decimal( $price ) );
+		if ( 0 === $price || ! empty( $price ) ) {
+			$this->regular_price = floatval( wc_format_decimal( $price ) );
+		} else {
+			$this->regular_price = '';
+		}
 		return $this;
 	}
 
@@ -163,7 +161,11 @@ class Price {
 	 * @return $this
 	 */
 	public function set_sale_price( $price ) {
-		$this->sale_price = floatval( wc_format_decimal( $price ) );
+		if ( 0 === $price || ! empty( $price ) ) {
+			$this->sale_price = floatval( wc_format_decimal( $price ) );
+		} else {
+			$this->sale_price = '';
+		}
 		return $this;
 	}
 
@@ -186,7 +188,6 @@ class Price {
 	 * @param $user_id
 	 *
 	 * @return $this
-	 * @since {NEWVERSION}
 	 */
 	public function set_user_id( $user_id ) {
 		$this->object_type = 'user_' . $user_id;
@@ -256,7 +257,6 @@ class Price {
 	 * @param $key
 	 *
 	 * @return bool
-	 * @since {NEWVERSION}
 	 */
 	public function delete_meta( $key ) {
 		$this->remove_option( $key );
@@ -291,21 +291,20 @@ class Price {
 	 */
 	public function save() {
 		$is_saved = false;
+
+		if ( empty( $this->ID ) && empty( $this->regular_price ) && empty( $this->sale_price ) ) {
+			return false;
+		}
+
 		if ( empty( $this->ID ) ) {
-			$is_saved = $this->db()->insert( array(
-				'object_type'   => $this->object_type,
-				'product_id'    => $this->product_id,
-				'price_type'    => $this->price_type,
-				'user_role'     => $this->user_role,
-				'regular_price' => $this->regular_price,
-				'sale_price'    => $this->sale_price,
-			) );
+			$is_saved = Query::add( $this->object_type, $this->product_id, $this->price_type, $this->user_role, $this->regular_price, $this->sale_price );
+
 			if ( $is_saved ) {
 				$this->ID = $is_saved;
 				$metas    = $this->option();
 				if ( ! empty( $metas ) ) {
 					foreach ( $metas as $id => $values ) {
-						var_dump( $this->add_meta( $id, $values ) );
+						$this->add_meta( $id, $values );
 					}
 				}
 			}
