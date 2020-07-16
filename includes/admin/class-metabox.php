@@ -22,6 +22,7 @@ class Metabox extends Base {
 		wponion_metabox( array(
 			'metabox_id'    => 'role-based-price-editor',
 			'option_name'   => '_wc_role_based_price',
+			'save_type'     => '\WC_RBP\Admin\Save_Handler\WPO_Metabox',
 			'screens'       => 'product',
 			'metabox_title' => __( 'Role Based Price Editor' ),
 		), array( $instance, 'get' ) );

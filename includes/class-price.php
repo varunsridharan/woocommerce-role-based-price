@@ -122,19 +122,23 @@ class Price {
 	/**
 	 * Fetches & Returns Regular Price.
 	 *
+	 * @param string $type How To Return The Value.
+	 *
 	 * @return float
 	 */
-	public function get_regular_price() {
-		return floatval( $this->regular_price );
+	public function get_regular_price( $type = 'display' ) {
+		return ( 'display' === $type ) ? floatval( $this->regular_price ) : $this->regular_price;
 	}
 
 	/**
 	 * Fetches & Returns Regular Price.
 	 *
+	 * @param string $type How To Return The Value.
+	 *
 	 * @return float
 	 */
-	public function get_sale_price() {
-		return floatval( $this->sale_price );
+	public function get_sale_price( $type = 'display' ) {
+		return ( 'display' === $type ) ? floatval( $this->sale_price ) : $this->sale_price;
 	}
 
 	/**
