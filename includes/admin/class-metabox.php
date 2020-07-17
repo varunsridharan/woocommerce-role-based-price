@@ -24,6 +24,7 @@ class Metabox extends Base {
 			'option_name'   => '_wc_role_based_price',
 			'save_type'     => '\WC_RBP\Admin\Save_Handler\WPO_Metabox',
 			'screens'       => 'product',
+			'assets'        => array( 'wcrbp-admin' ),
 			'metabox_title' => __( 'Role Based Price Editor' ),
 		), array( $instance, 'get' ) );
 	}

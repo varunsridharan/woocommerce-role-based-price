@@ -37,7 +37,7 @@ class Settings extends Plugin_Settings {
 			->desc_field( __( 'Role Based Price Will Be Enabled For Selected User Roles' ) )
 			->options( array( '\VSP\Helper', 'user_roles_lists' ) );
 
-		$page->select( 'allowed_price', __( 'Enabled Product Pricing' ) )
+		$page->select( 'allowed_prices', __( 'Enabled Product Pricing' ) )
 			->options( $price_types )
 			->style( 'width:25%;' )
 			->desc_field( __( 'Price Types To Be Enabled.' ) )

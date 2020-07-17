@@ -60,12 +60,12 @@ if ( ! function_exists( 'wc_rbp_avaiable_price_type' ) ) {
 	}
 }
 
-if ( ! function_exists( 'wc_rbp_allowed_price' ) ) {
+if ( ! function_exists( 'wc_rbp_allowed_prices' ) ) {
 	/**
 	 * @return array|bool|\WPOnion\DB\Option
 	 */
-	function wc_rbp_allowed_price() {
-		$roles = wc_rbp_option( 'allowed_price' );
+	function wc_rbp_allowed_prices() {
+		$roles = wc_rbp_option( 'allowed_prices' );
 		if ( empty( $roles ) ) {
 			$roles = array_keys( wc_rbp_avaiable_price_type() );
 		}

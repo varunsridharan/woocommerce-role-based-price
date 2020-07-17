@@ -30,13 +30,17 @@ class Price_Fields extends Base {
 	 * Price_Fields constructor.
 	 *
 	 * @param null|\WPO\Builder $builder
-	 * @param string|bool|array $price_types
-	 * @param string|bool|array $roles
+	 * @param array             $args
 	 */
-	public function __construct( $builder = null, $price_types = false, $roles = false ) {
-		$this->roles       = ( empty( $roles ) ) ? wc_rbp_allowed_roles() : wponion_cast_array( $roles );
-		$this->price_types = ( empty( $price_types ) ) ? wc_rbp_allowed_price() : wponion_cast_array( $price_types );
-		$this->builder     = ( empty( $builder ) ) ? wponion_builder() : $builder;
+	public function __construct( $builder = null, $args = array() ) {
+		$args = wponion_parse_args( $args, array(
+			'allowed_roles'     => wc_rbp_allowed_roles(),
+			'allowed_prices'    => wc_rbp_allowed_price(),
+			'product_id'        => false,
+			'parent_product_id' => false,
+		) );
+
+		$this->builder = ( empty( $builder ) ) ? wponion_builder() : $builder;
 	}
 
 	/**
@@ -79,8 +83,8 @@ SCSS;
 	 * @param string               $role_id
 	 */
 	protected function setup_single_role_fields( $section, $role_id ) {
-		$is_single = ( count( $this->price_types ) === 1 ) ? '' : 'wpo-col-xs-12 wpo-col-md-12 wpo-col-lg-6';
-		foreach ( $this->price_types as $price_type ) {
+		$is_single = ( count( $this->allowed_prices ) === 1 ) ? '' : 'wpo-col-xs-12 wpo-col-md-12 wpo-col-lg-6';
+		foreach ( $this->allowed_prices as $price_type ) {
 			$label = wc_rbp_price_type_label( $price_type );
 			$section->text( $price_type, wc_rbp_price_type_label( $price_type ) )
 				->wrap_class( $is_single )
