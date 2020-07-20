@@ -37,6 +37,8 @@ class WPO_Metabox extends Custom_DB_Storage_Handler {
 				);
 			}
 		}
+		$return['product_id']     = wponion_get_var( 'wcrbp_product_id', $this->object_id() );
+		$return['sub_product_id'] = wponion_get_var( 'wcrbp_sub_product_id', false );
 		return $return;
 	}
 
