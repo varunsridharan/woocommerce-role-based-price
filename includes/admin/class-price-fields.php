@@ -3,6 +3,7 @@
 namespace WC_RBP\Admin;
 
 use VSP\Base;
+use VSP\Helper;
 
 class Price_Fields extends Base {
 	/**
@@ -13,66 +14,50 @@ class Price_Fields extends Base {
 	protected $builder;
 
 	/**
-	 * Stores Allowed User Roles.
-	 *
-	 * @var bool|array
-	 */
-	protected $roles = false;
-
-	/**
-	 * Stores Allowed Price Types.
-	 *
-	 * @var bool|array
-	 */
-	protected $price_types = false;
-
-	/**
 	 * Price_Fields constructor.
 	 *
 	 * @param null|\WPO\Builder $builder
 	 * @param array             $args
 	 */
 	public function __construct( $builder = null, $args = array() ) {
-		$args = wponion_parse_args( $args, array(
-			'allowed_roles'     => wc_rbp_allowed_roles(),
-			'allowed_prices'    => wc_rbp_allowed_price(),
-			'product_id'        => false,
-			'parent_product_id' => false,
+		$this->set_args( $args, array(
+			'allowed_roles'  => wc_rbp_allowed_roles(),
+			'allowed_prices' => wc_rbp_allowed_prices(),
+			'product_id'     => wponion_get_var( 'wcrbp_product_id', false ),
+			'sub_product_id' => wponion_get_var( 'wcrbp_sub_product_id', false ),
 		) );
-
 		$this->builder = ( empty( $builder ) ) ? wponion_builder() : $builder;
 	}
 
-	/**
-	 * Returns A Simple CSS For Tab.
-	 *
-	 * @return string
-	 */
-	protected function tab_css() {
-		return <<<SCSS
-padding:0;
-> .wpo-row {
-	margin:0;
-	> .wponion-fieldset{
-		padding:0;
-		> .wponion-tab-wrap{
-			border:none;
-		}
-	}
-}
-SCSS;
-
-	}
 
 	/**
 	 * Genertes Fields.
 	 */
 	protected function setup() {
-		$tab = $this->builder->tab( 'roles_price' )->tab_style( 'style2' )->un_array( true )->css( $this->tab_css() );
+		global $post_ID;
 
-		foreach ( $this->roles as $role_id ) {
-			$section = $tab->section( $role_id, \VSP\Helper::user_role_title( $role_id, $role_id ), 'wpoic-user' );
+		if ( empty( $this->option( 'product_id' ) ) && ! empty( $post_ID ) ) {
+			$this->set_option( 'product_id', $post_ID );
+		}
+
+		$this->builder->hidden( 'product_id' )->name( 'wcrbp_product_id' );
+		$this->builder->hidden( 'sub_product_id' )->name( 'wcrbp_sub_product_id' );
+
+		$tab = $this->builder->tab( 'roles_price' )
+			->tab_style( 'style2' )
+			->un_array( true )
+			->wrap_id( 'role-based-price-main-tab' );
+
+		foreach ( $this->option( 'allowed_roles' ) as $role_id ) {
+			$section = $tab->section( $role_id, Helper::user_role_title( $role_id, $role_id ), 'wpoic-user' );
+
+			$this->do_action( 'price/editor/fields/role/before', $this->builder, $this );
+			$this->do_action( "price/editor/fields/${role_id}/before", $this->builder, $this );
+
 			$this->setup_single_role_fields( $section, $role_id );
+
+			$this->do_action( "price/editor/fields/${role_id}", $this->builder, $role_id, $this );
+			$this->do_action( 'price/editor/fields/role', $this->builder, $role_id, $this );
 		}
 	}
 
@@ -83,8 +68,9 @@ SCSS;
 	 * @param string               $role_id
 	 */
 	protected function setup_single_role_fields( $section, $role_id ) {
-		$is_single = ( count( $this->allowed_prices ) === 1 ) ? '' : 'wpo-col-xs-12 wpo-col-md-12 wpo-col-lg-6';
-		foreach ( $this->allowed_prices as $price_type ) {
+		$allowed_prices = $this->option( 'allowed_prices' );
+		$is_single      = ( count( $allowed_prices ) === 1 ) ? '' : 'wpo-col-xs-12 wpo-col-md-12 wpo-col-lg-6';
+		foreach ( $allowed_prices as $price_type ) {
 			$label = wc_rbp_price_type_label( $price_type );
 			$section->text( $price_type, wc_rbp_price_type_label( $price_type ) )
 				->wrap_class( $is_single )
