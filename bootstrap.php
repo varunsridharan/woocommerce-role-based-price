@@ -32,7 +32,12 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 					'addon_listing_tab_title' => __( 'Addons' ),
 					'addon_listing_tab_icon'  => ' wpoic-plug',
 				),
-				'localizer' => false,
+				'localizer' => array(
+					'id'        => 'wc_role_based_price',
+					'scripts'   => array( 'vsp-framework', 'wcrbp-admin-script' ),
+					'frontend'  => false,
+					'functions' => true,
+				),
 			);
 			$options['autoloader']    = array(
 				'base_path' => $this->plugin_path( 'includes/', WC_RBP_FILE ),
@@ -53,6 +58,14 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 				),
 			);
 			parent::__construct( $options );
+		}
+
+		/**
+		 * Registers With WordPress.
+		 */
+		public function admin_assets() {
+			wp_register_script( 'wcrbp-admin', $this->plugin_url( 'assets/js/wcrbp-admin.js' ), array( 'jquery' ), WC_RBP_VERSION );
+			wp_register_style( 'wcrbp-admin', $this->plugin_url( 'assets/css/wcrbp-admin.css' ), array(), WC_RBP_VERSION );
 		}
 
 		/**

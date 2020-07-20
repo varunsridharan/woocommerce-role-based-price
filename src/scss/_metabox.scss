@@ -1,0 +1,26 @@
+#role-based-price-editor.wponion-metabox {
+	div#wcrbp-metabox-sub-product-selector {
+		display:        inline-block;
+		min-width:      250px;
+		width:          35%;
+		cursor:         pointer;
+		vertical-align: middle;
+		margin-left:    20px;
+	}
+
+	div#role-based-price-main-tab {
+		padding: 0;
+
+		> .wpo-row {
+			margin: 0;
+
+			> .wponion-fieldset {
+				padding: 0;
+
+				> .wponion-tab-wrap {
+					border: none;
+				}
+			}
+		}
+	}
+}
