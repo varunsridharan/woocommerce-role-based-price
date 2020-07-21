@@ -13,14 +13,18 @@ defined( 'ABSPATH' ) || exit;
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  */
 class Metabox extends Base {
+	/**
+	 * @var bool|\WPOnion\Modules\Metabox\Metabox
+	 */
+	protected $metabox_instance = false;
 
 	/**
 	 * Metabox constructor.
 	 */
 	public function __construct() {
 		$this->add_action( 'wponion/metabox/render/_wc_role_based_price/before', 'before_hook', 10 );
-		$instance = wc_rbp()->_instance( '\WC_RBP\Admin\Price_Fields' );
-		wponion_metabox( array(
+		$instance               = wc_rbp()->_instance( '\WC_RBP\Admin\Price_Fields' );
+		$this->metabox_instance = wponion_metabox( array(
 			'metabox_id'    => 'role-based-price-editor',
 			'option_name'   => '_wc_role_based_price',
 			'save_type'     => '\WC_RBP\Admin\Save_Handler\WPO_Metabox',
@@ -35,5 +39,14 @@ class Metabox extends Base {
 	 */
 	public function before_hook( $post_id ) {
 		wc_rbp()->_instance( '\WC_RBP\Admin\Metabox_Sub_Product_Selector', $post_id );
+	}
+
+	/**
+	 * Metabox Instance.
+	 *
+	 * @return bool|\WPOnion\Modules\Metabox\Metabox
+	 */
+	public function metabox() {
+		return $this->metabox_instance;
 	}
 }
