@@ -3,7 +3,6 @@
 namespace WC_RBP\Admin\Save_Handler;
 
 use WC_RBP\DB\Query;
-use WC_RBP\Price;
 use WC_RBP\Price_Helper;
 use WPOnion\Bridge\Custom_DB_Storage_Handler;
 
