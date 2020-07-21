@@ -82,6 +82,8 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 			Price::instance();
 			Price_Meta::instance();
 
+			$this->_instance( '\WC_RBP\Admin\Ajax' );
+
 			if ( vsp_is_admin() || vsp_is_ajax() ) {
 				$this->_instance( '\WC_RBP\Admin\Metabox' );
 			}
