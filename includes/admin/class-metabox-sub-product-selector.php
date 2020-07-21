@@ -97,7 +97,7 @@ class Metabox_Sub_Product_Selector extends Base {
 					$title['attributes']                                 = ( wponion_is_set( $title, 'attributes' ) ) ? $title['attributes'] : array();
 					$title['attributes']['data-wcrbp-product-type-slug'] = $slug;
 					unset( $values['options'][ $id ] );
-					$values['options'][ $slug . '_' . $id ] = $title;
+					$values['options'][ wc_rbp_sub_product_type_string( $slug, $id ) ] = $title;
 				}
 				$select_html[ $values['title'] ] = $values['options'];
 			}
