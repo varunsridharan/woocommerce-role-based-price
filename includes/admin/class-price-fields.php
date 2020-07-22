@@ -21,14 +21,50 @@ class Price_Fields extends Base {
 	 */
 	public function __construct( $builder = null, $args = array() ) {
 		$this->set_args( $args, array(
-			'allowed_roles'  => wc_rbp_allowed_roles(),
-			'allowed_prices' => wc_rbp_allowed_prices(),
-			'product_id'     => wponion_get_var( 'wcrbp_product_id', false ),
-			'sub_product_id' => wponion_get_var( 'wcrbp_sub_product_id', false ),
+			'allowed_roles'    => wc_rbp_allowed_roles(),
+			'allowed_prices'   => wc_rbp_allowed_prices(),
+			'product_id'       => wponion_get_var( 'wcrbp_product_id', false ),
+			'sub_product_id'   => wponion_get_var( 'wcrbp_sub_product_id', false ),
+			'sub_product_type' => wponion_get_var( 'wcrbp_sub_product_type', false ),
 		) );
 		$this->builder = ( empty( $builder ) ) ? wponion_builder() : $builder;
 	}
 
+	/**
+	 * Fetches & Returns allowed_roles
+	 *
+	 * @return bool|mixed
+	 */
+	public function allowed_roles() {
+		return $this->option( 'allowed_roles' );
+	}
+
+	/**
+	 * Fetches & Returns allowed_prices
+	 *
+	 * @return bool|mixed
+	 */
+	public function allowed_prices() {
+		return $this->option( 'allowed_prices' );
+	}
+
+	/**
+	 * Fetches & Returns product_id
+	 *
+	 * @return bool|mixed
+	 */
+	public function product_id() {
+		return $this->option( 'product_id' );
+	}
+
+	/**
+	 * Fetches & Returns sub_product_id
+	 *
+	 * @return bool|mixed
+	 */
+	public function sub_product_id() {
+		return $this->option( 'sub_product_id' );
+	}
 
 	/**
 	 * Genertes Fields.
@@ -36,19 +72,20 @@ class Price_Fields extends Base {
 	protected function setup() {
 		global $post_ID;
 
-		if ( empty( $this->option( 'product_id' ) ) && ! empty( $post_ID ) ) {
+		if ( empty( $this->product_id() ) && ! empty( $post_ID ) ) {
 			$this->set_option( 'product_id', $post_ID );
 		}
 
 		$this->builder->hidden( 'product_id' )->name( 'wcrbp_product_id' );
 		$this->builder->hidden( 'sub_product_id' )->name( 'wcrbp_sub_product_id' );
+		$this->builder->hidden( 'sub_product_type' )->name( 'wcrbp_sub_product_type' );
 
 		$tab = $this->builder->tab( 'roles_price' )
 			->tab_style( 'style2' )
 			->un_array( true )
 			->wrap_id( 'role-based-price-main-tab' );
 
-		foreach ( $this->option( 'allowed_roles' ) as $role_id ) {
+		foreach ( $this->allowed_roles() as $role_id ) {
 			$section = $tab->section( $role_id, Helper::user_role_title( $role_id, $role_id ), 'wpoic-user' );
 
 			$this->do_action( 'price/editor/fields/role/before', $this->builder, $this );
@@ -68,7 +105,7 @@ class Price_Fields extends Base {
 	 * @param string               $role_id
 	 */
 	protected function setup_single_role_fields( $section, $role_id ) {
-		$allowed_prices = $this->option( 'allowed_prices' );
+		$allowed_prices = $this->allowed_prices();
 		$is_single      = ( count( $allowed_prices ) === 1 ) ? '' : 'wpo-col-xs-12 wpo-col-md-12 wpo-col-lg-6';
 		foreach ( $allowed_prices as $price_type ) {
 			$label = wc_rbp_price_type_label( $price_type );
