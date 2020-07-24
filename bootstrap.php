@@ -64,7 +64,7 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 		 * Registers With WordPress.
 		 */
 		public function admin_assets() {
-			wp_register_script( 'wcrbp-admin', $this->plugin_url( 'assets/js/wcrbp-admin.js' ), array( 'jquery' ), WC_RBP_VERSION );
+			wp_register_script( 'wcrbp-admin', $this->plugin_url( 'assets/js/wcrbp-admin.js' ), array( 'wponion-core' ), WC_RBP_VERSION );
 			wp_register_style( 'wcrbp-admin', $this->plugin_url( 'assets/css/wcrbp-admin.css' ), array(), WC_RBP_VERSION );
 		}
 
