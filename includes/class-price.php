@@ -150,7 +150,7 @@ class Price {
 	 */
 	public function set_regular_price( $price ) {
 		if ( 0 === $price || ! empty( $price ) ) {
-			$this->regular_price = floatval( wc_format_decimal( $price ) );
+			$this->regular_price = wc_format_decimal( $price );
 		} else {
 			$this->regular_price = '';
 		}
@@ -166,7 +166,7 @@ class Price {
 	 */
 	public function set_sale_price( $price ) {
 		if ( 0 === $price || ! empty( $price ) ) {
-			$this->sale_price = floatval( wc_format_decimal( $price ) );
+			$this->sale_price = wc_format_decimal( $price );
 		} else {
 			$this->sale_price = '';
 		}
@@ -294,8 +294,6 @@ class Price {
 	 * @return bool
 	 */
 	public function save() {
-		$is_saved = false;
-
 		if ( empty( $this->ID ) && empty( $this->regular_price ) && empty( $this->sale_price ) ) {
 			return false;
 		}
@@ -312,6 +310,8 @@ class Price {
 					}
 				}
 			}
+		} else {
+			$is_saved = Query::update_prices_by_id( $this->ID, $this->regular_price, $this->sale_price );
 		}
 
 		return $is_saved;
