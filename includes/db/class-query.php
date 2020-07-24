@@ -16,7 +16,7 @@ class Query {
 	/**
 	 * Returns DB Table Instance.
 	 *
-	 * @return \Varunsridharan\WordPress\DB_Table|\WC_RBP\DB\Price
+	 * @return \WC_RBP\DB\Price
 	 */
 	private static function db() {
 		return Price::instance();
@@ -88,6 +88,37 @@ class Query {
 			'product_id'    => $product_id,
 			'price_type'    => $price_type,
 			'user_role'     => $user_role,
+			'regular_price' => $regular_price,
+			'sale_price'    => $sale_price,
+		) );
+	}
+
+	/**
+	 * Updates Price Information Based On Price ID.
+	 *
+	 * @param string $price_id Value of ID Column from wcrbp price table
+	 * @param array  $columns
+	 *
+	 * @return false|int|mixed
+	 * @throws \Exception
+	 */
+	public static function update_by_id( $price_id, $columns = array() ) {
+		return self::db()->set( $columns )->where( 'ID', $price_id )->update();
+	}
+
+	/**
+	 * Updates Price Information Based On Price ID.
+	 *
+	 * @param string $price_id Value of ID Column from wcrbp price table
+	 * @param string $regular_price
+	 * @param string $sale_price
+	 *
+	 * @static
+	 * @return false|int|mixed
+	 * @throws \Exception
+	 */
+	public static function update_prices_by_id( $price_id, $regular_price = '', $sale_price = '' ) {
+		return self::update_by_id( $price_id, array(
 			'regular_price' => $regular_price,
 			'sale_price'    => $sale_price,
 		) );
