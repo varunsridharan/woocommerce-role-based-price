@@ -4,6 +4,7 @@ namespace WC_RBP\Admin;
 
 use VSP\Base;
 use VSP\WC_Compatibility;
+use WC_RBP\Traits\Product_Info;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -14,19 +15,7 @@ defined( 'ABSPATH' ) || exit;
  * @author Varun Sridharan <varunsridharan23@gmail.com>
  */
 class Metabox_Sub_Product_Selector extends Base {
-	/**
-	 * Stores Product ID.
-	 *
-	 * @var string
-	 */
-	protected $product_id;
-
-	/**
-	 * Stores Sub Product ID.
-	 *
-	 * @var string
-	 */
-	protected $sub_product_id;
+	use Product_Info;
 
 	/**
 	 * Stores Selected Product.
@@ -40,11 +29,11 @@ class Metabox_Sub_Product_Selector extends Base {
 	 *
 	 * @param bool|string $product_id
 	 * @param bool|string $sub_product_id
+	 * @param bool|string $sub_product_type
 	 * @param bool|string $selected_product
 	 */
-	public function __construct( $product_id = false, $sub_product_id = false, $selected_product = false ) {
-		$this->product_id       = ( empty( $product_id ) ) ? wponion_get_var( 'wcrbp_product_id', false ) : $product_id;
-		$this->sub_product_id   = ( empty( $sub_product_id ) ) ? wponion_get_var( 'wcrbp_sub_product_id', false ) : $sub_product_id;
+	public function __construct( $product_id = false, $sub_product_id = false, $sub_product_type = false, $selected_product = false ) {
+		$this->setup_product_info( $product_id, $sub_product_id, $sub_product_type );
 		$this->selected_product = ( empty( $selected_product ) ) ? wponion_get_var( 'wcrbp_sub_product_selector', false ) : $selected_product;
 		$this->setup_variable();
 		$this->run_hook();
@@ -94,10 +83,10 @@ class Metabox_Sub_Product_Selector extends Base {
 					if ( ! is_array( $title ) ) {
 						$title = array( 'label' => $title );
 					}
-					$title['attributes']                                 = ( wponion_is_set( $title, 'attributes' ) ) ? $title['attributes'] : array();
-					$title['attributes']['data-wcrbp-product-type-slug'] = $slug;
 					unset( $values['options'][ $id ] );
-					$values['options'][ wc_rbp_sub_product_type_string( $slug, $id ) ] = $title;
+					$title['attributes']                                = ( wponion_is_set( $title, 'attributes' ) ) ? $title['attributes'] : array();
+					$title['attributes']['data-wcrbp-sub-product-type'] = $slug;
+					$values['options'][ $slug . '/' . $id ]             = $title;
 				}
 				$select_html[ $values['title'] ] = $values['options'];
 			}
