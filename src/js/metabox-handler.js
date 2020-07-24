@@ -1,3 +1,31 @@
+export function product_type_selector() {
+	return window.wcrbp.metabox.find( 'select#wcrbp_sub_product_selector' );
+}
+
+
+export function product_id() {
+	if( window.wcrbp.metabox.find( 'input[name="wcrbp_product_id"]' ).length > 0 ) {
+		return window.wcrbp.metabox.find( 'input[name="wcrbp_product_id"]' ).val();
+	}
+	return '';
+}
+
+
+export function sub_product_id() {
+	if( window.wcrbp.metabox.find( 'input[name="wcrbp_sub_product_id"]' ).length > 0 ) {
+		return window.wcrbp.metabox.find( 'input[name="wcrbp_sub_product_id"]' );
+	}
+	return '';
+}
+
+
+export function sub_product_type() {
+	if( window.wcrbp.metabox.find( 'input[name="wcrbp_sub_product_type"]' ).length > 0 ) {
+		return window.wcrbp.metabox.find( 'input[name="wcrbp_sub_product_type"]' );
+	}
+	return '';
+}
+
 export function add_selectbox() {
 	let $html = window.wc_role_based_price_option( 'metabox_sub_product_selector_html' );
 
@@ -9,26 +37,28 @@ export function add_selectbox() {
 			persist: false,
 			create: false,
 			onChange: function( value ) {
+				value = value.split( '/' );
+				sub_product_id().val( value[ 1 ] );
+				sub_product_type().val( value[ 0 ] );
 				block_metabox();
-				//$.WCRBP.block( $( 'div#wc-rbp-product-editor div.inside' ) );
-				var $select   = this;
-				var $parentID = $( 'input#post_ID' ).val();
-				/*$.ajax( {
-					url: ajaxurl + '?action=wc_rbp_metabox_refersh&pid=' + value + '&parentID=' + $parentID,
-					method: "GET",
-					data: '',
-				} ).done( function( response ) {
-					if( response.success === true ) {
-						$select.destroy();
-						$( '.wcrbpvariationbx' ).remove();
-						$( '#wc-rbp-product-editor .inside' ).html( response.data );
-						$.WCRBP.render_wootabs();
-						$.WCRBP.add_variation_selectbox();
-						$( "#wc-rbp-product-editor .inside input.wc_rbp_checkbox" ).wcrbp_checkbox();
-						$.WCRBP.unblock( $( 'div#wc-rbp-product-editor div.inside' ) );
-						$.WCRBP.render_price_status();
-					}
-				} )*/
+
+				window.wc_rbp_ajax_post( 'reload-metabox' ).send( {
+					data: {
+						wcrbp_product_id: product_id(),
+						wcrbp_sub_product_id: sub_product_id().val(),
+						wcrbp_sub_product_type: sub_product_type().val()
+					},
+					success: ( res ) => {
+						window.wpo_core.handle_ajax_response( res );
+						let $base = window.wcrbp.metabox.find( '> .inside' );
+						$base.html( res.html );
+						let $elem = $base.find( '.wponion-framework' );
+						window.wponion_field_reload_all( $elem );
+						window.wponion_init_theme( $elem );
+					},
+					error: ( res ) => window.wponion_error_swal( res ).fire(),
+					always: () => unblock_metabox()
+				} );
 			}
 		} );
 
@@ -52,6 +82,7 @@ export function block_metabox() {
 	} );
 }
 
-export function unblock() {
+export function unblock_metabox() {
 	window.wcrbp.metabox.unblock();
 }
+

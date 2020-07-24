@@ -1,7 +1,9 @@
 import { add_selectbox } from './metabox-handler';
+import ajax_handler from './ajax-handler';
 
 ( ( window, document, wp, $ ) => {
 	$( () => {
+		ajax_handler();
 		if( typeof window.wcrbp === 'undefined' ) {
 			window.wcrbp = {
 				metabox_id: 'role-based-price-editor',
