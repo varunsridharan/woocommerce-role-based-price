@@ -71,13 +71,13 @@ class Price_Fields extends Base {
 		foreach ( $this->allowed_roles() as $role_id ) {
 			$section = $tab->section( $role_id, Helper::user_role_title( $role_id, $role_id ), 'wpoic-user' );
 
-			$this->do_action( 'price/editor/fields/role/before', $this->builder, $this );
-			$this->do_action( "price/editor/fields/${role_id}/before", $this->builder, $this );
+			$this->do_action( 'price/editor/fields/role/before', $this->builder, $this->option( 'module' ), $this );
+			$this->do_action( "price/editor/fields/${role_id}/before", $this->builder, $this->option( 'module' ), $this );
 
 			$this->setup_single_role_fields( $section, $role_id );
 
-			$this->do_action( "price/editor/fields/${role_id}", $this->builder, $role_id, $this );
-			$this->do_action( 'price/editor/fields/role', $this->builder, $role_id, $this );
+			$this->do_action( "price/editor/fields/${role_id}/after", $this->builder, $role_id, $this->option( 'module' ), $this );
+			$this->do_action( 'price/editor/fields/role/after', $this->builder, $role_id, $this->option( 'module' ), $this );
 		}
 	}
 
