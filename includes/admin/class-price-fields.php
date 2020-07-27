@@ -10,6 +10,15 @@ class Price_Fields extends Base {
 	use Product_Info;
 
 	/**
+	 * Returns Plugin Name.
+	 *
+	 * @return \VSP\Base|\VSP\Framework|\WC_RBP
+	 */
+	public function plugin() {
+		return wc_rbp();
+	}
+
+	/**
 	 * Stores WPOnion Builder.
 	 *
 	 * @var \WPO\Builder
@@ -24,9 +33,10 @@ class Price_Fields extends Base {
 	 */
 	public function __construct( $builder = null, $args = array() ) {
 		$this->set_args( $args, array(
-			'module'         => 'core',
-			'allowed_roles'  => wc_rbp_allowed_roles(),
-			'allowed_prices' => wc_rbp_allowed_prices(),
+			'price_field_type' => 'number',
+			'module'           => 'core',
+			'allowed_roles'    => wc_rbp_allowed_roles(),
+			'allowed_prices'   => wc_rbp_allowed_prices(),
 		) );
 		$this->builder = ( empty( $builder ) ) ? wponion_builder() : $builder;
 	}
@@ -96,12 +106,16 @@ class Price_Fields extends Base {
 			$text  = $section->text( $price_type, wc_rbp_price_type_label( $price_type ) )
 				->wrap_class( $is_single )
 				->attribute( 'id', $field_id . '_' . $price_type )
-				->attribute( 'type', 'number' )
+				->attribute( 'type', 'text' )
 				->horizontal( true )
 				->style( 'width:100%;' )
 				->desc_field( sprintf( __( 'Enter Product\'s %1$s' ), $label ) );
-			if ( 'sale_price' === $price_type ) {
-				$text->js_validate( array( 'lessThan' => '#' . $field_id . '_regular_price' ) );
+
+			if ( 'number' === $this->option( 'price_field_type' ) ) {
+				$text->attribute( 'type', 'number' );
+				if ( 'sale_price' === $price_type ) {
+					$text->js_validate( array( 'lessThan' => '#' . $field_id . '_regular_price' ) );
+				}
 			}
 		}
 	}
