@@ -142,6 +142,18 @@ class Price {
 	}
 
 	/**
+	 * Common Function which can be used to set price dynamically.
+	 *
+	 * @param string|int $value
+	 * @param string     $price_type
+	 *
+	 * @return $this
+	 */
+	public function set_price( $value, $price_type = 'regular_price' ) {
+		return ( 'sale_price' === $price_type ) ? $this->set_sale_price( $value ) : $this->set_regular_price( $value );
+	}
+
+	/**
 	 * Sets Regular Price.
 	 *
 	 * @param $price
