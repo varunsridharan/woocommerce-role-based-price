@@ -24,17 +24,22 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 				'version'   => WC_RBP_VERSION,
 				'db_slug'   => '_wcrbp',
 				'hook_slug' => 'wc_rbp',
+				'slug'      => 'wc-role-based-price',
 				'file'      => WC_RBP_FILE,
 				'logging'   => false,
 				'addons'    => array(
 					'base_path'               => $this->plugin_path( 'addons/', WC_RBP_FILE ),
 					'base_url'                => $this->plugin_url( 'addons/', WC_RBP_FILE ),
 					'addon_listing_tab_title' => __( 'Addons' ),
+					'headers'                 => array(
+						'author'     => __( 'Varun Sridharan' ),
+						'author_url' => 'https://varunsridharan.in',
+					),
 					'addon_listing_tab_icon'  => ' wpoic-plug',
 				),
 				'localizer' => array(
 					'id'        => 'wc_role_based_price',
-					'scripts'   => array( 'vsp-framework', 'wcrbp-admin-script' ),
+					'scripts'   => array( 'vsp-framework', 'wcrbp-admin' ),
 					'frontend'  => false,
 					'functions' => true,
 				),
@@ -50,7 +55,7 @@ if ( ! class_exists( 'WC_RBP' ) ) {
 				'theme'           => 'wp',
 				'is_single_page'  => false,
 				'ajax'            => true,
-				'assets'          => array( 'jquery-ui-sortable' ),
+				'assets'          => array( 'jquery-ui-sortable', 'wcrbp-admin' ),
 				'menu'            => array(
 					'menu_title' => __( 'Role Based Price' ),
 					'menu_slug'  => 'wc-rbp',
