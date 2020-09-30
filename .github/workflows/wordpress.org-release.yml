@@ -15,15 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "📥  Fetching Repository Contents"
-        uses: actions/checkout@master
+        uses: actions/checkout@main
 
       - name: "💾  Github Repository Metadata"
-        uses: varunsridharan/action-repository-meta@master
+        uses: varunsridharan/action-repository-meta@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "💫  VS Utility"
-        uses: varunsridharan/action-vs-utility@master
+        uses: varunsridharan/action-vs-utility@main
 
       - name: "⚡  Repository - Before Hook"
         run: |
@@ -37,12 +37,12 @@ jobs:
           echo " "
 
       - name: "💽  Installing Composer"
-        uses: pxgamer/composer-action@master
+        uses: g-actions/composer-action@main
         with:
           command: install --no-dev
 
       - name: "🚀  Publishing Release"
-        uses: varunsridharan/action-wp-org-deploy@master
+        uses: varunsridharan/action-wp-org-deploy@main
         with:
           WORDPRESS_PASSWORD: ${{ secrets.WP_PASSWORD }}
           WORDPRESS_USERNAME: ${{ secrets.WP_USERNAME }}
