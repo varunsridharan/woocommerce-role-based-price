@@ -1,4 +1,4 @@
-name: On Release
+name: "Release - WordPress.org"
 
 env:
   DIST_LOCATION: "./dist/"
@@ -10,7 +10,7 @@ on:
       - published
 
 jobs:
-  wordpress_publisher:
+  publish-wordpress-org:
     name: "🚀  WordPress Publisher"
     runs-on: ubuntu-latest
     steps:
